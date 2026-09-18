@@ -10,12 +10,33 @@ from agents.clinic import _invoke_clinic_model, clinic_node
 from agents.clinic_action_adapter import (
     CLINIC_ACTION_TOOLS,
     ClinicActionAdapter,
+    clinic_harness_state,
+    fallback_clinic_answer,
     sanitize_clinic_answer,
 )
 from skills.emergency_triage.skill import EmergencyTriageSkill
 
 
 class ClinicActionAdapterTests(unittest.TestCase):
+    def test_harness_stops_after_bounded_question_turns(self):
+        messages = [
+            HumanMessage(content="我有点不舒服。"),
+            AIMessage(content="症状什么时候开始的？"),
+            HumanMessage(content="昨天。"),
+            AIMessage(content="严重程度如何？"),
+            HumanMessage(content="有点明显。"),
+            AIMessage(content="还有其他伴随情况吗？"),
+            HumanMessage(content="没有。"),
+        ]
+        state = clinic_harness_state(messages, max_question_turns=3)
+        self.assertTrue(state.force_answer)
+        self.assertEqual(state.question_turns, 3)
+
+    def test_harness_fallback_is_a_safe_final_answer(self):
+        answer = fallback_clinic_answer([HumanMessage(content="牙齿酸，持续加重")])
+        self.assertIn("尽快线下就医", answer)
+        self.assertIn("120", answer)
+
     def test_clinic_model_retries_transient_failure_with_bounded_attempts(self):
         class FlakyModel:
             def __init__(self):

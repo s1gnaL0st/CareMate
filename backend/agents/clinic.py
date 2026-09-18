@@ -10,7 +10,13 @@ from typing import Any, Mapping
 from langchain_core.messages import AIMessage, SystemMessage, ToolMessage
 from langchain_core.tools import tool
 
-from agents.clinic_action_adapter import CLINIC_ACTION_TOOLS, ClinicActionAdapter, sanitize_clinic_answer
+from agents.clinic_action_adapter import (
+    CLINIC_ACTION_TOOLS,
+    ClinicActionAdapter,
+    clinic_harness_state,
+    fallback_clinic_answer,
+    sanitize_clinic_answer,
+)
 from agents.llm import get_clinic_llm
 from agents.state import MainAgentState
 from config import get_settings
@@ -125,6 +131,11 @@ async def clinic_node(state: MainAgentState) -> dict:
     # system prompt before sending the request.
     adapter_messages = list(state.get("conversation_messages", messages))
     adapter = ClinicActionAdapter(state=state, messages=adapter_messages)
+    settings = get_settings()
+    harness = clinic_harness_state(
+        adapter_messages,
+        max_question_turns=settings.clinic_max_question_turns,
+    )
     initial_veto = adapter.emergency_veto()
     if getattr(initial_veto, "level", "") == "CRITICAL":
         return {"messages": [AIMessage(content=_safety_text(initial_veto))]}
@@ -137,9 +148,15 @@ async def clinic_node(state: MainAgentState) -> dict:
     if user_info.get("elder_mode", False):
         system += "\n请使用极度通俗易懂的语言。"
 
-    model = get_clinic_llm(temperature=0.0).bind_tools(
-        list(CLINIC_ACTION_TOOLS), tool_choice="auto"
-    )
+    available_tools = list(CLINIC_ACTION_TOOLS)
+    if harness.force_answer:
+        # The harness has reached its question budget. Do not let the model
+        # open another questionnaire branch; the domain skill must answer.
+        available_tools = [
+            item for item in available_tools if item["function"]["name"] != "ask"
+        ]
+        system += "\n本次问诊已达到追问上限，请直接使用 answer 输出分诊和下一步建议，不要继续追问。"
+    model = get_clinic_llm(temperature=0.0).bind_tools(available_tools, tool_choice="auto")
     system_parts = [system]
     model_history: list[Any] = []
     for message in messages:
@@ -150,20 +167,20 @@ async def clinic_node(state: MainAgentState) -> dict:
         else:
             model_history.append(message)
     model_messages: list[Any] = [SystemMessage(content="\n\n".join(system_parts)), *model_history]
-    max_rounds = get_settings().clinic_llm_max_rounds
+    max_rounds = settings.clinic_llm_max_rounds
     for _round in range(max_rounds):
         try:
-            response = await _invoke_clinic_model(model, model_messages, get_settings())
+            response = await _invoke_clinic_model(model, model_messages, settings)
         except Exception as exc:
             logger.warning("clinic model unavailable after retries error=%s", type(exc).__name__)
-            # A transient local-model 5xx/timeout must not terminate an
-            # otherwise healthy interview.  Continue with the next bounded
-            # question; this is only a failure fallback and does not replace
-            # model-led intent routing or normal GRPO actions.
-            fallback_question = adapter.next_fallback_question()
-            if fallback_question:
-                return {"messages": [AIMessage(content=fallback_question)]}
-            return {"messages": [AIMessage(content="当前预问诊模型暂时不可用，请稍后重试或直接联系医生。") ]}
+            # A transient local-model failure gets one generic harness-level
+            # clarification turn; it never exposes provider jargon to the
+            # patient. Once the turn budget is exhausted, finish safely.
+            if not harness.force_answer:
+                fallback_question = adapter.next_fallback_question()
+                if fallback_question:
+                    return {"messages": [AIMessage(content=fallback_question)]}
+            return {"messages": [AIMessage(content=fallback_clinic_answer(adapter_messages))]}
         model_messages.append(response)
         raw_calls = getattr(response, "tool_calls", None) or getattr(response, "additional_kwargs", {}).get("tool_calls", [])
         if not raw_calls:
@@ -174,6 +191,8 @@ async def clinic_node(state: MainAgentState) -> dict:
         for raw_call in raw_calls:
             name, call_id, arguments = _tool_call_parts(raw_call)
             if name == "ask":
+                if harness.force_answer:
+                    return {"messages": [AIMessage(content=fallback_clinic_answer(adapter_messages))]}
                 # ``ask`` is a user-facing turn boundary. The next model call
                 # belongs to the next user message.
                 try:
@@ -185,16 +204,12 @@ async def clinic_node(state: MainAgentState) -> dict:
                 question = str(payload.get("question", "")).strip()
                 if payload.get("success") and question:
                     return {"messages": [AIMessage(content=question)]}
-                # The local model sometimes repeats an earlier ask after the
-                # patient has supplied an answer.  Do not return the same
-                # generic sentence forever; move to a bounded missing slot.
-                fallback_question = adapter.next_fallback_question()
-                if fallback_question:
-                    logger.info("clinic duplicate/invalid ask; using bounded fallback question")
-                    return {"messages": [AIMessage(content=fallback_question)]}
+                # A duplicate/invalid action is a harness violation. Return a
+                # single generic clarification turn; the max-question policy
+                # still guarantees that this cannot become an endless loop.
                 return {
                     "messages": [
-                        AIMessage(content="请补充症状持续时间、严重程度或伴随症状中的一项。")
+                        AIMessage(content="请补充一个与当前症状相关的重要信息？")
                     ]
                 }
             if name == "answer":
@@ -212,4 +227,4 @@ async def clinic_node(state: MainAgentState) -> dict:
                     logger.warning("clinic action failed action=%s error=%s", name, type(exc).__name__)
                     result = json.dumps({"success": False, "error": "action_unavailable"}, ensure_ascii=False)
             model_messages.append(ToolMessage(content=result, tool_call_id=call_id))
-    return {"messages": [AIMessage(content="为了安全完成预问诊，请补充症状持续时间、严重程度和伴随症状。") ]}
+    return {"messages": [AIMessage(content=fallback_clinic_answer(adapter_messages))]}

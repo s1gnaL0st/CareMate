@@ -95,17 +95,55 @@ _DRUG_PREFIX = re.compile(r"^(?:药物)?相互作用\s*[:：\-]?\s*", flags=re.I
 _DRUG_INFO_HINT = re.compile(r"(?:药品|药物|说明书|适应症|用法用量|剂量|副作用|禁忌)")
 _DRUG_PUNCTUATION = " \t\r\n:：,，。.;；、/\\+&和与及以及()（）[]【】{}<>《》\"'`"
 
-# These are deliberately a *safety fallback*, not the clinic routing logic.
-# They are used only when the local model violates the no-duplicate-question
-# contract.  Keeping the fallback here means a bad tool call cannot trap the
-# patient in the same question forever while the normal conversation remains
-# model-led.
-_FOLLOW_UP_FALLBACK_QUESTIONS = (
-    "酸的程度大概有多明显，是否已经影响吃饭或睡觉？",
-    "吃冷的、热的、甜的或酸的东西时，会不会更酸？",
-    "是某一颗牙酸，还是一大片牙都酸？",
-    "牙龈有没有肿胀、出血，或者脸部肿起来？",
+@dataclass(frozen=True)
+class ClinicHarnessState:
+    """Generic turn policy; domain skills still decide question content.
+
+    The harness must not infer dental (or any other domain) slots from
+    keywords.  It only counts assistant turns that contained a question and
+    takes away ``ask`` after a bounded number of turns, so a tool-calling model
+    cannot create an endless interview.
+    """
+
+    question_turns: int
+    max_question_turns: int
+    force_answer: bool
+
+
+_GENERIC_FALLBACK_QUESTIONS = (
+    "请补充一个与当前症状相关的重要信息？",
+    "还可以补充症状变化或伴随情况中的一项吗？",
 )
+
+
+def clinic_harness_state(messages: Sequence[BaseMessage], *, max_question_turns: int = 4) -> ClinicHarnessState:
+    """Compute generic stop-policy state from assistant output only."""
+    question_turns = 0
+    # Count only the current interview segment. A completed answer without a
+    # question starts a fresh segment if the patient later opens another topic.
+    for message in reversed(messages):
+        if not isinstance(message, AIMessage):
+            continue
+        if re.search(r"[^。！？!?\n]{2,160}[？?]", _text(message.content)):
+            question_turns += 1
+            continue
+        break
+    max_question_turns = max(1, int(max_question_turns))
+    return ClinicHarnessState(
+        question_turns=question_turns,
+        max_question_turns=max_question_turns,
+        force_answer=question_turns >= max_question_turns,
+    )
+
+
+def fallback_clinic_answer(messages: Sequence[BaseMessage]) -> str:
+    """Safe final response when the model remains unavailable after retries."""
+    return (
+        "根据目前提供的信息，暂时不能确认具体原因。建议尽快线下就医评估，"
+        "先避免可能加重症状的刺激，并记录症状变化。"
+        "如果出现明显加重、剧烈疼痛、呼吸或吞咽困难、意识异常等情况，"
+        "请立即就医或拨打120。"
+    )
 
 
 def _text(value: Any) -> str:
@@ -197,7 +235,7 @@ class ClinicActionAdapter:
         the GRPO model; it prevents one malformed/repeated tool call from
         producing the same generic sentence on every user turn.
         """
-        for question in _FOLLOW_UP_FALLBACK_QUESTIONS:
+        for question in _GENERIC_FALLBACK_QUESTIONS:
             if not self._is_duplicate_question(question):
                 self.asked_questions.add(_normalize_question(question))
                 return question
