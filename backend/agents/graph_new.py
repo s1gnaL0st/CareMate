@@ -465,6 +465,9 @@ def _agent_input_slice(state: AgentLoopState, task: PlannedTask, results: dict[s
     messages.append(HumanMessage(content=task.input_slice[:MAX_TASK_TEXT_CHARS]))
     return {
         "messages": messages,
+        # Kept separately so clinic safety checks can inspect actual Human/AI
+        # roles even though the model prompt merges system preambles.
+        "conversation_messages": list(state.get("messages", [])),
         "user_info": state.get("user_info", {}),
         "next_agent": "",
         "active_agent": "",

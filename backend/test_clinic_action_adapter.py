@@ -1,9 +1,11 @@
 import asyncio
 import json
 import unittest
+from unittest.mock import patch
 
-from langchain_core.messages import AIMessage, HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
+from agents.clinic import clinic_node
 from agents.clinic_action_adapter import (
     CLINIC_ACTION_TOOLS,
     ClinicActionAdapter,
@@ -13,6 +15,40 @@ from skills.emergency_triage.skill import EmergencyTriageSkill
 
 
 class ClinicActionAdapterTests(unittest.TestCase):
+    def test_clinic_model_receives_only_one_leading_system_message(self):
+        captured = []
+
+        class FakeModel:
+            def bind_tools(self, *_args, **_kwargs):
+                return self
+
+            async def ainvoke(self, messages):
+                captured.extend(messages)
+                return AIMessage(
+                    content="",
+                    tool_calls=[{
+                        "name": "ask",
+                        "args": {"question": "具体是哪颗牙齿发酸？"},
+                        "id": "call-test",
+                        "type": "tool_call",
+                    }],
+                )
+
+        state = {
+            "messages": [
+                SystemMessage(content="最近对话：用户说牙齿酸。"),
+                HumanMessage(content="昨晚吃橘子后出现。"),
+            ],
+            "conversation_messages": [HumanMessage(content="我牙齿有点酸")],
+            "user_info": {},
+        }
+        with patch("agents.clinic.get_clinic_llm", return_value=FakeModel()):
+            result = asyncio.run(clinic_node(state))
+
+        self.assertEqual(sum(isinstance(message, SystemMessage) for message in captured), 1)
+        self.assertIn("最近对话：用户说牙齿酸", captured[0].content)
+        self.assertEqual(result["messages"][0].content, "具体是哪颗牙齿发酸？")
+
     def test_exposes_only_the_five_trained_actions_with_full_parameters(self):
         self.assertEqual(
             {item["function"]["name"] for item in CLINIC_ACTION_TOOLS},

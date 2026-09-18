@@ -70,7 +70,12 @@ def _safety_text(veto: Any) -> str:
 async def clinic_node(state: MainAgentState) -> dict:
     """Run clinic-only Qwen tool calls behind a strict project adapter."""
     messages = list(state.get("messages", []))
-    adapter = ClinicActionAdapter(state=state, messages=messages)
+    # Keep the original role-labelled history for duplicate-question detection
+    # and emergency veto.  The local Qwen chat template, however, expects one
+    # leading system message; merge any task/context preambles into the clinic
+    # system prompt before sending the request.
+    adapter_messages = list(state.get("conversation_messages", messages))
+    adapter = ClinicActionAdapter(state=state, messages=adapter_messages)
     initial_veto = adapter.emergency_veto()
     if getattr(initial_veto, "level", "") == "CRITICAL":
         return {"messages": [AIMessage(content=_safety_text(initial_veto))]}
@@ -86,7 +91,16 @@ async def clinic_node(state: MainAgentState) -> dict:
     model = get_clinic_llm(temperature=0.0).bind_tools(
         list(CLINIC_ACTION_TOOLS), tool_choice="auto"
     )
-    model_messages: list[Any] = [SystemMessage(content=system), *messages]
+    system_parts = [system]
+    model_history: list[Any] = []
+    for message in messages:
+        if isinstance(message, SystemMessage):
+            content = _message_content(message).strip()
+            if content:
+                system_parts.append(content)
+        else:
+            model_history.append(message)
+    model_messages: list[Any] = [SystemMessage(content="\n\n".join(system_parts)), *model_history]
     max_rounds = get_settings().clinic_llm_max_rounds
     for _round in range(max_rounds):
         try:
