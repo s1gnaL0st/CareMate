@@ -97,6 +97,44 @@ class GraphNewTests(unittest.TestCase):
         plan = _fallback_plan("我牙齿有点酸", "health")
         self.assertEqual([task.agent for task in plan.tasks], ["symptom_agent"])
 
+    def test_intent_gate_uses_previous_health_context_for_follow_up(self):
+        captured = {}
+        decision = IntentDecision(intent="health", normalized_request="牙齿酸，昨晚吃橘子后出现", confidence=0.9)
+
+        async def fake_invoke(_schema, _prompt, user_text):
+            captured["user_text"] = user_text
+            return decision
+
+        state = {
+            "messages": [
+                HumanMessage(content="我牙齿有点酸"),
+                AIMessage(content="症状是什么时候开始的？"),
+                HumanMessage(content="昨天晚上吃了个橘子"),
+            ],
+            "user_info": {},
+        }
+        with patch("agents.graph_new._structured_invoke", new= fake_invoke):
+            result = asyncio.run(intent_gate(state))
+        self.assertEqual(result["intent"], "health")
+        self.assertIn("我牙齿有点酸", captured["user_text"])
+
+    def test_clinic_task_receives_recent_dialogue_context(self):
+        task = PlannedTask(id="symptoms", agent="symptom_agent", objective="追问", input_slice="昨天晚上吃了个橘子")
+        payload = _agent_input_slice(
+            {
+                "messages": [
+                    HumanMessage(content="我牙齿有点酸"),
+                    AIMessage(content="症状是什么时候开始的？"),
+                    HumanMessage(content="昨天晚上吃了个橘子"),
+                ],
+                "user_info": {},
+            },
+            task,
+            {},
+        )
+        self.assertIn("我牙齿有点酸", payload["messages"][0].content)
+        self.assertIn("昨天晚上吃了个橘子", payload["messages"][0].content)
+
     def test_responder_passes_through_single_clinic_result_without_llm(self):
         state = {
             "messages": [HumanMessage(content="我牙齿有点酸")],
