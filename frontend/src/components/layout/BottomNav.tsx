@@ -101,7 +101,11 @@ const BottomNav = () => {
                         cards: [...(m.cards ?? []), card],
                     }));
                 },
-                onDone: () => updateAssistant(m => ({ ...m, isGenerating: false })),
+                onDone: () => updateAssistant(m => ({
+                    ...m,
+                    isGenerating: false,
+                    steps: (m.steps ?? []).map(step => ({ ...step, isFinished: true })),
+                })),
                 onError: (err) => {
                     console.error("Chat error:", err);
                     updateAssistant(m => ({ ...m, text: m.text + "\n[网络错误，请稍后再试]", isGenerating: false }));
@@ -201,7 +205,11 @@ const BottomNav = () => {
                 },
                 onDone: () => {
                     setIsVisionUploading(false);
-                    updateAssistant(m => ({ ...m, isGenerating: false }));
+                    updateAssistant(m => ({
+                        ...m,
+                        isGenerating: false,
+                        steps: (m.steps ?? []).map(step => ({ ...step, isFinished: true })),
+                    }));
                 },
                 onError: (err) => {
                     console.error("Vision chat error:", err);

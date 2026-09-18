@@ -161,7 +161,10 @@ _FALLBACK_HINTS: tuple[tuple[tuple[str, ...], AgentName], ...] = (
     (("医保", "报销", "余额", "缴费", "异地备案", "消费明细"), "insurance_agent"),
     (("报告", "化验", "检验", "指标", "血常规", "彩超", "体检"), "report_agent"),
     (("药", "用药", "剂量", "副作用", "相互作用"), "pharmacy_agent"),
-    (("疼", "痛", "头晕", "发烧", "咳嗽", "恶心", "呕吐", "腹泻", "胸闷", "气短", "症状", "不舒服"), "symptom_agent"),
+    ((
+        "疼", "痛", "头晕", "发烧", "咳嗽", "恶心", "呕吐", "腹泻", "胸闷", "气短",
+        "症状", "不舒服", "牙", "牙齿", "牙龈", "牙酸", "酸痛", "冷热敏感",
+    ), "symptom_agent"),
 )
 
 _DOMAIN_NODES: dict[str, Callable[[dict[str, Any]], Awaitable[dict[str, Any]]]] = {
@@ -246,6 +249,11 @@ def _fallback_intent(text: str) -> IntentDecision:
     return IntentDecision(intent=intent, normalized_request=text[:MAX_TASK_TEXT_CHARS], confidence=0.2)
 
 
+def _explicit_domain_agents(text: str) -> list[AgentName]:
+    """Return deterministic domain matches in routing-priority order."""
+    return [agent for terms, agent in _FALLBACK_HINTS if any(term in text for term in terms)]
+
+
 def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
     if intent == "pure_chat":
         return Plan(tasks=[PlannedTask(
@@ -309,6 +317,17 @@ async def intent_gate(state: AgentLoopState) -> dict[str, Any]:
             "safety_message": triage.safety_message,
         }
 
+    # Obvious single-domain requests do not need a remote model round-trip just
+    # to decide that they are health related.  This keeps short symptom turns
+    # responsive while ambiguous and mixed requests still use the LLM gate.
+    explicit_agents = _explicit_domain_agents(latest_text)
+    if len(explicit_agents) == 1:
+        greeting = any(term in latest_text for term in ("你好", "您好", "嗨", "谢谢"))
+        return {
+            "intent": "mixed" if greeting else "health",
+            "health_text": latest_text[:MAX_TASK_TEXT_CHARS],
+        }
+
     try:
         decision = await _structured_invoke(IntentDecision, _INTENT_SYSTEM_PROMPT, latest_text)
         decision = decision if isinstance(decision, IntentDecision) else IntentDecision.model_validate(decision)
@@ -342,6 +361,32 @@ async def planner(state: AgentLoopState) -> dict[str, Any]:
         ]
         if failed:
             normalized_request += f"\n需要重试的失败任务类型：{', '.join(sorted(set(failed)))}"
+
+    # Match the intent gate fast path: one explicit domain can be planned
+    # deterministically.  Multi-domain and ambiguous requests still go through
+    # the structured planner below.
+    explicit_agents = _explicit_domain_agents(normalized_request)
+    if not state.get("verify_status") and len(explicit_agents) == 1:
+        agent = explicit_agents[0]
+        plan = Plan(tasks=[PlannedTask(
+            id=f"{agent}-fast-path",
+            agent=agent,
+            objective="根据用户请求完成本领域的受限分析",
+            input_slice=normalized_request,
+        )])
+        signature = _task_signature(plan.tasks)
+        updates: dict[str, Any] = {
+            "task_queue": plan.tasks,
+            "plan_signature": signature,
+            "replan_count": replan_count,
+            "needs_clarification": False,
+            "clarification_question": "",
+            "handoff_reason": "",
+        }
+        if state.get("agent_run_id"):
+            from agent_persistence import persist_plan
+            await persist_plan(state["agent_run_id"], plan.tasks, signature, replan_count)
+        return updates
 
     planner_input = json.dumps(
         {
@@ -545,6 +590,17 @@ async def verifier(state: AgentLoopState) -> dict[str, Any]:
 
 async def responder(state: AgentLoopState) -> dict[str, Any]:
     """Compose a user-facing answer from verified domain evidence."""
+    completed = [
+        result for result in state.get("task_results", {}).values()
+        if result.get("status") == "completed" and str(result.get("text", "")).strip()
+    ]
+    if len(completed) == 1 and completed[0].get("agent") == "symptom_agent":
+        # The clinic node already applies its answer sanitizer, citation filter
+        # and emergency veto.  A second model pass adds latency and can rewrite
+        # a carefully chosen one-question turn, so return it unchanged.
+        text = str(completed[0]["text"]).strip()
+        return {"messages": [AIMessage(content=text)], "final_response": text}
+
     evidence = json.dumps(list(state.get("task_results", {}).values()), ensure_ascii=False, default=str)[:18000]
     preferences = list(state.get("user_info", {}).get("response_preferences", []))[:10]
     preference_context = ""

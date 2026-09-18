@@ -9,7 +9,9 @@ interface AgentStatusBubbleProps {
 const AgentStatusBubble: React.FC<AgentStatusBubbleProps> = ({ steps, isGenerating }) => {
     if (steps.length === 0 && !isGenerating) return null;
 
-    const allDone = steps.length > 0 && steps.every(s => s.isFinished);
+    // A completed SSE stream is authoritative.  If a nested graph event is
+    // omitted by the backend, do not leave the status bubble spinning forever.
+    const allDone = steps.length > 0 && (!isGenerating || steps.every(s => s.isFinished));
     const isEmpty = steps.length === 0;
     const latestUnfinished = steps.find(s => !s.isFinished);
 
@@ -41,12 +43,12 @@ const AgentStatusBubble: React.FC<AgentStatusBubbleProps> = ({ steps, isGenerati
                 <div className="mt-2 ml-2 pl-3 border-l-2 border-teal-100 space-y-1">
                     {steps.map(step => (
                         <div key={step.id} className="flex items-center gap-2 text-xs text-slate-500">
-                            {step.isFinished ? (
+                            {step.isFinished || !isGenerating ? (
                                 <span className="text-emerald-400 shrink-0">✓</span>
                             ) : (
                                 <span className="inline-block w-2.5 h-2.5 border-2 border-teal-300 border-t-transparent rounded-full animate-spin shrink-0" />
                             )}
-                            <span className={step.isFinished ? 'text-slate-400' : 'text-slate-600 font-medium'}>
+                            <span className={step.isFinished || !isGenerating ? 'text-slate-400' : 'text-slate-600 font-medium'}>
                                 {step.content}
                             </span>
                         </div>

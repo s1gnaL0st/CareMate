@@ -223,20 +223,23 @@ def _build_chat_openai(
     streaming: bool,
     temperature: float,
     timeout_seconds: float | None = None,
+    max_retries: int | None = None,
 ) -> ChatOpenAI:
     resolved_timeout = (
         timeout_seconds
         if timeout_seconds is not None
         else float(os.getenv("LLM_TIMEOUT_SECONDS", "120"))
     )
-    max_retries = int(os.getenv("LLM_MAX_RETRIES", "2"))
+    resolved_retries = (
+        max_retries if max_retries is not None else int(os.getenv("LLM_MAX_RETRIES", "2"))
+    )
     kwargs: dict[str, Any] = {
         "api_key": settings.api_key,
         "model": settings.model,
         "temperature": temperature,
         "streaming": streaming,
         "timeout": resolved_timeout,
-        "max_retries": max(0, max_retries),
+        "max_retries": max(0, resolved_retries),
     }
     if settings.base_url:
         kwargs["base_url"] = settings.base_url
@@ -294,4 +297,7 @@ def get_clinic_llm(*, temperature: float = 0.0) -> Any:
         streaming=False,
         temperature=temperature,
         timeout_seconds=settings.clinic_llm_timeout_seconds,
+        # A local clinic endpoint should fail fast when the SSH tunnel is down;
+        # retrying a refused connection only makes the chat appear frozen.
+        max_retries=0,
     )

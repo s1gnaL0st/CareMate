@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     clinic_llm_api_key: str = "dummy"
     clinic_llm_model: str = "grpo-200"
     clinic_llm_base_url: str = ""
-    clinic_llm_timeout_seconds: int = 120
+    clinic_llm_timeout_seconds: int = 30
     clinic_llm_max_rounds: int = Field(default=8, ge=1, le=16)
     stream_heartbeat_seconds: int = 15
     max_output_chars: int = 8000

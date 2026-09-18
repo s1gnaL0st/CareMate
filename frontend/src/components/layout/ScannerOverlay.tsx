@@ -128,7 +128,11 @@ const ScannerOverlay = () => {
                 },
                 onDone: () => {
                     setIsUploading(false);
-                    updateAssistant(m => ({ ...m, isGenerating: false }));
+                    updateAssistant(m => ({
+                        ...m,
+                        isGenerating: false,
+                        steps: (m.steps ?? []).map(step => ({ ...step, isFinished: true })),
+                    }));
                 },
                 onError: (err) => {
                     console.error("Vision chat error:", err);

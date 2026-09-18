@@ -93,6 +93,31 @@ class GraphNewTests(unittest.TestCase):
             {"symptom_agent", "insurance_agent"},
         )
 
+    def test_dental_symptom_uses_fast_clinic_route_without_llm(self):
+        state = {"messages": [HumanMessage(content="我牙齿有点酸")], "user_info": {}}
+        with patch("agents.graph_new._structured_invoke", new=AsyncMock(side_effect=AssertionError("LLM should not run"))):
+            gate = asyncio.run(intent_gate(state))
+            result = asyncio.run(planner(gate))
+        self.assertEqual(gate["intent"], "health")
+        self.assertEqual([task.agent for task in result["task_queue"]], ["symptom_agent"])
+
+    def test_responder_passes_through_single_clinic_result_without_llm(self):
+        state = {
+            "messages": [HumanMessage(content="我牙齿有点酸")],
+            "health_text": "我牙齿有点酸",
+            "task_results": {
+                "symptoms": {
+                    "agent": "symptom_agent",
+                    "status": "completed",
+                    "text": "这种酸感持续多久了？",
+                }
+            },
+            "user_info": {},
+        }
+        with patch("agents.graph_new.get_chat_llm", side_effect=AssertionError("LLM should not run")):
+            result = asyncio.run(responder(state))
+        self.assertEqual(result["final_response"], "这种酸感持续多久了？")
+
     def test_emergency_gate_runs_without_llm(self):
         state: AgentLoopState = {
             "messages": [HumanMessage(content="我胸口剧痛还在出冷汗")],
