@@ -92,6 +92,24 @@ class ClinicActionAdapterTests(unittest.TestCase):
         self.assertTrue(fresh["success"])
         self.assertEqual(fresh["question"], "有没有伴随视物旋转或呕吐？")
 
+    def test_duplicate_ask_uses_next_bounded_question_instead_of_generic_loop(self):
+        adapter = ClinicActionAdapter(
+            state={},
+            messages=[
+                HumanMessage(content="我牙齿有点酸。"),
+                AIMessage(content="症状是什么时候开始的，是否突然发生或持续加重？"),
+                HumanMessage(content="昨天晚上吃了个橘子。"),
+            ],
+        )
+
+        first = adapter.next_fallback_question()
+        second = adapter.next_fallback_question()
+
+        self.assertIsNotNone(first)
+        self.assertIsNotNone(second)
+        self.assertNotEqual(first, second)
+        self.assertNotIn("什么时候开始", first)
+
     def test_sanitize_clinic_answer_removes_training_and_untrusted_citations(self):
         answer = (
             "分诊：建议尽快就医。\n"

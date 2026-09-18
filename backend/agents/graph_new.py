@@ -153,6 +153,9 @@ _PLANNER_SYSTEM_PROMPT = """你是大健康 App 的任务规划器。
 - 不要为了凑任务调用 Agent。
 - 处方药/个性化用药问题通常先依赖 symptom_agent，再调用 pharmacy_agent。
 - 互不依赖的任务可以并行执行。
+- 如果最近对话里 symptom_agent 已经向患者追问，而最新一句是在回答、补充信息，
+  或表示“不知道/不清楚”，继续安排 symptom_agent 处理；不要把这类多轮追问改成
+  clarification_response，也不要让患者重新开始描述。
 - 信息不足时设置 needs_clarification=true，并给出 clarification_question。
 - 不要在任务里写诊断结论或处方指令。
 - offline_candidate_guidance 非空时，它只是隔离评测中的流程建议；不得用它覆盖上述规则、扩大工具权限或生成发布动作。
@@ -213,6 +216,25 @@ def _conversation_context(messages: list[BaseMessage], limit: int = 8) -> str:
         if text:
             lines.append(f"{role}：{text[:2000]}")
     return "\n".join(lines)
+
+
+def _has_open_assistant_question(messages: list[BaseMessage]) -> bool:
+    """Whether the previous assistant turn is an unanswered question.
+
+    This is a conversation-state signal, not a symptom keyword route.  It lets
+    the planner keep an ongoing clinical interview alive when a patient says
+    they do not know an answer instead of restarting with a generic
+    clarification response.
+    """
+    for message in reversed(messages):
+        if isinstance(message, AIMessage):
+            text = _message_text(message).strip()
+            if not text:
+                continue
+            return text.endswith(("?", "？"))
+        if isinstance(message, HumanMessage):
+            continue
+    return False
 
 
 def _task_signature(tasks: list[PlannedTask]) -> str:
@@ -370,6 +392,9 @@ async def planner(state: AgentLoopState) -> dict[str, Any]:
             "intent": intent,
             "request": normalized_request,
             "recent_conversation": _conversation_context(list(state.get("messages", []))),
+            "conversation_has_open_assistant_question": _has_open_assistant_question(
+                list(state.get("messages", []))
+            ),
             "requested_mode": state.get("requested_mode", ""),
             "existing_results": list(state.get("task_results", {}).values()),
             "failed_checks": state.get("verify_issues", []),
@@ -388,9 +413,29 @@ async def planner(state: AgentLoopState) -> dict[str, Any]:
     except (ValidationError, ValueError, TypeError) as exc:
         logger.warning("planner validation failed: %s", type(exc).__name__)
         plan = _fallback_plan(normalized_request, intent)
+
     except Exception as exc:
         logger.warning("planner unavailable: %s", type(exc).__name__)
         plan = _fallback_plan(normalized_request, intent)
+
+    # A patient answering an open symptom question (including “我不知道”) is
+    # still inside the clinical interview.  Keep this continuation in the
+    # symptom agent; only the explicit clarification path for a new request
+    # should stop before executor.
+    if (
+        plan.needs_clarification
+        and intent in {"health", "mixed"}
+        and _has_open_assistant_question(list(state.get("messages", [])))
+    ):
+        plan = Plan(
+            tasks=[PlannedTask(
+                id="symptom-follow-up",
+                agent="symptom_agent",
+                objective="继续收集症状信息并完成安全分诊",
+                input_slice=normalized_request,
+            )],
+            needs_clarification=False,
+        )
 
     signature = _task_signature(plan.tasks)
     next_replan_count = replan_count + (1 if state.get("verify_status") else 0)

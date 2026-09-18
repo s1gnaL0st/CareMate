@@ -129,6 +129,13 @@ async def clinic_node(state: MainAgentState) -> dict:
                 question = str(payload.get("question", "")).strip()
                 if payload.get("success") and question:
                     return {"messages": [AIMessage(content=question)]}
+                # The local model sometimes repeats an earlier ask after the
+                # patient has supplied an answer.  Do not return the same
+                # generic sentence forever; move to a bounded missing slot.
+                fallback_question = adapter.next_fallback_question()
+                if fallback_question:
+                    logger.info("clinic duplicate/invalid ask; using bounded fallback question")
+                    return {"messages": [AIMessage(content=fallback_question)]}
                 return {
                     "messages": [
                         AIMessage(content="请补充症状持续时间、严重程度或伴随症状中的一项。")

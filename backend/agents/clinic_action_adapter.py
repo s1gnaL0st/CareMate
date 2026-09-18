@@ -95,6 +95,18 @@ _DRUG_PREFIX = re.compile(r"^(?:药物)?相互作用\s*[:：\-]?\s*", flags=re.I
 _DRUG_INFO_HINT = re.compile(r"(?:药品|药物|说明书|适应症|用法用量|剂量|副作用|禁忌)")
 _DRUG_PUNCTUATION = " \t\r\n:：,，。.;；、/\\+&和与及以及()（）[]【】{}<>《》\"'`"
 
+# These are deliberately a *safety fallback*, not the clinic routing logic.
+# They are used only when the local model violates the no-duplicate-question
+# contract.  Keeping the fallback here means a bad tool call cannot trap the
+# patient in the same question forever while the normal conversation remains
+# model-led.
+_FOLLOW_UP_FALLBACK_QUESTIONS = (
+    "酸的程度大概有多明显，是否已经影响吃饭或睡觉？",
+    "吃冷的、热的、甜的或酸的东西时，会不会更酸？",
+    "是某一颗牙酸，还是一大片牙都酸？",
+    "牙龈有没有肿胀、出血，或者脸部肿起来？",
+)
+
 
 def _text(value: Any) -> str:
     return value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, default=str)
@@ -176,6 +188,20 @@ class ClinicActionAdapter:
             normalized == old or SequenceMatcher(None, normalized, old).ratio() >= 0.9
             for old in self.asked_questions
         )
+
+    def next_fallback_question(self) -> str | None:
+        """Return the next bounded question after a duplicate model action.
+
+        This is only reached after the model has emitted a repeated ``ask``.
+        It is intentionally independent of intent routing and does not replace
+        the GRPO model; it prevents one malformed/repeated tool call from
+        producing the same generic sentence on every user turn.
+        """
+        for question in _FOLLOW_UP_FALLBACK_QUESTIONS:
+            if not self._is_duplicate_question(question):
+                self.asked_questions.add(_normalize_question(question))
+                return question
+        return None
 
     async def execute(self, name: str, arguments: Mapping[str, Any]) -> str:
         args = dict(arguments)
