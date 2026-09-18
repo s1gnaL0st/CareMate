@@ -249,11 +249,6 @@ def _fallback_intent(text: str) -> IntentDecision:
     return IntentDecision(intent=intent, normalized_request=text[:MAX_TASK_TEXT_CHARS], confidence=0.2)
 
 
-def _explicit_domain_agents(text: str) -> list[AgentName]:
-    """Return deterministic domain matches in routing-priority order."""
-    return [agent for terms, agent in _FALLBACK_HINTS if any(term in text for term in terms)]
-
-
 def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
     if intent == "pure_chat":
         return Plan(tasks=[PlannedTask(
@@ -285,12 +280,9 @@ def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
 async def _structured_invoke(schema: type[BaseModel], system_prompt: str, user_text: str) -> BaseModel:
     llm = get_chat_llm("precise", streaming=False)
     prompt = [SystemMessage(content=system_prompt), HumanMessage(content=user_text)]
-    if hasattr(llm, "with_structured_output"):
-        structured_llm = llm.with_structured_output(schema)
-        return await structured_llm.ainvoke(prompt)
-
-    # RunnableWithFallbacks does not expose with_structured_output on every
-    # LangChain version.  Keep the same contract by parsing its JSON response.
+    # Keep the schema contract in the prompt instead of using provider-specific
+    # response_format APIs. Some OpenAI-compatible endpoints accept normal chat
+    # completion but reject with_structured_output with HTTP 400.
     json_prompt = SystemMessage(content=(
         system_prompt
         + "\n只输出 JSON，不要 Markdown 代码围栏。JSON Schema 如下：\n"
@@ -315,17 +307,6 @@ async def intent_gate(state: AgentLoopState) -> dict[str, Any]:
             "intent": "emergency",
             "health_text": latest_text,
             "safety_message": triage.safety_message,
-        }
-
-    # Obvious single-domain requests do not need a remote model round-trip just
-    # to decide that they are health related.  This keeps short symptom turns
-    # responsive while ambiguous and mixed requests still use the LLM gate.
-    explicit_agents = _explicit_domain_agents(latest_text)
-    if len(explicit_agents) == 1:
-        greeting = any(term in latest_text for term in ("你好", "您好", "嗨", "谢谢"))
-        return {
-            "intent": "mixed" if greeting else "health",
-            "health_text": latest_text[:MAX_TASK_TEXT_CHARS],
         }
 
     try:
@@ -361,32 +342,6 @@ async def planner(state: AgentLoopState) -> dict[str, Any]:
         ]
         if failed:
             normalized_request += f"\n需要重试的失败任务类型：{', '.join(sorted(set(failed)))}"
-
-    # Match the intent gate fast path: one explicit domain can be planned
-    # deterministically.  Multi-domain and ambiguous requests still go through
-    # the structured planner below.
-    explicit_agents = _explicit_domain_agents(normalized_request)
-    if not state.get("verify_status") and len(explicit_agents) == 1:
-        agent = explicit_agents[0]
-        plan = Plan(tasks=[PlannedTask(
-            id=f"{agent}-fast-path",
-            agent=agent,
-            objective="根据用户请求完成本领域的受限分析",
-            input_slice=normalized_request,
-        )])
-        signature = _task_signature(plan.tasks)
-        updates: dict[str, Any] = {
-            "task_queue": plan.tasks,
-            "plan_signature": signature,
-            "replan_count": replan_count,
-            "needs_clarification": False,
-            "clarification_question": "",
-            "handoff_reason": "",
-        }
-        if state.get("agent_run_id"):
-            from agent_persistence import persist_plan
-            await persist_plan(state["agent_run_id"], plan.tasks, signature, replan_count)
-        return updates
 
     planner_input = json.dumps(
         {

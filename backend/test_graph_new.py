@@ -93,13 +93,9 @@ class GraphNewTests(unittest.TestCase):
             {"symptom_agent", "insurance_agent"},
         )
 
-    def test_dental_symptom_uses_fast_clinic_route_without_llm(self):
-        state = {"messages": [HumanMessage(content="我牙齿有点酸")], "user_info": {}}
-        with patch("agents.graph_new._structured_invoke", new=AsyncMock(side_effect=AssertionError("LLM should not run"))):
-            gate = asyncio.run(intent_gate(state))
-            result = asyncio.run(planner(gate))
-        self.assertEqual(gate["intent"], "health")
-        self.assertEqual([task.agent for task in result["task_queue"]], ["symptom_agent"])
+    def test_dental_symptom_is_available_to_outage_fallback(self):
+        plan = _fallback_plan("我牙齿有点酸", "health")
+        self.assertEqual([task.agent for task in plan.tasks], ["symptom_agent"])
 
     def test_responder_passes_through_single_clinic_result_without_llm(self):
         state = {
