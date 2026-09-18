@@ -1,11 +1,12 @@
 import asyncio
 import json
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
-from agents.clinic import clinic_node
+from agents.clinic import _invoke_clinic_model, clinic_node
 from agents.clinic_action_adapter import (
     CLINIC_ACTION_TOOLS,
     ClinicActionAdapter,
@@ -15,6 +16,45 @@ from skills.emergency_triage.skill import EmergencyTriageSkill
 
 
 class ClinicActionAdapterTests(unittest.TestCase):
+    def test_clinic_model_retries_transient_failure_with_bounded_attempts(self):
+        class FlakyModel:
+            def __init__(self):
+                self.calls = 0
+
+            async def ainvoke(self, _messages):
+                self.calls += 1
+                if self.calls < 3:
+                    raise ConnectionError("connection reset by peer")
+                return "ok"
+
+        model = FlakyModel()
+        result = asyncio.run(_invoke_clinic_model(
+            model,
+            [],
+            SimpleNamespace(clinic_llm_max_retries=2, clinic_llm_retry_backoff_seconds=0),
+        ))
+
+        self.assertEqual(result, "ok")
+        self.assertEqual(model.calls, 3)
+
+    def test_clinic_model_does_not_retry_non_transient_request_error(self):
+        class BadRequestModel:
+            def __init__(self):
+                self.calls = 0
+
+            async def ainvoke(self, _messages):
+                self.calls += 1
+                raise ValueError("HTTP 400 invalid tool schema")
+
+        model = BadRequestModel()
+        with self.assertRaises(ValueError):
+            asyncio.run(_invoke_clinic_model(
+                model,
+                [],
+                SimpleNamespace(clinic_llm_max_retries=2, clinic_llm_retry_backoff_seconds=0),
+            ))
+        self.assertEqual(model.calls, 1)
+
     def test_clinic_model_receives_only_one_leading_system_message(self):
         captured = []
 

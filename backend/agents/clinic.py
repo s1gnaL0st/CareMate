@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import logging
+import asyncio
+import random
 from typing import Any, Mapping
 
 from langchain_core.messages import AIMessage, SystemMessage, ToolMessage
@@ -67,6 +69,53 @@ def _safety_text(veto: Any) -> str:
     return str(getattr(veto, "safety_message", "如出现明显不适或症状加重，请立即就医。"))
 
 
+def _is_retryable_clinic_error(exc: BaseException) -> bool:
+    """Classify transient model transport/service failures.
+
+    Invalid requests (usually 400) must not be retried because they will
+    deterministically fail again.  Timeouts, connection failures and common
+    gateway/rate-limit statuses are safe to retry because this call is a
+    read-only model generation.
+    """
+    if isinstance(exc, (asyncio.TimeoutError, TimeoutError, ConnectionError, OSError)):
+        return True
+    detail = str(exc).lower()
+    transient_markers = (
+        "408", "409", "425", "429", "500", "502", "503", "504",
+        "timeout", "timed out", "rate limit", "temporarily unavailable",
+        "connection reset", "connection refused", "server error", "bad gateway",
+    )
+    return any(marker in detail for marker in transient_markers)
+
+
+async def _invoke_clinic_model(model: Any, model_messages: list[Any], settings: Any) -> Any:
+    """Invoke the clinic model with bounded exponential backoff and jitter."""
+    max_retries = int(getattr(settings, "clinic_llm_max_retries", 2))
+    base_delay = max(0.0, float(getattr(settings, "clinic_llm_retry_backoff_seconds", 0.5)))
+    for attempt in range(max_retries + 1):
+        try:
+            return await model.ainvoke(model_messages)
+        except Exception as exc:
+            retryable = _is_retryable_clinic_error(exc)
+            exhausted = attempt >= max_retries
+            logger.warning(
+                "clinic model attempt failed attempt=%d/%d retryable=%s error=%s detail=%s",
+                attempt + 1,
+                max_retries + 1,
+                retryable,
+                type(exc).__name__,
+                str(exc)[:240],
+            )
+            if exhausted or not retryable:
+                raise
+            delay = min(base_delay * (2 ** attempt), 8.0)
+            # Small jitter prevents many browser sessions sharing one tunnel
+            # from retrying in lockstep after a gateway hiccup.
+            delay += random.uniform(0.0, min(0.25, delay * 0.25)) if delay else 0.0
+            await asyncio.sleep(delay)
+    raise RuntimeError("clinic model retry loop exited unexpectedly")
+
+
 async def clinic_node(state: MainAgentState) -> dict:
     """Run clinic-only Qwen tool calls behind a strict project adapter."""
     messages = list(state.get("messages", []))
@@ -104,9 +153,16 @@ async def clinic_node(state: MainAgentState) -> dict:
     max_rounds = get_settings().clinic_llm_max_rounds
     for _round in range(max_rounds):
         try:
-            response = await model.ainvoke(model_messages)
+            response = await _invoke_clinic_model(model, model_messages, get_settings())
         except Exception as exc:
-            logger.warning("clinic model call failed error=%s", type(exc).__name__)
+            logger.warning("clinic model unavailable after retries error=%s", type(exc).__name__)
+            # A transient local-model 5xx/timeout must not terminate an
+            # otherwise healthy interview.  Continue with the next bounded
+            # question; this is only a failure fallback and does not replace
+            # model-led intent routing or normal GRPO actions.
+            fallback_question = adapter.next_fallback_question()
+            if fallback_question:
+                return {"messages": [AIMessage(content=fallback_question)]}
             return {"messages": [AIMessage(content="当前预问诊模型暂时不可用，请稍后重试或直接联系医生。") ]}
         model_messages.append(response)
         raw_calls = getattr(response, "tool_calls", None) or getattr(response, "additional_kwargs", {}).get("tool_calls", [])

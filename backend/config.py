@@ -27,6 +27,10 @@ class Settings(BaseSettings):
     clinic_llm_model: str = "grpo-200"
     clinic_llm_base_url: str = ""
     clinic_llm_timeout_seconds: int = 30
+    # Retries are handled at the clinic node so transient tunnel/API failures
+    # get bounded backoff without enabling hidden retries in the HTTP client.
+    clinic_llm_max_retries: int = Field(default=2, ge=0, le=4)
+    clinic_llm_retry_backoff_seconds: float = Field(default=0.5, ge=0, le=10)
     clinic_llm_max_rounds: int = Field(default=8, ge=1, le=16)
     stream_heartbeat_seconds: int = 15
     max_output_chars: int = 8000
