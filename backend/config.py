@@ -20,6 +20,14 @@ class Settings(BaseSettings):
     llm_timeout_seconds: int = 120
     llm_input_cost_per_million_usd: float = 0.0
     llm_output_cost_per_million_usd: float = 0.0
+    # Optional per-node clinic model. An empty base URL keeps the existing
+    # global model path, so the Qwen service can be enabled independently.
+    clinic_llm_enabled: bool = True
+    clinic_llm_api_key: str = "dummy"
+    clinic_llm_model: str = "grpo-200"
+    clinic_llm_base_url: str = ""
+    clinic_llm_timeout_seconds: int = 120
+    clinic_llm_max_rounds: int = Field(default=8, ge=1, le=16)
     stream_heartbeat_seconds: int = 15
     max_output_chars: int = 8000
     # Shared MySQL/Redis state is required before increasing this value.

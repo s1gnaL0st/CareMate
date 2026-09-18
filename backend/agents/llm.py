@@ -11,6 +11,7 @@ from dataclasses import dataclass, field
 from typing import Any, Literal
 
 from langchain_openai import ChatOpenAI
+from config import get_settings
 
 
 ModelPurpose = Literal["chat", "vision"]
@@ -221,15 +222,20 @@ def _build_chat_openai(
     *,
     streaming: bool,
     temperature: float,
+    timeout_seconds: float | None = None,
 ) -> ChatOpenAI:
-    timeout_seconds = float(os.getenv("LLM_TIMEOUT_SECONDS", "120"))
+    resolved_timeout = (
+        timeout_seconds
+        if timeout_seconds is not None
+        else float(os.getenv("LLM_TIMEOUT_SECONDS", "120"))
+    )
     max_retries = int(os.getenv("LLM_MAX_RETRIES", "2"))
     kwargs: dict[str, Any] = {
         "api_key": settings.api_key,
         "model": settings.model,
         "temperature": temperature,
         "streaming": streaming,
-        "timeout": timeout_seconds,
+        "timeout": resolved_timeout,
         "max_retries": max(0, max_retries),
     }
     if settings.base_url:
@@ -263,3 +269,29 @@ def get_chat_llm(
         temperature=resolved_temp,
     )
     return primary.with_fallbacks([fallback])
+
+
+def get_clinic_llm(*, temperature: float = 0.0) -> Any:
+    """Return the optional clinic-only model without changing global routing.
+
+    The dedicated endpoint is intentionally not part of ``get_chat_llm``:
+    supervisor, planner, responder, RAG and every other agent keep their
+    existing provider. If no clinic endpoint is configured, the clinic falls
+    back to the current global model for backwards-compatible local runs.
+    """
+    settings = get_settings()
+    base_url = settings.clinic_llm_base_url.strip()
+    if not settings.clinic_llm_enabled or not base_url:
+        return get_chat_llm("balanced", streaming=False, temperature=temperature)
+    dedicated = ModelSettings(
+        provider="clinic_local",
+        api_key=settings.clinic_llm_api_key or "dummy",
+        model=settings.clinic_llm_model or "grpo-200",
+        base_url=base_url,
+    )
+    return _build_chat_openai(
+        dedicated,
+        streaming=False,
+        temperature=temperature,
+        timeout_seconds=settings.clinic_llm_timeout_seconds,
+    )
