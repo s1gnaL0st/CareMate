@@ -52,10 +52,26 @@ _PROMPT_PATTERNS = [
 ]
 
 
+_NEGATION_RE = re.compile(
+    r"(?:没有|无|否认|未见|未出现|不伴有|不伴随|未伴有|未伴随|并无|并未)"
+    r"[^，。；,.;\n]{0,12}$"
+)
+
+
 def _match_patterns(text: str, patterns: list) -> list[str]:
     found = []
     for pattern, label in patterns:
-        if re.search(pattern, text):
+        # Chinese symptom descriptions commonly negate a red flag locally,
+        # e.g. "没有胸痛和呼吸困难". Ignore only matches whose immediate
+        # clause is negated; a later positive clause remains detectable.
+        matched = False
+        for match in re.finditer(pattern, text):
+            clause_start = max(text.rfind(mark, 0, match.start()) for mark in "，。；,.;\n") + 1
+            if _NEGATION_RE.search(text[clause_start:match.start()].strip()):
+                continue
+            matched = True
+            break
+        if matched:
             found.append(label)
     return found
 

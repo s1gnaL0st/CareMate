@@ -9,6 +9,7 @@ from agents.clinic_action_adapter import (
     ClinicActionAdapter,
     sanitize_clinic_answer,
 )
+from skills.emergency_triage.skill import EmergencyTriageSkill
 
 
 class ClinicActionAdapterTests(unittest.TestCase):
@@ -93,6 +94,13 @@ class ClinicActionAdapterTests(unittest.TestCase):
         self.assertEqual(result["route"], "drug_interaction")
         self.assertEqual(result["result"]["drug1"], "布洛芬")
         self.assertEqual(result["result"]["drug2"], "阿司匹林")
+
+    def test_emergency_triage_respects_negated_red_flags(self):
+        result = EmergencyTriageSkill().run(
+            symptoms_text="头晕两天，今天更明显，没有胸痛和呼吸困难。"
+        )
+        self.assertNotEqual(result.level, "CRITICAL")
+        self.assertNotIn("严重呼吸困难", result.triggered_flags)
 
 
 if __name__ == "__main__":
