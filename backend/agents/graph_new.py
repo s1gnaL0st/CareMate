@@ -279,7 +279,6 @@ def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
 
 async def _structured_invoke(schema: type[BaseModel], system_prompt: str, user_text: str) -> BaseModel:
     llm = get_chat_llm("precise", streaming=False)
-    prompt = [SystemMessage(content=system_prompt), HumanMessage(content=user_text)]
     # Keep the schema contract in the prompt instead of using provider-specific
     # response_format APIs. Some OpenAI-compatible endpoints accept normal chat
     # completion but reject with_structured_output with HTTP 400.
