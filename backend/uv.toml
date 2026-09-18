@@ -1,0 +1,7 @@
+# Keep uv's dependency/build cache beside the repository instead of the
+# user-profile cache on the system drive.
+cache-dir = ".uv-cache"
+
+[[index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

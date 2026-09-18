@@ -1,0 +1,35 @@
+# node modules
+node_modules/
+.npm-cache/
+dist/
+dist-ssr/
+*.local
+
+# python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+.env
+
+# os
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# tools
+.cursorrules
+.agent/
+CLAUDE.md
+.deepeval/
+# RAG vector store (auto-generated, rebuild with: python -m rag.ingest)
+backend/rag/chroma_db/
+backend/rag/faiss_index/
+backend/rag/.rag_manifest.json
+backend/.uv-cache/
+infra/data/

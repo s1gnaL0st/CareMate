@@ -1,0 +1,19 @@
+{
+  "title": "Smart Health API",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "HTTP requests by route",
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0},
+      "targets": [{"expr": "sum by (path) (rate(smart_health_http_requests_total[5m]))", "legendFormat": "{{path}}"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Request latency (average)",
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
+      "targets": [{"expr": "sum by (path) (rate(smart_health_http_request_duration_seconds_sum[5m])) / sum by (path) (rate(smart_health_http_request_duration_seconds_count[5m]))", "legendFormat": "{{path}}"}]
+    }
+  ]
+}

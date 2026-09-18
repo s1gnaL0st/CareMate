@@ -1,0 +1,7 @@
+.env
+.venv
+__pycache__
+*.pyc
+rag/chroma_db
+rag/faiss_index
+.git
