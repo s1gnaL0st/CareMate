@@ -42,12 +42,12 @@ const SuggestionScroller: React.FC<SuggestionScrollerProps> = ({ onSend }) => {
     const suggestions = MODE_SUGGESTIONS[chatMode] ?? MODE_SUGGESTIONS.general;
 
     return (
-        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide px-1">
+        <div className="suggestion-row">
             {suggestions.map((text, i) => (
                 <button
                     key={i}
                     onClick={() => onSend(text)}
-                    className="whitespace-nowrap px-4 py-2 bg-slate-50 hover:bg-teal-50 text-slate-600 hover:text-teal-700 rounded-2xl text-xs font-bold border border-slate-100 transition-colors shadow-sm"
+                    className="suggestion-chip"
                 >
                     {text}
                 </button>

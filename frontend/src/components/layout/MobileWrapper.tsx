@@ -9,7 +9,7 @@ const MobileWrapper: React.FC<MobileWrapperProps> = ({ children }) => {
   const { isElderMode } = useGlobalStore();
 
   return (
-    <div className={`flex flex-col h-[100dvh] w-full sm:max-w-md sm:mx-auto bg-slate-50 shadow-2xl relative font-sans overflow-hidden transition-all duration-300 ${isElderMode ? 'elder-mode' : ''}`}>
+    <div className={`app-shell flex flex-col h-[100dvh] w-full relative font-sans overflow-hidden transition-all duration-300 ${isElderMode ? 'elder-mode' : ''}`}>
       {/* 渲染当前主屏幕内容 */}
       <main className="flex-1 overflow-hidden relative z-0 bg-slate-50">
         {children}
@@ -33,13 +33,8 @@ const MobileWrapper: React.FC<MobileWrapperProps> = ({ children }) => {
         .elder-mode h1, .elder-mode h2, .elder-mode h3, .elder-mode p, .elder-mode input, .elder-mode span, .elder-mode div {
           letter-spacing: 0.03em;
         }
-        .elder-mode .text-sm { font-size: 1.15rem !important; line-height: 1.5; }
-        .elder-mode .text-xs { font-size: 1.05rem !important; line-height: 1.4; }
-        .elder-mode .text-lg { font-size: 1.6rem !important; line-height: 1.4; }
-        .elder-mode .text-\\[10px\\] { font-size: 0.95rem !important; }
-        .elder-mode .text-\\[11px\\] { font-size: 1rem !important; }
-        .elder-mode .font-bold { font-weight: 900 !important; }
-        .elder-mode .font-medium { font-weight: 700 !important; }
+        .elder-mode .message-bubble, .elder-mode .message-input { font-size: 1.08rem !important; line-height: 1.7; }
+        .elder-mode .suggestion-chip, .elder-mode .dock-nav-item { font-size: .9rem !important; }
       `}} />
     </div>
   );

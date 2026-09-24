@@ -16,7 +16,7 @@ const AgentStatusBubble: React.FC<AgentStatusBubbleProps> = ({ steps, isGenerati
     const latestUnfinished = steps.find(s => !s.isFinished);
 
     return (
-        <div className="mb-2">
+        <div className="mb-3">
             <details open={!allDone} className="group">
                 <summary className="cursor-pointer list-none">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-teal-50 border border-teal-100 rounded-full text-xs font-medium text-teal-700 hover:bg-teal-100 transition-colors">

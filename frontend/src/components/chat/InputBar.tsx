@@ -73,7 +73,7 @@ const InputBar: React.FC<InputBarProps> = ({
     const attachmentOptions = getAttachmentOrder(chatMode).map(scanType => ATTACHMENT_OPTIONS[scanType]);
 
     return (
-        <div className="flex items-center gap-3">
+        <div className="input-row">
             <input
                 ref={fileInputRef}
                 type="file"
@@ -82,21 +82,21 @@ const InputBar: React.FC<InputBarProps> = ({
                 className="hidden"
                 onChange={handleFileSelected}
             />
-            <button className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-teal-100 hover:text-teal-600 transition-all shadow-inner">
+            <button className="input-action" aria-label="语音输入">
                 <Mic size={20} />
             </button>
-            <div className="flex-1 relative">
+            <div className="input-wrap">
                 <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && onSend()}
                     placeholder={isElderMode ? "按住说话或发消息..." : "描述症状、问医保、查报告..."}
-                    className={`w-full bg-slate-100 rounded-full py-3.5 pl-5 pr-12 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all font-medium placeholder-slate-400 text-slate-800 ${isElderMode ? 'text-xl h-14' : 'text-sm'}`}
+                    className="message-input"
                 />
                 <button
                     onClick={onSend}
-                    className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 bg-teal-500 hover:bg-teal-600 rounded-full flex items-center justify-center text-white shadow-md shadow-teal-200 transition-colors"
+                    className="send-button"
                 >
                     <Send size={16} />
                 </button>
@@ -143,7 +143,7 @@ const InputBar: React.FC<InputBarProps> = ({
                     type="button"
                     onClick={() => setIsAttachmentOpen(v => !v)}
                     disabled={isVisionUploading}
-                    className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-200 transition-colors disabled:opacity-60"
+                    className="input-action disabled:opacity-60"
                     aria-label="打开图片上传菜单"
                 >
                     <Plus size={24} className={isAttachmentOpen ? 'rotate-45 transition-transform' : 'transition-transform'} />

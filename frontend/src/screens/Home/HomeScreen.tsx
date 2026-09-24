@@ -1,93 +1,85 @@
-import { ChevronRight, Zap, Activity } from 'lucide-react';
+import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, Pill, ShieldCheck, Stethoscope } from 'lucide-react';
 import { useGlobalStore } from '../../store/useGlobalStore';
 import GlobalChatView from '../../components/chat/GlobalChatView';
 import ChatModeHeader from '../../components/chat/ChatModeHeader';
+import type { ChatMode } from '../../types';
 
-const SUGGESTIONS = [
-    "大便带血的原因",
-    "降压药能停吗",
-    "适合老年人的运动",
-    "最近血压高怎么办",
-    "医保账户怎么查",
+const RAIL_ITEMS: { id: ChatMode; label: string; icon: typeof Stethoscope }[] = [
+    { id: 'clinic', label: 'AI 辅助诊室', icon: Stethoscope },
+    { id: 'report', label: '报告解读', icon: FileText },
+    { id: 'pharmacy', label: '药品服务', icon: Pill },
+    { id: 'insurance', label: '医保查询', icon: ShieldCheck },
+    { id: 'dashboard', label: '健康概览', icon: Activity },
 ];
 
 const HomeScreen = () => {
-    const { isElderMode, setIsElderMode, setChatMode, messages } = useGlobalStore();
-
-    const handleSuggestionClick = (text: string) => {
-        window.dispatchEvent(new CustomEvent('chat:send', { detail: text }));
-    };
+    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages } = useGlobalStore();
+    const activeLabel = RAIL_ITEMS.find(item => item.id === chatMode)?.label ?? '综合健康咨询';
 
     return (
-        <div className="flex flex-col h-full animate-in fade-in duration-500 overflow-hidden bg-slate-50 relative pb-24">
-            {/* Top status bar */}
-            <div className="bg-white border-b border-slate-100 shadow-sm flex-shrink-0 z-10">
-                <div className="p-4 flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-teal-100">健</div>
-                        <div>
-                            <h1 className={`font-bold text-slate-800 ${isElderMode ? 'text-xl' : 'text-base'}`}>大健康 AI 助手</h1>
-                            <p className="text-teal-600 text-xs font-medium">在线中 · 随时为您服务</p>
-                        </div>
+        <div className="workspace-main">
+            <header className="topbar">
+                <div className="brand-lockup">
+                    <div className="brand-mark">DX</div>
+                    <div>
+                        <h1 className="brand-name">DoctorX 健康工作台</h1>
+                        <p className="brand-caption">安全优先的智能健康信息服务</p>
                     </div>
-                    <button
-                        onClick={() => setIsElderMode(!isElderMode)}
-                        className={`px-3 py-1.5 rounded-full font-bold transition-all shadow-sm text-sm ${isElderMode ? 'bg-orange-500 text-white shadow-orange-200' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}
-                    >
-                        {isElderMode ? '退出长辈模式' : '长辈模式'}
-                    </button>
                 </div>
+                <div className="topbar-actions">
+                    <div className="status-pill"><span className="status-dot" />服务正常</div>
+                    <button className={`elder-toggle ${isElderMode ? 'active' : ''}`} onClick={() => setIsElderMode(!isElderMode)}>
+                        {isElderMode ? '长辈模式已开' : '长辈模式'}
+                    </button>
+                    <button className="icon-button" aria-label="帮助"><CircleHelp size={17} /></button>
+                </div>
+            </header>
 
-                {/* Health dashboard only shown in idle state (no chat yet) */}
-                {messages.length <= 1 && (
-                    <div className="px-4 pb-4">
-                        <div
-                            className="bg-gradient-to-br from-teal-500 to-emerald-400 text-white rounded-2xl p-4 shadow-lg shadow-teal-100 mb-3 cursor-pointer hover:-translate-y-0.5 transition-all"
-                            onClick={() => setChatMode('dashboard')}
-                        >
-                            <div className="flex justify-between items-center mb-2 text-teal-50 text-xs font-bold">
-                                <span>我的健康 · 今日概览</span>
-                                <ChevronRight size={14} />
-                            </div>
-                            <div className="flex items-end gap-1.5">
-                                <span className={`font-black leading-none ${isElderMode ? 'text-5xl' : 'text-3xl'}`}>8,542</span>
-                                <span className="text-teal-50 pb-0.5 text-sm font-medium">步</span>
-                                <div className="ml-auto w-12 h-12 relative">
-                                    <svg className="w-full h-full" viewBox="0 0 36 36">
-                                        <path className="stroke-current text-teal-600/30" strokeWidth="4" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path className="stroke-current text-white" strokeWidth="4" strokeDasharray="75, 100" strokeLinecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                    </svg>
-                                    <div className="absolute inset-0 flex items-center justify-center text-[9px] font-bold">75%</div>
-                                </div>
-                            </div>
-                            <div className="mt-2 text-xs text-teal-50 flex gap-3">
-                                <span className="flex items-center gap-1"><Zap size={12} className="text-yellow-300" /> 320kcal</span>
-                                <span className="flex items-center gap-1"><Activity size={12} /> 睡眠 7.5h</span>
-                            </div>
-                        </div>
-
-                        {/* Quick suggestion pills */}
-                        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-                            {SUGGESTIONS.map((tag, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => handleSuggestionClick(tag)}
-                                    className="whitespace-nowrap px-3 py-1.5 bg-slate-50 hover:bg-teal-50 text-slate-600 hover:text-teal-700 rounded-full text-xs font-medium border border-slate-100 transition-colors"
-                                >
-                                    {tag}
-                                </button>
-                            ))}
-                        </div>
+            <div className="workspace-grid">
+                <aside className="panel context-panel">
+                    <p className="panel-label">当前工作区</p>
+                    <div className="mode-card">
+                        <div className="mode-label"><span className="mode-label-icon"><HeartPulse size={16} /></span>{activeLabel}</div>
+                        <p className="mode-description">问题会被拆分为安全分流、资料检索和专业回答等步骤，结果经过来源与风险检查。</p>
                     </div>
-                )}
-            </div>
+                    <nav className="rail-list" aria-label="健康服务">
+                        {RAIL_ITEMS.map(item => {
+                            const Icon = item.icon;
+                            return <button key={item.id} className={`rail-item ${chatMode === item.id ? 'active' : ''}`} onClick={() => enterChatMode(item.id)}><Icon size={16} /><span>{item.label}</span><ChevronRight size={13} className="ml-auto" /></button>;
+                        })}
+                    </nav>
+                    <div className="rail-footnote">急症信号由确定性安全规则优先识别。系统不能替代医生诊断或急诊处置。</div>
+                </aside>
 
-            {/* Active chat mode banner */}
-            <ChatModeHeader />
+                <section className="panel conversation-panel">
+                    <div className="conversation-header">
+                        <div>
+                            <h2 className="conversation-title">{chatMode === 'general' ? '健康咨询' : activeLabel}</h2>
+                            <p className="conversation-subtitle">基于对话、工具与医学资料的辅助判断</p>
+                        </div>
+                        <div className="conversation-meta">{messages.length > 1 ? `${messages.length - 1} 条对话` : '新的咨询'}</div>
+                    </div>
+                    <ChatModeHeader />
+                    <div className="chat-scroller"><GlobalChatView /></div>
+                </section>
 
-            {/* Chat history (scrollable) */}
-            <div className="flex-1 overflow-y-auto min-h-0 pb-52">
-                <GlobalChatView />
+                <aside className="panel insight-panel">
+                    <p className="panel-label">运行摘要</p>
+                    <div className="insight-block">
+                        <p className="insight-title">本次会话</p>
+                        <div className="status-line"><span>会话状态</span><span className="status-value good">已连接</span></div>
+                        <div className="status-line"><span>回答模型</span><span className="status-value">DeepSeek</span></div>
+                    </div>
+                    <div className="insight-block">
+                        <p className="insight-title">安全边界</p>
+                        <div className="status-line"><span>红旗检查</span><span className="status-value good">已启用</span></div>
+                        <div className="status-line"><span>引用过滤</span><span className="status-value good">已启用</span></div>
+                        <div className="status-line"><span>人工接管</span><span className="status-value">可用</span></div>
+                    </div>
+                    <div className="insight-block">
+                        <div className="security-note"><strong>使用提示</strong>请提供症状持续时间、严重程度、既往病史和当前用药。涉及胸痛、呼吸困难、意识异常等情况，请立即联系急救服务。</div>
+                    </div>
+                </aside>
             </div>
         </div>
     );
