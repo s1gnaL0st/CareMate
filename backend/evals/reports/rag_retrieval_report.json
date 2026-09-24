@@ -1,0 +1,2624 @@
+{
+  "schema_version": "1.0",
+  "status": "measured_scenario_curated_source_mapping",
+  "dataset": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\rag_cases.jsonl",
+  "sample_count": 100,
+  "section_count": 25,
+  "cases_per_section": 4,
+  "dataset_origin": [
+    "scenario_curated_chinese_official_sources_paraphrased"
+  ],
+  "metrics": {
+    "recall_at_1": 0.26,
+    "recall_at_3": 0.35,
+    "recall_at_5": 0.42,
+    "source_recall_at_1": 0.88,
+    "source_recall_at_3": 0.92,
+    "source_recall_at_5": 0.96,
+    "mrr": 0.3155,
+    "mean_latency_ms": 89.6451
+  },
+  "cases": [
+    {
+      "id": "rag-cn-official-001",
+      "query": "出现口角歪斜、言语不清或一侧肢体无力时应该怎么办？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第二章 脑血管病急救"
+      ],
+      "ranked_sections": [
+        "local_drug_yz_5cbc4bfab08a::不良反应",
+        "cn_cerebrovascular_guideline_2024::2.“BEFAST”口诀",
+        "local_drug_ae_f7f3fbb6a883::注意事项",
+        "cn_cerebrovascular_guideline_2024::三、主要神经及相关功能障碍的康复",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 6330.65,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-002",
+      "query": "请说明出现口角歪斜、言语不清或一侧肢体无力时应该怎么办。",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第二章 脑血管病急救"
+      ],
+      "ranked_sections": [
+        "local_drug_yz_5cbc4bfab08a::不良反应",
+        "cn_cerebrovascular_guideline_2024::2.“BEFAST”口诀",
+        "cn_cerebrovascular_guideline_2024::3.识别急慢性并发症，及时处理或转诊。",
+        "local_drug_sy_7d1cd425168c::注意事项",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 20.88,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-003",
+      "query": "如果患者咨询出现口角歪斜、言语不清或一侧肢体无力时应该怎么办，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第二章 脑血管病急救"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::三、主要神经及相关功能障碍的康复",
+        "cn_cerebrovascular_guideline_2024::1.“中风120”口诀",
+        "local_drug_sy_7d1cd425168c::注意事项",
+        "cn_cerebrovascular_guideline_2024::3.由于止血药物治疗脑出血的临床疗效尚不确定，不常规使",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 177.86,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-004",
+      "query": "关于出现口角歪斜、言语不清或一侧肢体无力时应该怎么办，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第二章 脑血管病急救"
+      ],
+      "ranked_sections": [
+        "local_drug_yz_5cbc4bfab08a::不良反应",
+        "cn_cerebrovascular_guideline_2024::2.“BEFAST”口诀",
+        "cn_cerebrovascular_guideline_2024::3.识别急慢性并发症，及时处理或转诊。",
+        "cn_cerebrovascular_guideline_2024::三、主要神经及相关功能障碍的康复",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.59,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-005",
+      "query": "怎么快速识别疑似卒中？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "cn_cerebrovascular_guideline_2024::1.定期进行脑血管病危险因素监测，实现脑血管病危险因素",
+        "local_card_46ad91e8159e::中风急救指南",
+        "cn_cerebrovascular_guideline_2024::二、优化院前急救流程",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 20.74,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-006",
+      "query": "请说明怎么快速识别疑似卒中。",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "local_drug_ae_d3c09e071e43::孕妇及哺乳期妇女用药",
+        "cn_cerebrovascular_guideline_2024::1.“中风120”口诀",
+        "cn_cerebrovascular_guideline_2024::1.定期进行脑血管病危险因素监测，实现脑血管病危险因素",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 20.73,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-007",
+      "query": "如果患者咨询怎么快速识别疑似卒中，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、优化院前急救流程",
+        "local_card_8dabaeb01373::诊断流程",
+        "cn_cerebrovascular_guideline_2024::1.定期进行脑血管病危险因素监测，实现脑血管病危险因素",
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 24.96,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-008",
+      "query": "关于怎么快速识别疑似卒中，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "cn_cerebrovascular_guideline_2024::1.定期进行脑血管病危险因素监测，实现脑血管病危险因素",
+        "cn_cerebrovascular_guideline_2024::二、优化院前急救流程",
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.25,
+      "latency_ms": 23.25,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-009",
+      "query": "脑血管病有哪些预防策略？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第三章 脑血管病预防"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::一、人群脑血管病风险评估",
+        "cn_cerebrovascular_guideline_2024::二、践行健康生活方式",
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力",
+        "cn_cerebrovascular_guideline_2024::脑血管病防治指南（2024年版）",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 19.34,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-010",
+      "query": "请说明脑血管病有哪些预防策略。",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第三章 脑血管病预防"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、践行健康生活方式",
+        "cn_cerebrovascular_guideline_2024::第三章 脑血管病预防",
+        "local_drug_sy_b30820dea906::适应症",
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.5,
+      "latency_ms": 21.06,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-011",
+      "query": "如果患者咨询脑血管病有哪些预防策略，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第三章 脑血管病预防"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::一、人群脑血管病风险评估",
+        "local_drug_mr_395a66959aa2::用法用量",
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力",
+        "cn_cerebrovascular_guideline_2024::二、践行健康生活方式",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.01,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-012",
+      "query": "关于脑血管病有哪些预防策略，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第三章 脑血管病预防"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::一、人群脑血管病风险评估",
+        "cn_cerebrovascular_guideline_2024::一、提高早期识别能力",
+        "cn_cerebrovascular_guideline_2024::二、践行健康生活方式",
+        "cn_cerebrovascular_guideline_2024::脑血管病防治指南（2024年版）",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 26.24,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-013",
+      "query": "控制高血压对预防脑卒中有什么意义？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::1.高血压控制"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::三、高危人群的健康教育",
+        "local_drug_hl_7635268f6d00::适应症",
+        "local_card_2406822416eb::脑卒中治疗方案",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.49,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-014",
+      "query": "请说明控制高血压对预防脑卒中有什么意义。",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::1.高血压控制"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::三、高危人群的健康教育",
+        "local_drug_sy_2d2c3779d12a::药物相互作用",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_drug_sy_65f833872590::适应症",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.91,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-015",
+      "query": "如果患者咨询控制高血压对预防脑卒中有什么意义，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::1.高血压控制"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::三、高危人群的健康教育",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_drug_hl_7635268f6d00::适应症",
+        "cn_cerebrovascular_guideline_2024::2.遵照医嘱准备溶栓药物，积极配合溶栓治疗。溶栓过程中",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.41,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-016",
+      "query": "关于控制高血压对预防脑卒中有什么意义，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::1.高血压控制"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::三、高危人群的健康教育",
+        "local_drug_hl_7635268f6d00::适应症",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_drug_mr_395a66959aa2::注意事项",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.01,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-017",
+      "query": "缺血性卒中临床管理需要关注什么？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第四章缺血性卒中和TIA 的临床管理"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "cn_cerebrovascular_guideline_2024::四、全人群的健康教育",
+        "local_drug_fg_2fd602c1c9e8::适应症",
+        "cn_cerebrovascular_guideline_2024::二、优化院前急救流程",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.68,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-018",
+      "query": "请说明缺血性卒中临床管理需要关注什么。",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第四章缺血性卒中和TIA 的临床管理"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "local_drug_hl_7635268f6d00::药物过量",
+        "local_drug_fg_2fd602c1c9e8::适应症",
+        "local_drug_ae_6ae281005fc8::用法用量",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.81,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-019",
+      "query": "如果患者咨询缺血性卒中临床管理需要关注什么，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第四章缺血性卒中和TIA 的临床管理"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "cn_cerebrovascular_guideline_2024::二、照护者的健康教育",
+        "cn_cerebrovascular_guideline_2024::二、优化院前急救流程",
+        "cn_nhsa_drug_catalog_2025::5.不需立即手术治疗的结节性硬化症相关的肾血管平滑肌脂",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.19,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-020",
+      "query": "关于缺血性卒中临床管理需要关注什么，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_cerebrovascular_guideline_2024::第四章缺血性卒中和TIA 的临床管理"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::二、临床诊断及辅助检查",
+        "cn_cerebrovascular_guideline_2024::第十一章脑血管病公众健康教育",
+        "cn_cerebrovascular_guideline_2024::二、优化院前急救流程",
+        "local_drug_ae_7b16761394f0::适应症",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.35,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-021",
+      "query": "肥胖症为什么需要规范诊疗？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::一、概述"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::一、概述",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_drug_sy_1f60fa606ef0::注意事项",
+        "cn_obesity_guideline_2024::2.身体活动",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.61,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-022",
+      "query": "请说明肥胖症为什么需要规范诊疗。",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::一、概述"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::一、概述",
+        "cn_obesity_guideline_2024::6.生殖健康",
+        "local_drug_sy_7425ebcc12f3::适应症",
+        "cn_obesity_guideline_2024::4.睡眠习惯",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.15,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-023",
+      "query": "如果患者咨询肥胖症为什么需要规范诊疗，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::一、概述"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::一、概述",
+        "local_drug_sy_1f60fa606ef0::注意事项",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_drug_sy_7425ebcc12f3::适应症",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 24.76,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-024",
+      "query": "关于肥胖症为什么需要规范诊疗，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::一、概述"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::一、概述",
+        "local_drug_sy_7425ebcc12f3::适应症",
+        "cn_obesity_guideline_2024::2.身体活动",
+        "cn_obesity_guideline_2024::3.基于病理生理的分型",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 21.98,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-025",
+      "query": "肥胖症可能与哪些因素有关？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::二、肥胖症的病因学"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于病因的分型",
+        "cn_obesity_guideline_2024::3.精神心理",
+        "cn_obesity_guideline_2024::2.血脂异常",
+        "cn_obesity_guideline_2024::4.睡眠习惯",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.99,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-026",
+      "query": "请说明肥胖症可能与哪些因素有关。",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::二、肥胖症的病因学"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于病因的分型",
+        "local_drug_yz_0592a981ca64::不良反应",
+        "cn_obesity_guideline_2024::4.睡眠习惯",
+        "local_drug_sy_1f60fa606ef0::注意事项",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 20.59,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-027",
+      "query": "如果患者咨询肥胖症可能与哪些因素有关，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::二、肥胖症的病因学"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.饮食",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "cn_obesity_guideline_2024::二、肥胖症的病因学",
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 24.51,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-028",
+      "query": "关于肥胖症可能与哪些因素有关，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::二、肥胖症的病因学"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于病因的分型",
+        "local_drug_sy_1f60fa606ef0::注意事项",
+        "cn_obesity_guideline_2024::4.睡眠习惯",
+        "cn_obesity_guideline_2024::2.心脏代谢疾病分期",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.09,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-029",
+      "query": "肥胖症如何定义和分期？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::四、肥胖症的定义、诊断标准、分型、分期及相关疾病"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期",
+        "cn_obesity_guideline_2024::2.心脏代谢疾病分期",
+        "cn_obesity_guideline_2024::6.生殖健康",
+        "cn_obesity_guideline_2024::四、肥胖症的定义、诊断标准、分型、分期及相关疾病",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.25,
+      "latency_ms": 20.71,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-030",
+      "query": "请说明肥胖症如何定义和分期。",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::四、肥胖症的定义、诊断标准、分型、分期及相关疾病"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期",
+        "local_drug_sy_ca208c358847::适应症",
+        "cn_obesity_guideline_2024::6.生殖健康",
+        "cn_obesity_guideline_2024::3.精神心理",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.71,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-031",
+      "query": "如果患者咨询肥胖症如何定义和分期，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::四、肥胖症的定义、诊断标准、分型、分期及相关疾病"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.基于病理生理的分型",
+        "local_drug_sy_1f60fa606ef0::注意事项",
+        "cn_obesity_guideline_2024::6.生殖健康",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.59,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-032",
+      "query": "关于肥胖症如何定义和分期，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::四、肥胖症的定义、诊断标准、分型、分期及相关疾病"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期",
+        "local_drug_sy_7425ebcc12f3::适应症",
+        "cn_obesity_guideline_2024::6.生殖健康",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 28.69,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-033",
+      "query": "BMI 如何用于肥胖症判断？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_drug_sy_ca208c358847::适应症",
+        "cn_obesity_guideline_2024::2.心脏代谢疾病分期",
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 26.43,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-034",
+      "query": "请说明BMI 如何用于肥胖症判断。",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准",
+        "local_drug_sy_ca208c358847::适应症",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "cn_obesity_guideline_2024::6.生殖健康",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.03,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-035",
+      "query": "如果患者咨询BMI 如何用于肥胖症判断，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_drug_sy_ca208c358847::适应症",
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 26.49,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-036",
+      "query": "关于BMI 如何用于肥胖症判断，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::1.基于体质指数的诊断标准",
+        "cn_obesity_guideline_2024::肥胖症诊疗指南（2024年版）",
+        "local_drug_sy_ca208c358847::适应症",
+        "cn_obesity_guideline_2024::3.以肥胖为基础的慢性疾病分期",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 24.91,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-037",
+      "query": "肥胖与高血压有什么关系？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::3.高血压"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.高血压",
+        "local_drug_sy_65f833872590::适应症",
+        "cn_obesity_guideline_2024::2.身体活动",
+        "local_card_05fdf06e1a64::孕期高血压关键信息",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.14,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-038",
+      "query": "请说明肥胖与高血压有什么关系。",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::3.高血压"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.高血压",
+        "local_drug_sy_65f833872590::适应症",
+        "local_card_5421e33d20ef::妊娠期高血压关键信息",
+        "cn_obesity_guideline_2024::3.精神心理",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 25.03,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-039",
+      "query": "如果患者咨询肥胖与高血压有什么关系，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::3.高血压"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.高血压",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_cerebrovascular_guideline_2024::一、患者的健康教育",
+        "local_card_5421e33d20ef::妊娠期高血压关键信息",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 27.69,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-040",
+      "query": "关于肥胖与高血压有什么关系，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_obesity_guideline_2024::3.高血压"
+      ],
+      "ranked_sections": [
+        "cn_obesity_guideline_2024::3.高血压",
+        "local_drug_sy_65f833872590::适应症",
+        "local_card_e93cd67a44f5::孕期高血压关键信息",
+        "cn_obesity_guideline_2024::1.饮食",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 27.58,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-041",
+      "query": "儿童肺炎支原体肺炎有哪些临床表现？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::六、临床表现"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::五、病理表现",
+        "cn_myco_pneumonia_guideline_2025::4.坏死性肺炎（NP） 主要表现为持续高热和咳嗽，严重",
+        "cn_myco_pneumonia_guideline_2025::3.肺康复训练",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 24.5,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-042",
+      "query": "请说明儿童肺炎支原体肺炎有哪些临床表现。",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::六、临床表现"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.出现喘息、气促、呼吸困难、胸痛、咯血等之一。这些表",
+        "cn_myco_pneumonia_guideline_2025::4.坏死性肺炎（NP） 主要表现为持续高热和咳嗽，严重",
+        "cn_myco_pneumonia_guideline_2025::1.1 轻症",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.44,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-043",
+      "query": "如果患者咨询儿童肺炎支原体肺炎有哪些临床表现，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::六、临床表现"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.出现喘息、气促、呼吸困难、胸痛、咯血等之一。这些表",
+        "cn_myco_pneumonia_guideline_2025::4.坏死性肺炎（NP） 主要表现为持续高热和咳嗽，严重",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 26.33,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-044",
+      "query": "关于儿童肺炎支原体肺炎有哪些临床表现，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::六、临床表现"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.出现喘息、气促、呼吸困难、胸痛、咯血等之一。这些表",
+        "cn_myco_pneumonia_guideline_2025::2.NP",
+        "cn_myco_pneumonia_guideline_2025::3.其他治疗",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 30.84,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-045",
+      "query": "肺炎支原体感染可以做哪些病原学检查？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十、MP 病原学检查"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::二、定义",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::儿童肺炎支原体肺炎诊疗指南（2025年版）",
+        "cn_myco_pneumonia_guideline_2025::6.混合感染 混合感染多见于SMPP 和病程后期，有报道病",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 29.3,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-046",
+      "query": "请说明肺炎支原体感染可以做哪些病原学检查。",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十、MP 病原学检查"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::二、定义",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::2.流感病毒肺炎",
+        "cn_myco_pneumonia_guideline_2025::儿童肺炎支原体肺炎诊疗指南（2025年版）",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 27.43,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-047",
+      "query": "如果患者咨询肺炎支原体感染可以做哪些病原学检查，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十、MP 病原学检查"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.流感病毒肺炎",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::6.混合感染 混合感染多见于SMPP 和病程后期，有报道病",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 28.35,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-048",
+      "query": "关于肺炎支原体感染可以做哪些病原学检查，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十、MP 病原学检查"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.流感病毒肺炎",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::6.混合感染 混合感染多见于SMPP 和病程后期，有报道病",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 26.49,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-049",
+      "query": "儿童肺炎支原体肺炎如何诊断？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十二、诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "cn_myco_pneumonia_guideline_2025::4.坏死性肺炎（NP） 主要表现为持续高热和咳嗽，严重",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 24.12,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-050",
+      "query": "请说明儿童肺炎支原体肺炎如何诊断。",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十二、诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::5.支气管哮喘急性发作 MP 是诱发哮喘发作的重要原因，",
+        "cn_myco_pneumonia_guideline_2025::3.肺康复训练",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.55,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-051",
+      "query": "如果患者咨询儿童肺炎支原体肺炎如何诊断，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十二、诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "local_card_4438872475c9::诊断工具介绍",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::4.坏死性肺炎（NP） 主要表现为持续高热和咳嗽，严重",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 26.78,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-052",
+      "query": "关于儿童肺炎支原体肺炎如何诊断，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十二、诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::2.NP",
+        "cn_myco_pneumonia_guideline_2025::3.肺康复训练",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 39.37,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-053",
+      "query": "儿童肺炎支原体肺炎需要和哪些疾病鉴别？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "local_card_db12601a5b65::医院检查项目",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.5,
+      "latency_ms": 28.64,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-054",
+      "query": "请说明儿童肺炎支原体肺炎需要和哪些疾病鉴别。",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "local_card_db12601a5b65::医院检查项目",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.5,
+      "latency_ms": 26.38,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-055",
+      "query": "如果患者咨询儿童肺炎支原体肺炎需要和哪些疾病鉴别，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "local_card_db12601a5b65::医院检查项目",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.5,
+      "latency_ms": 33.69,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-056",
+      "query": "关于儿童肺炎支原体肺炎需要和哪些疾病鉴别，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "cn_myco_pneumonia_guideline_2025::3.肺康复训练",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.5,
+      "latency_ms": 29.97,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-057",
+      "query": "儿童肺炎支原体肺炎有哪些并发症需要警惕？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十四、常见肺内外并发症的早期识别和诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::十四、常见肺内外并发症的早期识别和诊断",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "cn_myco_pneumonia_guideline_2025::十六、重症和危重症的早期预警指标",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.5,
+      "latency_ms": 27.43,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-058",
+      "query": "请说明儿童肺炎支原体肺炎有哪些并发症需要警惕。",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十四、常见肺内外并发症的早期识别和诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.出现喘息、气促、呼吸困难、胸痛、咯血等之一。这些表",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "local_card_d3f0d0d746c4::肺炎诊断难点",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 32.16,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-059",
+      "query": "如果患者咨询儿童肺炎支原体肺炎有哪些并发症需要警惕，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十四、常见肺内外并发症的早期识别和诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.出现喘息、气促、呼吸困难、胸痛、咯血等之一。这些表",
+        "cn_myco_pneumonia_guideline_2025::2.NP",
+        "cn_myco_pneumonia_guideline_2025::1.腺病毒（ADV）肺炎",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 27.5,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-060",
+      "query": "关于儿童肺炎支原体肺炎有哪些并发症需要警惕，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_myco_pneumonia_guideline_2025::十四、常见肺内外并发症的早期识别和诊断"
+      ],
+      "ranked_sections": [
+        "cn_myco_pneumonia_guideline_2025::一、概述",
+        "cn_myco_pneumonia_guideline_2025::2.出现喘息、气促、呼吸困难、胸痛、咯血等之一。这些表",
+        "cn_myco_pneumonia_guideline_2025::1.腺病毒（ADV）肺炎",
+        "cn_myco_pneumonia_guideline_2025::3.抗真菌治疗",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 29.77,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-061",
+      "query": "成人血压筛查应该怎样测量？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::5 血压测量"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "local_drug_yz_ea0b10cd52b1::用法用量",
+        "cn_hypertension_standard_2025::5 血压测量",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.25,
+      "latency_ms": 23.05,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-062",
+      "query": "请说明成人血压筛查应该怎样测量。",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::5 血压测量"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "cn_hypertension_standard_2025::5 血压测量",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 26.07,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-063",
+      "query": "如果患者咨询成人血压筛查应该怎样测量，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::5 血压测量"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "cn_cerebrovascular_guideline_2024::一、护理人员要求",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 28.95,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-064",
+      "query": "关于成人血压筛查应该怎样测量，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::5 血压测量"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "cn_hypertension_standard_2025::5 血压测量",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 24.42,
+      "recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-065",
+      "query": "成人高血压筛查和预防包括什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "local_drug_hl_7635268f6d00::适应症",
+        "cn_cerebrovascular_guideline_2024::二、基于个体水平的脑血管病预防策略",
+        "cn_cerebrovascular_guideline_2024::3.伴发严重的急性并发症，如低血糖、糖尿病酮症酸中毒、",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 26.43,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-066",
+      "query": "请说明成人高血压筛查和预防包括什么。",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "local_drug_fg_5023fe457c37::适应症",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_cerebrovascular_guideline_2024::3.伴发严重的急性并发症，如低血糖、糖尿病酮症酸中毒、",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.17,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-067",
+      "query": "如果患者咨询成人高血压筛查和预防包括什么，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防"
+      ],
+      "ranked_sections": [
+        "cn_cerebrovascular_guideline_2024::三、高危人群的健康教育",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.47,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-068",
+      "query": "关于成人高血压筛查和预防包括什么，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::6 筛查与预防",
+        "cn_cerebrovascular_guideline_2024::一、护理人员要求",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "local_drug_sy_9231d4b44725::禁忌",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 25.62,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-069",
+      "query": "成人高血压诊断和评估依据是什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "local_drug_sy_65f833872590::适应症",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 24.9,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-070",
+      "query": "请说明成人高血压诊断和评估依据是什么。",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "local_drug_fg_5023fe457c37::适应症",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_cerebrovascular_guideline_2024::一、颅内压增高",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.57,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-071",
+      "query": "如果患者咨询成人高血压诊断和评估依据是什么，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.84,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-072",
+      "query": "关于成人高血压诊断和评估依据是什么，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "local_drug_sy_9231d4b44725::禁忌",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.62,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-073",
+      "query": "高血压治疗的基本原则是什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_drug_hl_7635268f6d00::适应症",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 21.99,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-074",
+      "query": "请说明高血压治疗的基本原则是什么。",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则",
+        "local_drug_sy_b30820dea906::药物相互作用",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "local_drug_mr_a5d77f9c29b1::适应症",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 20.09,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-075",
+      "query": "如果患者咨询高血压治疗的基本原则是什么，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "local_drug_fg_5023fe457c37::适应症",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 24.67,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-076",
+      "query": "关于高血压治疗的基本原则是什么，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.1 治疗原则",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::4.2 药物保障",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 24.11,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-077",
+      "query": "高血压患者需要怎样随访？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.3 随访管理"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::9 健康教育",
+        "cn_hypertension_standard_2025::8.3.3 随访内容",
+        "cn_hypertension_standard_2025::8.4.1 对于起病急、症状重、怀疑继发性高血压、新发并发症或严重合并症、难治性高血压、妊娠和",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 20.02,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-078",
+      "query": "请说明高血压患者需要怎样随访。",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.3 随访管理"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::9 健康教育",
+        "cn_hypertension_standard_2025::8.3.3 随访内容",
+        "cn_hypertension_standard_2025::4.1.2 社区卫生服务中心及乡镇卫生院还应配备血常规分析仪、尿常规分析仪、血生化分析仪、心电",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 20.75,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-079",
+      "query": "如果患者咨询高血压患者需要怎样随访，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.3 随访管理"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::9 健康教育",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "cn_hypertension_standard_2025::8.3.3 随访内容",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 23.47,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-080",
+      "query": "关于高血压患者需要怎样随访，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.3 随访管理"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::9 健康教育",
+        "cn_hypertension_standard_2025::8.4.1 对于起病急、症状重、怀疑继发性高血压、新发并发症或严重合并症、难治性高血压、妊娠和",
+        "cn_hypertension_standard_2025::8.2 治疗方法",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.97,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-081",
+      "query": "哪些高血压情况需要转诊？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.4 转诊"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "cn_hypertension_standard_2025::8.3.2.2 血压未达标者：1 个月至少随访1 次，直至血压达标。符合转诊条件的宜按8.4 的规定进行",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_hypertension_standard_2025::8.4.1 对于起病急、症状重、怀疑继发性高血压、新发并发症或严重合并症、难治性高血压、妊娠和",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.09,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-082",
+      "query": "请说明哪些高血压情况需要转诊。",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.4 转诊"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_cerebrovascular_guideline_2024::3.识别急慢性并发症，及时处理或转诊。",
+        "cn_hypertension_standard_2025::8.4.2 初诊时，如患者出现以下任一情况，宜转诊至上级医疗卫生机构：",
+        "cn_cerebrovascular_guideline_2024::3.伴发严重的急性并发症，如低血糖、糖尿病酮症酸中毒、",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.53,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-083",
+      "query": "如果患者咨询哪些高血压情况需要转诊，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.4 转诊"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "cn_cerebrovascular_guideline_2024::3.识别急慢性并发症，及时处理或转诊。",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "cn_cerebrovascular_guideline_2024::三、进行规范治疗",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 22.97,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-084",
+      "query": "关于哪些高血压情况需要转诊，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_hypertension_standard_2025::8.4 转诊"
+      ],
+      "ranked_sections": [
+        "cn_hypertension_standard_2025::7 诊断与评估",
+        "cn_cerebrovascular_guideline_2024::3.识别急慢性并发症，及时处理或转诊。",
+        "cn_hypertension_standard_2025::8.4.1 对于起病急、症状重、怀疑继发性高血压、新发并发症或严重合并症、难治性高血压、妊娠和",
+        "cn_hypertension_standard_2025::8.3.1 一般要求",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 22.39,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-085",
+      "query": "国家医保药品目录的目录构成是什么？",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::一、目录构成"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "cn_nhsa_drug_catalog_2025::3.“备注”一栏标为“限生育保险”的药品，是生育保",
+        "cn_obesity_guideline_2024::3. 血压≥130/85mmHg 或使用降压（成人/亚洲） 物；",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 19.68,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-086",
+      "query": "请说明国家医保药品目录的目录构成是什么。",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::一、目录构成"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "local_drug_fg_5023fe457c37::老年患者用药",
+        "local_drug_hl_aac7b91bb2f5::性状",
+        "cn_nhsa_drug_catalog_2025::3.“备注”一栏标为“限生育保险”的药品，是生育保",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.46,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-087",
+      "query": "如果患者咨询国家医保药品目录的目录构成是什么，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::一、目录构成"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "local_card_54539b911de3::诊断 migraine 步骤",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "local_drug_hl_446dfed9d808::药物相互作用",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.19,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-088",
+      "query": "关于国家医保药品目录的目录构成是什么，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::一、目录构成"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "cn_cerebrovascular_guideline_2024::四、加强自我监测",
+        "local_drug_fg_5023fe457c37::老年患者用药",
+        "cn_nhsa_drug_catalog_2025::三、名称与剂型",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 21.91,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-089",
+      "query": "医保药品目录的限定支付范围是什么意思？",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围",
+        "cn_nhsa_drug_catalog_2025::三、名称与剂型",
+        "local_drug_ae_736f4267a682::用法用量",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 21.62,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-090",
+      "query": "请说明医保药品目录的限定支付范围是什么意思。",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围",
+        "local_drug_fg_5023fe457c37::老年患者用药",
+        "cn_nhsa_drug_catalog_2025::1.“备注”一栏标注了适应症的药品，是指参保人员出",
+        "local_drug_ae_a89d5b332d8a::药物过量",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 23.95,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-091",
+      "query": "如果患者咨询医保药品目录的限定支付范围是什么意思，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围",
+        "local_drug_hl_446dfed9d808::药物相互作用",
+        "cn_nhsa_drug_catalog_2025::1.“备注”一栏标注了适应症的药品，是指参保人员出",
+        "cn_hypertension_standard_2025::4.3 管理流程",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 28.23,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-092",
+      "query": "关于医保药品目录的限定支付范围是什么意思，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::四、限定支付范围",
+        "local_drug_fg_5023fe457c37::老年患者用药",
+        "cn_nhsa_drug_catalog_2025::二、编排与分类",
+        "cn_nhsa_drug_catalog_2025::1.“备注”一栏标注了适应症的药品，是指参保人员出",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 1.0,
+      "latency_ms": 30.08,
+      "recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-093",
+      "query": "商业健康保险创新药品目录和基本医保目录有什么区别？",
+      "gold_sections": [
+        "cn_commercial_drug_catalog_2025::商业健康保险创新药品目录（2025年）"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "cn_cerebrovascular_guideline_2024::一、合理设定管理目标",
+        "cn_myco_pneumonia_guideline_2025::十三、鉴别诊断",
+        "local_drug_fg_88ab8a7d0c4f::性状",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 27.48,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      }
+    },
+    {
+      "id": "rag-cn-official-094",
+      "query": "请说明商业健康保险创新药品目录和基本医保目录有什么区别。",
+      "gold_sections": [
+        "cn_commercial_drug_catalog_2025::商业健康保险创新药品目录（2025年）"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "local_drug_ae_6ae281005fc8::性状",
+        "local_card_8dabaeb01373::诊断流程",
+        "cn_nhsa_drug_catalog_2025::3.“备注”一栏标为“限生育保险”的药品，是生育保",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 25.83,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      }
+    },
+    {
+      "id": "rag-cn-official-095",
+      "query": "如果患者咨询商业健康保险创新药品目录和基本医保目录有什么区别，知识库应检索哪些资料？",
+      "gold_sections": [
+        "cn_commercial_drug_catalog_2025::商业健康保险创新药品目录（2025年）"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "local_card_54539b911de3::诊断 migraine 步骤",
+        "local_drug_hl_446dfed9d808::药物相互作用",
+        "cn_cerebrovascular_guideline_2024::一、合理设定管理目标",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 31.93,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      }
+    },
+    {
+      "id": "rag-cn-official-096",
+      "query": "关于商业健康保险创新药品目录和基本医保目录有什么区别，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "cn_commercial_drug_catalog_2025::商业健康保险创新药品目录（2025年）"
+      ],
+      "ranked_sections": [
+        "cn_nhsa_drug_catalog_2025::国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+        "local_card_8dabaeb01373::诊断流程",
+        "local_drug_hl_7635268f6d00::药物相互作用",
+        "cn_nhsa_drug_catalog_2025::3.“备注”一栏标为“限生育保险”的药品，是生育保",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.0,
+      "latency_ms": 31.89,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      }
+    },
+    {
+      "id": "rag-cn-official-097",
+      "query": "出现药物过敏或其他过敏症状时需要注意什么？",
+      "gold_sections": [
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "ranked_sections": [
+        "local_drug_mr_6f69b45c3ccb::注意事项",
+        "local_drug_mr_55bde11945bd::药物过量",
+        "local_card_034fa53b7ebf::药物过敏反应",
+        "local_drug_ae_b2625ae96ee2::注意事项",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.2,
+      "latency_ms": 27.27,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-098",
+      "query": "请说明出现药物过敏或其他过敏症状时需要注意什么。",
+      "gold_sections": [
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "ranked_sections": [
+        "local_drug_sy_73bb9785c577::禁忌",
+        "local_drug_mr_6f69b45c3ccb::注意事项",
+        "local_drug_ae_05d97f61224e::孕妇及哺乳期妇女用药",
+        "local_drug_ae_6b026d62dac0::不良反应",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.2,
+      "latency_ms": 26.08,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-099",
+      "query": "如果患者咨询出现药物过敏或其他过敏症状时需要注意什么，知识库应检索哪些资料？",
+      "gold_sections": [
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "ranked_sections": [
+        "local_drug_sy_73bb9785c577::禁忌",
+        "local_drug_hl_446dfed9d808::药物相互作用",
+        "local_drug_yz_ea0b10cd52b1::注意事项",
+        "local_card_a4b5ded8b668::严重过敏反应急救指南",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.2,
+      "latency_ms": 30.11,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      }
+    },
+    {
+      "id": "rag-cn-official-100",
+      "query": "关于出现药物过敏或其他过敏症状时需要注意什么，临床问答需要重点参考什么？",
+      "gold_sections": [
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "ranked_sections": [
+        "local_drug_mr_6f69b45c3ccb::注意事项",
+        "local_card_034fa53b7ebf::药物过敏反应",
+        "local_drug_ae_b2625ae96ee2::注意事项",
+        "local_drug_sy_73bb9785c577::禁忌",
+        "local_card_ff99c3ba0341::过敏症关键信息"
+      ],
+      "reciprocal_rank": 0.2,
+      "latency_ms": 29.76,
+      "recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "source_recall_at": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      }
+    }
+  ],
+  "note": "Scenario-curated queries mapped to source sections. Source-level Recall@K is the primary system metric; section-level Recall@K is diagnostic only. This does not measure clinical answer correctness and is not a naturally sampled user benchmark."
+}

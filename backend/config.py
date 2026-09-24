@@ -20,9 +20,9 @@ class Settings(BaseSettings):
     llm_timeout_seconds: int = 120
     llm_input_cost_per_million_usd: float = 0.0
     llm_output_cost_per_million_usd: float = 0.0
-    # Optional per-node clinic model. An empty base URL keeps the existing
-    # global model path, so the Qwen service can be enabled independently.
-    clinic_llm_enabled: bool = True
+    # Optional per-node clinic model. An empty base URL keeps the configured
+    # global model path; the local GRPO endpoint is for explicit experiments.
+    clinic_llm_enabled: bool = False
     clinic_llm_api_key: str = "dummy"
     clinic_llm_model: str = "grpo-200"
     clinic_llm_base_url: str = ""

@@ -33,3 +33,11 @@ backend/rag/faiss_index/
 backend/rag/.rag_manifest.json
 backend/.uv-cache/
 infra/data/
+
+# Local ingestion inputs and runtime artifacts
+backend-local.log
+backend/rag/*.zip
+backend/rag/sources/raw/
+backend/rag/documents/who_*.md
+backend/rag/sources/cleaned/who_*.md
+GRPOV2/

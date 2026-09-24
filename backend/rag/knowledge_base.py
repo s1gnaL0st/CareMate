@@ -1,10 +1,9 @@
 """
 RAG Knowledge Base for the Smart Health Assistant.
 
-Retrieval strategy: Hybrid BM25 (30%) + Dense MMR (70%) via EnsembleRetriever.
-  - BM25 catches exact medical term matches (高血压, 血红蛋白, 门诊报销 …)
-  - Dense MMR retrieves semantically similar chunks with diversity enforcement
-  - EnsembleRetriever merges both lists via Reciprocal Rank Fusion (RRF)
+Retrieval strategy: BM25 (30%) + dense retrieval (70%) for dual-path recall;
+MMR is used inside dense retrieval for diversity-aware de-duplication and
+re-ranking. EnsembleRetriever merges both ranked lists.
 
 Thread safety: asyncio.Lock + run_in_executor keeps the blocking HuggingFace model
 load off the event loop. Double-checked locking prevents duplicate init on concurrent
@@ -32,9 +31,12 @@ from cache import cache_get_json, cache_key, cache_set_json
 from config import get_settings
 
 DOCS_DIR = Path(__file__).parent / "documents"
+CLEANED_DOCS_DIR = Path(__file__).parent / "sources" / "cleaned"
+SOURCE_MANIFEST = Path(__file__).parent / "source_manifest.json"
 
 # Chinese-aware separators: sentence endings → paragraph breaks → finer boundaries
 _CHINESE_SEPARATORS = ["。", "！", "？", "；", "\n\n", "\n", "，", " ", ""]
+_PARENT_CONTEXT_LIMIT = 6000
 
 
 class HealthKnowledgeBase:
@@ -45,6 +47,7 @@ class HealthKnowledgeBase:
 
     def __init__(self) -> None:
         self._retriever: EnsembleRetriever | None = None
+        self._parents: dict[str, Document] = {}
         self._initialized = False
         self._lock = asyncio.Lock()
 
@@ -75,6 +78,7 @@ class HealthKnowledgeBase:
         self._retriever = EnsembleRetriever(
             retrievers=[sparse_retriever, dense_retriever],
             weights=[0.3, 0.7],
+            c=60,
         )
         self._initialized = True
 
@@ -98,15 +102,19 @@ class HealthKnowledgeBase:
         for doc in docs:
             by_source.setdefault(str(doc.metadata.get("source", "")), []).append(doc)
 
-        # Keep the manifest in the Chroma directory (or alongside FAISS).
+        # Keep the manifest alongside the configured local vector index.
         manifest_path = Path(__file__).parent / ".rag_manifest.json"
         try:
             previous = json.loads(manifest_path.read_text(encoding="utf-8"))
         except (FileNotFoundError, json.JSONDecodeError):
             previous = {}
         current: dict[str, str] = {}
-        for path in sorted(DOCS_DIR.glob("*.md")):
-            current[path.stem] = hashlib.sha256(path.read_bytes()).hexdigest()
+        source_dirs = [directory for directory in (CLEANED_DOCS_DIR, Path(__file__).parent / "sources" / "cleaned_local_drugs", Path(__file__).parent / "sources" / "cleaned_local_cards") if directory.exists()]
+        if not source_dirs:
+            source_dirs = [DOCS_DIR]
+        for source_dir in source_dirs:
+            for path in sorted(source_dir.glob("*.md")):
+                current[path.stem] = hashlib.sha256(path.read_bytes()).hexdigest()
         changed = [src for src, digest in current.items() if previous.get(src) != digest]
         removed = [src for src in previous if src not in current]
         if not changed and not removed:
@@ -133,7 +141,7 @@ class HealthKnowledgeBase:
         # Rebuild the in-process hybrid retriever from the updated store.
         sparse = BM25Retriever.from_documents(docs, k=3)
         dense = vectorstore.as_retriever(search_type="mmr", search_kwargs={"k": 4, "fetch_k": 20})
-        self._retriever = EnsembleRetriever(retrievers=[sparse, dense], weights=[0.3, 0.7])
+        self._retriever = EnsembleRetriever(retrievers=[sparse, dense], weights=[0.3, 0.7], c=60)
         self._initialized = True
         manifest_path.write_text(json.dumps(current, ensure_ascii=False, indent=2), encoding="utf-8")
         return {"changed": len(changed), "removed": len(removed), "chunks": len(update_docs)}
@@ -144,18 +152,36 @@ class HealthKnowledgeBase:
         """
         Load Markdown files from documents/, split by ## section headers, then
         apply RecursiveCharacterTextSplitter with Chinese-aware separators.
-        Each chunk carries {source, section} metadata.
+        Each chunk carries provenance metadata from source_manifest.json.
+        Unregistered documents fail closed instead of entering the index without
+        a traceable publisher and URL.
         """
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
             chunk_overlap=100,
             separators=_CHINESE_SEPARATORS,
         )
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         docs: List[Document] = []
-        for md_file in sorted(DOCS_DIR.glob("*.md")):
+        parents: dict[str, Document] = {}
+        source_dirs = [directory for directory in (CLEANED_DOCS_DIR, Path(__file__).parent / "sources" / "cleaned_local_drugs", Path(__file__).parent / "sources" / "cleaned_local_cards") if directory.exists()]
+        if not source_dirs:
+            source_dirs = [DOCS_DIR]
+        md_files = [path for source_dir in source_dirs for path in sorted(source_dir.glob("*.md"))]
+        for md_file in md_files:
             source = md_file.stem
+            provenance = manifest.get(source)
+            if not isinstance(provenance, dict):
+                continue
+            if provenance.get("review_status") not in {"source_curated", "local_imported"}:
+                continue
+            content_hash = hashlib.sha256(md_file.read_bytes()).hexdigest()
             updated_at = datetime.fromtimestamp(md_file.stat().st_mtime, tz=timezone.utc).isoformat()
             text = md_file.read_text(encoding="utf-8")
+            # Cleaned source files carry provenance in YAML front matter; it
+            # is metadata, not retrieval content.
+            if text.startswith("---\n"):
+                _, _, text = text.partition("\n---\n")
             # Split on lines starting with "## " to extract named sections
             sections = re.split(r"\n(?=## )", text)
             for section in sections:
@@ -166,12 +192,58 @@ class HealthKnowledgeBase:
                 body = "\n".join(lines[1:]).strip()
                 if not body:
                     continue
+                parent_id = f"{source}::{heading}"
+                parent_content = body[:_PARENT_CONTEXT_LIMIT]
+                parent_metadata = {
+                    "source": source,
+                    "section": heading,
+                    "parent_id": parent_id,
+                    "chunk_type": "parent",
+                    "content_hash": content_hash,
+                    "updated_at": updated_at,
+                    **provenance,
+                    "source_urls": json.dumps(provenance.get("source_urls", []), ensure_ascii=False),
+                }
+                parents[parent_id] = Document(page_content=parent_content, metadata=parent_metadata)
                 chunks = splitter.create_documents(
                     [body],
-                    metadatas=[{"source": source, "section": heading, "updated_at": updated_at}],
+                    metadatas=[{
+                        "source": source,
+                        "section": heading,
+                        "parent_id": parent_id,
+                        "chunk_type": "child",
+                        "content_hash": content_hash,
+                        "updated_at": updated_at,
+                        **provenance,
+                        "source_urls": json.dumps(provenance.get("source_urls", []), ensure_ascii=False),
+                    }],
                 )
+                for child_index, child in enumerate(chunks):
+                    child.metadata["child_index"] = child_index
                 docs.extend(chunks)
+        self._parents = parents
         return docs
+
+    def _expand_to_parents(self, documents: List[Document], limit: int) -> List[Document]:
+        """Map ranked child hits back to unique parent sections."""
+        selected: list[Document] = []
+        seen: set[str] = set()
+        for child in documents:
+            parent_id = str(child.metadata.get("parent_id", ""))
+            parent = self._parents.get(parent_id)
+            if parent is None:
+                parent = child
+                parent_id = f"{child.metadata.get('source', '')}::{child.metadata.get('section', '')}"
+            if parent_id in seen:
+                continue
+            seen.add(parent_id)
+            metadata = dict(parent.metadata)
+            metadata["matched_child"] = child.page_content
+            metadata["matched_child_index"] = child.metadata.get("child_index", 0)
+            selected.append(Document(page_content=parent.page_content, metadata=metadata))
+            if len(selected) >= limit:
+                break
+        return selected
 
     # ── Retrieval ─────────────────────────────────────────────────────────────
 
@@ -180,14 +252,14 @@ class HealthKnowledgeBase:
         Async hybrid retrieval — safe to call from FastAPI handlers.
         Returns at most k de-duplicated chunks ranked by RRF score.
         """
-        key = cache_key("rag", f"{query}:{k}")
+        key = cache_key("rag_parent_v2", f"{query}:{k}")
         cached = await cache_get_json(key)
         if isinstance(cached, list):
             return [Document(page_content=str(item.get("content", "")), metadata=item.get("metadata", {})) for item in cached if isinstance(item, dict)]
         await self._ensure_initialized()
         assert self._retriever is not None
         results = await self._retriever.ainvoke(query)
-        selected = results[:k]
+        selected = self._expand_to_parents(results, k)
         await cache_set_json(
             key,
             [{"content": d.page_content, "metadata": d.metadata} for d in selected],
@@ -214,19 +286,13 @@ class HealthKnowledgeBase:
         tasks = [self._retriever.ainvoke(q) for q in queries]
         per_query_results = await asyncio.gather(*tasks)
 
-        # Deduplicate by page_content while preserving first-seen order
-        seen: set[str] = set()
-        merged: List[Document] = []
+        merged_children: List[Document] = []
         for docs in per_query_results:
             for doc in docs:
-                key = doc.page_content
-                if key not in seen:
-                    seen.add(key)
-                    merged.append(doc)
-                if len(merged) >= k * 2:
+                merged_children.append(doc)
+                if len(merged_children) >= k * 4:
                     break
-
-        return merged[:k]
+        return self._expand_to_parents(merged_children, k)
 
     def retrieve(self, query: str, k: int = 3) -> List[Document]:
         """
@@ -237,7 +303,7 @@ class HealthKnowledgeBase:
             self._sync_init()
         assert self._retriever is not None
         results = self._retriever.invoke(query)
-        return results[:k]
+        return self._expand_to_parents(results, k)
 
     # ── Formatting ────────────────────────────────────────────────────────────
 

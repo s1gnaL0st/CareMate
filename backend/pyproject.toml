@@ -45,6 +45,8 @@ dependencies = [
     "openinference-instrumentation-langchain>=0.1.70",
     "openinference-instrumentation-openai>=0.1.54",
     "mcp>=1.9.0,<2.0.0",
+    "beautifulsoup4>=4.15.0",
+    "pymupdf>=1.26.0",
 ]
 
 [project.optional-dependencies]

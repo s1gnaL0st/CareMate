@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "snapshot_count": 6,
+  "snapshots": [
+    {
+      "source": "cn_cerebrovascular_guideline_2024",
+      "requested_url": "https://www.nhc.gov.cn/cms-search/downFiles/8b6cbb73fb2d49c2bab32f5f3325fafa.pdf",
+      "final_url": "https://www.nhc.gov.cn/cms-search/downFiles/8b6cbb73fb2d49c2bab32f5f3325fafa.pdf",
+      "retrieved_at": "2026-09-23T07:53:48.213335+00:00",
+      "content_type": "application/pdf",
+      "sha256": "2e2ad076b9e263f2885e6ca97017419b025086b19c1bf6ba6eb74fb1347be9b8",
+      "local_path": "rag\\sources\\raw\\2e2ad076b9e263f2.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_obesity_guideline_2024",
+      "requested_url": "https://www.nhc.gov.cn/wjw/c100378/202410/bcf804e19e0c4246b5aea6cd338b55e1/files/1732873189749_61795.pdf",
+      "final_url": "https://www.nhc.gov.cn/wjw/c100378/202410/bcf804e19e0c4246b5aea6cd338b55e1/files/1732873189749_61795.pdf",
+      "retrieved_at": "2026-09-23T07:53:49.578924+00:00",
+      "content_type": "application/pdf",
+      "sha256": "8d7c5c87f8e58f56231e251b1aa588b9d640e74d32dbec2a45e68dcf141274c3",
+      "local_path": "rag\\sources\\raw\\8d7c5c87f8e58f56.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_myco_pneumonia_guideline_2025",
+      "requested_url": "https://www.nhc.gov.cn/yzygj/c100068/202509/19e7145436b049a68d4ba8c2060dfa56/files/儿童肺炎支原体肺炎诊疗指南（2025年版）.pdf",
+      "final_url": "https://www.nhc.gov.cn/yzygj/c100068/202509/19e7145436b049a68d4ba8c2060dfa56/files/%E5%84%BF%E7%AB%A5%E8%82%BA%E7%82%8E%E6%94%AF%E5%8E%9F%E4%BD%93%E8%82%BA%E7%82%8E%E8%AF%8A%E7%96%97%E6%8C%87%E5%8D%97%EF%BC%882025%E5%B9%B4%E7%89%88%EF%BC%89.pdf",
+      "retrieved_at": "2026-09-23T07:53:50.427209+00:00",
+      "content_type": "application/pdf",
+      "sha256": "452e1442cbcae7231e1bac8f23031f84085a7e75aef347fac6d9a04162575b32",
+      "local_path": "rag\\sources\\raw\\452e1442cbcae723.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_hypertension_standard_2025",
+      "requested_url": "https://www.nhc.gov.cn/wjw/c100309/202509/b601cb822b25461f92f7aa66c03495a8/files/WS%20T%20872%E2%80%942025.pdf",
+      "final_url": "https://www.nhc.gov.cn/wjw/c100309/202509/b601cb822b25461f92f7aa66c03495a8/files/WS%20T%20872%E2%80%942025.pdf",
+      "retrieved_at": "2026-09-23T07:53:51.003575+00:00",
+      "content_type": "application/pdf",
+      "sha256": "4c099a4a656b72d6524c7acd05359da10b4dd861def402b80acd94a307d410d6",
+      "local_path": "rag\\sources\\raw\\4c099a4a656b72d6.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_nhsa_drug_catalog_2025",
+      "requested_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=a32f9f2f3fc046afaf08471f87456ce3.pdf",
+      "final_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=a32f9f2f3fc046afaf08471f87456ce3.pdf",
+      "retrieved_at": "2026-09-23T07:53:51.266879+00:00",
+      "content_type": "application/pdf;charset=UTF-8",
+      "sha256": "82b249771d25f42b372093ab6be76192754ceb67a0b7309f5da0d5e284842dc3",
+      "local_path": "rag\\sources\\raw\\82b249771d25f42b.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_commercial_drug_catalog_2025",
+      "requested_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=da298734646c4a4ca1b5ca612ee23fb1.pdf",
+      "final_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=da298734646c4a4ca1b5ca612ee23fb1.pdf",
+      "retrieved_at": "2026-09-23T07:53:51.334434+00:00",
+      "content_type": "application/pdf;charset=UTF-8",
+      "sha256": "92cb08ff6dad4fe463e5367af593133212a90142345ebf2f45221f89575d44a9",
+      "local_path": "rag\\sources\\raw\\92cb08ff6dad4fe4.pdf",
+      "file_type": "pdf"
+    }
+  ]
+}

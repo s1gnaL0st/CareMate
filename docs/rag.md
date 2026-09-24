@@ -19,7 +19,7 @@ Agent Node (advisor / clinic / report / insurance)
     ├─ aretrieve(query, k=3)
     │       │
     │       ├─ BM25 Retriever (30%)   ← exact keyword matching
-    │       └─ Chroma/FAISS/… (70%)  ← dense MMR similarity
+    │       └─ Chroma/FAISS/… (70%)  ← child-chunk dense MMR similarity
     │             └─ EnsembleRetriever (Reciprocal Rank Fusion)
     │
     ├─ format_context(docs)
@@ -76,7 +76,7 @@ Set via `VECTOR_STORE` in `.env`:
 
 | Value | Description | Extra Config |
 |---|---|---|
-| `chroma` *(default)* | File-based, zero config | `CHROMA_PERSIST_DIR` (default: `rag/chroma_db`) |
+| `chroma` *(default)* | File-based, zero config | `CHROMA_PERSIST_DIR` (default: `F:/SmartHealthAssistant_chroma_db`) |
 | `faiss` | In-memory + local disk, fast | `FAISS_INDEX_PATH` (default: `rag/faiss_index`) |
 | `qdrant` | Production-grade, requires Qdrant server | `QDRANT_URL`, `QDRANT_API_KEY` |
 | `pgvector` | PostgreSQL extension | `PGVECTOR_CONNECTION_STRING` |

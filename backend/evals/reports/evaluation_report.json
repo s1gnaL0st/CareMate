@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.0",
+  "source_files": [
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\cases.jsonl",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\trajectories.jsonl",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\rag_cases.jsonl",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\reports\\rag_retrieval_report.json",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\emergency_cases.jsonl",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\reports\\emergency_triage_report.json",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\reports\\routing_eval_latest.json",
+    "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\reports\\self_evolution_eval_latest.json"
+  ],
+  "metrics": {
+    "supervisor_routing": {
+      "status": "measured_runtime_run",
+      "sample_count": 5,
+      "accuracy": 0.2,
+      "macro_f1": 0.06666666666666668,
+      "provider": "local",
+      "timestamp": "2026-09-22T13:24:09.685413+00:00",
+      "confusion_matrix": {
+        "clinic_agent": {
+          "advisor_agent": 1,
+          "clinic_agent": 0,
+          "insurance_agent": 0,
+          "pharmacy_agent": 0,
+          "report_agent": 0
+        },
+        "insurance_agent": {
+          "advisor_agent": 1,
+          "clinic_agent": 0,
+          "insurance_agent": 0,
+          "pharmacy_agent": 0,
+          "report_agent": 0
+        },
+        "report_agent": {
+          "advisor_agent": 1,
+          "clinic_agent": 0,
+          "insurance_agent": 0,
+          "pharmacy_agent": 0,
+          "report_agent": 0
+        },
+        "pharmacy_agent": {
+          "advisor_agent": 1,
+          "clinic_agent": 0,
+          "insurance_agent": 0,
+          "pharmacy_agent": 0,
+          "report_agent": 0
+        },
+        "advisor_agent": {
+          "advisor_agent": 1,
+          "clinic_agent": 0,
+          "insurance_agent": 0,
+          "pharmacy_agent": 0,
+          "report_agent": 0
+        }
+      },
+      "per_class": {
+        "advisor_agent": {
+          "support": 1,
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1": 0.33333333333333337
+        },
+        "clinic_agent": {
+          "support": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "insurance_agent": {
+          "support": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "pharmacy_agent": {
+          "support": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "report_agent": {
+          "support": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "note": "Runtime agent evaluation. Provider/model availability and tool execution errors are included as observed failures."
+    },
+    "agent_loop": {
+      "status": "pilot",
+      "sample_count": 3,
+      "answer_rate": 1.0,
+      "mean_turns": 9.0,
+      "mean_ask_count": 3.0,
+      "duplicate_question_rate": 0.0,
+      "tool_failure_rate": 0.0,
+      "evidence_recall_mean": 1.0,
+      "terminal_reasons": {
+        "answer": 3
+      },
+      "cases": [
+        {
+          "case_id": "synthea_0068bbc4-668",
+          "family": "dental",
+          "turns": 9,
+          "actions": [
+            "lookup",
+            "ask",
+            "ask",
+            "ask",
+            "check",
+            "check",
+            "check",
+            "search",
+            "answer"
+          ]
+        },
+        {
+          "case_id": "synthea_0070bc33-75f",
+          "family": "uri",
+          "turns": 9,
+          "actions": [
+            "lookup",
+            "ask",
+            "ask",
+            "ask",
+            "check",
+            "check",
+            "check",
+            "search",
+            "answer"
+          ]
+        },
+        {
+          "case_id": "synthea_012358c4-e35",
+          "family": "chest_pain",
+          "turns": 9,
+          "actions": [
+            "ask",
+            "ask",
+            "ask",
+            "lookup",
+            "search",
+            "check",
+            "check",
+            "check",
+            "answer"
+          ]
+        }
+      ],
+      "note": "three checked-in trajectories; this is a pilot smoke set, not a generalization benchmark."
+    },
+    "emergency_rule_implementation": {
+      "status": "implementation_coverage",
+      "rule_counts": {
+        "critical": 10,
+        "urgent": 8,
+        "prompt": 5
+      },
+      "total_rule_patterns": 23,
+      "related_contract_tests": 3,
+      "note": "Rule inventory and unit-test coverage only; no labeled clinical dataset, so precision/recall/F1 are not inferred."
+    },
+    "emergency_red_flag": {
+      "status": "measured_reviewed_rule_case_set",
+      "sample_count": 48,
+      "binary_red_flag": {
+        "precision": 0.9629629629629629,
+        "recall": 0.8666666666666667,
+        "f1": 0.912280701754386
+      },
+      "exact_level_accuracy": 0.8958333333333334,
+      "macro_f1": 0.9020130454340981,
+      "mean_latency_ms": 0.3683166667277267,
+      "per_level": {
+        "CRITICAL": {
+          "support": 10,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9
+        },
+        "URGENT": {
+          "support": 10,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889
+        },
+        "PROMPT": {
+          "support": 10,
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316
+        },
+        "NON_URGENT": {
+          "support": 18,
+          "precision": 0.8095238095238095,
+          "recall": 0.9444444444444444,
+          "f1": 0.8717948717948718
+        }
+      },
+      "note": "Reviewed synthetic rule cases, not clinical data; binary red-flag metrics group CRITICAL, URGENT, and PROMPT as positive."
+    },
+    "rag_retrieval": {
+      "status": "measured_scenario_curated_source_mapping",
+      "sample_count": 100,
+      "recall_at_1": 0.26,
+      "recall_at_3": 0.35,
+      "recall_at_5": 0.42,
+      "source_recall_at_1": 0.88,
+      "source_recall_at_3": 0.92,
+      "source_recall_at_5": 0.96,
+      "mrr": 0.3155,
+      "mean_latency_ms": 89.6451,
+      "note": "Scenario-curated queries mapped to source sections. Source-level Recall@K is the primary system metric; section-level Recall@K is diagnostic only. This does not measure clinical answer correctness and is not a naturally sampled user benchmark."
+    },
+    "self_evolution_baseline_vs_candidate": {
+      "status": "measured_local_paired_graph_run",
+      "sample_count": 9,
+      "case_count": 9,
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "score_delta": 0.0,
+      "baseline_pass_rate": 1.0,
+      "candidate_pass_rate": 1.0,
+      "pass_rate_delta": 0.0,
+      "safety_violations": 0,
+      "route_regressions": 0,
+      "mean_cost_delta": 0.01965700335824283,
+      "mean_latency_delta": 0.15016371295897615,
+      "baseline_degraded_runs": 0,
+      "candidate_degraded_runs": 0,
+      "gate_passed": true,
+      "reason_codes": [],
+      "by_suite": {
+        "holdout": {
+          "case_count": 3,
+          "baseline_score": 1.0,
+          "candidate_score": 1.0,
+          "score_delta": 0.0,
+          "baseline_pass_rate": 1.0,
+          "candidate_pass_rate": 1.0,
+          "pass_rate_delta": 0.0,
+          "safety_violations": 0,
+          "route_regressions": 0,
+          "mean_cost_delta": -0.009605531139538137,
+          "mean_latency_delta": -0.0680794739854394,
+          "baseline_degraded_runs": 0,
+          "candidate_degraded_runs": 0
+        },
+        "safety_boundary": {
+          "case_count": 3,
+          "baseline_score": 1.0,
+          "candidate_score": 1.0,
+          "score_delta": 0.0,
+          "baseline_pass_rate": 1.0,
+          "candidate_pass_rate": 1.0,
+          "pass_rate_delta": 0.0,
+          "safety_violations": 0,
+          "route_regressions": 0,
+          "mean_cost_delta": 0.09938281094861989,
+          "mean_latency_delta": 0.39435341855054395,
+          "baseline_degraded_runs": 0,
+          "candidate_degraded_runs": 0
+        },
+        "regression": {
+          "case_count": 3,
+          "baseline_score": 1.0,
+          "candidate_score": 1.0,
+          "score_delta": 0.0,
+          "baseline_pass_rate": 1.0,
+          "candidate_pass_rate": 1.0,
+          "pass_rate_delta": 0.0,
+          "safety_violations": 0,
+          "route_regressions": 0,
+          "mean_cost_delta": -0.03080626973435327,
+          "mean_latency_delta": 0.12421719431182389,
+          "baseline_degraded_runs": 0,
+          "candidate_degraded_runs": 0
+        }
+      },
+      "timestamp": "2026-09-22T15:49:10.851562+00:00",
+      "note": "Paired baseline/candidate execution through the real Agent Graph with alternating execution order; the dedicated clinic endpoint was disabled for this run so all agents used the configured DeepSeek provider. The local artifact is not persisted to MySQL because Docker services were unavailable."
+    },
+    "model_retry_and_fallback": {
+      "status": "not_available",
+      "sample_count": 0,
+      "reason": "No frozen labeled dataset or paired baseline/candidate observations are checked in."
+    },
+    "action_adapter_contract": {
+      "status": "implementation_coverage",
+      "exposed_actions": [
+        "answer",
+        "ask",
+        "check",
+        "lookup",
+        "search"
+      ],
+      "five_action_contract_complete": true,
+      "key_contract_tests": 5,
+      "key_contract_tests_present": 5,
+      "contract_test_coverage": 1.0,
+      "note": "Protocol and harness coverage only; this is not a model-quality percentage."
+    },
+    "rag_corpus": {
+      "status": "corpus_inventory",
+      "document_count": 390,
+      "active_source_count": 390,
+      "chunk_count": 3333,
+      "metadata_complete_rate": 1.0,
+      "retrieval_strategy": "BM25 0.3 + dense retrieval 0.7; MMR for dense-result de-duplication/re-ranking",
+      "note": "source_curated and local_imported documents are counted; local_imported material is user-provided and not independently verified."
+    },
+    "retry_fallback_contract": {
+      "status": "implementation_coverage",
+      "contract_cases": {
+        "transient_retry_success": true,
+        "non_transient_not_retried": true,
+        "task_retry_contract": true,
+        "fallback_contract": true
+      },
+      "contract_pass_rate": 1.0,
+      "note": "Failure-injection success rate and availability uplift require runtime run logs; contract tests do not establish them."
+    },
+    "llm_as_judge": {
+      "status": "available_as_runner",
+      "provider_adapter": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\deepeval_adapter.py",
+      "judge_metrics": [
+        "tool_correctness"
+      ],
+      "scored_cases": 0,
+      "note": "DeepEval is wired as an optional judge; no network-backed judge score is claimed until a run artifact is checked in."
+    }
+  }
+}

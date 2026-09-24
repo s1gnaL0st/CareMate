@@ -19,6 +19,7 @@ Environment variables (read from .env):
 """
 import argparse
 import asyncio
+import os
 import sys
 import time
 
@@ -28,6 +29,9 @@ load_dotenv()  # load .env before importing rag modules so env vars are availabl
 
 
 def main() -> None:
+    # Keep the CLI usable on Windows consoles whose locale is not UTF-8.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(
         description="Build the health knowledge base vector store."
     )
@@ -42,8 +46,6 @@ def main() -> None:
         help="Upsert only changed Markdown sources (default when omitted is initial build)",
     )
     args = parser.parse_args()
-
-    import os
 
     print("═" * 46)
     print("  Health Knowledge Base — Ingestion")

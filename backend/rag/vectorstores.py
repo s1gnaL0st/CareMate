@@ -2,7 +2,7 @@
 Vector store factory.
 
 Configured via the VECTOR_STORE env var:
-  chroma    (default) — file-based, no server needed
+  chroma    (default) — file-based local vector store
   faiss               — in-memory + local disk, fast
   qdrant              — production-grade, requires Qdrant server
   pgvector            — PostgreSQL extension, requires PGVECTOR_CONNECTION_STRING
@@ -17,8 +17,10 @@ from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
 from langchain_core.vectorstores import VectorStore
 
-_CHROMA_DEFAULT_DIR = str(Path(__file__).parent / "chroma_db")
-_FAISS_DEFAULT_PATH = str(Path(__file__).parent / "faiss_index")
+# Keep defaults relative to the backend working directory. This also avoids
+# Windows path encoding issues when the repository lives under a non-ASCII path.
+_CHROMA_DEFAULT_DIR = "F:/SmartHealthAssistant_chroma_db"
+_FAISS_DEFAULT_PATH = "rag/faiss_index"
 
 
 def get_vectorstore(
@@ -64,6 +66,17 @@ def _get_chroma(
             embedding_function=embeddings,
             collection_name="health_kb",
         )
+
+    if rebuild and existing_db.exists():
+        # Chroma.from_documents appends to an existing collection. Delete the
+        # named collection first so a rebuild cannot retain stale chunks or
+        # outdated provenance metadata.
+        client = Chroma(
+            persist_directory=persist_dir,
+            embedding_function=embeddings,
+            collection_name="health_kb",
+        )
+        client._client.delete_collection("health_kb")
 
     if documents is None:
         raise ValueError("documents must be provided to build a new Chroma store")

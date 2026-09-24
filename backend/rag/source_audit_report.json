@@ -1,0 +1,4134 @@
+{
+  "schema_version": "1.0",
+  "status": "audited",
+  "active_source_count": 390,
+  "document_file_count": 406,
+  "active_sources": [
+    {
+      "source": "cn_cerebrovascular_guideline_2024",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_cerebrovascular_guideline_2024.md",
+      "status": "source_curated",
+      "indexed": true,
+      "content_hash": "cd6f5d1181074383e890b88778c5d473b83d56e1795cd3c5a87b33846f280716",
+      "publisher": "国家卫生健康委员会办公厅",
+      "source_url": "https://www.nhc.gov.cn/cms-search/downFiles/8b6cbb73fb2d49c2bab32f5f3325fafa.pdf",
+      "version": "2024"
+    },
+    {
+      "source": "cn_commercial_drug_catalog_2025",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_commercial_drug_catalog_2025.md",
+      "status": "source_curated",
+      "indexed": true,
+      "content_hash": "fbf18cc5d8b027b760f90a2af5a49a3fd5a80264709fd3aa2b40aa72e337d843",
+      "publisher": "国家医疗保障局、人力资源社会保障部",
+      "source_url": "https://www.nhsa.gov.cn/art/2025/12/7/art_104_18970.html",
+      "version": "2025; separate from basic medical insurance"
+    },
+    {
+      "source": "cn_hypertension_standard_2025",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_hypertension_standard_2025.md",
+      "status": "source_curated",
+      "indexed": true,
+      "content_hash": "21b5344044b212eefca9de85f3240cf0b25e9f35b2a90db85e0e77d1a8421325",
+      "publisher": "国家卫生健康委员会",
+      "source_url": "https://www.nhc.gov.cn/wjw/c100309/202509/b601cb822b25461f92f7aa66c03495a8/files/WS%20T%20872%E2%80%942025.pdf",
+      "version": "WS/T 872—2025"
+    },
+    {
+      "source": "cn_myco_pneumonia_guideline_2025",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_myco_pneumonia_guideline_2025.md",
+      "status": "source_curated",
+      "indexed": true,
+      "content_hash": "ef5bffeee9d82114a337be1365bb9a0f017c4abae771c35dbb019bc5b2615f56",
+      "publisher": "国家卫生健康委员会、国家中医药管理局",
+      "source_url": "https://www.nhc.gov.cn/yzygj/c100068/202509/19e7145436b049a68d4ba8c2060dfa56/files/儿童肺炎支原体肺炎诊疗指南（2025年版）.pdf",
+      "version": "2025"
+    },
+    {
+      "source": "cn_nhsa_drug_catalog_2025",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_nhsa_drug_catalog_2025.md",
+      "status": "source_curated",
+      "indexed": true,
+      "content_hash": "bc43096df78823ff4059ca366d9b0b9f208c573f6e8fbdb78af0e5363a0575ce",
+      "publisher": "国家医疗保障局、人力资源社会保障部",
+      "source_url": "https://www.nhsa.gov.cn/art/2025/12/7/art_104_18970.html",
+      "version": "2025; effective 2026-01-01"
+    },
+    {
+      "source": "cn_obesity_guideline_2024",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_obesity_guideline_2024.md",
+      "status": "source_curated",
+      "indexed": true,
+      "content_hash": "3d03ffcdf4d06f293115c29b267bf788f02482411e5e9a8362c3d1e30a3e0cc5",
+      "publisher": "国家卫生健康委员会办公厅",
+      "source_url": "https://www.nhc.gov.cn/wjw/c100378/202410/bcf804e19e0c4246b5aea6cd338b55e1/files/1732873189749_61795.pdf",
+      "version": "2024"
+    },
+    {
+      "source": "local_card_002cd0f94910",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_002cd0f94910.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4536f964ede446e2bf0f883ef2d204007b484170dab2f2ad3bf9d9d82a75872c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_00de7c11d2f2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_00de7c11d2f2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d6b3ad19fd79a2b766c2b371a4c4ad634482e73c5973e0cddd4160836a9224cf",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/visionimpairmentandblindness.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_01918dcf6a47",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_01918dcf6a47.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5c857c569baf0bcb2f063eca294e84b6746ae683f6a50ab33d29bc2330ddd1b9",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/tonsillitis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_034fa53b7ebf",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_034fa53b7ebf.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ec4650e02e9d491312503d613bec92009d5e0dce4b55db0b76e2c6325dee510c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/drugreactions.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_05fdf06e1a64",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_05fdf06e1a64.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3819fd7400869641fdc759a09a035f92cb18b1205c92bcd456d585cb9d364670",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/highbloodpressureinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_075a641e2f77",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_075a641e2f77.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "518146c083124383c0fec95cffab2e0d6a7e144eb04a16bb6bf3fe3e54f4d8cc",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/depression.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_08590dff28ca",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_08590dff28ca.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "37dd1ea59665122762bb99e9e428182a361faac76e8496754bb18addca5a9bbc",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/urinarytractinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_094f4656cfb5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_094f4656cfb5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d44062c479884d1862e94ead005ac9a74b72ecb88456852ab9fd7e7e61eb6cd5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/kidneyfailure.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_0984b9bf61ff",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0984b9bf61ff.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2600373496b10f3d3cc6d7173932741c770ad14399425345a646d7ddb246c4df",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_0c2312574537",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0c2312574537.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "202cd21e54a98211170f1cb5b111001760abde6ca7f3fca5da2efa46e42eff16",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/healthproblemsinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_0c93cee19889",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0c93cee19889.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "92d41553c31b9c4e6736e7836ed03777547a9ac0b8d9c6d5d38863c3fd286d44",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/depression.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_0dc3956bc9c2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0dc3956bc9c2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "749b748f50518d0f8cb8570b0614b8232f13030416d5ebd7a2cb3aadb4184fc1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_0de4d446b9c2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0de4d446b9c2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "661070dd2a887f3b20c4f340499c9523fe4526429d6c60062f7c24f22d2260a7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/arrhythmia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_0ec2d15f0083",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0ec2d15f0083.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b7b1fea28e98e8da9f8e33c96f879f9b7b408c167c01390f1968551e0b79dc62",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suddencardiacarrest.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_118896ae78f4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_118896ae78f4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "dfe437b63d3e85cd15e39eb81731ace95f691f190885840998f12814f1e142cd",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_12dda21b78de",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_12dda21b78de.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4f705f998aa77356f13a2bbcff88e27cacf3a8bb387c6fc9435d1c14962b55a7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/drugreactions.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_1311af7ed13f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1311af7ed13f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d6b4eb2bb614e7005a8933a14d66c24830b337dff883a394d4b3c99d2b1fc5ef",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/diabetes.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_131eabdebab3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_131eabdebab3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b34321aeceb763d9d8b42722f9d89a29de4958c643aca93c63216ea0ffc3f838",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdecay.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_1344941b7c49",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1344941b7c49.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f1399e17d1dee711fa067ea9502da271864574d23a7cca3ead702f354bf00785",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/seizures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_13a577625da9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_13a577625da9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5f3e0e06ae3151157255119b580391bb4e43cfe23ca33543b0381c4bf6f5e3e9",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/urinarytractinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_13e17cda6687",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_13e17cda6687.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7961aa395f4d8bb7aebc84042a846e7b49d954775da279d8e3c32ed79588410e",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_16bbf4d91817",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_16bbf4d91817.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e4cc89c0abce91bbe32ca48163194fae647c31ae8edff36bed52e0599f513765",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/healthproblemsinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_178e7b59bfeb",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_178e7b59bfeb.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "39561e787f4cdbf4817f56aa245f7ded6cfe53d12e0ceac1003cceeb9b772c24",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/commoncold.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_17cc31b73276",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_17cc31b73276.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7357b8d5fe54a01a479d813f36423a394453fd6eca465e4c55cbc98ca4c91d7d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/sepsis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_1924d5357557",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1924d5357557.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ecafd0b992eb4004b65f0d232f93d177d029e9211c3e058faffc53bcb85e3ab5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headache.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_196451ae6064",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_196451ae6064.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ebd27b20965803100fd171bca5e2cfc311112d7910c6bc8c71dc6b9cfff28319",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/arrhythmia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_1a4ceb7fda61",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1a4ceb7fda61.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4bb76c8efbc0df321c1a670cc26e7a3fe5f2325a2bad30614b7ea81d3846fd82",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anemia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_1da613b78f8a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1da613b78f8a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5367da0fa2724a059a95e25ff2295ddddbaf769ecd002f2e18439164be9081ea",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pulmonaryembolism.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_21d51e16e96b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_21d51e16e96b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d5e939f85ae609e07c8d40c37efff148484671f0705e8bbf72b50e0dec3a3670",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdecay.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_22c336b3fe79",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_22c336b3fe79.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "aa4018c41ea8b73557f151f1ca1baf53ce7be26aedfdad4533513b08a9b92fe6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/sepsis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_23b366e38633",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_23b366e38633.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d12ef9ee9ba8f061e2d556be810e1fd4fdc54f907636035906832c7138587ee3",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2406822416eb",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2406822416eb.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7887c9a1f9e8c14c6a0bba1345e0ea13a649f3b15c6a96f0497ddc904f666030",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/stroke.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2435e698dacb",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2435e698dacb.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ec71fea321fdaf02e7556ec29b68ac52c97be7ada9cd26bbdd7210a50bdd84b6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anemia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_24cc996c6f81",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_24cc996c6f81.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "93cf8f7eb062f70189d12560b2e35f783ef571fa8d2a9d0852d4cea13df98c84",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/commoncold.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_27cfd92726fa",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_27cfd92726fa.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "1594dbae8a718d5785e9bc3c328f4850c07d1f667523384e6bcbb67449203d95",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pulmonaryembolism.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_282ae9705691",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_282ae9705691.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8a1efeeaf29a078639ca2f68c994f420b83319ea92fec6f715d45d48bc04c1d0",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/healthproblemsinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_287529eabd2d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_287529eabd2d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5bcdf202c47c2b704e987725c1df31cebc80ff1678343c0e55b20c658fc2f8e3",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/kidneyfailure.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_295c45a922ab",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_295c45a922ab.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "908c858231d203b12773ce24d84748616695ea1cbd036c73fdfd13b97c7e40ca",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2a477f797693",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2a477f797693.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "acc8db15f32c7ab69b6c48777bb6a9e6a8fafc1a953737f2cb9e9f8ef210fd01",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/sepsis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2a5fceb2e862",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2a5fceb2e862.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f8eb5b8eb35d5f7374488efa8d3678d51fa0fa3cb0ce257d1153690b706ce1dc",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2baaca8d1786",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2baaca8d1786.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "afe9086af2134b331e1b73454d16ab52966363bc8e03edb9ee519282d988c7a4",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anaphylaxis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2cd01f6c12aa",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2cd01f6c12aa.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "31bd8fc7410a0bc521dea49cd22e581c2d4f8f3488f5ce3502eb449b8741c89a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suddencardiacarrest.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2d644be86301",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2d644be86301.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8234c471a8df2cc6969a0a24602245cf794b976ac5354d8bb98f674290a79526",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/asthma.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2db8911f3a45",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2db8911f3a45.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9fce917fe3bde15334cb9272c14ea12d1a568ff87e7efdcce30432fb45bd02ee",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/urinarytractinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2edbe51af3ff",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2edbe51af3ff.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f04561fde28b361ecea354ff8ca849346daa46d4175783a84cda21241e6000ba",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/copd.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2f275514f661",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2f275514f661.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "34ee33bf01502dc824f88316067fcca61364dc46d343363d005921f33d4761e6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/kidneyfailure.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2f67fb3b72b9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2f67fb3b72b9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c05def2bb839a53208fe7bfbf809efca14c29ca7aa9883e86e6628146f223029",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/diabetes.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_2ff0e3e88cb0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2ff0e3e88cb0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "25fbec727c6db8b7475e8bb954141e11abdd0a0135fcabd386d36d3072c7ae1b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancer.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3079ec9945d3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3079ec9945d3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "aef0976f93a42e2b3907657e262b3afbbb05af657d409ff0d54695fadc4af67c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_325b2405f9c4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_325b2405f9c4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "012c7c7fa530e9c37f820ce0301644c817d78ab302d2a7aa66d459ffced0b124",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/arrhythmia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_33c8dde94d73",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_33c8dde94d73.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "81b729c92d305e8d7f23a1bc241e77da80cf19229927c2a4295fb9d11d2ef9d6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/chestpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_35a365a6a447",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_35a365a6a447.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "516a89ff22ad4b155dd9d0e64cdf757d39d24b93f054ea05c14af68243e11b55",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_35a9fc25704a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_35a9fc25704a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6b276bb16a97c8e53a3c672a7640ce31c304e71abe5bb0f7f54e648449ce6c1e",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/highbloodpressureinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_364c2be4b7f8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_364c2be4b7f8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d3e540692001ea8c6a9ca75ba0cb820d60001074e24f69ad11a25721316625c7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/heartattack.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3790f25997c9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3790f25997c9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ad9278a57d634a5aa9de9fb1eef1002158472730e21ca78135de71c87e495faa",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/highbloodpressureinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3834ff0b5517",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3834ff0b5517.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "85cf5955acdb4c1714adee9b667f7347bd97267754a271c31cb320fd64411cde",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/migraine.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_38bf8433288a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_38bf8433288a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "da1ac8e03636be3c8f7dcef34e1a5a72cc9f78ad62df6c6699782b891834db01",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/commoncold.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3b8c38581fb9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3b8c38581fb9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cbfcbb94e60c8b84b7a56ef0a702ff3e087f1de233dd4e6edddff35d1b298fc9",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/diabetes.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3c1348497b66",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3c1348497b66.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9d72f5c9c6c3ca632acdd39df3a32ff0cc80eba15d83c567d26ff46633048c28",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/drugreactions.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3cc5b4debda2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3cc5b4debda2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3354d5f5bfbd8433d071c381774f0496c5ae1c7d09a35368e7a578485385fb2c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/asthma.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3d98dd6b424c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3d98dd6b424c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "88a9a5cd3731226c4678ee1c5a499f63d320305f0f9189543f478e8aa37e721f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/abdominalpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3dbfa7f81e64",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3dbfa7f81e64.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "798938757c5dbbe50f42029658a156180b32adc09643cd6e09841a62dd8faa4f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/diabetes.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3e940946befe",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3e940946befe.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "305f62194b07f626b9fd9cb7e8e831a0db6481272ec27fb4fc729184324b0f7a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/sepsis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3e99fc1f2ed3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3e99fc1f2ed3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fd26bd826f8bd3ce89b2f3f373c25341f6b95b3b6b5de0592121ac1a12a75f08",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3ef8e92f1afe",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3ef8e92f1afe.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cd28dd6c91364bace5e25047ab09e656dfd8ed7ec73b9b5470fca21f492ad7de",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3f557d8e8008",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3f557d8e8008.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8eb05fc1c86662d9c3261dbbbe2bcad44efdd102d36f39e85ebc032e2e59db84",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_3f7a47c65a9b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3f7a47c65a9b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5982e2096a2753c8bd28d074033807129553f274d4557390dc31bcd02d064a95",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suddencardiacarrest.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_41b58116156e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_41b58116156e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9b99ba33aa422b8bc5955c595c1d3f20e07a6b06b69101c606f2a5e69772a8ee",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pneumonia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_432a4d1ba46b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_432a4d1ba46b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7e3306aa81d1d393e05551e705dc2a567336d607458a66faea7be9ccbac93aff",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/earinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_4340cca93612",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4340cca93612.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "83e63444bb0765a4dfe0bd2069c3008ba6b3e32b941af1b83205b3b2b6bfa444",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pulmonaryembolism.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_43ad32c2d97e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_43ad32c2d97e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "04153f259a94679d5f0b2ae36771e70104ab0089fcd5136743625973e08a8286",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/copd.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_4438872475c9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4438872475c9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "20cc54cf3502881505aca3a21402f139adae169d6187c4334bc126398fe08edd",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pneumonia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_46ad91e8159e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_46ad91e8159e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5b7610f4e73b3ea296f347862121d92be0b3eb9ad1b75f2a8d44f90b499b65e0",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/stroke.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_475aa0ff1ff1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_475aa0ff1ff1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d6962876795cd0549c6566e72a4fb834fed0a6d605f4f27a22223d26fce72f14",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/allergy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_47607c8da8f2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_47607c8da8f2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a90667984c2265bd8b3cb0a9986ebe4c791a29de16ddf9db51c73efcedb457c4",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/stroke.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_477ba4836706",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_477ba4836706.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a4e6469e52674647312b4bc8be201313272b99a41fcf904930b59353ae1224c2",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/backpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_49fb6db21367",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_49fb6db21367.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2fe0011fd2d5f0cb2a26f648e066f646e6b8bf5f69f9ab4c1d20f40edbc876f7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/tonsillitis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_4ea54406d08b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4ea54406d08b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "74ab441120b2fc2c342572eff490239f859f4ce097e842d6fd018529e63d10e4",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fractures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_4f0409221b92",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4f0409221b92.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6a7e4a2533217d4114b2166093a3df169788b0587d7950a4d2ed8984eae7b7b1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/depression.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_4f87ee31856f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4f87ee31856f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "07d7249e6e40afd37e8e8185c43fee7d5bb4faf900b7a69a75f6cb456cdfc499",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancer.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_508e8163adfc",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_508e8163adfc.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f15d4639af0784ef548e235f25e1f68010e98be5b85f8807671871d6c8fe95c1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_51085ccce344",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_51085ccce344.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3639a4a9a5b4013201d149c84a996426d8e967fc58abed124a598e995c444b18",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/urinarytractinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_517d096c4160",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_517d096c4160.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2146acf90a0cc5a53cc21c2a133697524a4696443e7db727ee8acdb808b3de36",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fatigue.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_5421e33d20ef",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5421e33d20ef.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9c8fed51673fa07cdc2ff67fc5a3a9ddbadfa4d6b280a75a894a3ef89616bde5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/highbloodpressureinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_54539b911de3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_54539b911de3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4ec6a7064eb3181ce337b1524cdb30c6144e47521ff737ee6eb67a65894266d0",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/migraine.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_54728a6cd134",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_54728a6cd134.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "72a6ac8f1b689076f12b1aea76c60afec7ca7cb33de4e37546fbc16c14607794",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/tonsillitis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_55035e7e0ab2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_55035e7e0ab2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ae4854573941fbe47f9f77d25cd85c3f0ef4bbe784e14faf9c5518f907aab81e",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/drugreactions.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_56296d3fe703",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_56296d3fe703.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c9a0c96101e55cfcc2daa0e34d3bfa2b68efce7d625dde7e519fb3aa5e5af277",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headache.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_5a6e580602ae",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5a6e580602ae.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6bfa8ebdae1270679dbbfebc898739c624f248d00fbf1e7bfcf3e62545130dd6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdisorders.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_5af9aa19da20",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5af9aa19da20.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "08182fd45182d113200284a1a9cdcb15ea53428fe4e61930414f076ff5362457",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/backpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_5b03414f4e08",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5b03414f4e08.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a14b5f8f294dadb77d3f514aab0492c4e013f2cd490fbe9b58f170aafa4e7771",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdisorders.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_5cb27a985d5a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5cb27a985d5a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "11ed4b4d49a72e5de72081159394401a04b63b04623e4d870b1c621659df3f48",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fractures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6136bf3cf459",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6136bf3cf459.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ad50d7e3f0874a638966d25ac47e5a530d870b621603d2c780eff1cd36944d8b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headinjuries.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6365e9753e4a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6365e9753e4a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b5d39cb0bc5ceb2bee1a8c90b230c5ee4e329c7d640494a07d43b930e8317bd6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/heartattack.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_63a34f0e00e5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_63a34f0e00e5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2004a2006ef09c5a08d2c63acfda334c67972b65b6ab58a87b66063c5a156918",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/asthma.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6705cb8318c0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6705cb8318c0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d6f70cdfa08228c22301de75a0bf4f78a497e58c59221a2af461cf7df466c974",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdisorders.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_676b1c7ddc21",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_676b1c7ddc21.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "28fb90af6507df7803f02bca2d79b4cd16c91b43fcd1d8418a52d0f19a7d028a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_677b0d146f7c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_677b0d146f7c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6b61251c54b15855584578c461a2cf0b3588569137b2f31012d4f0111a1b7c31",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headinjuries.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_68fcbce7a8c8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_68fcbce7a8c8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8b4b333d09ece91a4d49e7b76eba250ef2a512226255b89b816f29927d60ad6c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/healthproblemsinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6960af3e82b0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6960af3e82b0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d634214c01ae75ad24f881d22c74438d9e7f01881c3f2cd64f5e1e87d61dc7a1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/drugreactions.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6a08d68b44d6",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6a08d68b44d6.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "de666abe59599532831d1ea94599f883e5bea421afd2bb3bdc3ebc0cfe44c54f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6c52568843a4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6c52568843a4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4514bfd6fb9fae410860ebeeac5e29900fc380cb7f8890c1fe5ee3935904a017",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/asthma.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6c604f14ab9a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6c604f14ab9a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6a509c2068a5bc718432f4f075a718c60c295f5547d5ca816c6188f6caeae896",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/allergy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6d23685883fa",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6d23685883fa.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a664d39867bd8bc9aa358ded732d3fb2a7a01a53f0b4cb834dce751713995765",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6e96601c0379",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6e96601c0379.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6ecc862b51ec1544cb4e9e693ca24e9b6dd73fb05fc3084a4c17215ab447b253",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/sepsis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_6fb48c054a16",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6fb48c054a16.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "92a58af837de43e5ac5921cc64a1b529b68c2fec67456ab76a4f9082e8cd0b14",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/backpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_71126b04d388",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_71126b04d388.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ae9f7eaa1e6c43ba481610151ab0c2b63509d7e2fe4a3d067e919190aed66b05",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/eyeinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_71a656ff45aa",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_71a656ff45aa.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6541734b3b7ce66d9151a2da5be541f9f585eda328da40f33b06f76e8e7e1f5f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_729b39b71c52",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_729b39b71c52.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "696bac0ce71c418774e21c50506340e127d2030015fd26e83ca5e4a1c257c1ec",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suddencardiacarrest.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_755cd634c21d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_755cd634c21d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cbaace9d5f89f0a417e4a8f5c2011a4620d572934e7cae67839d487a63c187fe",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7680da7cbd3c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7680da7cbd3c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "71e548fd6e70e7decaaacc4f38b14dbe5319a419712349938c28c6398fc0c68a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/migraine.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_77a1ad6f136f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_77a1ad6f136f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3faf03074a71e74a2df228af5a04c02855511bcc7ff2eb979087526f037d91c5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/eyeinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_78594dc8c6f4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_78594dc8c6f4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "dee539714e05a7f2536de0f521a48058f721b207c6e8ecb8d854aadb0dafe550",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancer.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_78ceff916db2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_78ceff916db2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7926721d5acd522ff96c1db9080b1c2ff734b04dfdedc312d805c796122ca045",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_78f38a99b4c8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_78f38a99b4c8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "30eff0849edb5048a28efed1221d5ec01aac43751f9d1e1055cb8e46dfa2df91",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/chestpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7a75ae10a9bc",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7a75ae10a9bc.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "03a8a8c18e894533dd129f4d1922fd6ebb083c47f4fe3e21e6436a67f02cd780",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/earinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7ad288987ae2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7ad288987ae2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "1d0f95769a9c70c69d47398f8241eaaa0a85a411c6591af7b7796bf07a426f8f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fatigue.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7b49ad3e0ef8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7b49ad3e0ef8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3aac82f5e15f27a1c7e2737cbae5613d3fee59f739563192b11242b92545dd1f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anemia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7d3756993928",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7d3756993928.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fd41241883cabe889bc0637accb8db3210ffb34816c1ce372cd3a12c7045f280",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdecay.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7da33077518b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7da33077518b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "1cb7f4d586930ebd1a2072f9d9316ddc596c207b39bc37f96304e5d7dd62517f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suddencardiacarrest.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7e073216b56d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7e073216b56d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b6e6f5d7b9c50919c73f2ef1154b4bc780c079be3bb619b0c6cd1bdcb83f46dd",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headache.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7e5d7a5d888b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7e5d7a5d888b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "60b71ca6d0339449578b88e3060184d8292a629866371d0a797a87c461591def",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/heartattack.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_7f3e36cf399f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7f3e36cf399f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b82af4bd05c9024b075276ec6faa665978d3709251893a6501276ab5609617e5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/migraine.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8009034d3f95",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8009034d3f95.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b2c3c4ba9cbae05cc9b2fd66ee37a967533e69247953adf5b0ba329d3231ee02",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_807b55c470cc",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_807b55c470cc.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ee0fd4d5b803b5063ccd6753dbc173dcd14a93021d5d0266f12106ec4b43b4cf",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/visionimpairmentandblindness.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_80afbb7cd455",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_80afbb7cd455.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7839b1a58dbe5e113c44d4604e2059dc47356a76e03870cd9927b7141f6263c0",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/tonsillitis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8262c58d6b30",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8262c58d6b30.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7c2dedf35d7829bb7916b4eb4cbf36f87e6f64c2cd58b253b107b4ab0898765b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headinjuries.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8325915e0695",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8325915e0695.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "66063617b5bdbb11b949a9e37840bba272bd70e08bd884a5066b2e99193836f3",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancer.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_847f4cf8b515",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_847f4cf8b515.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b1423b80d70b813b5aa09ae9e770b9e1455b9a61d1322e58dba5324da00f7b5e",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headinjuries.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_857b9479889b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_857b9479889b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f47885e3730b6d060b2434eb845d5b12ba360cad5df0b4f76f0b8a11ddc7bc9a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/arrhythmia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_85c20a642a39",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_85c20a642a39.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "dcaa8cbf118a289f920114926a171d762b33ba193a1503f6a2bddaf335bf3364",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anemia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_87b2ba8ede1e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_87b2ba8ede1e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "365b587c0cb23d5ee3adaff5dbb5e61a5146bff3787628fe079c01ab05051135",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/depression.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8814eace19c6",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8814eace19c6.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6a523d10b2415c97d5bdb995dbf2180a611ebd00e097b8a0474c96acb6281cca",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/commoncold.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_89ab31b7e293",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_89ab31b7e293.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "bd95e762ad733867ac02733d5606c9608c466bba5d6ffc46778a4eef92d47087",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/heartattack.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8a4643d7fa8c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8a4643d7fa8c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "75da8875b3ceba7e67e02a0323d59c8a65b0efd5608d0effcc37086e63460d2a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/visionimpairmentandblindness.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8b07ad0e0410",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8b07ad0e0410.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6ec8df6daef4ab22655d4a6079b94c2b478ba2836fd21d40f4f54155999f01b0",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fractures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8bf39dfba227",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8bf39dfba227.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2367ac4684576458c17a260a29f614c6d03712b6fc578fc6a37847430e6c3cc1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8c868caca3a2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8c868caca3a2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2ce745639f67d045a4026cc0acae04276b9d53882334efb21b474d723f19b33c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suddencardiacarrest.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8d02ca00ca22",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8d02ca00ca22.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3afa99aa8608aa444fcd582db9886ccabaf8c28b0967bd0140b67d3f6a29761b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pneumonia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8dabaeb01373",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8dabaeb01373.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c284e7dbbbd4f59dd0f456a565a2bf9cf88f93fad3c73389bf7b9cd13b418d2c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/stroke.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_8f758f3110b1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8f758f3110b1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "52feb3e777906c97e39f0f479b47c513a069c142fb32c2197c3edd5b57625d8c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/backpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_92fe98813798",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_92fe98813798.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a30737238984218440514abf2880c1976c9071523a680289b351d528c551606c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/copd.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_984df0281182",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_984df0281182.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ab03cc5a9d1222103843f61e0510e7f060ec61cf0219e08919a6dc3bd83fcb2b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_987f580da940",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_987f580da940.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f49e81271897fbcb7956229d79d045988ad90ca0b6d66093776d0cf59d5544f8",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anaphylaxis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_9980a43c9288",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9980a43c9288.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d4136f0d9f4457f5cb6b7122b74ff2f8de25dee1288bdc8752f9f4f596a56ab7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/migraine.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_9abe8976c0fe",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9abe8976c0fe.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "df1edc980f6c664f59e6aeb60daadbee3e8b750036fe81b41bcc42592165d2e2",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_9d5932c20b38",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9d5932c20b38.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fcceda51826702624d5c417eda3f734e3bba557d729b29597157824767a7ca6b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/diabetes.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_9db835df7c10",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9db835df7c10.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6cdc0e2cb94972ac7553c4d721f5cb289e12751437c7234e5a92deac80236ef5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdecay.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_9dcf565762b2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9dcf565762b2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e20631a265bbb749acb5f8fdbcf449be5a641ad272f63a41e63ca6b6cc1c7363",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/drugreactions.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a001d8b7ce9c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a001d8b7ce9c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d3eeff13753cd0c9029ac4b436f8a37615b8157d124bb3e062ad6a8561c79dd5",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fractures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a38868fd6214",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a38868fd6214.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b101119bf53a1cbfcbd6992a00137e7249b79c2525ef462920b79d10120d7f02",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headinjuries.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a48e29e090ff",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a48e29e090ff.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fd6c03d2be8978fb9fb688fe350030152beee56fdd4990d6a3fbc086405a6dd9",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pulmonaryembolism.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a4b5ded8b668",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a4b5ded8b668.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5397ac6e2f5ebda7c00491e8bb2366b0a9c3c4c833186c6560b63b580caf5653",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anaphylaxis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a6805c37779d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a6805c37779d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "47e974a8dbe82246630e740b430824d6c37520231123a94b290dc875ba04a12f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdecay.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a71c7ca67902",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a71c7ca67902.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fb58a308d0457286a9dfc76d6de2935f46bfdb353c3c02cf0fbfdd1b773d964b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/migraine.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a8f22c0e9f87",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a8f22c0e9f87.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f90e37b5a78526dacd7d4c227d5def3f1c8286d94a8c0a1424bef754279ec1e8",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/asthma.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a920e49d9528",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a920e49d9528.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "14613d3284650fc3ad3e640011d13419bc5d64fde016762cd78683fda810964a",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pulmonaryembolism.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_a9e1c5e203e3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a9e1c5e203e3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "65cc6d2ce6ea53d2f5e306e14bd3afb648c0aa787ab6d0a133e867aa0c0faf02",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_adbca58f2d99",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_adbca58f2d99.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "71e89f097d0ca781677a8942d77e1c9f8955416313cbf7a12ca917463a97a442",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/heartattack.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b0e600b0ead0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b0e600b0ead0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "17aade7598410e3803fb1e9fdbbafaa8dde46de709ba08a297738335707b66bc",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/visionimpairmentandblindness.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b27fe1b5f34f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b27fe1b5f34f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "600e00a4adfa642251d70b6a8ee2e824ae595e55d036ff5845318b1d2599cc39",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/stroke.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b35603503f2d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b35603503f2d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f36106d0125b395445e771b76b2ab8518fb09ba261f19f49bbeec4442085f600",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b5d0dae3c906",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b5d0dae3c906.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "43c5d0e830bb09a11436915862f9bae699bcefebf60f81b035ecd22156066431",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/seizures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b7311fc7bd67",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b7311fc7bd67.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a20c8d42b19b4442aca1f90b3efcfceeae732dc350e50385e0accd448afe06c7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fever.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b8bc87aa7b7b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b8bc87aa7b7b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e4a69ab3957e61714cfc1bf3ea0d65462b9dee9c049f90889624c3ecdc9e5e0e",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/abdominalpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b8d0c1f9bb0b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b8d0c1f9bb0b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c2976f73962c8bcd2f6e6bfb17acc85549f3920b85025f8c2a1f32baffc0a8a4",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/asthma.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_b90de1a868e3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b90de1a868e3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "859128460deb07cd11c762e86a8d25ac7ec745a9095868aa309c40af962cd814",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/heartattack.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_bb43a3ef7189",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_bb43a3ef7189.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "0241e092b85b9dcc8ef8ba92195515bb5fc4a40d47e1bff333a513c066e2ec2d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/earinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c07a10573837",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c07a10573837.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5feba0f2ed9b41a64f3dc32454327912317b2fa5f87ef7e8ec7a6572492c268c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/seizures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c0eb79c11624",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c0eb79c11624.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "0c832dd5e1398ac405fb476e9b5fa40742b68108842de6f38225d179f0f424c4",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headache.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c1841db0785b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c1841db0785b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8620cb3a23d6d603864c2f335c61a565105360854309fde9d8f188f2b4b0e3d3",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancer.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c33d510820d2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c33d510820d2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "362ac4e431679098801f369a5b7458cb72128032f65bdc3adf4994b0a9737a1d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/earinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c3f04ffd8782",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c3f04ffd8782.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b2858bf88ef96adacfffa92fe474fa421545dfde89c67ef0382f5fc086e3c2c4",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/depression.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c4cc7aec1dc0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c4cc7aec1dc0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "84e130f8c9c479b59eb9c62bc42ef6da9a692c0c254e2bebac3cf3b62b6a1e7d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anemia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c5a6cc6751f0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c5a6cc6751f0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9a0bbaee957a49075c6d659f563d3f5f1792df431112723c8dee344eafb251af",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/visionimpairmentandblindness.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c70ac3e6b653",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c70ac3e6b653.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "03095dc9fedeb0c974227d86507bd35b0cd70b6921ae5a072f836ad9360be27b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headinjuries.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c89308c67c65",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c89308c67c65.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f6fec8f21c4dc6b4fca42c6fde8eb90a08eec24f6f8bbed012b41acb87591085",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fatigue.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_c9a4d3856705",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c9a4d3856705.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "430c4ecafd10d45c86a4bb910231987a6509d580cd23f1763975cf86943be4da",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fatigue.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_ca48d9f1f670",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ca48d9f1f670.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "18ebe5ce00f4fa72e504b8255531d18b14ec552627be4a95d7c100fa1492bbb9",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdecay.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cafe04e39097",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cafe04e39097.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3d3d0bdbb7dde77c9159a06c7ce1d2f38988fd5d51279abff644a13c4e72f3d1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/urinarytractinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cb5261500a46",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cb5261500a46.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "df45d8ccbaa0e1c6175da3c55c9279708a1854778c8da97bb27c1ca435ee72b8",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/earinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cc7ca4dd28bf",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cc7ca4dd28bf.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fa217a761d26e403aba27fa0b7b2e1933fdb3580aee71f39866e17c126272b48",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/tonsillitis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cd5243806f25",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cd5243806f25.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fd8b4953611330e30f96e77977336a7b04992e67bf7664de1fba72d9a259061b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fractures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cefa986ef0bf",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cefa986ef0bf.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cef61f0e1bf4bce0b0adbb6132497469592b4abf9de493b8a81692fec8412414",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/diabetes.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cf44a8f92767",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cf44a8f92767.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "44914f653da08117c0dbcf9f3d65496cd3e15eb9ac5ea804e4259efd218a74ae",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/arrhythmia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_cfd2c970087a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cfd2c970087a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d27179eef54cdeb1df23d1efada76a3449f3a685fd3cb188d894c1cf66418092",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fatigue.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_d12f6670bd12",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d12f6670bd12.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "38c11f31dddc523c456320d11a5a3aa7d98db18a61028eb33cf29004f2dba676",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdisorders.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_d2140c98fe34",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d2140c98fe34.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ac28c4c049c07bb050c67200f8641655549b47c469bc9b849f9708aaa6cd636d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/healthproblemsinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_d3f0d0d746c4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d3f0d0d746c4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a2cd0230c3e513601287f30b01244f3422f70f35de37f698762e110a1653950f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pneumonia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_d41daed721ec",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d41daed721ec.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a781f5351a957eeaddb4551323b64ffcd72a5e9005da97da70df91d648c2d3b7",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/headache.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_d4c1dad27bfa",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d4c1dad27bfa.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "679138b3764618da6aa7620fb67755e3323ea1c0b99f4b4c263dae684d1f7f7b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/backpain.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_d53228d7ee1b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d53228d7ee1b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a22f069157237f206d3e18e2249e8bac08f1220c2abaeaa08f79279eea25400f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/stroke.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_db02506d4a12",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_db02506d4a12.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a94cd5be8d85f0a9dc444659c9dd4c7b306aa4247feda986885b2c176edc6a24",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/earinfections.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_db12601a5b65",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_db12601a5b65.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7dcea75184c8bd8a605d894af7297e0614202151f3e44a2959ad2e264d82902b",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pneumonia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_dc6f95f130c9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_dc6f95f130c9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "bbdf95183e9283247c0c75d27c13743e1fb947c40c573a57899a49d8ee99b699",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/sepsis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_e1b7c63446b6",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e1b7c63446b6.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b762fb18479fcc16ebee384a64c1ac8329fdd0b0fb985433bd15f9943fb3d1ea",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pulmonaryembolism.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_e79caa76c174",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e79caa76c174.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "704a99d52f0ef69100bde40fb60b71bfde115a884ad46ccac94f2f58a51e7938",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/pneumonia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_e7b0c6596e0f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e7b0c6596e0f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e65ca521a07f6132dafd5b22fa3c17b5f1a3467bba3c7c390796faf1b17318b6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdisorders.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_e93cd67a44f5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e93cd67a44f5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b587e535d6b2bcc39d320b73f4a2852ec82fbcb1536c7aa512b38f3c39bd1e6c",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/highbloodpressureinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_e96c25998dbb",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e96c25998dbb.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cc29d2913cfa947261fd4d31ab87f9fdb5d7537234039edc5b4faf4e280b6b29",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_e9d3ba02ad5a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e9d3ba02ad5a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "62717c7428e73bd10a7737b3d8e4a9b7cfd2fcf2b018eeef3bf9be24bc91f435",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/suicide.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_eaf26691878c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_eaf26691878c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "69046b17964201eba07acab50c29b92c0b39849fe74d6826f0d588099fc9747e",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/healthproblemsinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_eb72555c2674",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_eb72555c2674.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "67da665076269fcf99981d562b61c18a99bb3030509e8c1c3a634f2c471ded5f",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_ebd03ffb2519",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ebd03ffb2519.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9f1a774e604087810553a39dd43d48e7f7171a50fbf06f06ab2da0c11aaf59d1",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/depression.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_ed5bce3b96b4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ed5bce3b96b4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a4092754a731f7ac8a0abc4c45b0bc21ecabb609f3ceea28c7c691c05ba80a81",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/copd.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_edd8a1772b4f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_edd8a1772b4f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fb6e5d39130413f589b6a702bc556b93fd479c2ef063880fcb9b9a98e81e16ce",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/visionimpairmentandblindness.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_ee2e924d67d5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ee2e924d67d5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b29d93a79d538a1dd406675ea5f10c2f5c1ef6ac04776b83f99010f403d47238",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_ee9c1f2289a1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ee9c1f2289a1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2ccef6edaeb6391a395ccad029054394cbdcc2097772ba5fab12322b18b4c1bb",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancerchemotherapy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_eea25500d233",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_eea25500d233.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f14fec42378f08ba6dd4d0c5844aea5224164c5d5e6659e33ec89e4b1d89081d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/tonsillitis.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_efb872d3ef12",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_efb872d3ef12.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "0c2c12820afc22dee41fb6190f0c83dca3ee650272894b146c5bda50e60c5f95",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fatigue.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f00377f4f4c9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f00377f4f4c9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "33d329de10c5da28b8090b62bb17551dda0efcd5734796d15d8dd665b7f900b9",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/arrhythmia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f1750507661d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f1750507661d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f9a5b42d6af6653e76ecad910572aeb638e5367c123987e7af4e7c8832d084e3",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/fractures.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f19be1b1ebf4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f19be1b1ebf4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5e744cb759d63158c6de56e3856d7cb3e7478efbae037f63374d54c7f22d46e8",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/toothdisorders.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f22725f9debe",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f22725f9debe.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3f252d4aafc4aa939be95b430f0af49ae58772d10c7788be75c6586e59d8007d",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/highbloodpressureinpregnancy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f31e8172d7c4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f31e8172d7c4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "68e0ec8a65facce37d570be810dc2ee9aa39ca409cf87f7fd6abe554e5312c64",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/cancer.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f42e576ee573",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f42e576ee573.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d8b765a8386c181b4b972d08f10d30204999dab4b039d427bbbd7b65ada3e0db",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/anemia.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f4b496f309d3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f4b496f309d3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2d563339f35b883387be79f51f7973abac79d642cfdf47001edd5793d010a8e6",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/commoncold.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f5352d15031b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f5352d15031b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ae86748f2f360e3ae1e9ddaec982ea405f1afae655f51db917086e070d5e6cea",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/copd.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_f90835b4035c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f90835b4035c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "431e0ef0bb4fc726ae969b5871164466f7cd7d5783e1d48d1e9cd2223c1aa220",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/copd.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_fc7fd31e36d4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_fc7fd31e36d4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fab503c93b9406549eca4f4faafd362184d1f81badc3c11aa1fdabeb3bd23f78",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/commoncold.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_card_ff99c3ba0341",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ff99c3ba0341.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e8379f931b4208fecd3674bbdd403324a1654d0b87dc265d5ded92a0da86a7f3",
+      "publisher": "MedlinePlus",
+      "source_url": "https://medlineplus.gov/allergy.html",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_05d97f61224e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_05d97f61224e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "75885a535a0984039c1bb27a69bb353a45ad974e776642db2b871868120dedd9",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╡Γ║ú┤╝╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_09100fa25734",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_09100fa25734.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b1f5cef7420a0397f45746e4b8c04e57475c0f2c2249aa0d968b87f0001bf4a2",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╢╛├½╗¿╨²╫╙▄╒k╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_148d8bae9689",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_148d8bae9689.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6d03c26fdec4be0a8f86418a5a4cbb78759593116b898dd21e3430f5e7aa7159",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╢╘░▒╗∙╦«╤ε╦ß─╞│ª╚▄╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_2aa1fe6167a1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_2aa1fe6167a1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a3371ebd324c8b32d89e1585fcdf15095558cce7c8b9c94ad875aec6feeffc97",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░▒▓Φ╝ε╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_5cda5ad44c53",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_5cda5ad44c53.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b32b06582a7bd63b40c912a2cbc13af6d9a2e9f4d541aace653cde7cfa775395",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╢í┼≡╚Θ╕α╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_5f95a9423118",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_5f95a9423118.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "57efde3ce4cd6018cba2c86e4268e2952b974c5e7be2eed906f9857470e5a965",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/▒ú╠⌐╦╔╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_6ae281005fc8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_6ae281005fc8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8f3a173d3c31fe57df4b28d268c029585bb189012b51a679011406b47920b9aa",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╡Γ╗»╙═╜║─╥╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_6b026d62dac0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_6b026d62dac0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "67a584f21f73a993e8ff100b04ffad0435c9f78abde08e39df11b42f2c69f1cf",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/│ñ┤║╬≈═í╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_736f4267a682",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_736f4267a682.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "0941eed40fb061c40317bf7381cb1bec4c081451c12881ab58aa1c8cd9e11752",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░┬└¡╬≈╠╣╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_74838f65c818",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_74838f65c818.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7ed4dfde9232173cf94a5f56be87e202542c6bd7398e59117f34ff8f60f318a7",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░═┬╚╖╥╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_7b16761394f0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_7b16761394f0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "edcb4e02c2d62f81e268833e11e372de5d5f8ddc33e2ed4f4850b82bc0ffb0b8",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░═╟·├╕╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_81381eb359c2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_81381eb359c2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "47c10f12d0f7ce98accf9a40ecb9fe96601780683a2e6b359957c0c7e1c65f7c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/▒╜▄╠┤╝╜║═Φ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_87c8c8d6bd19",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_87c8c8d6bd19.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "03a8cec45a83b188e71778aad73ca5df0386874cf7d4e22e3bd1671d091aae76",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╢╘░▒╗∙╦«╤ε╦ß─╞╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_a89d5b332d8a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_a89d5b332d8a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "371bac0f2019c86cff886fd3652dde5f5d25cc15ec6d6461754756a3e5366af4",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░ó─ß╬≈╠╣╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_aec6450a292d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_aec6450a292d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "281d2f402e4e136272bfd2312ef1c3bb2be48ef895d95a1d732a05b65ee8c329",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░ó┬╪∞ó╦ß─╞╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_b2625ae96ee2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_b2625ae96ee2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2c1564130e554f00057234679846f2020737dc577b49e020525f30f7e5f6b73d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/▒┤┼╡⌡Ñ╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_c3ed307131b4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_c3ed307131b4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2c5280c8da681294b1b980b0ffdf9a21a9527cac29ea1741b75119f6ac27c161",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╡Γ╗»╙═╛╫╜└╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_c74f07f39d07",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_c74f07f39d07.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6f654b2b6d0fb378662b3f30281551fffbaf3f97e55de66d7539b63305a8a7a3",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╡¿▓Φ╝ε╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_c78d1417182f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_c78d1417182f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e8ed48c950861f7eea51eb3637cd3ca8d2488857663bc139628424643b481b44",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/▌¡╩⌡╙═╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_cecd1351825e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_cecd1351825e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ad1e2b375edea0228982525053efe36e0c6228e48957bddd3e8cc31c1b441f3e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/▀┴└¡╬≈╠╣┐┌╖■╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_d164824020d7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_d164824020d7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fa2f8c467ca0ec5d73723c1a4f8758c25867b4da6f6be21bd9e5cee5e0de087b",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░ó─ß╬≈╠╣╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_d3c09e071e43",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_d3c09e071e43.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b7e4b90a1e9c1f40c3a399f8459a6c49987ddf8ecda2f83910374eed16263c36",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╡Γ╟·┬╫╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_d46569862142",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_d46569862142.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "244e281fe44a223df27900d3e130a343ae8009c00522db1d15202e5978aae0ad",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╢∞╚Ñ╤⌡╡¿╦ß╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_e93e8febff2a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_e93e8febff2a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "76b223715d2b325d4de3f0655ca654ed4326bbf816ad6da688b5a0b72144722e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╡╪╚√├╫╦╔╗║╩═╬ó┴ú╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_f7f3fbb6a883",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_f7f3fbb6a883.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "24c6329728633d167ecf3e586a704ec8738f2faf90f77628ceff2da626ce9e41",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░▓▒┤┬╚∩º╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_f910b23e1703",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_f910b23e1703.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ce4b662a2c21cf013b13013415ac1f476ea188ce177d47d8e38e78b3224870d4",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/╢■█╧╢í╢■╦ß╜║─╥╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_ae_fc8e73eb270f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_fc8e73eb270f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9cd6892dcbe5a2fd2b57fd877a2913f82c92c5396c157390e427e30205eabfd1",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://ae.zip!░ó-╢■/░┬╔│└¡α║╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_012b289a836e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_012b289a836e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "558c527cabe9b82cf5a4d65e401fbf42bb9d14b33eebd5795fb61d8fac600459",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╣φ╛╩╢╛╦╪╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_04b79fb54932",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_04b79fb54932.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9c17d4f9d107af40a127efc99fd4c1fba2e3397229a81e6415d6e526d3a09f6e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╖¿─¬╠µ╢í┐┼┴ú╝┴.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_0acc16f42d52",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_0acc16f42d52.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cf03870deac2d237a90f5759d7027560f3464e19524d050506a71e99185f5c2e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜┬┴╦ßεΘ╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_0cc899d27748",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_0cc899d27748.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "96598a4ea0b8538b2241cce709dbdf7277b883a43894db2e423509e39f42979c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜░ó╦╛╞Ñ┴╓╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_0e3fd9a1d902",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_0e3fd9a1d902.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "117696e34d767ed12052e01237ac54de52f7ef596ae2d05bc60771fdc70f94f3",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜░ó├╫╚²α║╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_11a32f6e4bff",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_11a32f6e4bff.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2a8a202fe8364d875d84a02450befe8e5280c1ff7bb836394165a1f30044643b",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╖¿─¬╠µ╢í╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_1b7722bb1f37",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_1b7722bb1f37.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "88ffb90dc0e9e6c4bf5467fb138e63df6ac2efb1f19ffea69db4f9ae3a3d20dd",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╣φ╛╩╢╛╦╪⌠·.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_2720aae50208",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_2720aae50208.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "04dd7cf2abfd4c8b330a9040466044a3e7addfb31ab4842dbd9124f8f26065a5",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜╤╬╦ß└√╢α┐¿╥≥╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_2a55a8e2f3d7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_2a55a8e2f3d7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e2811efdc90f83e23779c176a65b93d82c5ac76d35cf2a6a307061da0dcfd34f",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╖¿─¬╠µ╢í╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_2fd602c1c9e8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_2fd602c1c9e8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "918a5628bc4452537ace14b3315dfae07279307737f9ccdd08cb9d8b9230907d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜░ó╬║╦ß─╞╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_336daf3b00e8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_336daf3b00e8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "531281d5049f812b3877c85efd9fb6b7925cd9e6b6db3b8a9d20338234c13d37",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╖¿─¬╠µ╢í╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_5023fe457c37",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5023fe457c37.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9767c2ff3af7bb954584291351b5267175c8e28baa6fd1edea289a0631d3d879",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕╗┬φ╦ß▒╚╦≈┬σ╢√╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_565fb12fb8f8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_565fb12fb8f8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "55f740b058f190ba17faca883b112298069dc89cc46949e38b1606f9bbf6dec8",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕╩⌠╟┬┴╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_56c5b128052b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_56c5b128052b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9e4a3ed9bf674caa39c64909a4c61e81bc1110587a8e0bf542c29582c735b39a",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕¿├╕Q10╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_5aa90d41af0c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5aa90d41af0c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "119354320b979bf1e6dc8fafdc4468242420e76c8fc31f602f4c8b89d2c82e96",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/ε┼┼τ╦ß╞╧░╖╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_5d4f9bdcb643",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5d4f9bdcb643.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4ea7e0f63c3d83a294f44bb31e99d28f43e30961563fca46361dcbc99c3efc90",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜╕²╦ß╚▓┼╡═¬╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_5f7fe52314f9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5f7fe52314f9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "563ba7b8c63860c1af569bb99cec3574f38d36ce9deafd961234baa9f015996d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╣²╤⌡╗»╟Γ╚▄╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_6b69b7971f2b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_6b69b7971f2b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fa566b4c597a23c2509c24561b7cad6eb01fac4339d8bd1dfd776bd63c4acf69",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/Φ█Θ┌╦ß┼τ═╨╬¼┴╓╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_75bc6b0451b9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_75bc6b0451b9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "394d58c91320f468161266ac23a096e29ba56cfd162a0eb348a4dbea04f2087d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜┬╚▀≥╔│╫┌╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_7b5d4b244c21",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_7b5d4b244c21.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8831de701bfac647364924b01a6236df8b8ab96f351c259c6829ac71e80bf73b",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜┬»╕╩╩»═Γ╙├╔ó╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_888c01631a9b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_888c01631a9b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4094cffe29837d96fb43e4a258cf9500f3e4c90d66fd4dc4c64e1ae6611dffef",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜╤╬╦ß░ó├╫┬σ└√╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_88ab8a7d0c4f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_88ab8a7d0c4f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7b5faee024caca3fee789b859d0c1ac9054d1c18e6402596c94a12412fa88264",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜┬┴╦ßεΘ╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_8deccf8431c7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_8deccf8431c7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "491d41e99b1554e75d0d212b96f6a4e0f53f13fba4e8aa3047a88dea0df06ea7",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/÷┘╜╡╕╞╦╪╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_a0127e775e3d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_a0127e775e3d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7306329a8d5f082a8ee1a1004174ac14eb1fa63d17c539638a5710cfdafb12a6",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜┤╫╦ß╟·░▓─╬╡┬╚▄╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_a8015a4893b6",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_a8015a4893b6.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "334f077ff2a03703ffbff6b943e9f4a9db36a0d4a4f04345057402d16a6cc3a5",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜▌∩╝╫├╤╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_aa5d12855208",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_aa5d12855208.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e3ac95df5fa8abbf49b84cd38aec21d5314a64c99859a63c1930d39a5e06c404",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜╨┐▓╝┐┼┴ú╝┴.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_ad5168c8ca44",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_ad5168c8ca44.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2af4d29c96a72b9f25485320d156b2908da2f75d78a0345f94f72139ffe7e2b9",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╖║╙░╞╧░╖╜║╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_b1dcc1ea0f35",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_b1dcc1ea0f35.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "732e0043e6bd5c9cbfdc70decc2c2dc2011511ed80bb06ed3457dcb30e88f439",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜╣╚⌡ú░╖┐┼┴ú╝┴.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_bf7c78054f86",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_bf7c78054f86.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "51a24023d8e3b82548a04c7e0704c34377ed7749038ea19b620253a534d25c90",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕┤╖╜▀┴└¡╬≈╠╣╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_c90925085ecd",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_c90925085ecd.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8da9cd9bb763edcf459e6a8bb038904613a7f095c66a8109a393d4a21d2f7dfb",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╖╙├└╙·╬▒┬Θ┐┌╖■╚▄╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_dbad4dcb528a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_dbad4dcb528a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "37a5fe968677f70b3e28341ac3483842387617300800e12434896e28e67707a3",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/Φ█Θ┌╦ßεΘ└╫─ß╠µ╢í╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_dfe6f2bd0694",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_dfe6f2bd0694.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a572f48f07fbdc475cf10ae138fa2ec2f8ffc4da6b9234a9707127c646028016",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/Φ█Θ┌╦ßεΘ╝╪╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_fg_f18789b7d8f3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_f18789b7d8f3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5ebae84a665b6fb0c39037e5ee760b48a60cf747eec0d1f402cfe1733f564203",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://fg.zip!╖¿-╣²/╕╗┬φ╦ß╤╟╠·╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_0e03c56bd1f8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_0e03c56bd1f8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "884d78001208c6ce9aa9ae46d8c1329a6bf004f44ba7be573da46b4e983e2bd5",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/║ú╘σ╦ß┬┴├╛┐┼┴ú.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_0e5038efcc43",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_0e5038efcc43.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c1c4ee0b34148e322f1adaf9a0bae793abd0ee7137ab6106d06d98761f227181",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚└╫╦√╢¿╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_111d2e113453",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_111d2e113453.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c90394ab32887220acb570e759099f4b9442f5366a901a0efe7ab33e34fb1550",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/╝╫┴≥╦ß╨┬╦╣╡─├≈╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_115edbad5890",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_115edbad5890.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "0537fcb07c25c05f8d42d5c70284653638a11c08cb06bd0eb640bd6a0a4607b2",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚▀≥╔│╫┌╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_156c98c10671",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_156c98c10671.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fc85049b4f051b330e78bf143bb53f175e83e8fbf5f817e383f6a6b9919c7895",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╗»∩º╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_2563b03104e6",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_2563b03104e6.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ff2a481832f24a88dce7fb9f7dee17981c9968f3c1455f5498a804fdce0ab6b9",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/▌∩╝╫├╤╜║═Φ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_3ed24a75c813",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_3ed24a75c813.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "afaf8af4b569d4f8b68f99a5269cfb3e8444e29f5d808ecec7ba700f99904090",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/╣■╬≈─╬╡┬╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_446dfed9d808",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_446dfed9d808.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a351c521004f63be751813eaf65d53f9262a77e2cdd480ca76f0d3248b4f18ae",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/╝í┤╝╤╠╦ß⌡Ñ╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_47663a6d3485",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_47663a6d3485.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3d65e1e5dd97213650ec5c7df6b2522134528675ed7f7ca6aa0cc22014b11d60",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┴≥╦ß⌠╟┬╚α¡╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_5043dbbc69e5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_5043dbbc69e5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9e2e38f141d30f2392dce4416df47bcf5cf2f3b304c8bdffecde8c456135097f",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╗»═▓╝²╢╛╝ε╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_69213f8246cc",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_69213f8246cc.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cb6cd2299853e3895b4a8af42065624b86bcba6b3fcd2b0d97ce80b0f334270d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╟ⁿ∞ó╦ß╢■─╞╜║─╥╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_6dc3379ecfa9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_6dc3379ecfa9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c78395160d4a97972af7bb6215339db33e9da1b07800b77304d95790242440d1",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/║∞├╣╦╪│ª╚▄╬ó═Φ╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_7327b0cf42b0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_7327b0cf42b0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ac8736624b12dca37738ed182e09f479bbaeda2aae8787a116f67b1afd7afee3",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚▀≥╔│╫┌╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_73329d05ef17",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_73329d05ef17.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e82521249d98696834b3c8944fdcbbd70c0a28cc4e439848c7327a4a31dc8ed6",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╖·╩µ╦╔═┐╝┴╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_762a818b43f2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_762a818b43f2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "aacd21b3b0afccb4a334b791aed264c961c13b75e04150b742dec084fb43e5fc",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/╛█╬¼═¬╡Γ╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_7635268f6d00",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_7635268f6d00.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d423499eff0bd6c03a61251890a1389e6da47f8e5f5db7f2d0836f8ac58e043c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/τ·τΩ⌡ú├≈╜║╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_7e99cfb9619d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_7e99cfb9619d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "31e536958528b50c570ab4a2003b6f33845a9756b2ef86a1b3843262481dea8a",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/▌∩╝╫├╤╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_876195a8546c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_876195a8546c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e2121d153d00f7e888775e034732b3532edcaa760c3fbd620da9ed696601d01b",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┐α▓╬╦╪╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_9092bbf8d227",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_9092bbf8d227.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "245976fa04ebf7f1b0e707fe0e2e17eb482abe31a9c9320895c69227a84035ae",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/╝╫╖╙╘φ╚▄╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_90c392da8acc",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_90c392da8acc.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b58dbeba9212ed8aa39b8cf9e214b85eb48beefd061adef09d0e9f0bdb953200",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┐┌╖■▓╣╥║╤╬II.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_a562dd9bda60",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_a562dd9bda60.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ac10343730d1e1f7ef043055ec62bdac9ec7ca893e164f2f49bdb1ee05dad8bb",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╗»∩º╗∙╣»╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_aac7b91bb2f5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_aac7b91bb2f5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5d7c9d11a59431cb5b632516b89ad20c6f0ef932b311b38f3a75f6f0815a8427",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/╜║╠¼╣√╜║εΘ╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_b7c476589384",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_b7c476589384.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7f7bb199d232170bbd4e60d38b340b25867336987228a14a747d0536938c0e3c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┴╫╦ß▌┴╖╙α¡╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_b801e22632a4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_b801e22632a4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "884de30e360563247c5751b0cf8bf6deac1f3a423759000d471d630752253a7c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚└╫╦√╢¿╠╟╜¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_c0f20e283490",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_c0f20e283490.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2969b74d3b999daaefb270b1ec5da6211379111bd4f9c67834e6013ae4c04aaf",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╡Γ⌠╟α¡╚Θ╕α╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_hl_c1b2c1b7dff1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_c1b2c1b7dff1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "24f9dcbf08102baa932f381116cf80ed68d2b3e75fc2d95cc87db409387e02d1",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://hl.zip!╣■-┬╚/┬╚╗»τ·τΩ╡¿╝ε╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_278581c71d81",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_278581c71d81.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2f1d5be48539f917221e440cb10ea58b433564c2dcc4daa1d0898636bf22dbba",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/├≡╛·╫ó╔Σ╙├╦«.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_2e32082da535",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_2e32082da535.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6ceb219842e896de20215adfadac3cff00457f2ee5e72c6126a416e1fa6fd3f0",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/▌┴╞╒╔·┐┼┴ú.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_395a66959aa2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_395a66959aa2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f1d05954d20aff0bb225fa330625bb9f33a9da6ff89ab2052e38b688e1dfc5ea",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/─ß─¬╡╪╞╜╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_3c66e977428f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_3c66e977428f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d40d87488964df0c69096fd947fb1617d2235e8aa3101e920122bad3d4658cfd",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/▌┴╞╒╔·─╞╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_436bef8182e8",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_436bef8182e8.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c69a1d97dbe381b7a1a33759509fcdc99cb876f0ceb6d74f4e6115546b09bba1",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/⌠╟╢í╦ß─╞╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_55bde11945bd",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_55bde11945bd.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "21ad3374ff8db48aefe8e0f60e7fac9d7be624e927e9f3cdcae625842d543d20",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/╟ΓΣσ╦ß╢■╟Γ╝╙└╝╦√├⌠╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_5c0996dcf976",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_5c0996dcf976.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5ea0bd3805c6691fa7226101707717a7b879f90914e7dca7830fd9f20ffcf738",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/╟α▌∩╦╪╦¿.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_5ee98b4e81c7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_5ee98b4e81c7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f082f94df2b1c8e05294d3ee2b8f4c29b71e2db14efd6bab400364c305d33fed",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/▌┴╞╒╔·╦¿.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_6db403b25ac7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_6db403b25ac7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "59d6ee4ec07f6db7ef1f3c2d541aedb68464d920392102d4e30fcbd3980730ee",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/╟ΓΣσ╦ß╝╙└╝╦√├⌠╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_6f69b45c3ccb",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_6f69b45c3ccb.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8a87618213468ee3059cd370a602076c44559b910fe6d87d95be693db3ad145c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/╞╒┬│┐¿╥≥╔÷╔╧╧┘╦╪╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_798963cf784c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_798963cf784c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "dee271241a64a1bee8484b2e8497668b612992f2a9b2535a369dcbf4fcd5b43c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/├┼╢¼░▒╦ß╕╞╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_9181770672ec",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_9181770672ec.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "48d2a7a1d1749b11f8e95e5b77d11fe351ce52815bd849b7b5efc932d78c5078",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/─¬╞Ñ┬▐╨╟╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_a5d77f9c29b1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_a5d77f9c29b1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "68eeea4146bce0e12066e6b8e52e1d5a018216f21fdd3fabb49e438ed577a7d6",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/┬φ└┤╦ßατ┬≡┬σ╢√╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_b6ae00fd0d1f",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_b6ae00fd0d1f.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f8930070df549874aa5ced0d6a8813249fdacc291856c73e8be514288c2f3019",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/─ß┬≤╜╟┴╓╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_c76235d0a868",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_c76235d0a868.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "459be925287bb94f9d5a979c5a72f16b5847a63683ee2ce81d1e0f82faf3a545",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/╟·░▓╬≈┴·╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_d6bf42cac42c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_d6bf42cac42c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "8463745958252f09ce77a9faaa6d322686e48130c2a4f78052185bbba6844be6",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/▌┴╞╒╔·╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_e9f00da79d9b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_e9f00da79d9b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "45cd5c6d9ad793882c0363b92a654e649ce84744a30c84b812da5c02fb722708",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/╟·─ß╦╛╠╪╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_mr_fa2efa995ae2",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_fa2efa995ae2.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "562c188533a4af17cf599d4781f5f01556aa68b78b6b73e59613c2f86ac2a0a2",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://mr.zip!┬φ-╚≡/▌┴╞╒╔·╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_0af7ad8517d5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_0af7ad8517d5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "bdd3c0435b2da2197d6768d873fbc6359219d296f75aa2c475cde1661f10b281",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▌┴╝╫▀≥┴╓╡╬▒╟╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_0b5c66186fbc",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_0b5c66186fbc.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "24a47ebb1f7fcd79ddf0c2700d2268aab4302e72a5b5d0e0cc395f517431c1aa",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╞╒┬│┐¿╥≥╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_0b7ab365a0d6",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_0b7ab365a0d6.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f71286b0343436cc11f456ea4b8ef469f40ed5e0df7e3c270b3b3d581fc66f43",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╟·┬φ╢α╗║╩═╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_1f60fa606ef0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_1f60fa606ef0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "7238b5f1679578660ff0e14cc9c36493c429d2e9b5cb1e3702317011a812f2e1",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╬≈▓╝╟·├≈╜║─╥╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_28dbcd5f0e1d",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_28dbcd5f0e1d.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "c313cc3f723cb1845139be34decac6b69e98e5d6a5220a608d1b89728ec1c62b",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▀▀┬╪╬≈╞╜╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_2c1d8efb6a53",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_2c1d8efb6a53.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5f6b27e69eb0dfc8e34f1e0be3214d7ee36bab1860eee40b2af446087cdd2080",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╠╦ß╒╝╠µ┼╡╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_2d2c3779d12a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_2d2c3779d12a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b8af76b467b365793d2d48b3c02855a65c6a60d4fbe96c51803f90c4a69e828e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╢í┬▌╗╖═¬╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_2e58558b8352",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_2e58558b8352.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3fc4a9b2e52200e0ead8b748b962ab25633f3471819ffd14079ec47343688a20",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß─ß┐¿╡╪╞╜╗║╩═╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_31a2613e682b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_31a2613e682b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5b87f8d3ac9fb9cb6a57eddd0038e464f0d81472a3248a6e04c7149ac2583742",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╡╪╢√┴≥╫┐╗║╩═╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_3292f29982ea",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_3292f29982ea.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4a9c219d2e905959ab72afdaf71d8e92a0d3403e99f79dc5ed1ce9ce40993ffe",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╦«╤ε╦ß╢■╥╥░╖╚φ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_360b7b5adea3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_360b7b5adea3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "fbf57849b038445aa7e512ca41ab1b422f90e416bb29518832b345f9ba8da021",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß┬╚╗╖└√α║╚Θ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_411560e0d4d7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_411560e0d4d7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a4676753efffaab6257ab7524446a5fafc7ab9d19716c8d1e4d7422eeb0f1f33",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╦½╟Γ╟α▌∩╦╪╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_4bab52e89156",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_4bab52e89156.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "35cfd8ed07b6a12aabeffd6f6c84d755b392d3c4930be42ec0bf7ca167007427",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß┴≥└√▀╒α║╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_50f48313fc80",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_50f48313fc80.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9f2e5992a93d460da20b7e7e792ab09243e60a492669e81bed38eee22ede2967",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╠╪╖╟─╟╢í╖╓╔ó╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_53214c6ea79b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_53214c6ea79b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e855efdd2f4b47e70df73413f1c09fad53804302af88c5696668d0bc44eecf68",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╥┴═╨▒╪└√╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_552b9b867342",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_552b9b867342.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a069c89a697b9eddcefe23141eff6bf8073c9b5ff2fbf0dde88cf3f8355adcc3",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▌┴╠µ╖╥╚▄╥║╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_572cc1cf03f0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_572cc1cf03f0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ae3cd17ffd40103b321a17e087e7f7f8224c057b684731f0f80bf8a8c09bf6d2",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╢í┐⌐╡╪╢√╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_606381351040",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_606381351040.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a859c845ffd0f8b1f1c4bdd8ecd1696652a141c3ec735a6b929bab28f37bf797",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╬≈╠µ└√α║╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_65f833872590",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_65f833872590.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6b5934170d9e8c37a472ead6c64c2eb509f5503c9378b8218899f1b72534a12e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╚√└√┬σ╢√╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_6fad6755fe9b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_6fad6755fe9b.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f96ceaffbeae8075b3550d18465e22fec223e6e2abf33ca3a77566615e9f6b62",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß┼┴┬▐╬≈═í╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_700ad2cca378",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_700ad2cca378.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "db25f919b8e47757f46906fdcd045bd323eb096ead917905bb5ce172f2f646ee",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╬≈▀Σ╠µ╢í┐┌╖■╚Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_7098ca505c8a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7098ca505c8a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "57a950d47fe924f43492dc27e940a6e2fd5c07cf754d4a2d2a02fc4d8e616608",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/Σσ▀┴╦╣╡─├≈╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_73bb9785c577",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_73bb9785c577.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e3d5657054cfbbb5d94f44382fca708d83177c1f9078508dbfc1b1af1052d4ec",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╖·╣≡└√α║╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_7425ebcc12f3",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7425ebcc12f3.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "19f470ca673fbfb7ef2a7e7aec1300937896b91f97efdb636c8128b3fb0dc7e9",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß░▓╖╟└¡═¬╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_7cad221b6b2a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7cad221b6b2a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f5bbc310b48153f80a077e7cd4aadd53c49daa6e317a1cc4eed40d6453e9a8b8",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╩»╔╝╝ε╝╫╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_7d1cd425168c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7d1cd425168c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ab62894e712117e9e4118cdd8592e66edbed6bfc332a12b42e213f9387cbc64d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╠¬╢í░▓▓δ╝┴.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_7f9bc8f2156a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7f9bc8f2156a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "25ae121f2da568dc9fb36867268fb9c619fbfe60fe905faa9fe537653fd93477",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▌┴╠µ╖╥╚φ╕α╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_9231d4b44725",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_9231d4b44725.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b505352181b4d164e1b6852f65ae7b5ff76489600410e6c2335f7077e60aa0eb",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╧⌡╦ß╥∞╔╜└µ⌡Ñ╚Θ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_94218434142e",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_94218434142e.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "cbe5eff8f54ce921399d11510d2a02381360bb63b5f631b447b067fd5cc132cd",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╬¼░╖⌡Ñ╜║═Φ╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_980f07914077",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_980f07914077.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "d177e54760e1bb312635524b82fd54a5486c3076141609986a51a535f2dc193a",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╢α╚√╞╜╚Θ╕α.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_ac2ab804e427",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_ac2ab804e427.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "583f5acbd36e11360e569b195578c74c62f7765b496cff4e9518096293b102a4",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╠╪▒╚▌┴╖╥▓δ╝┴╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_b0faad547ad4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_b0faad547ad4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "9541b37001d8fc9663361d3d6edd3ccdff4d79aff70fe76dcca2d83b358caaaa",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▒╢╦√╦╛═í╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_b30820dea906",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_b30820dea906.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f956cc65e4d716e33bf035de63c828176b720f16bc41dce54dad1b6bae90f787",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╢í┐⌐╡╪╢√┬╚╗»─╞╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_ba9db9fbca88",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_ba9db9fbca88.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "67d29761bd922aa980f3e0f2c531650ce6d9c74c5eb9c96d4095c533c99f7afb",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╢■╟Γ░ú═╨╖╚╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_baf01603d683",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_baf01603d683.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "13ca2b4c2d284e428d2f438aad407315c5190d86fbcfedc24b7ae02ee7f8275e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╠╪╖╟─╟╢í╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_ca208c358847",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_ca208c358847.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "882208bb2a2bb84da24bf8553271d0f8a030c5a70d3990441f2b5ada17db2df2",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß╖╥╖·└¡├≈╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_d18b18275cf9",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_d18b18275cf9.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e19ec94057b8a88cb7fbdae6b3fcb2deab407f8d7de2b2489e79b260bc998247",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß░ó├╫┬σ└√╞¼╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_d661059246ae",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_d661059246ae.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "59a5dd8d464277eae57b4d75f1818284505c2952da1f7d3ac4379228281520df",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╩«╥╗╦ß╪║═¬╜║─╥╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_dc8d31247b55",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_dc8d31247b55.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "e0497acaffbeb1c8869333da64a298507130e3f0bdc274fc966edea45273a944",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/⌠╚╝╫╦╛╠╣╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_f56ad34d4dff",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_f56ad34d4dff.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "6224de8c6a59ca131997d11c8805cd7ee9ae4af91a694cb1d32eb44511f38b9d",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▒╜╗╖╚╔⌡Ñ╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_sy_f85175673e4c",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_f85175673e4c.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "123feea28687c8939c5c6785644f240e232db774bd1d2024907966bb0bfe3df2",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://sy.zip!╩«-╤╬/╤╬╦ß▌┴╠µ╖╥╚▄╥║╦╡├≈1.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_0592a981ca64",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_0592a981ca64.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "07dd1fc25dd8bff99e0e093f2f05cebc14ba208b3b65b8f6ef72448e20c4688a",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╥╥⌡ú╝¬╦√├╣╦╪┐┼┴ú.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_1799ade6b084",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_1799ade6b084.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "2273671c67d13603009d4cdf18084f18f67e292c8021a534aad2813d2e37cfad",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├╬┌╦╛╦√╢í.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_241b375d0c27",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_241b375d0c27.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "15c01fa4c9fdb8a247f98e46d5a1b76a64bc41203fdd507e2c4f040689754530",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╤⌡╗»╟ª═Γ╙├╔ó╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_2ccc9390426a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_2ccc9390426a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "139a268c91bd01891026eeb98485567f440c85d0cf97f6cacd55bc00c5d628d4",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/≥╛╝ñ├╕╜║─╥.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_2d544e2ea8a7",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_2d544e2ea8a7.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "5d1989b4a7a45aefd9216e6ccc741debe10bde74db14eb246a73d0b145ce0c39",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├─≥┤┘╨╘╦╪╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_3e650e6f1be0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_3e650e6f1be0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "98494defe58baf9501256ec6b94f9392f1e220a92984ab9ca8a96a01f7115301",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╥╥╤⌡▒╜┴°░╖╚φ╕α╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_5bf578bc5939",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_5bf578bc5939.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "38b790816f4262e58fdf5b0d6440e169b9594971fe4fd90d78beaef710d869b8",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├╤╬╦ß╞╒┬│┐¿╥≥╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_5cbc4bfab08a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_5cbc4bfab08a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "b56b2556256b25bf4c706f67f6daa72c6e9187033f9fefcd0a6313ad68a4405e",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├┐╞▓⌐δ─.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_6f1e9a1122b0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_6f1e9a1122b0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "f30d8d0f1fa1538afeee1945eeadc933d4d79943d7c7bde6fadaf10b8f8c6986",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├╟α▌∩τ·⌡Ñ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_72ff7d4132d5",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_72ff7d4132d5.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "632f5d668989a0c4ad950015ae44236325e8a00e1fd416c385b2f9bd92beba6c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├░┬╘·╕±└╫─╞.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_a008b667a272",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_a008b667a272.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "41bad4424730040011aaa33cc28c20b34a14d7950d463bb6070eb11bc0abc7d7",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├┴≥┼τ═╫─╞╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_a9da9dee6a48",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_a9da9dee6a48.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "01eea7528189ce7a8ece5eeb71908ed05e0c5a813f823580bad02dc291c91c63",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╥╤═¬┐╔┐╔╝ε╗║╩═╞¼.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_aac924b7308a",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_aac924b7308a.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "3b6b32f76293137b0e0940505794114a05709a347f4b7094b7928ca8be7109bf",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╙π╕╬╙═╦ß─╞╚▄╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_b0ca3dfcb369",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_b0ca3dfcb369.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "a83b05374cf8d92c791c44818fc1da441fdbecdb697547eeda340fa856e5335c",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╙π╕╬╙═╦ß─╞╫ó╔Σ╥║.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_b68a94a406d0",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_b68a94a406d0.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "679aae51d43d6e7ebbd827f0809ea128a502a3a9c2844205d866a8355c1d3757",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╥∞╬¼A╦ß╜║═Φ╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_be8dd7b3f1f4",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_be8dd7b3f1f4.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "45b051d7275da731cdd86367509963e2b4a44b2de97bf86222a2ffb8e63038b9",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├░┬╘·╕±└╫.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_e5a56930ea84",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_e5a56930ea84.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "4576c3808201c154a6e5d296641cdef082d49cc744d5642f3040add303ea0c8a",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├┤┘╕╬╧╕░√╔·│ñ╦╪╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    },
+    {
+      "source": "local_drug_yz_ea0b10cd52b1",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_ea0b10cd52b1.md",
+      "status": "local_imported",
+      "indexed": true,
+      "content_hash": "ae02ecd15a73593c7c4b180e43241e5bf198243a02c07fb77f285f47f932cc83",
+      "publisher": "用户提供的本地资料（未核验）",
+      "source_url": "local://yz.zip!╤⌡-╫≤/╫ó╔Σ╙├▀┼▀ß▌╝┬╠╦╡├≈╩Θ.doc",
+      "version": "unknown"
+    }
+  ],
+  "excluded_sources": [
+    {
+      "source": "insurance_policies",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\documents\\insurance_policies.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "414e678d67463a46dcf962c39f3c42df045a59808be674a91996cd38d78b1713",
+      "publisher": "Unverified",
+      "source_url": "https://www.nhsa.gov.cn/",
+      "version": "pending"
+    },
+    {
+      "source": "lab_reference",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\documents\\lab_reference.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "cc79a23f6ca2b14b5af36aff27c9831bc6d6254f26e30ce266b072e5f39cbfe2",
+      "publisher": "Unverified",
+      "source_url": "",
+      "version": "pending"
+    },
+    {
+      "source": "medical_knowledge",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\documents\\medical_knowledge.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "9cd7961b9a82a3a5298f890c1c74bdae0389dd2608d7ad383c9397e9bdd680e4",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+      "version": "legacy-summary-not-indexed"
+    },
+    {
+      "source": "pharmacy_knowledge",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\documents\\pharmacy_knowledge.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "86f119e5c9e36c7443a621358ac35d9be228985ddb016c5454ae0c79a3bd626e",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/initiatives/medication-without-harm",
+      "version": "legacy-summary-not-indexed"
+    },
+    {
+      "source": "who_asthma",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_asthma.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "731417760f0acd8dae09dece9a636aa1c583298c10c2c71cdcc09302097d52bf",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/asthma",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_cancer",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_cancer.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "5891a373306bf9d3d55a7b3baacb398256926eac9ae8083ea965e4a9a58b4c02",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/cancer",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_cardiovascular",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_cardiovascular.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "a71883c5e97668b71af7c6590bd18dfecc9aaa8d2905b0cbb48f5807294c07fc",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_copd",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_copd.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "32e1954bb8b50af620cfe5bc5c7eff0001918b6bd5bc9705289ca8ff90f7162a",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_diabetes",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_diabetes.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "7e2d8c7562e7ea9df544388267692e7d91945d2209309b54842d18a789f86016",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+      "version": "2026-09-23"
+    },
+    {
+      "source": "who_hepatitis_b",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_hepatitis_b.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "5b664b4752e7831def959b4939c28fa7db11ce009e65376470db00da1bfca9f6",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/hepatitis-b",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_hypertension",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_hypertension.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "749be7a34544b4137fec0fc90af3b6e85a5ba9d84cb64e6cf6cae44b63a3f943",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+      "version": "2026-09-23"
+    },
+    {
+      "source": "who_influenza",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_influenza.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "943f516f20b6f280622f4b4808f23aa35c356e0ab0fdcd28acfbb8ca202ebb75",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/influenza-(seasonal)",
+      "version": "2026-09-23"
+    },
+    {
+      "source": "who_medication_safety",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_medication_safety.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "d72fb2cc214dbd2010ba720a350896049e3a97cdd394745d8a0b3fad65431c8f",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/initiatives/medication-without-harm",
+      "version": "2026-09-23"
+    },
+    {
+      "source": "who_mental_health",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_mental_health.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "508b9dfb76671d6219fa0dc3fa85719175d2601d43da3017fa50d19a2e267364",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/mental-disorders",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_oral_health",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_oral_health.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "0b07c0c3627823eb9d690a8b2c7d9437c785d3b69e8d2923fb9cd3c5086adbb5",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/oral-health",
+      "version": "archived-who-english-source"
+    },
+    {
+      "source": "who_tuberculosis",
+      "file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\who_tuberculosis.md",
+      "status": "do_not_use",
+      "indexed": false,
+      "content_hash": "1145c5b64bd02aea2bc455ec88bdf42d5ca57c7d1408725d2981d6bbb97336a7",
+      "publisher": "World Health Organization",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/tuberculosis",
+      "version": "archived-who-english-source"
+    }
+  ],
+  "source_snapshot_count": 6,
+  "source_snapshots": [
+    {
+      "source": "cn_cerebrovascular_guideline_2024",
+      "requested_url": "https://www.nhc.gov.cn/cms-search/downFiles/8b6cbb73fb2d49c2bab32f5f3325fafa.pdf",
+      "final_url": "https://www.nhc.gov.cn/cms-search/downFiles/8b6cbb73fb2d49c2bab32f5f3325fafa.pdf",
+      "retrieved_at": "2026-09-23T07:53:48.213335+00:00",
+      "content_type": "application/pdf",
+      "sha256": "2e2ad076b9e263f2885e6ca97017419b025086b19c1bf6ba6eb74fb1347be9b8",
+      "local_path": "rag\\sources\\raw\\2e2ad076b9e263f2.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_obesity_guideline_2024",
+      "requested_url": "https://www.nhc.gov.cn/wjw/c100378/202410/bcf804e19e0c4246b5aea6cd338b55e1/files/1732873189749_61795.pdf",
+      "final_url": "https://www.nhc.gov.cn/wjw/c100378/202410/bcf804e19e0c4246b5aea6cd338b55e1/files/1732873189749_61795.pdf",
+      "retrieved_at": "2026-09-23T07:53:49.578924+00:00",
+      "content_type": "application/pdf",
+      "sha256": "8d7c5c87f8e58f56231e251b1aa588b9d640e74d32dbec2a45e68dcf141274c3",
+      "local_path": "rag\\sources\\raw\\8d7c5c87f8e58f56.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_myco_pneumonia_guideline_2025",
+      "requested_url": "https://www.nhc.gov.cn/yzygj/c100068/202509/19e7145436b049a68d4ba8c2060dfa56/files/儿童肺炎支原体肺炎诊疗指南（2025年版）.pdf",
+      "final_url": "https://www.nhc.gov.cn/yzygj/c100068/202509/19e7145436b049a68d4ba8c2060dfa56/files/%E5%84%BF%E7%AB%A5%E8%82%BA%E7%82%8E%E6%94%AF%E5%8E%9F%E4%BD%93%E8%82%BA%E7%82%8E%E8%AF%8A%E7%96%97%E6%8C%87%E5%8D%97%EF%BC%882025%E5%B9%B4%E7%89%88%EF%BC%89.pdf",
+      "retrieved_at": "2026-09-23T07:53:50.427209+00:00",
+      "content_type": "application/pdf",
+      "sha256": "452e1442cbcae7231e1bac8f23031f84085a7e75aef347fac6d9a04162575b32",
+      "local_path": "rag\\sources\\raw\\452e1442cbcae723.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_hypertension_standard_2025",
+      "requested_url": "https://www.nhc.gov.cn/wjw/c100309/202509/b601cb822b25461f92f7aa66c03495a8/files/WS%20T%20872%E2%80%942025.pdf",
+      "final_url": "https://www.nhc.gov.cn/wjw/c100309/202509/b601cb822b25461f92f7aa66c03495a8/files/WS%20T%20872%E2%80%942025.pdf",
+      "retrieved_at": "2026-09-23T07:53:51.003575+00:00",
+      "content_type": "application/pdf",
+      "sha256": "4c099a4a656b72d6524c7acd05359da10b4dd861def402b80acd94a307d410d6",
+      "local_path": "rag\\sources\\raw\\4c099a4a656b72d6.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_nhsa_drug_catalog_2025",
+      "requested_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=a32f9f2f3fc046afaf08471f87456ce3.pdf",
+      "final_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=a32f9f2f3fc046afaf08471f87456ce3.pdf",
+      "retrieved_at": "2026-09-23T07:53:51.266879+00:00",
+      "content_type": "application/pdf;charset=UTF-8",
+      "sha256": "82b249771d25f42b372093ab6be76192754ceb67a0b7309f5da0d5e284842dc3",
+      "local_path": "rag\\sources\\raw\\82b249771d25f42b.pdf",
+      "file_type": "pdf"
+    },
+    {
+      "source": "cn_commercial_drug_catalog_2025",
+      "requested_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=da298734646c4a4ca1b5ca612ee23fb1.pdf",
+      "final_url": "https://www.nhsa.gov.cn/module/download/downfile.jsp?classid=0&filename=da298734646c4a4ca1b5ca612ee23fb1.pdf",
+      "retrieved_at": "2026-09-23T07:53:51.334434+00:00",
+      "content_type": "application/pdf;charset=UTF-8",
+      "sha256": "92cb08ff6dad4fe463e5367af593133212a90142345ebf2f45221f89575d44a9",
+      "local_path": "rag\\sources\\raw\\92cb08ff6dad4fe4.pdf",
+      "file_type": "pdf"
+    }
+  ],
+  "policy": "Only source_curated and local_imported manifest entries are indexed; cleaned source files take precedence over legacy summaries."
+}

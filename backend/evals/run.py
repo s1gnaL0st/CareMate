@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import asyncio
 from dataclasses import replace
+from datetime import datetime, timezone
+import json
 import os
 from pathlib import Path
 
@@ -70,6 +72,52 @@ async def run_dataset(
     return scores
 
 
+async def run_dataset_with_artifact(
+    cases: list[EvalCase],
+    provider: str,
+) -> tuple[list[EvalScore], list[dict[str, object]]]:
+    scores: list[EvalScore] = []
+    observations: list[dict[str, object]] = []
+    for case in cases:
+        try:
+            state = await _execute_case(case)
+            run = extract_eval_run(case, state)
+            score = evaluate_run(case, run)
+            if provider == "deepeval" and case.expected_tools is not None:
+                tool_score = evaluate_tools_with_deepeval(case, run)
+                score = replace(
+                    score,
+                    tool_score=tool_score,
+                    passed=score.route_score == 1.0 and tool_score == 1.0,
+                )
+            observations.append({
+                "case_id": case.id,
+                "expected_agent": case.expected_agent,
+                "actual_agent": run.actual_agent,
+                "expected_tools": list(case.expected_tools or ()),
+                "tools_called": list(run.tools_called),
+                "route_score": score.route_score,
+                "tool_score": score.tool_score,
+                "passed": score.passed,
+            })
+        except Exception as exc:
+            score = EvalScore(case.id, 0.0, 0.0 if case.expected_tools is not None else None, False)
+            observations.append({
+                "case_id": case.id,
+                "expected_agent": case.expected_agent,
+                "actual_agent": None,
+                "expected_tools": list(case.expected_tools or ()),
+                "tools_called": [],
+                "route_score": 0.0,
+                "tool_score": score.tool_score,
+                "passed": False,
+                "error_type": type(exc).__name__,
+                "error": str(exc),
+            })
+        scores.append(score)
+    return scores, observations
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
@@ -93,7 +141,7 @@ def main() -> int:
 
     observability_runtime = configure_observability()
     try:
-        scores = asyncio.run(run_dataset(cases, args.provider))
+        scores, observations = asyncio.run(run_dataset_with_artifact(cases, args.provider))
     finally:
         observability_runtime.shutdown()
     for score in scores:
@@ -103,6 +151,24 @@ def main() -> int:
             f"{status} {score.case_id} route={score.route_score:.2f} tools={tool}"
         )
     passed = sum(score.passed for score in scores)
+    artifact = args.dataset.parent / "reports" / "routing_eval_latest.json"
+    artifact.parent.mkdir(parents=True, exist_ok=True)
+    artifact.write_text(
+        json.dumps({
+            "schema_version": "1.0",
+            "status": "measured_runtime_run",
+            "dataset": str(args.dataset),
+            "provider": args.provider,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "sample_count": len(observations),
+            "passed_count": passed,
+            "route_accuracy": sum(item["route_score"] == 1.0 for item in observations) / len(observations),
+            "observations": observations,
+            "note": "Runtime agent evaluation. Provider/model availability and tool execution errors are included as observed failures.",
+        }, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(f"wrote {artifact}")
     print(f"Summary: {passed}/{len(scores)} passed ({args.provider})")
     return 0 if passed == len(scores) else 1
 

@@ -15,7 +15,7 @@ from typing import Any, Mapping, Sequence
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 
 from agents.advisor import search_medical_literature
-from agents.pharmacy import check_drug_interaction
+from agents.pharmacy import check_drug_interaction, search_drug_info
 from rag.knowledge_base import get_knowledge_base
 from skills.emergency_triage.skill import EmergencyTriageSkill
 
@@ -25,7 +25,7 @@ CLINIC_ACTION_TOOLS: tuple[dict[str, Any], ...] = (
         "type": "function",
         "function": {
             "name": "ask",
-            "description": "向患者提出一个尚未问过的追问。",
+            "description": "向患者追问一个当前最关键的临床问题。",
             "parameters": {
                 "type": "object",
                 "properties": {"question": {"type": "string", "description": "一个需要患者回答的医学问题。"}},
@@ -38,11 +38,14 @@ CLINIC_ACTION_TOOLS: tuple[dict[str, Any], ...] = (
         "type": "function",
         "function": {
             "name": "check",
-            "description": "查询已有检查结果、生命体征、红旗规则或药物相互作用。",
+            "description": "执行确定性的红旗、药物相互作用或生命体征规则。",
             "parameters": {
                 "type": "object",
-                "properties": {"item": {"type": "string", "description": "需要查询的检查、指标或药品信息。"}},
-                "required": ["item"],
+                "properties": {
+                    "check_type": {"type": "string", "enum": ["red_flags", "drug_interaction", "vital_thresholds"]},
+                    "items": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["check_type", "items"],
                 "additionalProperties": False,
             },
         },
@@ -51,11 +54,11 @@ CLINIC_ACTION_TOOLS: tuple[dict[str, Any], ...] = (
         "type": "function",
         "function": {
             "name": "lookup",
-            "description": "查询项目本地医疗知识库。",
+            "description": "读取当前患者的结构化病例字段。",
             "parameters": {
                 "type": "object",
-                "properties": {"query": {"type": "string", "description": "医学知识库查询词。"}},
-                "required": ["query"],
+                "properties": {"field": {"type": "string", "enum": ["age", "sex", "history", "medications", "allergies", "uploaded_reports", "all"]}},
+                "required": ["field"],
                 "additionalProperties": False,
             },
         },
@@ -80,8 +83,11 @@ CLINIC_ACTION_TOOLS: tuple[dict[str, Any], ...] = (
             "description": "给出最终分诊回答并结束问诊。",
             "parameters": {
                 "type": "object",
-                "properties": {"content": {"type": "string", "description": "最终回答内容。"}},
-                "required": ["content"],
+                "properties": {
+                    "triage_level": {"type": "string", "enum": ["emergency", "urgent", "routine", "self_care"]},
+                    "content": {"type": "string", "description": "面向患者的最终回复。"},
+                },
+                "required": ["triage_level", "content"],
                 "additionalProperties": False,
             },
         },
@@ -89,11 +95,33 @@ CLINIC_ACTION_TOOLS: tuple[dict[str, Any], ...] = (
 )
 
 _EV_ID = re.compile(r"\bev_[A-Za-z0-9_-]+\b")
+_THINK_BLOCK = re.compile(r"\\?<(?:think|analysis)>.*?\\?</(?:think|analysis)>", flags=re.I | re.S)
+_THINK_TAG = re.compile(r"\\?</?(?:think|analysis)>", flags=re.I)
+_SECTION_LABEL = re.compile(r"\s*(?:第一段|第二段|第三段|回答|解释|建议|补充信息)\s*[:：]\s*", flags=re.I)
 _DRUG_SPLIT = re.compile(r"(?:相互作用|能否同服|一起吃|联用|和|与|、|,|，|/|\+|[:：])")
 _CITATION_ID = re.compile(r"(?:rag|pubmed|doi):[A-Za-z0-9_.:/-]+")
 _DRUG_PREFIX = re.compile(r"^(?:药物)?相互作用\s*[:：\-]?\s*", flags=re.I)
 _DRUG_INFO_HINT = re.compile(r"(?:药品|药物|说明书|适应症|用法用量|剂量|副作用|禁忌)")
 _DRUG_PUNCTUATION = " \t\r\n:：,，。.;；、/\\+&和与及以及()（）[]【】{}<>《》\"'`"
+
+# These are conversation dimensions, not disease-specific rules.  They let
+# the harness recognize that a patient's answer covered a question even when
+# the next model question uses different wording.
+_QUESTION_FACET_PATTERNS: dict[str, tuple[str, ...]] = {
+    "onset": ("什么时候", "何时", "多久", "开始", "起病", "出现", "以来", "昨天", "今天", "前天", "刚才", "突然"),
+    "location": ("哪里", "哪颗", "哪一颗", "部位", "位置", "哪侧", "左侧", "右侧", "中央", "胸口", "单颗", "多颗", "一颗", "一片", "上颌", "下颌"),
+    "severity": ("多严重", "严重程度", "多明显", "几分", "影响吃饭", "影响睡觉", "疼痛程度"),
+    "trend": ("加重", "减轻", "好转", "恶化", "持续", "反复", "越来越", "变化"),
+    "trigger": ("诱因", "什么会", "吃冷", "吃热", "吃甜", "吃酸", "活动时", "什么情况下"),
+    "associated": ("伴随", "同时", "有没有", "有无", "没有", "还会", "另外"),
+    # Generic safety dimension. The exact wording remains model-selected; these
+    # aliases only let the harness recognize that a previously asked safety
+    # dimension was answered, even when the patient replies "没有".
+    "red_flag": (
+        "红旗", "肿胀", "张口", "吞咽", "呼吸", "流口水", "麻木",
+        "意识", "昏厥", "剧烈胸痛", "胸痛", "持续剧痛",
+    ),
+}
 
 @dataclass(frozen=True)
 class ClinicHarnessState:
@@ -108,6 +136,68 @@ class ClinicHarnessState:
     question_turns: int
     max_question_turns: int
     force_answer: bool
+
+
+def _facets_in_text(text: str) -> set[str]:
+    """Return generic symptom-information dimensions present in text."""
+    value = str(text or "").casefold()
+    return {
+        facet
+        for facet, patterns in _QUESTION_FACET_PATTERNS.items()
+        if any(pattern.casefold() in value for pattern in patterns)
+    }
+
+
+def answered_facets(messages: Sequence[BaseMessage]) -> set[str]:
+    """Infer coarse dimensions answered by the patient.
+
+    A short reply such as ``没有`` carries no facet keywords by itself. When
+    it follows an assistant question, the question's facets are nevertheless
+    answered (negatively), so later paraphrases cannot reopen the same line
+    of questioning.
+    """
+    facets: set[str] = set()
+    previous_assistant: BaseMessage | None = None
+    for message in messages:
+        if isinstance(message, HumanMessage):
+            facets.update(_facets_in_text(_text(message.content)))
+            if previous_assistant is not None:
+                facets.update(_facets_in_text(_text(previous_assistant.content)))
+            previous_assistant = None
+        elif isinstance(message, AIMessage):
+            previous_assistant = message
+        else:
+            previous_assistant = None
+    return facets
+
+
+def question_facets(question: str) -> set[str]:
+    return _facets_in_text(question)
+
+
+def _trim_answered_question(question: str, answered: set[str]) -> str:
+    """Remove already-covered clauses from a compound model question."""
+    parts = [part.strip() for part in re.split(r"[，,；;]|或|以及|并且", question) if part.strip()]
+    if len(parts) <= 1:
+        return question.strip()
+    remaining = [part for part in parts if not (question_facets(part) and question_facets(part).issubset(answered))]
+    if len(remaining) == len(parts):
+        return question.strip()
+    if not remaining:
+        return ""
+    text = "，".join(remaining).rstrip("？?").strip()
+    # A clause-level reduction must remain a complete patient-facing question.
+    # The model may naturally emit a compound question such as
+    # ``是否突然发生或持续加重？``; removing the answered clause must not leave
+    # fragments like ``持续加重？`` or ``日常活动？`` in the UI.
+    if len(remaining) == 1 and text and not re.search(r"(?:是否|有没有|有无|哪|什么|多久|何时|多少|是否有)", text):
+        if re.match(r"^(?:持续|突然|逐渐|反复|越来越|明显|严重|影响)", text):
+            text = f"症状是否{text}"
+        else:
+            text = f"是否影响{text}"
+    if text and not text.endswith(("？", "?")):
+        text += "？"
+    return text
 
 
 _GENERIC_FALLBACK_QUESTIONS = (
@@ -176,7 +266,14 @@ def _citation_label(source: str, section: str = "") -> str:
 
 def sanitize_clinic_answer(content: str, citation_ids: set[str]) -> str:
     """Remove training-only evidence IDs and untrusted citation claims."""
-    cleaned = _EV_ID.sub("", str(content or ""))
+    cleaned = _THINK_BLOCK.sub("", str(content or ""))
+    cleaned = _THINK_TAG.sub("", cleaned)
+    # Some Qwen serving templates wrap a plain response in an answer tag even
+    # when no tool call is present. The tag is transport syntax, not patient
+    # content, so remove only the wrapper.
+    cleaned = re.sub(r"</?(?:answer|assistant)>", "", cleaned, flags=re.I)
+    cleaned = _SECTION_LABEL.sub("\n", cleaned)
+    cleaned = _EV_ID.sub("", cleaned)
     for token in _CITATION_ID.findall(cleaned):
         if token not in citation_ids:
             cleaned = cleaned.replace(token, "")
@@ -198,8 +295,10 @@ class ClinicActionAdapter:
     messages: Sequence[BaseMessage]
     citation_ids: set[str] = field(default_factory=set)
     asked_questions: set[str] = field(default_factory=set)
+    answered_facets: set[str] = field(default_factory=set)
 
     def __post_init__(self) -> None:
+        self.answered_facets = answered_facets(self.messages)
         for message in self.messages:
             if isinstance(message, AIMessage):
                 text = _text(message.content)
@@ -222,10 +321,24 @@ class ClinicActionAdapter:
         normalized = _normalize_question(question)
         if not normalized:
             return True
-        return any(
+        if any(
             normalized == old or SequenceMatcher(None, normalized, old).ratio() >= 0.9
             for old in self.asked_questions
-        )
+        ):
+            return True
+        facets = question_facets(question)
+        # A compound question is considered covered only when every dimension
+        # it asks about is already present in the patient's answers.
+        # Safety questions often contain generic words such as "是否" or
+        # "持续" that also match ordinary facets. Treat that whole safety
+        # cluster as one dimension once the prior safety question was answered.
+        if (
+            "red_flag" in facets
+            and "red_flag" in self.answered_facets
+            and facets.issubset({"red_flag", "associated", "onset", "trend"})
+        ):
+            return True
+        return bool(facets) and facets.issubset(self.answered_facets)
 
     def next_fallback_question(self) -> str | None:
         """Return the next bounded question after a duplicate model action.
@@ -244,23 +357,28 @@ class ClinicActionAdapter:
     async def execute(self, name: str, arguments: Mapping[str, Any]) -> str:
         args = dict(arguments)
         if name == "ask":
-            question = _text(args.get("question", "")).strip()
+            question = _trim_answered_question(
+                _text(args.get("question", "")).strip(), self.answered_facets
+            )
             if self._is_duplicate_question(question):
                 return json.dumps({"success": False, "action": "ask", "error": "duplicate_question", "message": "这个问题已经问过，请换一个缺失信息继续追问。"}, ensure_ascii=False)
             self.asked_questions.add(_normalize_question(question))
             return json.dumps({"success": True, "action": "ask", "question": question}, ensure_ascii=False)
         if name == "check":
-            return await self._check(_text(args.get("item", "")).strip())
+            check_type = _text(args.get("check_type", "")).strip()
+            items = args.get("items")
+            if check_type not in {"red_flags", "drug_interaction", "vital_thresholds"} or not isinstance(items, list) or not items:
+                return json.dumps({"success": False, "action": "check", "error": "invalid_check_arguments", "message": "check 需要合法的 check_type 和非空 items。"}, ensure_ascii=False)
+            return await self._check(check_type, [str(item) for item in items])
         if name == "lookup":
-            return await self._lookup(_text(args.get("query", "")).strip())
+            return await self._lookup(_text(args.get("field", "")).strip())
         if name == "search":
             return await self._search(_text(args.get("query", "")).strip())
         raise ValueError(f"unsupported clinic action: {name}")
 
-    async def _check(self, item: str) -> str:
-        if not item:
-            return json.dumps({"success": False, "action": "check", "error": "missing_item"}, ensure_ascii=False)
-        if any(word in item for word in ("相互作用", "能否同服", "一起吃", "联用")):
+    async def _check(self, check_type: str, items: list[str]) -> str:
+        item = "，".join(items)
+        if check_type == "drug_interaction":
             interaction_text = _DRUG_PREFIX.sub("", item.strip())
             candidates = [
                 _clean_drug_name(part)
@@ -271,28 +389,35 @@ class ClinicActionAdapter:
                 result = await check_drug_interaction.ainvoke({"drug1": candidates[-2], "drug2": candidates[-1]})
                 return json.dumps({"success": True, "action": "check", "route": "drug_interaction", "result": json.loads(_text(result))}, ensure_ascii=False)
             return json.dumps({"success": False, "action": "check", "error": "need_two_drugs", "message": "请提供需要比较的两种药品名称。"}, ensure_ascii=False)
-        if _DRUG_INFO_HINT.search(item):
-            drug_name = _clean_drug_name(re.sub(r"^(?:查询|查|了解|请问)\s*", "", item))
-            if drug_name:
-                result = await search_drug_info.ainvoke({"drug_name": drug_name})
-                return json.dumps({"success": True, "action": "check", "route": "drug_info", "drug_name": drug_name, "result": json.loads(_text(result))}, ensure_ascii=False)
-        if any(word in item for word in ("症状", "红旗", "急症", "生命体征")):
+        if check_type == "red_flags":
             triage = self.emergency_veto()
             return json.dumps({"success": True, "action": "check", "route": "emergency_triage", "result": triage.model_dump()}, ensure_ascii=False)
-        return await self._lookup(item)
+        if check_type == "vital_thresholds":
+            results = []
+            for raw in items:
+                name, _, value = raw.partition(":")
+                try:
+                    numeric = float(value)
+                except ValueError:
+                    results.append({"name": name or raw, "value": value, "triggered": False, "error": "invalid_value"})
+                    continue
+                threshold = 140 if name in {"systolic_bp", "收缩压"} else None
+                results.append({"name": name, "value": numeric, "triggered": bool(threshold and numeric >= threshold), "severity": "high" if threshold and numeric >= threshold else "normal"})
+            return json.dumps(results, ensure_ascii=False)
+        return json.dumps({"success": False, "action": "check", "error": "unsupported_check_type"}, ensure_ascii=False)
 
-    async def _lookup(self, query: str) -> str:
-        if not query:
-            return json.dumps({"success": False, "action": "lookup", "error": "missing_query"}, ensure_ascii=False)
-        docs = await get_knowledge_base().aretrieve(query, k=4)
-        evidence: list[dict[str, str]] = []
-        for doc in docs:
-            source = str(doc.metadata.get("source", "unknown"))
-            section = str(doc.metadata.get("section", ""))
-            citation_id = _citation_label(source, section)
-            self.citation_ids.add(citation_id)
-            evidence.append({"citation_id": citation_id, "source": source, "section": section, "content": doc.page_content[:1800]})
-        return json.dumps({"success": True, "action": "lookup", "query": query, "evidence": evidence}, ensure_ascii=False)
+    async def _lookup(self, field: str) -> str:
+        allowed = {"age", "sex", "history", "medications", "allergies", "uploaded_reports", "all"}
+        if field not in allowed:
+            return json.dumps({"success": False, "action": "lookup", "error": "invalid_field"}, ensure_ascii=False)
+        info = dict(self.state.get("user_info", {}) or {})
+        mapping = {"age": "age", "sex": "sex", "history": "medical_history", "medications": "medications", "allergies": "allergies", "uploaded_reports": "uploaded_reports"}
+        if field == "all":
+            result = {key: info.get(key) for key in mapping.values() if info.get(key) not in (None, "", [], {})}
+        else:
+            key = mapping[field]
+            result = {field: info.get(key)} if info.get(key) not in (None, "", [], {}) else {field: None}
+        return json.dumps(result, ensure_ascii=False)
 
     async def _search(self, query: str) -> str:
         if not query:

@@ -4,6 +4,8 @@ from datetime import datetime, timezone
 from uuid import uuid4
 import logging
 import os
+import re
+from typing import Any
 from pathlib import Path
 from time import perf_counter
 from fastapi import Depends, FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -221,14 +223,60 @@ def _sse_payload(payload: dict, event_id: int | str | None = None) -> str:
     return f"{prefix}data: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
 
-def _build_lc_messages(messages: list[ChatMessage]) -> list[HumanMessage | AIMessage]:
-    return [
-        HumanMessage(content=msg.content)
-        if msg.role == "user"
-        else AIMessage(content=msg.content)
-        for msg in messages
-        if msg.role in ("user", "assistant") and msg.content.strip()
-    ]
+def _build_lc_messages(
+    messages: list[ChatMessage], *, active_agent: str = ""
+) -> list[HumanMessage | AIMessage]:
+    """Convert API history to LangChain messages.
+
+    The browser currently sends only ``role`` and ``content``.  For clinic
+    conversations an assistant question is nevertheless an ``ask`` tool call
+    in the GRPO protocol.  Reconstruct that call before the following patient
+    message so ``clinic_node`` can replay the answer as a role=tool result.
+    We intentionally use a narrow question-only heuristic and never rewrite
+    ordinary assistant prose.
+    """
+    result: list[HumanMessage | AIMessage] = []
+    for index, msg in enumerate(messages):
+        content = msg.content.strip()
+        if not content or msg.role not in ("user", "assistant"):
+            continue
+        if msg.role == "user":
+            result.append(HumanMessage(content=msg.content))
+            continue
+        question = _extract_ask_question(content)
+        is_question = (
+            active_agent == "clinic_agent"
+            and question is not None
+            and index + 1 < len(messages)
+            and messages[index + 1].role == "user"
+        )
+        if is_question:
+            result.append(AIMessage(
+                content=content,
+                tool_calls=[{
+                    "name": "ask",
+                    "args": {"question": question},
+                    "id": f"clinic-ask-{index}",
+                    "type": "tool_call",
+                }],
+            ))
+        else:
+            result.append(AIMessage(content=msg.content))
+    return result
+
+
+def _extract_ask_question(content: str) -> str | None:
+    """Extract only the final patient-facing question from an ask turn.
+
+    The visible ask response may contain a short preamble before the question.
+    That preamble must remain display text, but it must never become the
+    tool-call argument when browser history is reconstructed.
+    """
+    text = content.strip()
+    if not text or not text.endswith(("？", "?")):
+        return None
+    match = re.search(r"([^\n。！？?]*[？?])$", text)
+    return match.group(1).strip() if match else text
 
 
 def _build_initial_state(
@@ -239,7 +287,7 @@ def _build_initial_state(
 ) -> dict:
     user_info_dict = user_info.model_dump() if user_info else {}
     return {
-        "messages": _build_lc_messages(messages)[-10:],
+        "messages": _build_lc_messages(messages, active_agent=active_agent)[-10:],
         "user_info": user_info_dict,
         "next_agent": "",
         "active_agent": active_agent,
@@ -303,15 +351,33 @@ async def _prepare_persistent_state(request: ChatRequest, user: User | None, db:
         return state, None
     conversation = await _get_owned_conversation(db, request.conversation_id, user)
     rows = await db.scalars(select(Message).where(Message.conversation_id == conversation.id).order_by(Message.sequence).limit(settings.max_chat_messages))
-    stored_messages = [ChatMessage(role=row.role, content=row.content) for row in rows if row.role in ("user", "assistant")]
+    stored_messages: list[Any] = []
+    for row in rows:
+        if row.role == "user":
+            stored_messages.append(HumanMessage(content=row.content))
+        elif row.role == "assistant":
+            pending = (row.event_metadata or {}).get("clinic_pending_tool_call") if row.event_metadata else None
+            if pending and pending.get("name") == "ask":
+                question = str(pending.get("question") or _extract_ask_question(row.content) or row.content).strip()
+                stored_messages.append(AIMessage(
+                    content=row.content,
+                    tool_calls=[{
+                        "name": "ask",
+                        "args": {"question": question},
+                        "id": str(pending.get("id") or "clinic-call"),
+                        "type": "tool_call",
+                    }],
+                ))
+            else:
+                stored_messages.append(AIMessage(content=row.content))
     incoming = request.messages[-1:] if request.messages else []
     if incoming and (not stored_messages or stored_messages[-1].content != incoming[-1].content):
-        stored_messages.extend(incoming)
+        stored_messages.append(HumanMessage(content=incoming[-1].content))
         if incoming[-1].role == "user":
             await _append_message(db, conversation.id, "user", incoming[-1].content)
     conversation.active_agent = active_agent
     await db.commit()
-    state["messages"] = _build_lc_messages(stored_messages[-settings.max_chat_messages:])[-10:]
+    state["messages"] = stored_messages[-settings.max_chat_messages:][-10:]
     return state, conversation
 
 
@@ -326,6 +392,7 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
     verify_status: str | None = None
     verify_issues: list[str] = []
     safety_flags: list[str] = []
+    clinic_pending_tool_call: dict | None = None
     experience_recorded = False
     try:
         event_sequence = max(0, int(request.headers.get("Last-Event-ID", "0"))) if request is not None else 0
@@ -438,6 +505,9 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
 
             # 3. A graph node finished
             elif kind == "on_chain_end":
+                output = event.get("data", {}).get("output")
+                if isinstance(output, dict) and output.get("clinic_pending_tool_call"):
+                    clinic_pending_tool_call = output["clinic_pending_tool_call"]
                 if node_name == "verifier":
                     output = event.get("data", {}).get("output")
                     if isinstance(output, dict):
@@ -453,7 +523,6 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                     yield await _emit({"type": "node_end", "node": node_name})
 
                 if node_name in {"responder", "safety_response", "clarification_response", "handoff", "paused"}:
-                    output = event.get("data", {}).get("output")
                     final_text = ""
                     if isinstance(output, dict):
                         final_text = str(output.get("final_response") or "")
@@ -501,13 +570,28 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                         print(f"--- [Card] Failed to parse tool output for {tool_name}: {parse_err} ---", flush=True)
 
         print("--- [API] Event stream finished successfully ---", flush=True)
+        # Never complete an interactive request with only a finish event. This
+        # can happen when a domain task exhausts retries (for example while
+        # the clinic SSH tunnel is down) and the supervisor has no verified
+        # text to pass to the responder. Surface a useful diagnostic instead
+        # of leaving the browser on “处理完成” with an empty answer.
+        if not assistant_text:
+            diagnostic = (
+                "本轮没有生成可展示的回答：专业健康模块未返回结果。"
+                "请检查诊室模型连接（CLINIC_LLM_BASE_URL/SSH 隧道）后重试。"
+            )
+            assistant_text.append(diagnostic)
+            yield await _emit({"type": "text", "content": diagnostic})
         outcome = "paused" if terminal_node == "paused" else "completed"
         await _record_experience(outcome)
         if initial_state.get("agent_run_id"):
             await mark_run_status(initial_state["agent_run_id"], outcome)
         if db is not None and conversation is not None:
             if assistant_text:
-                await _append_message(db, conversation.id, "assistant", "".join(assistant_text), {"request_id": request_id, "status": "completed"})
+                metadata = {"request_id": request_id, "status": "completed"}
+                if clinic_pending_tool_call:
+                    metadata["clinic_pending_tool_call"] = clinic_pending_tool_call
+                await _append_message(db, conversation.id, "assistant", "".join(assistant_text), metadata)
             if run is not None:
                 run.status = "paused" if terminal_node == "paused" else "completed"
                 run.completed_at = datetime.now(timezone.utc)

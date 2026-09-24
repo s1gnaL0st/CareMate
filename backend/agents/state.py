@@ -24,3 +24,7 @@ class MainAgentState(TypedDict):
     # Persistent tracking of the current focused agent to handle multi-turn conversations
     # If set, the router should bypass standard classification and route back here.
     active_agent: str
+
+    # Optional clinic action-loop metadata.  The ask call itself is also
+    # retained on the AIMessage so checkpointed histories remain replayable.
+    clinic_pending_tool_call: dict | None

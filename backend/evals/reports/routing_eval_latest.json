@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "status": "measured_runtime_run",
+  "dataset": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\cases.jsonl",
+  "provider": "local",
+  "timestamp": "2026-09-22T13:24:09.685413+00:00",
+  "sample_count": 5,
+  "passed_count": 1,
+  "route_accuracy": 0.2,
+  "observations": [
+    {
+      "case_id": "route-clinic-fever",
+      "expected_agent": "clinic_agent",
+      "actual_agent": "advisor_agent",
+      "expected_tools": [
+        "emergency_triage"
+      ],
+      "tools_called": [],
+      "route_score": 0.0,
+      "tool_score": 0.0,
+      "passed": false
+    },
+    {
+      "case_id": "route-insurance-balance",
+      "expected_agent": "insurance_agent",
+      "actual_agent": "advisor_agent",
+      "expected_tools": [
+        "get_insurance_balance"
+      ],
+      "tools_called": [],
+      "route_score": 0.0,
+      "tool_score": 0.0,
+      "passed": false
+    },
+    {
+      "case_id": "route-report-lab",
+      "expected_agent": "report_agent",
+      "actual_agent": "advisor_agent",
+      "expected_tools": [
+        "lab_interpreter"
+      ],
+      "tools_called": [],
+      "route_score": 0.0,
+      "tool_score": 0.0,
+      "passed": false
+    },
+    {
+      "case_id": "route-pharmacy-drug",
+      "expected_agent": "pharmacy_agent",
+      "actual_agent": "advisor_agent",
+      "expected_tools": [
+        "search_drug_info"
+      ],
+      "tools_called": [],
+      "route_score": 0.0,
+      "tool_score": 0.0,
+      "passed": false
+    },
+    {
+      "case_id": "route-advisor-sleep",
+      "expected_agent": "advisor_agent",
+      "actual_agent": "advisor_agent",
+      "expected_tools": [],
+      "tools_called": [],
+      "route_score": 1.0,
+      "tool_score": null,
+      "passed": true
+    }
+  ],
+  "note": "Runtime agent evaluation. Provider/model availability and tool execution errors are included as observed failures."
+}

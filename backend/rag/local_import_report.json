@@ -1,0 +1,3535 @@
+{
+  "cards": [
+    {
+      "source": "local_card_b8bc87aa7b7b",
+      "title": "腹部疼痛概述",
+      "status": "imported",
+      "chars": 232,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b8bc87aa7b7b.md"
+    },
+    {
+      "source": "local_card_3d98dd6b424c",
+      "title": "腹痛就医指南",
+      "status": "imported",
+      "chars": 377,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3d98dd6b424c.md"
+    },
+    {
+      "source": "local_card_6c604f14ab9a",
+      "title": "过敏症简介",
+      "status": "imported",
+      "chars": 331,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6c604f14ab9a.md"
+    },
+    {
+      "source": "local_card_ff99c3ba0341",
+      "title": "过敏症关键信息",
+      "status": "imported",
+      "chars": 220,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ff99c3ba0341.md"
+    },
+    {
+      "source": "local_card_475aa0ff1ff1",
+      "title": "过敏症关键信息",
+      "status": "imported",
+      "chars": 235,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_475aa0ff1ff1.md"
+    },
+    {
+      "source": "local_card_2baaca8d1786",
+      "title": "过敏性休克关键信息",
+      "status": "imported",
+      "chars": 236,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2baaca8d1786.md"
+    },
+    {
+      "source": "local_card_987f580da940",
+      "title": "Anaphylaxis 可能影响多个器官",
+      "status": "imported",
+      "chars": 341,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_987f580da940.md"
+    },
+    {
+      "source": "local_card_a4b5ded8b668",
+      "title": "严重过敏反应急救指南",
+      "status": "imported",
+      "chars": 211,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a4b5ded8b668.md"
+    },
+    {
+      "source": "local_card_85c20a642a39",
+      "title": "贫血基础知识",
+      "status": "imported",
+      "chars": 200,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_85c20a642a39.md"
+    },
+    {
+      "source": "local_card_f42e576ee573",
+      "title": "贫血三大成因",
+      "status": "imported",
+      "chars": 155,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f42e576ee573.md"
+    },
+    {
+      "source": "local_card_c4cc7aec1dc0",
+      "title": "贫血可能诱因",
+      "status": "imported",
+      "chars": 284,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c4cc7aec1dc0.md"
+    },
+    {
+      "source": "local_card_2435e698dacb",
+      "title": "贫血症状",
+      "status": "imported",
+      "chars": 150,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2435e698dacb.md"
+    },
+    {
+      "source": "local_card_1a4ceb7fda61",
+      "title": "贫血诊断与治疗",
+      "status": "imported",
+      "chars": 163,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1a4ceb7fda61.md"
+    },
+    {
+      "source": "local_card_7b49ad3e0ef8",
+      "title": "美国国立卫生研究院",
+      "status": "imported",
+      "chars": 234,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7b49ad3e0ef8.md"
+    },
+    {
+      "source": "local_card_f00377f4f4c9",
+      "title": "心律失常",
+      "status": "imported",
+      "chars": 206,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f00377f4f4c9.md"
+    },
+    {
+      "source": "local_card_325b2405f9c4",
+      "title": "心律失常基础概念",
+      "status": "imported",
+      "chars": 213,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_325b2405f9c4.md"
+    },
+    {
+      "source": "local_card_196451ae6064",
+      "title": "心律失常关键信息",
+      "status": "imported",
+      "chars": 221,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_196451ae6064.md"
+    },
+    {
+      "source": "local_card_cf44a8f92767",
+      "title": "心律失常症状",
+      "status": "imported",
+      "chars": 323,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cf44a8f92767.md"
+    },
+    {
+      "source": "local_card_0de4d446b9c2",
+      "title": "心梗急救指南",
+      "status": "imported",
+      "chars": 176,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0de4d446b9c2.md"
+    },
+    {
+      "source": "local_card_857b9479889b",
+      "title": "心律失常筛查指南",
+      "status": "imported",
+      "chars": 386,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_857b9479889b.md"
+    },
+    {
+      "source": "local_card_7da33077518b",
+      "title": "突发心脏骤停",
+      "status": "imported",
+      "chars": 256,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7da33077518b.md"
+    },
+    {
+      "source": "local_card_8c868caca3a2",
+      "title": "突发心脏骤停的高危人群",
+      "status": "imported",
+      "chars": 407,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8c868caca3a2.md"
+    },
+    {
+      "source": "local_card_3f7a47c65a9b",
+      "title": "突发心脏骤停",
+      "status": "imported",
+      "chars": 253,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3f7a47c65a9b.md"
+    },
+    {
+      "source": "local_card_2cd01f6c12aa",
+      "title": "突发心脏骤停高危人群建议",
+      "status": "imported",
+      "chars": 270,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2cd01f6c12aa.md"
+    },
+    {
+      "source": "local_card_0ec2d15f0083",
+      "title": "突发心脏骤停急救指南",
+      "status": "imported",
+      "chars": 286,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0ec2d15f0083.md"
+    },
+    {
+      "source": "local_card_729b39b71c52",
+      "title": "突发心脏骤停急救指南",
+      "status": "imported",
+      "chars": 246,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_729b39b71c52.md"
+    },
+    {
+      "source": "local_card_3cc5b4debda2",
+      "title": "哮喘简介",
+      "status": "imported",
+      "chars": 225,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3cc5b4debda2.md"
+    },
+    {
+      "source": "local_card_b8d0c1f9bb0b",
+      "title": "哮喘发作与触发因素",
+      "status": "imported",
+      "chars": 325,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b8d0c1f9bb0b.md"
+    },
+    {
+      "source": "local_card_2d644be86301",
+      "title": "哮喘症状",
+      "status": "imported",
+      "chars": 196,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2d644be86301.md"
+    },
+    {
+      "source": "local_card_6c52568843a4",
+      "title": "哮喘发作关键信息",
+      "status": "imported",
+      "chars": 193,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6c52568843a4.md"
+    },
+    {
+      "source": "local_card_a8f22c0e9f87",
+      "title": "哮喘管理计划",
+      "status": "imported",
+      "chars": 365,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a8f22c0e9f87.md"
+    },
+    {
+      "source": "local_card_63a34f0e00e5",
+      "title": "哮喘治疗调整",
+      "status": "imported",
+      "chars": 152,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_63a34f0e00e5.md"
+    },
+    {
+      "source": "local_card_43ad32c2d97e",
+      "title": "慢性阻塞性肺疾病",
+      "status": "imported",
+      "chars": 164,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_43ad32c2d97e.md"
+    },
+    {
+      "source": "local_card_f90835b4035c",
+      "title": "COPD 风险因素",
+      "status": "imported",
+      "chars": 287,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f90835b4035c.md"
+    },
+    {
+      "source": "local_card_ed5bce3b96b4",
+      "title": "COPD 诊断方法",
+      "status": "imported",
+      "chars": 240,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ed5bce3b96b4.md"
+    },
+    {
+      "source": "local_card_f5352d15031b",
+      "title": "COPD 诊断依据",
+      "status": "imported",
+      "chars": 164,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f5352d15031b.md"
+    },
+    {
+      "source": "local_card_2edbe51af3ff",
+      "title": "COPD 治疗现状",
+      "status": "imported",
+      "chars": 317,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2edbe51af3ff.md"
+    },
+    {
+      "source": "local_card_92fe98813798",
+      "title": "COPD 急救指南",
+      "status": "imported",
+      "chars": 215,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_92fe98813798.md"
+    },
+    {
+      "source": "local_card_33c8dde94d73",
+      "title": "胸痛可能并非心梗",
+      "status": "imported",
+      "chars": 372,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_33c8dde94d73.md"
+    },
+    {
+      "source": "local_card_78f38a99b4c8",
+      "title": "胸痛关键信息",
+      "status": "imported",
+      "chars": 218,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_78f38a99b4c8.md"
+    },
+    {
+      "source": "local_card_7e5d7a5d888b",
+      "title": "心肌梗死",
+      "status": "imported",
+      "chars": 210,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7e5d7a5d888b.md"
+    },
+    {
+      "source": "local_card_b90de1a868e3",
+      "title": "心梗急救要点",
+      "status": "imported",
+      "chars": 197,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b90de1a868e3.md"
+    },
+    {
+      "source": "local_card_adbca58f2d99",
+      "title": "心梗急救指南",
+      "status": "imported",
+      "chars": 210,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_adbca58f2d99.md"
+    },
+    {
+      "source": "local_card_89ab31b7e293",
+      "title": "心梗症状",
+      "status": "imported",
+      "chars": 222,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_89ab31b7e293.md"
+    },
+    {
+      "source": "local_card_364c2be4b7f8",
+      "title": "医院诊断流程",
+      "status": "imported",
+      "chars": 185,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_364c2be4b7f8.md"
+    },
+    {
+      "source": "local_card_6365e9753e4a",
+      "title": "心肌梗死治疗与康复",
+      "status": "imported",
+      "chars": 224,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6365e9753e4a.md"
+    },
+    {
+      "source": "local_card_21d51e16e96b",
+      "title": "蛀牙：牙齿表面损伤",
+      "status": "imported",
+      "chars": 226,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_21d51e16e96b.md"
+    },
+    {
+      "source": "local_card_131eabdebab3",
+      "title": "牙齿脱矿早期迹象",
+      "status": "imported",
+      "chars": 223,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_131eabdebab3.md"
+    },
+    {
+      "source": "local_card_a6805c37779d",
+      "title": "牙齿蛀牙的高危人群",
+      "status": "imported",
+      "chars": 315,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a6805c37779d.md"
+    },
+    {
+      "source": "local_card_ca48d9f1f670",
+      "title": "早期蛀牙通常无症状",
+      "status": "imported",
+      "chars": 291,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ca48d9f1f670.md"
+    },
+    {
+      "source": "local_card_9db835df7c10",
+      "title": "牙齿蛀牙检查要点",
+      "status": "imported",
+      "chars": 206,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9db835df7c10.md"
+    },
+    {
+      "source": "local_card_7d3756993928",
+      "title": "牙齿脱矿治疗选项",
+      "status": "imported",
+      "chars": 415,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7d3756993928.md"
+    },
+    {
+      "source": "local_card_e7b0c6596e0f",
+      "title": "牙齿结构简介",
+      "status": "imported",
+      "chars": 273,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e7b0c6596e0f.md"
+    },
+    {
+      "source": "local_card_d12f6670bd12",
+      "title": "牙齿问题概述",
+      "status": "imported",
+      "chars": 347,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d12f6670bd12.md"
+    },
+    {
+      "source": "local_card_6705cb8318c0",
+      "title": "牙齿症状概述",
+      "status": "imported",
+      "chars": 246,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6705cb8318c0.md"
+    },
+    {
+      "source": "local_card_5a6e580602ae",
+      "title": "牙齿问题诊疗流程",
+      "status": "imported",
+      "chars": 182,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5a6e580602ae.md"
+    },
+    {
+      "source": "local_card_5b03414f4e08",
+      "title": "牙齿治疗概述",
+      "status": "imported",
+      "chars": 261,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5b03414f4e08.md"
+    },
+    {
+      "source": "local_card_f19be1b1ebf4",
+      "title": "预防牙病的关键措施",
+      "status": "imported",
+      "chars": 323,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f19be1b1ebf4.md"
+    },
+    {
+      "source": "local_card_2f67fb3b72b9",
+      "title": "糖尿病简介",
+      "status": "imported",
+      "chars": 257,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2f67fb3b72b9.md"
+    },
+    {
+      "source": "local_card_3b8c38581fb9",
+      "title": "糖尿病基础知识",
+      "status": "imported",
+      "chars": 241,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3b8c38581fb9.md"
+    },
+    {
+      "source": "local_card_cefa986ef0bf",
+      "title": "糖尿病症状",
+      "status": "imported",
+      "chars": 225,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cefa986ef0bf.md"
+    },
+    {
+      "source": "local_card_9d5932c20b38",
+      "title": "糖尿病症状因类型而异",
+      "status": "imported",
+      "chars": 302,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9d5932c20b38.md"
+    },
+    {
+      "source": "local_card_1311af7ed13f",
+      "title": "糖尿病筛查方法",
+      "status": "imported",
+      "chars": 163,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1311af7ed13f.md"
+    },
+    {
+      "source": "local_card_3dbfa7f81e64",
+      "title": "糖尿病治疗概述",
+      "status": "imported",
+      "chars": 365,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3dbfa7f81e64.md"
+    },
+    {
+      "source": "local_card_7a75ae10a9bc",
+      "title": "耳部感染信息",
+      "status": "imported",
+      "chars": 204,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7a75ae10a9bc.md"
+    },
+    {
+      "source": "local_card_c33d510820d2",
+      "title": "耳部感染关键信息",
+      "status": "imported",
+      "chars": 191,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c33d510820d2.md"
+    },
+    {
+      "source": "local_card_cb5261500a46",
+      "title": "儿童耳部感染观察要点",
+      "status": "imported",
+      "chars": 292,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cb5261500a46.md"
+    },
+    {
+      "source": "local_card_db02506d4a12",
+      "title": "耳部感染诊断方法",
+      "status": "imported",
+      "chars": 165,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_db02506d4a12.md"
+    },
+    {
+      "source": "local_card_432a4d1ba46b",
+      "title": "耳部感染关键信息",
+      "status": "imported",
+      "chars": 209,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_432a4d1ba46b.md"
+    },
+    {
+      "source": "local_card_bb43a3ef7189",
+      "title": "儿童耳部感染手术信息",
+      "status": "imported",
+      "chars": 179,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_bb43a3ef7189.md"
+    },
+    {
+      "source": "local_card_77a1ad6f136f",
+      "title": "眼部感染概述",
+      "status": "imported",
+      "chars": 380,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_77a1ad6f136f.md"
+    },
+    {
+      "source": "local_card_71126b04d388",
+      "title": "眼部感染症状与处理",
+      "status": "imported",
+      "chars": 214,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_71126b04d388.md"
+    },
+    {
+      "source": "local_card_8a4643d7fa8c",
+      "title": "视力障碍与失明",
+      "status": "imported",
+      "chars": 262,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8a4643d7fa8c.md"
+    },
+    {
+      "source": "local_card_b0e600b0ead0",
+      "title": "视力障碍与失明关键信息",
+      "status": "imported",
+      "chars": 300,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b0e600b0ead0.md"
+    },
+    {
+      "source": "local_card_807b55c470cc",
+      "title": "视力障碍诊断与早期预警",
+      "status": "imported",
+      "chars": 353,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_807b55c470cc.md"
+    },
+    {
+      "source": "local_card_c5a6cc6751f0",
+      "title": "视力症状可见于配镜人群",
+      "status": "imported",
+      "chars": 207,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c5a6cc6751f0.md"
+    },
+    {
+      "source": "local_card_edd8a1772b4f",
+      "title": "低视力治疗选项",
+      "status": "imported",
+      "chars": 265,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_edd8a1772b4f.md"
+    },
+    {
+      "source": "local_card_00de7c11d2f2",
+      "title": "保护视力建议",
+      "status": "imported",
+      "chars": 281,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_00de7c11d2f2.md"
+    },
+    {
+      "source": "local_card_78ceff916db2",
+      "title": "消化道出血概述",
+      "status": "imported",
+      "chars": 215,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_78ceff916db2.md"
+    },
+    {
+      "source": "local_card_508e8163adfc",
+      "title": "消化道出血症状",
+      "status": "imported",
+      "chars": 182,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_508e8163adfc.md"
+    },
+    {
+      "source": "local_card_eb72555c2674",
+      "title": "上消化道出血症状",
+      "status": "imported",
+      "chars": 262,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_eb72555c2674.md"
+    },
+    {
+      "source": "local_card_ee2e924d67d5",
+      "title": "下消化道出血症状",
+      "status": "imported",
+      "chars": 261,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ee2e924d67d5.md"
+    },
+    {
+      "source": "local_card_6a08d68b44d6",
+      "title": "消化道出血关键信息",
+      "status": "imported",
+      "chars": 259,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6a08d68b44d6.md"
+    },
+    {
+      "source": "local_card_8bf39dfba227",
+      "title": "消化道出血检查",
+      "status": "imported",
+      "chars": 228,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8bf39dfba227.md"
+    },
+    {
+      "source": "local_card_1924d5357557",
+      "title": "头痛概述",
+      "status": "imported",
+      "chars": 183,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1924d5357557.md"
+    },
+    {
+      "source": "local_card_56296d3fe703",
+      "title": "头痛常见类型",
+      "status": "imported",
+      "chars": 231,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_56296d3fe703.md"
+    },
+    {
+      "source": "local_card_c0eb79c11624",
+      "title": "头痛常见类型",
+      "status": "imported",
+      "chars": 212,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c0eb79c11624.md"
+    },
+    {
+      "source": "local_card_d41daed721ec",
+      "title": "头痛急救提示",
+      "status": "imported",
+      "chars": 230,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d41daed721ec.md"
+    },
+    {
+      "source": "local_card_7e073216b56d",
+      "title": "国家神经系统疾病与卒中研究所",
+      "status": "imported",
+      "chars": 264,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7e073216b56d.md"
+    },
+    {
+      "source": "local_card_7680da7cbd3c",
+      "title": "偏头痛关键信息",
+      "status": "imported",
+      "chars": 210,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7680da7cbd3c.md"
+    },
+    {
+      "source": "local_card_3834ff0b5517",
+      "title": "偏头痛的四个阶段",
+      "status": "imported",
+      "chars": 462,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3834ff0b5517.md"
+    },
+    {
+      "source": "local_card_54539b911de3",
+      "title": "诊断 migraine 步骤",
+      "status": "imported",
+      "chars": 200,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_54539b911de3.md"
+    },
+    {
+      "source": "local_card_a71c7ca67902",
+      "title": "诊断 migraine 需排除其他疾病",
+      "status": "imported",
+      "chars": 199,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a71c7ca67902.md"
+    },
+    {
+      "source": "local_card_9980a43c9288",
+      "title": "偏头痛治疗概述",
+      "status": "imported",
+      "chars": 161,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9980a43c9288.md"
+    },
+    {
+      "source": "local_card_7f3e36cf399f",
+      "title": "预防偏头痛的生活方式调整",
+      "status": "imported",
+      "chars": 383,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7f3e36cf399f.md"
+    },
+    {
+      "source": "local_card_cd5243806f25",
+      "title": "骨折定义与紧急处理",
+      "status": "imported",
+      "chars": 157,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cd5243806f25.md"
+    },
+    {
+      "source": "local_card_8b07ad0e0410",
+      "title": "骨折分类",
+      "status": "imported",
+      "chars": 301,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8b07ad0e0410.md"
+    },
+    {
+      "source": "local_card_a001d8b7ce9c",
+      "title": "骨折症状",
+      "status": "imported",
+      "chars": 253,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a001d8b7ce9c.md"
+    },
+    {
+      "source": "local_card_4ea54406d08b",
+      "title": "骨折诊断",
+      "status": "imported",
+      "chars": 182,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4ea54406d08b.md"
+    },
+    {
+      "source": "local_card_5cb27a985d5a",
+      "title": "骨折治疗",
+      "status": "imported",
+      "chars": 212,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5cb27a985d5a.md"
+    },
+    {
+      "source": "local_card_f1750507661d",
+      "title": "骨折预防关键信息",
+      "status": "imported",
+      "chars": 198,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f1750507661d.md"
+    },
+    {
+      "source": "local_card_c70ac3e6b653",
+      "title": "头部受伤",
+      "status": "imported",
+      "chars": 188,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c70ac3e6b653.md"
+    },
+    {
+      "source": "local_card_6136bf3cf459",
+      "title": "头部损伤关键信息",
+      "status": "imported",
+      "chars": 212,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6136bf3cf459.md"
+    },
+    {
+      "source": "local_card_8262c58d6b30",
+      "title": "头部外伤常见原因",
+      "status": "imported",
+      "chars": 184,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8262c58d6b30.md"
+    },
+    {
+      "source": "local_card_847f4cf8b515",
+      "title": "头部受伤警示信号",
+      "status": "imported",
+      "chars": 304,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_847f4cf8b515.md"
+    },
+    {
+      "source": "local_card_677b0d146f7c",
+      "title": "头部损伤诊疗概述",
+      "status": "imported",
+      "chars": 174,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_677b0d146f7c.md"
+    },
+    {
+      "source": "local_card_a38868fd6214",
+      "title": "国家神经系统疾病与卒中研究所",
+      "status": "imported",
+      "chars": 268,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a38868fd6214.md"
+    },
+    {
+      "source": "local_card_55035e7e0ab2",
+      "title": "药物反应关键信息",
+      "status": "imported",
+      "chars": 235,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_55035e7e0ab2.md"
+    },
+    {
+      "source": "local_card_12dda21b78de",
+      "title": "药物相互作用定义",
+      "status": "imported",
+      "chars": 394,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_12dda21b78de.md"
+    },
+    {
+      "source": "local_card_3c1348497b66",
+      "title": "药物相互作用",
+      "status": "imported",
+      "chars": 196,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3c1348497b66.md"
+    },
+    {
+      "source": "local_card_9dcf565762b2",
+      "title": "药物不良反应",
+      "status": "imported",
+      "chars": 283,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9dcf565762b2.md"
+    },
+    {
+      "source": "local_card_034fa53b7ebf",
+      "title": "药物过敏反应",
+      "status": "imported",
+      "chars": 229,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_034fa53b7ebf.md"
+    },
+    {
+      "source": "local_card_6960af3e82b0",
+      "title": "用药安全须知",
+      "status": "imported",
+      "chars": 207,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6960af3e82b0.md"
+    },
+    {
+      "source": "local_card_ebd03ffb2519",
+      "title": "抑郁症关键信息",
+      "status": "imported",
+      "chars": 277,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ebd03ffb2519.md"
+    },
+    {
+      "source": "local_card_075a641e2f77",
+      "title": "抑郁症其他类型",
+      "status": "imported",
+      "chars": 285,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_075a641e2f77.md"
+    },
+    {
+      "source": "local_card_4f0409221b92",
+      "title": "抑郁症表现因人而异",
+      "status": "imported",
+      "chars": 418,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4f0409221b92.md"
+    },
+    {
+      "source": "local_card_0c93cee19889",
+      "title": "抑郁症诊断指南",
+      "status": "imported",
+      "chars": 354,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0c93cee19889.md"
+    },
+    {
+      "source": "local_card_87b2ba8ede1e",
+      "title": "抑郁症治疗概述",
+      "status": "imported",
+      "chars": 497,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_87b2ba8ede1e.md"
+    },
+    {
+      "source": "local_card_c3f04ffd8782",
+      "title": "抑郁症求助指南",
+      "status": "imported",
+      "chars": 206,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c3f04ffd8782.md"
+    },
+    {
+      "source": "local_card_295c45a922ab",
+      "title": "自杀定义",
+      "status": "imported",
+      "chars": 178,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_295c45a922ab.md"
+    },
+    {
+      "source": "local_card_71a656ff45aa",
+      "title": "自杀：重大公共卫生问题",
+      "status": "imported",
+      "chars": 409,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_71a656ff45aa.md"
+    },
+    {
+      "source": "local_card_002cd0f94910",
+      "title": "自杀风险因素",
+      "status": "imported",
+      "chars": 461,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_002cd0f94910.md"
+    },
+    {
+      "source": "local_card_118896ae78f4",
+      "title": "自杀预警信号",
+      "status": "imported",
+      "chars": 269,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_118896ae78f4.md"
+    },
+    {
+      "source": "local_card_e96c25998dbb",
+      "title": "自杀相关关键信息",
+      "status": "imported",
+      "chars": 181,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e96c25998dbb.md"
+    },
+    {
+      "source": "local_card_3f557d8e8008",
+      "title": "自杀预警与求助指南",
+      "status": "imported",
+      "chars": 360,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3f557d8e8008.md"
+    },
+    {
+      "source": "local_card_8f758f3110b1",
+      "title": "背痛基本信息",
+      "status": "imported",
+      "chars": 209,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8f758f3110b1.md"
+    },
+    {
+      "source": "local_card_5af9aa19da20",
+      "title": "背痛基本处理",
+      "status": "imported",
+      "chars": 201,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5af9aa19da20.md"
+    },
+    {
+      "source": "local_card_6fb48c054a16",
+      "title": "背痛紧急处理",
+      "status": "imported",
+      "chars": 186,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6fb48c054a16.md"
+    },
+    {
+      "source": "local_card_d4c1dad27bfa",
+      "title": "背痛治疗原则",
+      "status": "imported",
+      "chars": 186,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d4c1dad27bfa.md"
+    },
+    {
+      "source": "local_card_477ba4836706",
+      "title": "国家关节炎与肌肉骨骼皮肤疾病研究所",
+      "status": "imported",
+      "chars": 259,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_477ba4836706.md"
+    },
+    {
+      "source": "local_card_2ff0e3e88cb0",
+      "title": "癌症并非单一疾病",
+      "status": "imported",
+      "chars": 259,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2ff0e3e88cb0.md"
+    },
+    {
+      "source": "local_card_4f87ee31856f",
+      "title": "肿瘤分类与转移",
+      "status": "imported",
+      "chars": 217,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4f87ee31856f.md"
+    },
+    {
+      "source": "local_card_8325915e0695",
+      "title": "癌症概述",
+      "status": "imported",
+      "chars": 179,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8325915e0695.md"
+    },
+    {
+      "source": "local_card_78594dc8c6f4",
+      "title": "癌症症状因类型而异",
+      "status": "imported",
+      "chars": 295,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_78594dc8c6f4.md"
+    },
+    {
+      "source": "local_card_f31e8172d7c4",
+      "title": "癌症症状警示",
+      "status": "imported",
+      "chars": 186,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f31e8172d7c4.md"
+    },
+    {
+      "source": "local_card_c1841db0785b",
+      "title": "癌症诊断说明",
+      "status": "imported",
+      "chars": 321,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c1841db0785b.md"
+    },
+    {
+      "source": "local_card_9abe8976c0fe",
+      "title": "癌症化疗简介",
+      "status": "imported",
+      "chars": 180,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_9abe8976c0fe.md"
+    },
+    {
+      "source": "local_card_3ef8e92f1afe",
+      "title": "癌症化疗简介",
+      "status": "imported",
+      "chars": 209,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3ef8e92f1afe.md"
+    },
+    {
+      "source": "local_card_ee9c1f2289a1",
+      "title": "化疗用途",
+      "status": "imported",
+      "chars": 225,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_ee9c1f2289a1.md"
+    },
+    {
+      "source": "local_card_6d23685883fa",
+      "title": "化疗副作用说明",
+      "status": "imported",
+      "chars": 179,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6d23685883fa.md"
+    },
+    {
+      "source": "local_card_3079ec9945d3",
+      "title": "化疗副作用概览",
+      "status": "imported",
+      "chars": 210,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3079ec9945d3.md"
+    },
+    {
+      "source": "local_card_13e17cda6687",
+      "title": "化疗副作用管理",
+      "status": "imported",
+      "chars": 203,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_13e17cda6687.md"
+    },
+    {
+      "source": "local_card_0dc3956bc9c2",
+      "title": "发烧定义",
+      "status": "imported",
+      "chars": 197,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0dc3956bc9c2.md"
+    },
+    {
+      "source": "local_card_984df0281182",
+      "title": "发热原因",
+      "status": "imported",
+      "chars": 217,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_984df0281182.md"
+    },
+    {
+      "source": "local_card_a9e1c5e203e3",
+      "title": "发热其他原因",
+      "status": "imported",
+      "chars": 208,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a9e1c5e203e3.md"
+    },
+    {
+      "source": "local_card_b7311fc7bd67",
+      "title": "发热治疗原则",
+      "status": "imported",
+      "chars": 235,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b7311fc7bd67.md"
+    },
+    {
+      "source": "local_card_68fcbce7a8c8",
+      "title": "孕期健康问题的定义",
+      "status": "imported",
+      "chars": 249,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_68fcbce7a8c8.md"
+    },
+    {
+      "source": "local_card_eaf26691878c",
+      "title": "孕期健康问题的说明",
+      "status": "imported",
+      "chars": 248,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_eaf26691878c.md"
+    },
+    {
+      "source": "local_card_0c2312574537",
+      "title": "孕期健康风险因素",
+      "status": "imported",
+      "chars": 377,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0c2312574537.md"
+    },
+    {
+      "source": "local_card_16bbf4d91817",
+      "title": "孕期潜在风险因素",
+      "status": "imported",
+      "chars": 210,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_16bbf4d91817.md"
+    },
+    {
+      "source": "local_card_d2140c98fe34",
+      "title": "孕期健康问题的特点",
+      "status": "imported",
+      "chars": 232,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d2140c98fe34.md"
+    },
+    {
+      "source": "local_card_282ae9705691",
+      "title": "孕期健康问题提示",
+      "status": "imported",
+      "chars": 259,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_282ae9705691.md"
+    },
+    {
+      "source": "local_card_05fdf06e1a64",
+      "title": "孕期高血压关键信息",
+      "status": "imported",
+      "chars": 260,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_05fdf06e1a64.md"
+    },
+    {
+      "source": "local_card_e93cd67a44f5",
+      "title": "孕期高血压关键信息",
+      "status": "imported",
+      "chars": 226,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e93cd67a44f5.md"
+    },
+    {
+      "source": "local_card_3790f25997c9",
+      "title": "孕期高血压类型",
+      "status": "imported",
+      "chars": 397,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3790f25997c9.md"
+    },
+    {
+      "source": "local_card_f22725f9debe",
+      "title": "妊娠期高血压疾病关键信息",
+      "status": "imported",
+      "chars": 316,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f22725f9debe.md"
+    },
+    {
+      "source": "local_card_5421e33d20ef",
+      "title": "妊娠期高血压关键信息",
+      "status": "imported",
+      "chars": 219,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_5421e33d20ef.md"
+    },
+    {
+      "source": "local_card_35a9fc25704a",
+      "title": "妊娠期高血压并发症",
+      "status": "imported",
+      "chars": 342,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_35a9fc25704a.md"
+    },
+    {
+      "source": "local_card_4340cca93612",
+      "title": "肺栓塞：突发肺动脉阻塞",
+      "status": "imported",
+      "chars": 351,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4340cca93612.md"
+    },
+    {
+      "source": "local_card_a48e29e090ff",
+      "title": "肺栓塞症状",
+      "status": "imported",
+      "chars": 218,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a48e29e090ff.md"
+    },
+    {
+      "source": "local_card_1da613b78f8a",
+      "title": "肺栓塞关键信息",
+      "status": "imported",
+      "chars": 213,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1da613b78f8a.md"
+    },
+    {
+      "source": "local_card_e1b7c63446b6",
+      "title": "肺栓塞诊断流程",
+      "status": "imported",
+      "chars": 345,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e1b7c63446b6.md"
+    },
+    {
+      "source": "local_card_a920e49d9528",
+      "title": "肺栓塞急救指南",
+      "status": "imported",
+      "chars": 218,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_a920e49d9528.md"
+    },
+    {
+      "source": "local_card_27cfd92726fa",
+      "title": "抗凝药物与溶栓治疗",
+      "status": "imported",
+      "chars": 256,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_27cfd92726fa.md"
+    },
+    {
+      "source": "local_card_8d02ca00ca22",
+      "title": "肺炎概述",
+      "status": "imported",
+      "chars": 200,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8d02ca00ca22.md"
+    },
+    {
+      "source": "local_card_41b58116156e",
+      "title": "病毒引起肺炎",
+      "status": "imported",
+      "chars": 361,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_41b58116156e.md"
+    },
+    {
+      "source": "local_card_d3f0d0d746c4",
+      "title": "肺炎诊断难点",
+      "status": "imported",
+      "chars": 192,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d3f0d0d746c4.md"
+    },
+    {
+      "source": "local_card_4438872475c9",
+      "title": "诊断工具介绍",
+      "status": "imported",
+      "chars": 238,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_4438872475c9.md"
+    },
+    {
+      "source": "local_card_db12601a5b65",
+      "title": "医院检查项目",
+      "status": "imported",
+      "chars": 390,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_db12601a5b65.md"
+    },
+    {
+      "source": "local_card_e79caa76c174",
+      "title": "肺炎治疗建议",
+      "status": "imported",
+      "chars": 195,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e79caa76c174.md"
+    },
+    {
+      "source": "local_card_c07a10573837",
+      "title": "癫痫症状简介",
+      "status": "imported",
+      "chars": 263,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c07a10573837.md"
+    },
+    {
+      "source": "local_card_1344941b7c49",
+      "title": "癫痫发作关键信息",
+      "status": "imported",
+      "chars": 239,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_1344941b7c49.md"
+    },
+    {
+      "source": "local_card_b5d0dae3c906",
+      "title": "国家神经系统疾病与卒中研究所",
+      "status": "imported",
+      "chars": 264,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b5d0dae3c906.md"
+    },
+    {
+      "source": "local_card_8009034d3f95",
+      "title": "自杀定义",
+      "status": "imported",
+      "chars": 174,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8009034d3f95.md"
+    },
+    {
+      "source": "local_card_0984b9bf61ff",
+      "title": "自杀：重大公共卫生问题",
+      "status": "imported",
+      "chars": 405,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_0984b9bf61ff.md"
+    },
+    {
+      "source": "local_card_35a365a6a447",
+      "title": "自杀风险因素",
+      "status": "imported",
+      "chars": 457,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_35a365a6a447.md"
+    },
+    {
+      "source": "local_card_e9d3ba02ad5a",
+      "title": "自杀预警信号",
+      "status": "imported",
+      "chars": 265,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_e9d3ba02ad5a.md"
+    },
+    {
+      "source": "local_card_3e99fc1f2ed3",
+      "title": "自杀相关关键信息",
+      "status": "imported",
+      "chars": 177,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3e99fc1f2ed3.md"
+    },
+    {
+      "source": "local_card_b35603503f2d",
+      "title": "自杀预警与求助指南",
+      "status": "imported",
+      "chars": 356,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b35603503f2d.md"
+    },
+    {
+      "source": "local_card_22c336b3fe79",
+      "title": "败血症：紧急医疗状况",
+      "status": "imported",
+      "chars": 196,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_22c336b3fe79.md"
+    },
+    {
+      "source": "local_card_3e940946befe",
+      "title": "脓毒症症状",
+      "status": "imported",
+      "chars": 215,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_3e940946befe.md"
+    },
+    {
+      "source": "local_card_6e96601c0379",
+      "title": "如何识别脓毒症",
+      "status": "imported",
+      "chars": 291,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_6e96601c0379.md"
+    },
+    {
+      "source": "local_card_dc6f95f130c9",
+      "title": "脓毒症早期诊断挑战",
+      "status": "imported",
+      "chars": 157,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_dc6f95f130c9.md"
+    },
+    {
+      "source": "local_card_17cc31b73276",
+      "title": "严重感染治疗要点",
+      "status": "imported",
+      "chars": 252,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_17cc31b73276.md"
+    },
+    {
+      "source": "local_card_2a477f797693",
+      "title": "预防感染以预防脓毒症",
+      "status": "imported",
+      "chars": 254,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2a477f797693.md"
+    },
+    {
+      "source": "local_card_b27fe1b5f34f",
+      "title": "中风关键信息",
+      "status": "imported",
+      "chars": 192,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_b27fe1b5f34f.md"
+    },
+    {
+      "source": "local_card_46ad91e8159e",
+      "title": "中风急救指南",
+      "status": "imported",
+      "chars": 158,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_46ad91e8159e.md"
+    },
+    {
+      "source": "local_card_47607c8da8f2",
+      "title": "FAST 测试识别中风",
+      "status": "imported",
+      "chars": 319,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_47607c8da8f2.md"
+    },
+    {
+      "source": "local_card_8dabaeb01373",
+      "title": "诊断流程",
+      "status": "imported",
+      "chars": 189,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8dabaeb01373.md"
+    },
+    {
+      "source": "local_card_2406822416eb",
+      "title": "脑卒中治疗方案",
+      "status": "imported",
+      "chars": 334,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2406822416eb.md"
+    },
+    {
+      "source": "local_card_d53228d7ee1b",
+      "title": "缺血性卒中急性治疗",
+      "status": "imported",
+      "chars": 343,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_d53228d7ee1b.md"
+    },
+    {
+      "source": "local_card_cfd2c970087a",
+      "title": "疲劳症状说明",
+      "status": "imported",
+      "chars": 221,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cfd2c970087a.md"
+    },
+    {
+      "source": "local_card_efb872d3ef12",
+      "title": "疲劳并非疾病",
+      "status": "imported",
+      "chars": 301,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_efb872d3ef12.md"
+    },
+    {
+      "source": "local_card_c9a4d3856705",
+      "title": "疲劳相关注意事项",
+      "status": "imported",
+      "chars": 207,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c9a4d3856705.md"
+    },
+    {
+      "source": "local_card_517d096c4160",
+      "title": "ME/CFS 疲劳特征",
+      "status": "imported",
+      "chars": 193,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_517d096c4160.md"
+    },
+    {
+      "source": "local_card_7ad288987ae2",
+      "title": "疲劳持续数周需就医",
+      "status": "imported",
+      "chars": 205,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_7ad288987ae2.md"
+    },
+    {
+      "source": "local_card_c89308c67c65",
+      "title": "缓解疲劳的生活建议",
+      "status": "imported",
+      "chars": 264,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_c89308c67c65.md"
+    },
+    {
+      "source": "local_card_23b366e38633",
+      "title": "发烧定义",
+      "status": "imported",
+      "chars": 198,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_23b366e38633.md"
+    },
+    {
+      "source": "local_card_2a5fceb2e862",
+      "title": "发热原因",
+      "status": "imported",
+      "chars": 218,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2a5fceb2e862.md"
+    },
+    {
+      "source": "local_card_755cd634c21d",
+      "title": "发热其他原因",
+      "status": "imported",
+      "chars": 209,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_755cd634c21d.md"
+    },
+    {
+      "source": "local_card_676b1c7ddc21",
+      "title": "发热治疗原则",
+      "status": "imported",
+      "chars": 236,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_676b1c7ddc21.md"
+    },
+    {
+      "source": "local_card_38bf8433288a",
+      "title": "普通感冒",
+      "status": "imported",
+      "chars": 218,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_38bf8433288a.md"
+    },
+    {
+      "source": "local_card_24cc996c6f81",
+      "title": "感冒常见病毒",
+      "status": "imported",
+      "chars": 241,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_24cc996c6f81.md"
+    },
+    {
+      "source": "local_card_8814eace19c6",
+      "title": "普通感冒症状",
+      "status": "imported",
+      "chars": 209,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_8814eace19c6.md"
+    },
+    {
+      "source": "local_card_f4b496f309d3",
+      "title": "感冒症状",
+      "status": "imported",
+      "chars": 171,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_f4b496f309d3.md"
+    },
+    {
+      "source": "local_card_178e7b59bfeb",
+      "title": "普通感冒无治愈方法",
+      "status": "imported",
+      "chars": 335,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_178e7b59bfeb.md"
+    },
+    {
+      "source": "local_card_fc7fd31e36d4",
+      "title": "感冒常见症状与警示",
+      "status": "imported",
+      "chars": 364,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_fc7fd31e36d4.md"
+    },
+    {
+      "source": "local_card_eea25500d233",
+      "title": "扁桃体简介",
+      "status": "imported",
+      "chars": 209,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_eea25500d233.md"
+    },
+    {
+      "source": "local_card_cc7ca4dd28bf",
+      "title": "扁桃体炎症状",
+      "status": "imported",
+      "chars": 212,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cc7ca4dd28bf.md"
+    },
+    {
+      "source": "local_card_01918dcf6a47",
+      "title": "儿童扁桃体炎紧急就医指征",
+      "status": "imported",
+      "chars": 253,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_01918dcf6a47.md"
+    },
+    {
+      "source": "local_card_54728a6cd134",
+      "title": "扁桃体炎诊断要点",
+      "status": "imported",
+      "chars": 202,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_54728a6cd134.md"
+    },
+    {
+      "source": "local_card_80afbb7cd455",
+      "title": "扁桃体炎检查流程",
+      "status": "imported",
+      "chars": 256,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_80afbb7cd455.md"
+    },
+    {
+      "source": "local_card_49fb6db21367",
+      "title": "扁桃体炎治疗指南",
+      "status": "imported",
+      "chars": 242,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_49fb6db21367.md"
+    },
+    {
+      "source": "local_card_287529eabd2d",
+      "title": "肾脏衰竭关键信息",
+      "status": "imported",
+      "chars": 285,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_287529eabd2d.md"
+    },
+    {
+      "source": "local_card_094f4656cfb5",
+      "title": "肾衰竭治疗指南",
+      "status": "imported",
+      "chars": 217,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_094f4656cfb5.md"
+    },
+    {
+      "source": "local_card_2f275514f661",
+      "title": "国家糖尿病、消化与肾脏疾病研究所",
+      "status": "imported",
+      "chars": 258,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2f275514f661.md"
+    },
+    {
+      "source": "local_card_cafe04e39097",
+      "title": "泌尿系统简介",
+      "status": "imported",
+      "chars": 231,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_cafe04e39097.md"
+    },
+    {
+      "source": "local_card_51085ccce344",
+      "title": "尿路感染症状",
+      "status": "imported",
+      "chars": 243,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_51085ccce344.md"
+    },
+    {
+      "source": "local_card_08590dff28ca",
+      "title": "尿路感染关键信息",
+      "status": "imported",
+      "chars": 234,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_08590dff28ca.md"
+    },
+    {
+      "source": "local_card_13a577625da9",
+      "title": "尿路感染：就医与用药",
+      "status": "imported",
+      "chars": 211,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_13a577625da9.md"
+    },
+    {
+      "source": "local_card_2db8911f3a45",
+      "title": "国立卫生研究院简介",
+      "status": "imported",
+      "chars": 270,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_cards\\local_card_2db8911f3a45.md"
+    }
+  ],
+  "drugs": [
+    {
+      "source": "local_drug_ae_9e784bed69e7",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó┐¿▓¿╠╟╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_aec6450a292d",
+      "title": "阿仑膦酸钠片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó┬╪∞ó╦ß─╞╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1233,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_aec6450a292d.md"
+    },
+    {
+      "source": "local_drug_ae_d164824020d7",
+      "title": "阿尼西坦胶囊",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó─ß╬≈╠╣╜║─╥.doc",
+      "status": "imported",
+      "chars": 863,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_d164824020d7.md"
+    },
+    {
+      "source": "local_drug_ae_a89d5b332d8a",
+      "title": "阿尼西坦片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó─ß╬≈╠╣╞¼.doc",
+      "status": "imported",
+      "chars": 840,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_a89d5b332d8a.md"
+    },
+    {
+      "source": "local_drug_ae_8780f60ca0ea",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó╦╛╞Ñ┴╓╖╓╔ó╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_ea4d2c9d9dbb",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó╦╛╞Ñ┴╓┼▌╠┌╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_f78bb35c6ab1",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░ó╦╛╞Ñ┴╓╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_0ef1ac8ceb3d",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░¼╡╪▒╜⌡½╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_f7f3fbb6a883",
+      "title": "安贝氯铵片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░▓▒┤┬╚∩º╞¼.doc",
+      "status": "imported",
+      "chars": 756,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_f7f3fbb6a883.md"
+    },
+    {
+      "source": "local_drug_ae_2aa1fe6167a1",
+      "title": "氨茶碱注射液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░▒▓Φ╝ε╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 2003,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_2aa1fe6167a1.md"
+    },
+    {
+      "source": "local_drug_ae_621a5500436d",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░▒╝╫▒╜╦ß╫ó╔Σ╥║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_736f4267a682",
+      "title": "奥拉西坦胶囊",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░┬└¡╬≈╠╣╜║─╥.doc",
+      "status": "imported",
+      "chars": 841,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_736f4267a682.md"
+    },
+    {
+      "source": "local_drug_ae_fc8e73eb270f",
+      "title": "奥沙拉嗪钠胶囊",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░┬╔│└¡α║╜║─╥.doc",
+      "status": "imported",
+      "chars": 587,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_fc8e73eb270f.md"
+    },
+    {
+      "source": "local_drug_ae_74838f65c818",
+      "title": "巴氯芬片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░═┬╚╖╥╞¼.doc",
+      "status": "imported",
+      "chars": 2123,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_74838f65c818.md"
+    },
+    {
+      "source": "local_drug_ae_7b16761394f0",
+      "title": "巴曲酶注射液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/░═╟·├╕╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 2051,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_7b16761394f0.md"
+    },
+    {
+      "source": "local_drug_ae_5f95a9423118",
+      "title": "保泰松片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/▒ú╠⌐╦╔╞¼.doc",
+      "status": "imported",
+      "chars": 1222,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_5f95a9423118.md"
+    },
+    {
+      "source": "local_drug_ae_b2625ae96ee2",
+      "title": "贝诺酯片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/▒┤┼╡⌡Ñ╞¼.doc",
+      "status": "imported",
+      "chars": 1189,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_b2625ae96ee2.md"
+    },
+    {
+      "source": "local_drug_ae_fea442404117",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/▒╜╗╟╦ß╫≤╨²░▒┬╚╡╪╞╜╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_81381eb359c2",
+      "title": "苯芴醇胶丸",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/▒╜▄╠┤╝╜║═Φ.doc",
+      "status": "imported",
+      "chars": 679,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_81381eb359c2.md"
+    },
+    {
+      "source": "local_drug_ae_cecd1351825e",
+      "title": "吡拉西坦口服液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/▀┴└¡╬≈╠╣┐┌╖■╥║.doc",
+      "status": "imported",
+      "chars": 907,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_cecd1351825e.md"
+    },
+    {
+      "source": "local_drug_ae_6b026d62dac0",
+      "title": "长春西汀片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/│ñ┤║╬≈═í╞¼.doc",
+      "status": "imported",
+      "chars": 967,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_6b026d62dac0.md"
+    },
+    {
+      "source": "local_drug_ae_5fcc9f7fb2d7",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/┤┘╕╬╧╕░√╔·│ñ╦╪╫ó╔Σ╥║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_c74f07f39d07",
+      "title": "胆茶碱片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡¿▓Φ╝ε╞¼.doc",
+      "status": "imported",
+      "chars": 1823,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_c74f07f39d07.md"
+    },
+    {
+      "source": "local_drug_ae_e93e8febff2a",
+      "title": "地塞米松缓释微粒",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡╪╚√├╫╦╔╗║╩═╬ó┴ú╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1245,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_e93e8febff2a.md"
+    },
+    {
+      "source": "local_drug_ae_05d97f61224e",
+      "title": "碘海醇注射液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡Γ║ú┤╝╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 4962,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_05d97f61224e.md"
+    },
+    {
+      "source": "local_drug_ae_6ae281005fc8",
+      "title": "碘化油胶囊",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡Γ╗»╙═╜║─╥╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1618,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_6ae281005fc8.md"
+    },
+    {
+      "source": "local_drug_ae_c3ed307131b4",
+      "title": "碘化油咀嚼片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡Γ╗»╙═╛╫╜└╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1768,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_c3ed307131b4.md"
+    },
+    {
+      "source": "local_drug_ae_4512db9c209e",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡Γ╞╒┬▐░╖╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_ae_d3c09e071e43",
+      "title": "碘曲伦注射液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╡Γ╟·┬╫╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 2721,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_d3c09e071e43.md"
+    },
+    {
+      "source": "local_drug_ae_5cda5ad44c53",
+      "title": "丁硼乳膏",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╢í┼≡╚Θ╕α╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 651,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_5cda5ad44c53.md"
+    },
+    {
+      "source": "local_drug_ae_09100fa25734",
+      "title": "毒毛花旋子苷k注射液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╢╛├½╗¿╨²╫╙▄╒k╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 4662,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_09100fa25734.md"
+    },
+    {
+      "source": "local_drug_ae_148d8bae9689",
+      "title": "对氨基水杨酸钠肠溶片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╢╘░▒╗∙╦«╤ε╦ß─╞│ª╚▄╞¼.doc",
+      "status": "imported",
+      "chars": 1756,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_148d8bae9689.md"
+    },
+    {
+      "source": "local_drug_ae_87c8c8d6bd19",
+      "title": "对氨基水杨酸钠片",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╢╘░▒╗∙╦«╤ε╦ß─╞╞¼.doc",
+      "status": "imported",
+      "chars": 1739,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_87c8c8d6bd19.md"
+    },
+    {
+      "source": "local_drug_ae_c78d1417182f",
+      "title": "莪术油注射液",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/▌¡╩⌡╙═╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 898,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_c78d1417182f.md"
+    },
+    {
+      "source": "local_drug_ae_d46569862142",
+      "title": "鹅去氧胆酸",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╢∞╚Ñ╤⌡╡¿╦ß╞¼.doc",
+      "status": "imported",
+      "chars": 1005,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_d46569862142.md"
+    },
+    {
+      "source": "local_drug_ae_f910b23e1703",
+      "title": "二巯丁二酸胶囊",
+      "archive": "ae.zip",
+      "member": "░ó-╢■/╢■█╧╢í╢■╦ß╜║─╥╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1418,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_ae_f910b23e1703.md"
+    },
+    {
+      "source": "local_drug_fg_dbad4dcb528a",
+      "title": "枸橼酸铋雷尼替丁胶囊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/Φ█Θ┌╦ßεΘ└╫─ß╠µ╢í╜║─╥.doc",
+      "status": "imported",
+      "chars": 878,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_dbad4dcb528a.md"
+    },
+    {
+      "source": "local_drug_fg_04b79fb54932",
+      "title": "法莫替丁颗粒剂",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖¿─¬╠µ╢í┐┼┴ú╝┴.doc",
+      "status": "imported",
+      "chars": 843,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_04b79fb54932.md"
+    },
+    {
+      "source": "local_drug_fg_336daf3b00e8",
+      "title": "法莫替丁片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖¿─¬╠µ╢í╞¼.doc",
+      "status": "imported",
+      "chars": 890,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_336daf3b00e8.md"
+    },
+    {
+      "source": "local_drug_fg_11a32f6e4bff",
+      "title": "法莫替丁注射液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖¿─¬╠µ╢í╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 920,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_11a32f6e4bff.md"
+    },
+    {
+      "source": "local_drug_fg_ad5168c8ca44",
+      "title": "泛影葡胺胶液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖║╙░╞╧░╖╜║╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 997,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_ad5168c8ca44.md"
+    },
+    {
+      "source": "local_drug_fg_c90925085ecd",
+      "title": "酚美愈伪麻口服溶液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖╙├└╙·╬▒┬Θ┐┌╖■╚▄╥║.doc",
+      "status": "imported",
+      "chars": 1239,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_c90925085ecd.md"
+    },
+    {
+      "source": "local_drug_fg_e0d5af6de8a5",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖·─≥α╫αñ─²╜║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_c7b0ed421859",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖·─≥α╫αñ╦¿.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_56c5b128052b",
+      "title": "辅酶Q10注射液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕¿├╕Q10╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 991,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_56c5b128052b.md"
+    },
+    {
+      "source": "local_drug_fg_0e3fd9a1d902",
+      "title": "复方阿米三嗪片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜░ó├╫╚²α║╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1022,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_0e3fd9a1d902.md"
+    },
+    {
+      "source": "local_drug_fg_0cc899d27748",
+      "title": "复方阿司匹林片(复方乙酰水杨酸片)",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜░ó╦╛╞Ñ┴╓╞¼.doc",
+      "status": "imported",
+      "chars": 1974,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_0cc899d27748.md"
+    },
+    {
+      "source": "local_drug_fg_2fd602c1c9e8",
+      "title": "复方阿魏酸钠胶囊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜░ó╬║╦ß─╞╜║─╥.doc",
+      "status": "imported",
+      "chars": 677,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_2fd602c1c9e8.md"
+    },
+    {
+      "source": "local_drug_fg_bf7c78054f86",
+      "title": "复方吡拉西坦胶囊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜▀┴└¡╬≈╠╣╜║─╥.doc",
+      "status": "imported",
+      "chars": 596,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_bf7c78054f86.md"
+    },
+    {
+      "source": "local_drug_fg_85061ce2326c",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜▒√╬∞╦ß─╞╗║╩═╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_a0127e775e3d",
+      "title": "复方醋酸曲安奈德溶液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜┤╫╦ß╟·░▓─╬╡┬╚▄╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 934,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_a0127e775e3d.md"
+    },
+    {
+      "source": "local_drug_fg_5d4f9bdcb643",
+      "title": "复方庚酸炔诺酮注射液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜╕²╦ß╚▓┼╡═¬╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 979,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5d4f9bdcb643.md"
+    },
+    {
+      "source": "local_drug_fg_b1dcc1ea0f35",
+      "title": "复方谷酰胺颗粒剂",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜╣╚⌡ú░╖┐┼┴ú╝┴.doc",
+      "status": "imported",
+      "chars": 593,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_b1dcc1ea0f35.md"
+    },
+    {
+      "source": "local_drug_fg_a8015a4893b6",
+      "title": "复方蒿甲醚片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜▌∩╝╫├╤╞¼.doc",
+      "status": "imported",
+      "chars": 935,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_a8015a4893b6.md"
+    },
+    {
+      "source": "local_drug_fg_7b5d4b244c21",
+      "title": "复方炉甘石外用散",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜┬»╕╩╩»═Γ╙├╔ó╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 688,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_7b5d4b244c21.md"
+    },
+    {
+      "source": "local_drug_fg_88ab8a7d0c4f",
+      "title": "复方铝酸铋胶囊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜┬┴╦ßεΘ╜║─╥.doc",
+      "status": "imported",
+      "chars": 933,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_88ab8a7d0c4f.md"
+    },
+    {
+      "source": "local_drug_fg_0acc16f42d52",
+      "title": "复方铝酸铋片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜┬┴╦ßεΘ╞¼.doc",
+      "status": "imported",
+      "chars": 928,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_0acc16f42d52.md"
+    },
+    {
+      "source": "local_drug_fg_75bc6b0451b9",
+      "title": "复方氯唑沙宗胶囊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜┬╚▀≥╔│╫┌╜║─╥.doc",
+      "status": "imported",
+      "chars": 630,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_75bc6b0451b9.md"
+    },
+    {
+      "source": "local_drug_fg_aa5d12855208",
+      "title": "复方锌布颗粒剂",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜╨┐▓╝┐┼┴ú╝┴.doc",
+      "status": "imported",
+      "chars": 591,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_aa5d12855208.md"
+    },
+    {
+      "source": "local_drug_fg_888c01631a9b",
+      "title": "复方盐酸阿米洛利片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜╤╬╦ß░ó├╫┬σ└√╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 910,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_888c01631a9b.md"
+    },
+    {
+      "source": "local_drug_fg_2720aae50208",
+      "title": "复方盐酸利多卡因注射液说明书",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕┤╖╜╤╬╦ß└√╢α┐¿╥≥╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 1013,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_2720aae50208.md"
+    },
+    {
+      "source": "local_drug_fg_d659bb2353a6",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕╗┬φ╦ß▒╚╦≈┬σ╢√╜║─╥.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_5023fe457c37",
+      "title": "富马酸比索洛尔片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕╗┬φ╦ß▒╚╦≈┬σ╢√╞¼.doc",
+      "status": "imported",
+      "chars": 1890,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5023fe457c37.md"
+    },
+    {
+      "source": "local_drug_fg_7cf774688deb",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕╗┬φ╦ß┐ⁿ┴≥╞╜╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_f18789b7d8f3",
+      "title": "富马酸亚铁片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕╗┬φ╦ß╤╟╠·╞¼.doc",
+      "status": "imported",
+      "chars": 1995,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_f18789b7d8f3.md"
+    },
+    {
+      "source": "local_drug_fg_5aa90d41af0c",
+      "title": "钆喷酸葡胺注射液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/ε┼┼τ╦ß╞╧░╖╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1232,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5aa90d41af0c.md"
+    },
+    {
+      "source": "local_drug_fg_565fb12fb8f8",
+      "title": "甘羟铝片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕╩⌠╟┬┴╞¼.doc",
+      "status": "imported",
+      "chars": 632,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_565fb12fb8f8.md"
+    },
+    {
+      "source": "local_drug_fg_dcf677cab748",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨▀┴α║╗║╩═╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_2c84d37a860a",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨▀┴α║╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_8e3de29fe62d",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨▀┴α║╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_6a30b412d30a",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨α¡═¬╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_1a77801626ec",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨α¡═¬╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_5253cc5ca033",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨├└δσ╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_56c4483199bf",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨├└δσ╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_88f3685c058b",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨╞δ╠╪╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_3abc1d99a431",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╕±┴╨╞δ╠╪╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_dfe6f2bd0694",
+      "title": "枸橼酸铋钾片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/Φ█Θ┌╦ßεΘ╝╪╞¼.doc",
+      "status": "imported",
+      "chars": 771,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_dfe6f2bd0694.md"
+    },
+    {
+      "source": "local_drug_fg_2a55a8e2f3d7",
+      "title": "法莫替丁胶囊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╖¿─¬╠µ╢í╜║─╥.doc",
+      "status": "imported",
+      "chars": 818,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_2a55a8e2f3d7.md"
+    },
+    {
+      "source": "local_drug_fg_6b69b7971f2b",
+      "title": "枸橼酸喷托维林片",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/Φ█Θ┌╦ß┼τ═╨╬¼┴╓╞¼.doc",
+      "status": "imported",
+      "chars": 627,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_6b69b7971f2b.md"
+    },
+    {
+      "source": "local_drug_fg_8deccf8431c7",
+      "title": "鲑降钙素注射液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/÷┘╜╡╕╞╦╪╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1393,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_8deccf8431c7.md"
+    },
+    {
+      "source": "local_drug_fg_f0df05b50168",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╣∩╦ß╖·▀▀αñ┤╝╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_fg_1b7722bb1f37",
+      "title": "鬼臼毒素酊",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╣φ╛╩╢╛╦╪⌠·.doc",
+      "status": "imported",
+      "chars": 1171,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_1b7722bb1f37.md"
+    },
+    {
+      "source": "local_drug_fg_012b289a836e",
+      "title": "鬼臼毒素软膏",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╣φ╛╩╢╛╦╪╚φ╕α.doc",
+      "status": "imported",
+      "chars": 1112,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_012b289a836e.md"
+    },
+    {
+      "source": "local_drug_fg_5f7fe52314f9",
+      "title": "过氧化氢溶液",
+      "archive": "fg.zip",
+      "member": "╖¿-╣²/╣²╤⌡╗»╟Γ╚▄╥║.doc",
+      "status": "imported",
+      "chars": 723,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_fg_5f7fe52314f9.md"
+    },
+    {
+      "source": "local_drug_hl_b801e22632a4",
+      "title": "氯雷他定糖浆",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚└╫╦√╢¿╠╟╜¼.doc",
+      "status": "imported",
+      "chars": 1348,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_b801e22632a4.md"
+    },
+    {
+      "source": "local_drug_hl_e4480d6dfe3d",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╣■╬≈─╬╡┬╚Θ╕α.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_3ed24a75c813",
+      "title": "哈西奈德软膏",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╣■╬≈─╬╡┬╚φ╕α.doc",
+      "status": "imported",
+      "chars": 1688,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_3ed24a75c813.md"
+    },
+    {
+      "source": "local_drug_hl_0e03c56bd1f8",
+      "title": "海藻酸铝镁颗粒",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/║ú╘σ╦ß┬┴├╛┐┼┴ú.doc",
+      "status": "imported",
+      "chars": 574,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_0e03c56bd1f8.md"
+    },
+    {
+      "source": "local_drug_hl_2563b03104e6",
+      "title": "蒿甲醚胶丸",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/▌∩╝╫├╤╜║═Φ.doc",
+      "status": "imported",
+      "chars": 1143,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_2563b03104e6.md"
+    },
+    {
+      "source": "local_drug_hl_7e99cfb9619d",
+      "title": "蒿甲醚注射液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/▌∩╝╫├╤╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 1174,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_7e99cfb9619d.md"
+    },
+    {
+      "source": "local_drug_hl_6dc3379ecfa9",
+      "title": "红霉素肠溶微丸胶囊",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/║∞├╣╦╪│ª╚▄╬ó═Φ╜║─╥.doc",
+      "status": "imported",
+      "chars": 2824,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_6dc3379ecfa9.md"
+    },
+    {
+      "source": "local_drug_hl_7635268f6d00",
+      "title": "琥珀酰明胶注射液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/τ·τΩ⌡ú├≈╜║╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 2103,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_7635268f6d00.md"
+    },
+    {
+      "source": "local_drug_hl_446dfed9d808",
+      "title": "肌醇烟酸酯软膏",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╝í┤╝╤╠╦ß⌡Ñ╚φ╕α.doc",
+      "status": "imported",
+      "chars": 717,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_446dfed9d808.md"
+    },
+    {
+      "source": "local_drug_hl_9092bbf8d227",
+      "title": "甲酚皂溶液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╝╫╖╙╘φ╚▄╥║.doc",
+      "status": "imported",
+      "chars": 736,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_9092bbf8d227.md"
+    },
+    {
+      "source": "local_drug_hl_111d2e113453",
+      "title": "甲硫酸新斯的明注射液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╝╫┴≥╦ß╨┬╦╣╡─├≈╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1234,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_111d2e113453.md"
+    },
+    {
+      "source": "local_drug_hl_aac7b91bb2f5",
+      "title": "胶态果胶铋胶囊",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╜║╠¼╣√╜║εΘ╜║─╥.doc",
+      "status": "imported",
+      "chars": 753,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_aac7b91bb2f5.md"
+    },
+    {
+      "source": "local_drug_hl_baefa007d315",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╛½╡░░╫╨┐╥╚╡║╦╪╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_762a818b43f2",
+      "title": "聚维酮碘软膏",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╛█╬¼═¬╡Γ╚φ╕α.doc",
+      "status": "imported",
+      "chars": 708,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_762a818b43f2.md"
+    },
+    {
+      "source": "local_drug_hl_5df04afcd79a",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┐¿╬¼╡╪┬σ╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_90c392da8acc",
+      "title": "口服补液盐II",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┐┌╖■▓╣╥║╤╬II.doc",
+      "status": "imported",
+      "chars": 1217,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_90c392da8acc.md"
+    },
+    {
+      "source": "local_drug_hl_876195a8546c",
+      "title": "苦参素注射液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┐α▓╬╦╪╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 671,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_876195a8546c.md"
+    },
+    {
+      "source": "local_drug_hl_27644f6adfbd",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/└╡┼╡╞╒└√╜║─╥.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_e5d9ec2fe0ed",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/└√╢α┐¿╥≥╞°╬φ╝┴╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_b7c476589384",
+      "title": "磷酸萘酚喹片",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┴╫╦ß▌┴╖╙α¡╞¼.doc",
+      "status": "imported",
+      "chars": 848,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_b7c476589384.md"
+    },
+    {
+      "source": "local_drug_hl_a673cc68c7f8",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┴≥╦ß├╛╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_47663a6d3485",
+      "title": "硫酸羟氯喹片",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┴≥╦ß⌠╟┬╚α¡╞¼.doc",
+      "status": "imported",
+      "chars": 2828,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_47663a6d3485.md"
+    },
+    {
+      "source": "local_drug_hl_c0f20e283490",
+      "title": "氯碘羟喹乳膏",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╡Γ⌠╟α¡╚Θ╕α╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 733,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_c0f20e283490.md"
+    },
+    {
+      "source": "local_drug_hl_73329d05ef17",
+      "title": "氯氟舒松涂剂",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╖·╩µ╦╔═┐╝┴╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 593,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_73329d05ef17.md"
+    },
+    {
+      "source": "local_drug_hl_a562dd9bda60",
+      "title": "氯化铵基汞软膏",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╗»∩º╗∙╣»╚φ╕α.doc",
+      "status": "imported",
+      "chars": 659,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_a562dd9bda60.md"
+    },
+    {
+      "source": "local_drug_hl_156c98c10671",
+      "title": "氯化铵片",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╗»∩º╞¼.doc",
+      "status": "imported",
+      "chars": 774,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_156c98c10671.md"
+    },
+    {
+      "source": "local_drug_hl_c1b2c1b7dff1",
+      "title": "氯化琥珀胆碱注射液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╗»τ·τΩ╡¿╝ε╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 2076,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_c1b2c1b7dff1.md"
+    },
+    {
+      "source": "local_drug_hl_5043dbbc69e5",
+      "title": "氯化筒箭毒碱注射液",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╗»═▓╝²╢╛╝ε╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1304,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_5043dbbc69e5.md"
+    },
+    {
+      "source": "local_drug_hl_0e5038efcc43",
+      "title": "氯雷他定片",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚└╫╦√╢¿╞¼.doc",
+      "status": "imported",
+      "chars": 1317,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_0e5038efcc43.md"
+    },
+    {
+      "source": "local_drug_hl_617741c05796",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/╣■╬≈─╬╡┬╚▄╥║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_69213f8246cc",
+      "title": "氯屈膦酸二钠胶囊",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╟ⁿ∞ó╦ß╢■─╞╜║─╥╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1086,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_69213f8246cc.md"
+    },
+    {
+      "source": "local_drug_hl_c819c457a166",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚╔│╠╣╝╪╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_hl_115edbad5890",
+      "title": "氯唑沙宗胶囊",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚▀≥╔│╫┌╜║─╥.doc",
+      "status": "imported",
+      "chars": 809,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_115edbad5890.md"
+    },
+    {
+      "source": "local_drug_hl_7327b0cf42b0",
+      "title": "氯唑沙宗片",
+      "archive": "hl.zip",
+      "member": "╣■-┬╚/┬╚▀≥╔│╫┌╞¼.doc",
+      "status": "imported",
+      "chars": 778,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_hl_7327b0cf42b0.md"
+    },
+    {
+      "source": "local_drug_mr_f922d73a66db",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/┬φ└┤╦ß░▒┬╚╡╪╞╜╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_a5d77f9c29b1",
+      "title": "马来酸噻吗洛尔片",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/┬φ└┤╦ßατ┬≡┬σ╢√╞¼.doc",
+      "status": "imported",
+      "chars": 3971,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_a5d77f9c29b1.md"
+    },
+    {
+      "source": "local_drug_mr_f2930fc60462",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/┬φ▌■╫╙╦╪╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_789857e62a3f",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/┬≡┬╚▒┤░╖╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_2f95036fb5a2",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/┬≡┬╚▒┤░╖╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_798963cf784c",
+      "title": "门冬氨酸钙注射液",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/├┼╢¼░▒╦ß╕╞╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 804,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_798963cf784c.md"
+    },
+    {
+      "source": "local_drug_mr_10a8680620be",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/├╫╖╟╦╛═¬╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_96bc03673f0c",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/├╫╦≈╟░┴╨┤╝╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_278581c71d81",
+      "title": "灭菌注射用水说明书",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/├≡╛·╫ó╔Σ╙├╦«.doc",
+      "status": "imported",
+      "chars": 524,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_278581c71d81.md"
+    },
+    {
+      "source": "local_drug_mr_9181770672ec",
+      "title": "莫匹罗星软膏",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/─¬╞Ñ┬▐╨╟╚φ╕α.doc",
+      "status": "imported",
+      "chars": 1373,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_9181770672ec.md"
+    },
+    {
+      "source": "local_drug_mr_fa2efa995ae2",
+      "title": "萘普生胶囊",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/▌┴╞╒╔·╜║─╥.doc",
+      "status": "imported",
+      "chars": 1595,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_fa2efa995ae2.md"
+    },
+    {
+      "source": "local_drug_mr_2e32082da535",
+      "title": "萘普生颗粒",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/▌┴╞╒╔·┐┼┴ú.doc",
+      "status": "imported",
+      "chars": 1610,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_2e32082da535.md"
+    },
+    {
+      "source": "local_drug_mr_3c66e977428f",
+      "title": "萘普生钠片",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/▌┴╞╒╔·─╞╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 2041,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_3c66e977428f.md"
+    },
+    {
+      "source": "local_drug_mr_d6bf42cac42c",
+      "title": "萘普生片",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/▌┴╞╒╔·╞¼.doc",
+      "status": "imported",
+      "chars": 1640,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_d6bf42cac42c.md"
+    },
+    {
+      "source": "local_drug_mr_5ee98b4e81c7",
+      "title": "萘普生栓",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/▌┴╞╒╔·╦¿.doc",
+      "status": "imported",
+      "chars": 1381,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_5ee98b4e81c7.md"
+    },
+    {
+      "source": "local_drug_mr_b6ae00fd0d1f",
+      "title": "尼麦角林片",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/─ß┬≤╜╟┴╓╞¼.doc",
+      "status": "imported",
+      "chars": 1907,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_b6ae00fd0d1f.md"
+    },
+    {
+      "source": "local_drug_mr_395a66959aa2",
+      "title": "尼莫地平片",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/─ß─¬╡╪╞╜╞¼.doc",
+      "status": "imported",
+      "chars": 1400,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_395a66959aa2.md"
+    },
+    {
+      "source": "local_drug_mr_25c909bb27e1",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/┼┴├╫∞ó╦ß╢■─╞╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_4176d381ce5d",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/π·┐ΓΣσ∩º╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_a61d55996ac8",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╞╒╖Ñ╦√═í─╞╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_6f69b45c3ccb",
+      "title": "普鲁卡因肾上腺素注射液",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╞╒┬│┐¿╥≥╔÷╔╧╧┘╦╪╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1694,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_6f69b45c3ccb.md"
+    },
+    {
+      "source": "local_drug_mr_436bef8182e8",
+      "title": "羟丁酸钠注射液",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/⌠╟╢í╦ß─╞╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1472,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_436bef8182e8.md"
+    },
+    {
+      "source": "local_drug_mr_1ede545515a8",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/⌠╟╥╥┴╫╦ß─╞╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_mr_5c0996dcf976",
+      "title": "青蒿素栓",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╟α▌∩╦╪╦¿.doc",
+      "status": "imported",
+      "chars": 1128,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_5c0996dcf976.md"
+    },
+    {
+      "source": "local_drug_mr_55bde11945bd",
+      "title": "氢溴酸二氢加兰他敏注射液",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╟ΓΣσ╦ß╢■╟Γ╝╙└╝╦√├⌠╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 724,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_55bde11945bd.md"
+    },
+    {
+      "source": "local_drug_mr_6db403b25ac7",
+      "title": "氢溴酸加兰他敏注射液",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╟ΓΣσ╦ß╝╙└╝╦√├⌠╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 872,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_6db403b25ac7.md"
+    },
+    {
+      "source": "local_drug_mr_c76235d0a868",
+      "title": "曲安西龙片",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╟·░▓╬≈┴·╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 2350,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_c76235d0a868.md"
+    },
+    {
+      "source": "local_drug_mr_e9f00da79d9b",
+      "title": "曲尼司特胶囊",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╟·─ß╦╛╠╪╜║─╥.doc",
+      "status": "imported",
+      "chars": 1096,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_mr_e9f00da79d9b.md"
+    },
+    {
+      "source": "local_drug_mr_643ff9fe781d",
+      "archive": "mr.zip",
+      "member": "┬φ-╚≡/╚≡╕±┴╨─╬╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_d661059246ae",
+      "title": "十一酸睾酮胶囊",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╩«╥╗╦ß╪║═¬╜║─╥╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1171,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_d661059246ae.md"
+    },
+    {
+      "source": "local_drug_sy_7cad221b6b2a",
+      "title": "石杉碱甲片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╩»╔╝╝ε╝╫╞¼.doc",
+      "status": "imported",
+      "chars": 913,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7cad221b6b2a.md"
+    },
+    {
+      "source": "local_drug_sy_411560e0d4d7",
+      "title": "双氢青蒿素片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╦½╟Γ╟α▌∩╦╪╞¼.doc",
+      "status": "imported",
+      "chars": 962,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_411560e0d4d7.md"
+    },
+    {
+      "source": "local_drug_sy_3292f29982ea",
+      "title": "水杨酸二乙胺软膏",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╦«╤ε╦ß╢■╥╥░╖╚φ╕α.doc",
+      "status": "imported",
+      "chars": 457,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_3292f29982ea.md"
+    },
+    {
+      "source": "local_drug_sy_dc8d31247b55",
+      "title": "羧甲司坦片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/⌠╚╝╫╦╛╠╣╞¼.doc",
+      "status": "imported",
+      "chars": 730,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_dc8d31247b55.md"
+    },
+    {
+      "source": "local_drug_sy_7d1cd425168c",
+      "title": "酞丁安搽剂",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╠¬╢í░▓▓δ╝┴.doc",
+      "status": "imported",
+      "chars": 744,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7d1cd425168c.md"
+    },
+    {
+      "source": "local_drug_sy_7aaf2a2707d8",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╠╝╦ß└√╢α┐¿╥≥╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_50f48313fc80",
+      "title": "特非那丁分散片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╠╪╖╟─╟╢í╖╓╔ó╞¼.doc",
+      "status": "imported",
+      "chars": 1193,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_50f48313fc80.md"
+    },
+    {
+      "source": "local_drug_sy_baf01603d683",
+      "title": "特非那丁胶囊",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╠╪╖╟─╟╢í╜║─╥.doc",
+      "status": "imported",
+      "chars": 1008,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_baf01603d683.md"
+    },
+    {
+      "source": "local_drug_sy_3a65fc7d473e",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/═╖µ▀▒√╧⌐╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_5d829e75733e",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/═╖µ▀┐╦┬σ╗∞╨ⁿ╥║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_94218434142e",
+      "title": "维胺酯胶丸",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╬¼░╖⌡Ñ╜║═Φ╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1289,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_94218434142e.md"
+    },
+    {
+      "source": "local_drug_sy_700ad2cca378",
+      "title": "西咪替丁",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╬≈▀Σ╠µ╢í┐┌╖■╚Θ.doc",
+      "status": "imported",
+      "chars": 3470,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_700ad2cca378.md"
+    },
+    {
+      "source": "local_drug_sy_4baaebed5ba2",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╬°╜═─╕╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_9231d4b44725",
+      "title": "硝酸异山梨酯乳膏",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╧⌡╦ß╥∞╔╜└µ⌡Ñ╚Θ╕α.doc",
+      "status": "imported",
+      "chars": 1944,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_9231d4b44725.md"
+    },
+    {
+      "source": "local_drug_sy_7098ca505c8a",
+      "title": "溴吡斯的明片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/Σσ▀┴╦╣╡─├≈╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 956,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7098ca505c8a.md"
+    },
+    {
+      "source": "local_drug_sy_f5cbc363dbbc",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/Σσ╨┬╦╣╡─├≈╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_4ff72180194f",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╟╥╢╦ß╕╞╫ó╔Σ╥║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_2c1d8efb6a53",
+      "title": "烟酸占替诺注射液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╠╦ß╒╝╠µ┼╡╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 945,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_2c1d8efb6a53.md"
+    },
+    {
+      "source": "local_drug_sy_d18b18275cf9",
+      "title": "盐酸阿米洛利片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß░ó├╫┬σ└√╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1745,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_d18b18275cf9.md"
+    },
+    {
+      "source": "local_drug_sy_78324c3f013f",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß░¼╦╛┬σ╢√╫ó╔Σ╥║.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_7425ebcc12f3",
+      "title": "安非拉酮",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß░▓╖╟└¡═¬╞¼.doc",
+      "status": "imported",
+      "chars": 898,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7425ebcc12f3.md"
+    },
+    {
+      "source": "local_drug_sy_8ce664548154",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▒┤─╟╞╒└√╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_b0faad547ad4",
+      "title": "盐酸倍他司汀片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▒╢╦√╦╛═í╞¼.doc",
+      "status": "imported",
+      "chars": 893,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_b0faad547ad4.md"
+    },
+    {
+      "source": "local_drug_sy_f56ad34d4dff",
+      "title": "盐酯苯环壬酯片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▒╜╗╖╚╔⌡Ñ╞¼.doc",
+      "status": "imported",
+      "chars": 832,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_f56ad34d4dff.md"
+    },
+    {
+      "source": "local_drug_sy_4da835ea9046",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▒╜╥╥╦½δ╥╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_089e3dd97fcd",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▓╝▒╚┐¿╥≥╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_31a2613e682b",
+      "title": "盐酸地尔硫卓缓释片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╡╪╢√┴≥╫┐╗║╩═╞¼.doc",
+      "status": "imported",
+      "chars": 3102,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_31a2613e682b.md"
+    },
+    {
+      "source": "local_drug_sy_b30820dea906",
+      "title": "盐酸丁咯地尔氯化钠注射液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╢í┐⌐╡╪╢√┬╚╗»─╞╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 1211,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_b30820dea906.md"
+    },
+    {
+      "source": "local_drug_sy_572cc1cf03f0",
+      "title": "盐酸丁咯地尔片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╢í┐⌐╡╪╢√╞¼.doc",
+      "status": "imported",
+      "chars": 1031,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_572cc1cf03f0.md"
+    },
+    {
+      "source": "local_drug_sy_2d2c3779d12a",
+      "title": "盐酸丁螺环酮片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╢í┬▌╗╖═¬╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 941,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_2d2c3779d12a.md"
+    },
+    {
+      "source": "local_drug_sy_980f07914077",
+      "title": "多塞平乳膏",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╢α╚√╞╜╚Θ╕α.doc",
+      "status": "imported",
+      "chars": 1474,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_980f07914077.md"
+    },
+    {
+      "source": "local_drug_sy_fd8f1424fa30",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╢■╝╫╦½δ╥│ª╚▄╜║─╥╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_ba9db9fbca88",
+      "title": "盐酸二氢埃托啡注射液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╢■╟Γ░ú═╨╖╚╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 2279,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_ba9db9fbca88.md"
+    },
+    {
+      "source": "local_drug_sy_ca208c358847",
+      "title": "盐酸芬氟拉明片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╖╥╖·└¡├≈╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1025,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_ca208c358847.md"
+    },
+    {
+      "source": "local_drug_sy_73bb9785c577",
+      "title": "盐酸氟桂利嗪片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╖·╣≡└√α║╞¼.doc",
+      "status": "imported",
+      "chars": 1580,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_73bb9785c577.md"
+    },
+    {
+      "source": "local_drug_sy_782a1b79cdea",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß└√╢α┐¿╥≥╗║╩═╡╬═Φ╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_5c807df9088b",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß└√╢α┐¿╥≥╜║╜¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_087147bfa7e2",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß└√╢α┐¿╥≥╞╧╠╤╠╟╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_6591087cf405",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß└√╢α┐¿╥≥╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_4bab52e89156",
+      "title": "盐酸硫利达嗪片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß┴≥└√▀╒α║╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1197,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_4bab52e89156.md"
+    },
+    {
+      "source": "local_drug_sy_ed64c1818df8",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß┬╚░╖═¬╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_360b7b5adea3",
+      "title": "盐酸氯环利嗪乳膏",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß┬╚╗╖└√α║╚Θ╕α.doc",
+      "status": "imported",
+      "chars": 525,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_360b7b5adea3.md"
+    },
+    {
+      "source": "local_drug_sy_a6908c2a80d9",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß┬σ╖╟╬≈╢¿╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_b81b14400d92",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▀Σ┤∩╞╒└√╞¼.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_fe30574f0e56",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß─╔┬σ═¬╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_c2f83552c4b7",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß─╔╟·═¬╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_0af7ad8517d5",
+      "title": "盐酸萘甲唑林滴鼻液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▌┴╝╫▀≥┴╓╡╬▒╟╥║.doc",
+      "status": "imported",
+      "chars": 739,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_0af7ad8517d5.md"
+    },
+    {
+      "source": "local_drug_sy_f85175673e4c",
+      "title": "盐酸萘替芬溶液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▌┴╠µ╖╥╚▄╥║╦╡├≈1.doc",
+      "status": "imported",
+      "chars": 1043,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_f85175673e4c.md"
+    },
+    {
+      "source": "local_drug_sy_552b9b867342",
+      "title": "盐酸萘替芬溶液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▌┴╠µ╖╥╚▄╥║╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1043,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_552b9b867342.md"
+    },
+    {
+      "source": "local_drug_sy_7f9bc8f2156a",
+      "title": "盐酸萘替芬软膏",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▌┴╠µ╖╥╚φ╕α╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1031,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_7f9bc8f2156a.md"
+    },
+    {
+      "source": "local_drug_sy_2e58558b8352",
+      "title": "盐酸尼卡地平缓释片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß─ß┐¿╡╪╞╜╗║╩═╞¼.doc",
+      "status": "imported",
+      "chars": 1456,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_2e58558b8352.md"
+    },
+    {
+      "source": "local_drug_sy_6fad6755fe9b",
+      "title": "盐酸帕罗西汀片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß┼┴┬▐╬≈═í╞¼╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1419,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_6fad6755fe9b.md"
+    },
+    {
+      "source": "local_drug_sy_28dbcd5f0e1d",
+      "title": "哌仑西平",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß▀▀┬╪╬≈╞╜╞¼.doc",
+      "status": "imported",
+      "chars": 1401,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_28dbcd5f0e1d.md"
+    },
+    {
+      "source": "local_drug_sy_0b5c66186fbc",
+      "title": "盐酸普鲁卡因注射液",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╞╒┬│┐¿╥≥╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 1907,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_0b5c66186fbc.md"
+    },
+    {
+      "source": "local_drug_sy_0b7ab365a0d6",
+      "title": "盐酸曲马多缓释片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╟·┬φ╢α╗║╩═╞¼.doc",
+      "status": "imported",
+      "chars": 1911,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_0b7ab365a0d6.md"
+    },
+    {
+      "source": "local_drug_sy_65f833872590",
+      "title": "盐酸塞利洛尔片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╚√└√┬σ╢√╞¼.doc",
+      "status": "imported",
+      "chars": 1423,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_65f833872590.md"
+    },
+    {
+      "source": "local_drug_sy_ac2ab804e427",
+      "title": "盐酸特比萘芬搽剂",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╠╪▒╚▌┴╖╥▓δ╝┴╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 764,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_ac2ab804e427.md"
+    },
+    {
+      "source": "local_drug_sy_e5b28c68d678",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß═≥└¡╖¿╨┬╜║─╥.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_sy_1f60fa606ef0",
+      "title": "盐酸西布曲明胶囊",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╬≈▓╝╟·├≈╜║─╥╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 2241,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_1f60fa606ef0.md"
+    },
+    {
+      "source": "local_drug_sy_606381351040",
+      "title": "盐酸西替利嗪胶囊",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╬≈╠µ└√α║╜║─╥.doc",
+      "status": "imported",
+      "chars": 990,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_606381351040.md"
+    },
+    {
+      "source": "local_drug_sy_53214c6ea79b",
+      "title": "伊托必利片",
+      "archive": "sy.zip",
+      "member": "╩«-╤╬/╤╬╦ß╥┴═╨▒╪└√╞¼.doc",
+      "status": "imported",
+      "chars": 840,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_sy_53214c6ea79b.md"
+    },
+    {
+      "source": "local_drug_yz_241b375d0c27",
+      "title": "氧化铅外用散",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╤⌡╗»╟ª═Γ╙├╔ó╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 616,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_241b375d0c27.md"
+    },
+    {
+      "source": "local_drug_yz_62c1c78387b1",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥└╜╡╕╞╦╪╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_5634a342a522",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥└╠µ∞ó╦ß╢■─╞╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_42ab3bf5e0f5",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥└═╨▀Σ⌡Ñ╫ó╔Σ╥║╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_0592a981ca64",
+      "title": "乙酰吉他霉素颗粒",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥╥⌡ú╝¬╦√├╣╦╪┐┼┴ú.doc",
+      "status": "imported",
+      "chars": 1011,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_0592a981ca64.md"
+    },
+    {
+      "source": "local_drug_yz_3e650e6f1be0",
+      "title": "乙氧苯柳胺软膏",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥╥╤⌡▒╜┴°░╖╚φ╕α╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 813,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_3e650e6f1be0.md"
+    },
+    {
+      "source": "local_drug_yz_a9da9dee6a48",
+      "title": "己酮可可碱缓释片",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥╤═¬┐╔┐╔╝ε╗║╩═╞¼.doc",
+      "status": "imported",
+      "chars": 963,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_a9da9dee6a48.md"
+    },
+    {
+      "source": "local_drug_yz_b68a94a406d0",
+      "title": "异维A酸胶丸",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╥∞╬¼A╦ß╜║═Φ╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1836,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_b68a94a406d0.md"
+    },
+    {
+      "source": "local_drug_yz_2ccc9390426a",
+      "title": "蚓激酶胶囊",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/≥╛╝ñ├╕╜║─╥.doc",
+      "status": "imported",
+      "chars": 567,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_2ccc9390426a.md"
+    },
+    {
+      "source": "local_drug_yz_aac924b7308a",
+      "title": "鱼肝油酸钠溶液",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╙π╕╬╙═╦ß─╞╚▄╥║.doc",
+      "status": "imported",
+      "chars": 1039,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_aac924b7308a.md"
+    },
+    {
+      "source": "local_drug_yz_b0ca3dfcb369",
+      "title": "鱼肝油酸钠注射液",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╙π╕╬╙═╦ß─╞╫ó╔Σ╥║.doc",
+      "status": "imported",
+      "chars": 751,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_b0ca3dfcb369.md"
+    },
+    {
+      "source": "local_drug_yz_be8dd7b3f1f4",
+      "title": "注射用奥扎格雷",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├░┬╘·╕±└╫.doc",
+      "status": "imported",
+      "chars": 1029,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_be8dd7b3f1f4.md"
+    },
+    {
+      "source": "local_drug_yz_72ff7d4132d5",
+      "title": "注射用奥扎格雷钠",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├░┬╘·╕±└╫─╞.doc",
+      "status": "imported",
+      "chars": 1048,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_72ff7d4132d5.md"
+    },
+    {
+      "source": "local_drug_yz_e5a56930ea84",
+      "title": "促肝细胞生长素",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├┤┘╕╬╧╕░√╔·│ñ╦╪╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 996,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_e5a56930ea84.md"
+    },
+    {
+      "source": "local_drug_yz_5cbc4bfab08a",
+      "title": "注射用科博肽",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├┐╞▓⌐δ─.doc",
+      "status": "imported",
+      "chars": 1503,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_5cbc4bfab08a.md"
+    },
+    {
+      "source": "local_drug_yz_a008b667a272",
+      "title": "注射用硫喷妥钠",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├┴≥┼τ═╫─╞╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 2186,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_a008b667a272.md"
+    },
+    {
+      "source": "local_drug_yz_2d544e2ea8a7",
+      "title": "注射用尿促性素",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├─≥┤┘╨╘╦╪╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1120,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_2d544e2ea8a7.md"
+    },
+    {
+      "source": "local_drug_yz_f4c2834f5a87",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├┼┴├╫∞ó╦ß╢■─╞╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_6f1e9a1122b0",
+      "title": "注射用青蒿琥酯",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├╟α▌∩τ·⌡Ñ.doc",
+      "status": "imported",
+      "chars": 1036,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_6f1e9a1122b0.md"
+    },
+    {
+      "source": "local_drug_yz_25c5103c98c1",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├╦┐┴╤├╣╦╪.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_628c470cfdc3",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├╬¼┐ΓΣσ∩º╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_1799ade6b084",
+      "title": "乌司他丁",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├╬┌╦╛╦√╢í.doc",
+      "status": "imported",
+      "chars": 1176,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_1799ade6b084.md"
+    },
+    {
+      "source": "local_drug_yz_5d7ab8ccb857",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├╤╬╦ß╢α╚ß▒╚╨╟.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_5bf578bc5939",
+      "title": "注射用盐酸普鲁卡因",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├╤╬╦ß╞╒┬│┐¿╥≥╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 1823,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_5bf578bc5939.md"
+    },
+    {
+      "source": "local_drug_yz_ea0b10cd52b1",
+      "title": "注射用吲哚菁绿",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫ó╔Σ╙├▀┼▀ß▌╝┬╠╦╡├≈╩Θ.doc",
+      "status": "imported",
+      "chars": 3133,
+      "output": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned_local_drugs\\local_drug_yz_ea0b10cd52b1.md"
+    },
+    {
+      "source": "local_drug_yz_027f5ce5a0e4",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫≤╝╫╫┤╧┘╦╪─╞╞¼╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    },
+    {
+      "source": "local_drug_yz_25eacd413eb8",
+      "archive": "yz.zip",
+      "member": "╤⌡-╫≤/╫≤╚▓┼╡╘╨═¬╣Φ╜║░⌠╦╡├≈╩Θ.doc",
+      "status": "conversion_failed",
+      "error": "com_error"
+    }
+  ],
+  "active_statuses": [
+    "local_imported",
+    "source_curated"
+  ]
+}

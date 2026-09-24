@@ -1,0 +1,447 @@
+{
+  "schema_version": "1.0",
+  "status": "measured_reviewed_rule_case_set",
+  "dataset": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\evals\\emergency_cases.jsonl",
+  "sample_count": 48,
+  "metrics": {
+    "binary_red_flag": {
+      "precision": 0.9629629629629629,
+      "recall": 0.8666666666666667,
+      "f1": 0.912280701754386
+    },
+    "exact_level_accuracy": 0.8958333333333334,
+    "macro_f1": 0.9020130454340981,
+    "mean_latency_ms": 0.3683166667277267
+  },
+  "confusion_matrix": {
+    "CRITICAL": {
+      "CRITICAL": 9,
+      "NON_URGENT": 1
+    },
+    "URGENT": {
+      "URGENT": 8,
+      "NON_URGENT": 2
+    },
+    "PROMPT": {
+      "PROMPT": 9,
+      "NON_URGENT": 1
+    },
+    "NON_URGENT": {
+      "CRITICAL": 1,
+      "NON_URGENT": 17
+    }
+  },
+  "per_level": {
+    "CRITICAL": {
+      "support": 10,
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9
+    },
+    "URGENT": {
+      "support": 10,
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.888888888888889
+    },
+    "PROMPT": {
+      "support": 10,
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9473684210526316
+    },
+    "NON_URGENT": {
+      "support": 18,
+      "precision": 0.8095238095238095,
+      "recall": 0.9444444444444444,
+      "f1": 0.8717948717948718
+    }
+  },
+  "cases": [
+    {
+      "id": "emergency-critical-01",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-02",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-03",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-04",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-05",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-06",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-critical-07",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-08",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-09",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-critical-11",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-12",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-01",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-02",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-03",
+      "expected_level": "URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-urgent-04",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-05",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-06",
+      "expected_level": "URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-urgent-07",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-08",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-09",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-11",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-12",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-01",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-02",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-03",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-04",
+      "expected_level": "PROMPT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-prompt-05",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-06",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-07",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-08",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-09",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-11",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-12",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-01",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-02",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-03",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-04",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-05",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-06",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-07",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-08",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-09",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-11",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-12",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    }
+  ],
+  "note": "Reviewed synthetic rule cases, not clinical data; binary red-flag metrics group CRITICAL, URGENT, and PROMPT as positive."
+}

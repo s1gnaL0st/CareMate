@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "status": "cleaned",
+  "cleaned_at": "2026-09-23T08:34:18.010429+00:00",
+  "source_count": 6,
+  "total_cleaned_chars": 207418,
+  "sources": [
+    {
+      "source": "cn_cerebrovascular_guideline_2024",
+      "file_type": "pdf",
+      "raw_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\raw\\2e2ad076b9e263f2.pdf",
+      "output_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_cerebrovascular_guideline_2024.md",
+      "raw_bytes": 420849,
+      "raw_sha256": "2e2ad076b9e263f2885e6ca97017419b025086b19c1bf6ba6eb74fb1347be9b8",
+      "cleaned_chars": 15279,
+      "page_count": 30,
+      "block_count": 664,
+      "title": "脑血管病防治指南（2024年版）",
+      "warning": ""
+    },
+    {
+      "source": "cn_obesity_guideline_2024",
+      "file_type": "pdf",
+      "raw_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\raw\\8d7c5c87f8e58f56.pdf",
+      "output_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_obesity_guideline_2024.md",
+      "raw_bytes": 1057558,
+      "raw_sha256": "8d7c5c87f8e58f56231e251b1aa588b9d640e74d32dbec2a45e68dcf141274c3",
+      "cleaned_chars": 11545,
+      "page_count": 79,
+      "block_count": 1950,
+      "title": "肥胖症诊疗指南（2024年版）",
+      "warning": ""
+    },
+    {
+      "source": "cn_myco_pneumonia_guideline_2025",
+      "file_type": "pdf",
+      "raw_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\raw\\452e1442cbcae723.pdf",
+      "output_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_myco_pneumonia_guideline_2025.md",
+      "raw_bytes": 595117,
+      "raw_sha256": "452e1442cbcae7231e1bac8f23031f84085a7e75aef347fac6d9a04162575b32",
+      "cleaned_chars": 17590,
+      "page_count": 32,
+      "block_count": 723,
+      "title": "儿童肺炎支原体肺炎诊疗指南（2025年版）",
+      "warning": ""
+    },
+    {
+      "source": "cn_hypertension_standard_2025",
+      "file_type": "pdf",
+      "raw_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\raw\\4c099a4a656b72d6.pdf",
+      "output_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_hypertension_standard_2025.md",
+      "raw_bytes": 364853,
+      "raw_sha256": "4c099a4a656b72d6524c7acd05359da10b4dd861def402b80acd94a307d410d6",
+      "cleaned_chars": 3838,
+      "page_count": 8,
+      "block_count": 167,
+      "title": "成人高血压筛查与诊断标准（WS/T 872—2025）",
+      "warning": ""
+    },
+    {
+      "source": "cn_nhsa_drug_catalog_2025",
+      "file_type": "pdf",
+      "raw_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\raw\\82b249771d25f42b.pdf",
+      "output_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_nhsa_drug_catalog_2025.md",
+      "raw_bytes": 2338646,
+      "raw_sha256": "82b249771d25f42b372093ab6be76192754ceb67a0b7309f5da0d5e284842dc3",
+      "cleaned_chars": 155464,
+      "page_count": 202,
+      "block_count": 8206,
+      "title": "国家基本医疗保险、生育保险和工伤保险药品目录（2025年）",
+      "warning": ""
+    },
+    {
+      "source": "cn_commercial_drug_catalog_2025",
+      "file_type": "pdf",
+      "raw_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\raw\\92cb08ff6dad4fe4.pdf",
+      "output_file": "F:\\沉淀\\Smart-Health-Assistant-main\\backend\\rag\\sources\\cleaned\\cn_commercial_drug_catalog_2025.md",
+      "raw_bytes": 267102,
+      "raw_sha256": "92cb08ff6dad4fe463e5367af593133212a90142345ebf2f45221f89575d44a9",
+      "cleaned_chars": 3702,
+      "page_count": 4,
+      "block_count": 147,
+      "title": "商业健康保险创新药品目录（2025年）",
+      "warning": ""
+    }
+  ],
+  "policy": "Only source_curated and provenance-registered documents are cleaned for indexing."
+}
