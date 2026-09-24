@@ -3,6 +3,7 @@
 // Providers
 import { GlobalProvider } from './store/GlobalContext';
 import { useGlobalStore } from './store/useGlobalStore';
+import './App.css';
 
 // Layout
 import MobileWrapper from './components/layout/MobileWrapper';
