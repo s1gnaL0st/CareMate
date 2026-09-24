@@ -38,6 +38,55 @@ class GraphNewTests(unittest.TestCase):
             result = asyncio.run(executor({"task_queue": [task], "task_results": {}}))
         self.assertEqual(attempts["count"], 2)
         self.assertEqual(result["task_results"]["symptoms"]["status"], "completed")
+
+    def test_executor_only_reruns_verifier_target(self):
+        calls = []
+
+        async def agent(state):
+            calls.append("\n".join(message.content for message in state["messages"]))
+            return {"messages": [AIMessage(content="修复后的结果")]}
+
+        tasks = [
+            PlannedTask(id="symptoms", agent="symptom_agent", objective="症状", input_slice="症状"),
+            PlannedTask(id="medicine", agent="pharmacy_agent", objective="用药", input_slice="用药"),
+        ]
+        settings = type("Settings", (), {"agent_task_max_retries": 0, "agent_task_retry_backoff_seconds": 0.0})()
+        with patch("agents.graph_new._DOMAIN_NODES", {"symptom_agent": agent, "pharmacy_agent": agent}), patch(
+            "agents.graph_new.get_settings", return_value=settings
+        ):
+            result = asyncio.run(executor({
+                "task_queue": tasks,
+                "task_results": {
+                    "symptoms": {"agent": "symptom_agent", "status": "completed", "text": "已通过"},
+                    "medicine": {"agent": "pharmacy_agent", "status": "completed", "text": "旧结果"},
+                },
+                "repair_targets": [{"task_id": "medicine", "target_agent": "pharmacy_agent", "required_action": "补充相互作用证据"}],
+            }))
+        self.assertEqual(len(calls), 1)
+        self.assertIn("补充相互作用证据", calls[0])
+        self.assertEqual(result["task_results"]["symptoms"]["text"], "已通过")
+        self.assertEqual(result["task_results"]["medicine"]["text"], "修复后的结果")
+
+    def test_verifier_returns_targeted_repair_contract(self):
+        from agents.graph_new import verifier
+
+        result = asyncio.run(verifier({
+            "task_results": {
+                "medicine": {"agent": "pharmacy_agent", "status": "failed", "text": ""},
+            }
+        }))
+        self.assertEqual(result["verify_status"], "partial")
+        self.assertEqual(result["repair_targets"][0]["task_id"], "medicine")
+        self.assertEqual(result["repair_targets"][0]["target_agent"], "pharmacy_agent")
+
+    def test_repair_round_limit_routes_to_handoff(self):
+        from agents.graph_new import route_after_verify
+
+        self.assertEqual(route_after_verify({
+            "verify_status": "partial",
+            "repair_targets": [{"task_id": "medicine"}],
+            "repair_rounds": 2,
+        }), "handoff")
     def test_compiles_supervisor_graph(self):
         nodes = supervisor_app.get_graph().nodes
         self.assertTrue({

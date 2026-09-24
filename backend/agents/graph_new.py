@@ -89,6 +89,17 @@ class TaskResult(TypedDict, total=False):
     text: str
     error: str
     objective: str
+    # Stable inter-agent result envelope. ``text`` remains available for the
+    # existing responder, while these fields give Supervisor/Verifier a
+    # machine-readable collaboration contract.
+    summary: str
+    evidence: list[dict[str, Any]]
+    risk_level: Literal["low", "medium", "high", "unknown"]
+    uncertainty: list[str]
+    next_action: str
+    tool_calls: list[str]
+    attempt_count: int
+    repair_instruction: str
 
 
 class AgentLoopState(TypedDict, total=False):
@@ -117,6 +128,8 @@ class AgentLoopState(TypedDict, total=False):
 
     verify_status: VerifyStatus
     verify_issues: list[str]
+    repair_targets: list[dict[str, str]]
+    repair_rounds: int
     handoff_reason: str
     final_response: str
     # Populated only by the offline evolution runner. Online API state never
@@ -500,6 +513,14 @@ def _agent_input_slice(state: AgentLoopState, task: PlannedTask, results: dict[s
             "以下是已完成的上游任务摘要，仅用于完成当前任务；不要重复暴露内部字段：\n"
             + json.dumps(upstream, ensure_ascii=False)
         )))
+    repair_targets = state.get("repair_targets", [])
+    repair = next((item for item in repair_targets if item.get("task_id") == task.id), None)
+    if repair:
+        messages.append(SystemMessage(content=(
+            "Verifier 要求你定向修复本任务。只处理以下问题，并重新核对相关证据；"
+            "不要修改已经通过的其他 Agent 结果：\n"
+            + json.dumps(repair, ensure_ascii=False)
+        )))
     if task.agent == "symptom_agent":
         context = _conversation_context(list(state.get("messages", [])))
         if context:
@@ -522,6 +543,8 @@ def _agent_input_slice(state: AgentLoopState, task: PlannedTask, results: dict[s
 async def executor(state: AgentLoopState) -> dict[str, Any]:
     """Execute planned Agents by dependency waves, parallelizing independent work."""
     results = dict(state.get("task_results", {}))
+    repair_ids = {item.get("task_id") for item in state.get("repair_targets", [])}
+    repair_rounds = int(state.get("repair_rounds", 0)) + (1 if repair_ids else 0)
     run_id = state.get("agent_run_id")
     if run_id:
         from agent_persistence import mark_run_status, pause_requested, persist_task_result, recover_and_claim_task
@@ -529,10 +552,14 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
     for wave in _dependency_waves(list(state.get("task_queue", []))):
         if run_id and await pause_requested(run_id):
             await mark_run_status(run_id, "paused")
-            return {"task_results": results, "run_status": "paused"}
+            return {"task_results": results, "run_status": "paused", "repair_rounds": repair_rounds}
         runnable: list[PlannedTask] = []
         for task in wave:
-            if task.id in results and results[task.id].get("status") == "completed":
+            if (
+                task.id in results
+                and results[task.id].get("status") == "completed"
+                and task.id not in repair_ids
+            ):
                 continue
             failed_dependencies = [
                 dependency
@@ -560,13 +587,31 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
             for attempt in range(1, max_attempts + 1):
                 try:
                     result = await _DOMAIN_NODES[task.agent](_agent_input_slice(state, task, results))
-                    text = _last_ai_text(list(result.get("messages", [])))
+                    messages = list(result.get("messages", []))
+                    text = _last_ai_text(messages)
                     if text:
+                        tool_calls = [
+                            str(getattr(message, "name", "") or "")
+                            for message in messages
+                            if getattr(message, "type", "") == "tool" and getattr(message, "name", "")
+                        ]
+                        envelope = {
+                            "summary": text[:MAX_TASK_TEXT_CHARS],
+                            "evidence": [
+                                {"tool": name, "source": "agent_tool_result"}
+                                for name in dict.fromkeys(tool_calls)
+                            ],
+                            "risk_level": "unknown",
+                            "uncertainty": [],
+                            "next_action": "",
+                            "tool_calls": list(dict.fromkeys(tool_calls)),
+                        }
                         task_result = {
                             "agent": task.agent,
                             "objective": task.objective,
                             "status": "completed",
                             "text": text[:MAX_TASK_TEXT_CHARS],
+                            **envelope,
                             "attempt_count": attempt,
                         }
                         if run_id:
@@ -600,25 +645,41 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
             results[task.id] = result
         if run_id and await pause_requested(run_id):
             await mark_run_status(run_id, "paused")
-            return {"task_results": results, "run_status": "paused"}
-    return {"task_results": results}
+            return {"task_results": results, "run_status": "paused", "repair_rounds": repair_rounds}
+    return {"task_results": results, "repair_rounds": repair_rounds}
 
 
 async def verifier(state: AgentLoopState) -> dict[str, Any]:
     """Check task completeness and non-negotiable safety rules."""
     results = state.get("task_results", {})
     issues: list[str] = []
+    repair_targets: list[dict[str, str]] = []
     unsafe_markers = ("包治百病", "保证治愈", "绝对不会有风险", "自行加大剂量")
     if not results:
-        return {"verify_status": "fail", "verify_issues": ["没有收到专家结果"]}
-    for result in results.values():
+        return {"verify_status": "fail", "verify_issues": ["没有收到专家结果"], "repair_targets": []}
+    for task_id, result in results.items():
         if result.get("status") == "failed":
-            issues.append(f"{result.get('agent', 'unknown')} 执行失败")
+            agent = result.get("agent", "unknown")
+            issue = f"{agent} 执行失败"
+            issues.append(issue)
+            repair_targets.append({
+                "task_id": str(task_id),
+                "target_agent": str(agent),
+                "required_action": "重试该领域 Agent 并返回可验证结果",
+            })
         if any(marker in str(result.get("text", "")) for marker in unsafe_markers):
-            return {"verify_status": "unsafe", "verify_issues": ["专家结果触发医疗安全红线"]}
+            return {
+                "verify_status": "unsafe",
+                "verify_issues": ["专家结果触发医疗安全红线"],
+                "repair_targets": [{
+                    "task_id": str(task_id),
+                    "target_agent": str(result.get("agent", "unknown")),
+                    "required_action": "删除危险表述并重新生成安全结果；不得修改安全规则",
+                }],
+            }
     if issues:
-        return {"verify_status": "partial", "verify_issues": issues}
-    return {"verify_status": "pass", "verify_issues": []}
+        return {"verify_status": "partial", "verify_issues": issues, "repair_targets": repair_targets}
+    return {"verify_status": "pass", "verify_issues": [], "repair_targets": []}
 
 
 async def responder(state: AgentLoopState) -> dict[str, Any]:
@@ -703,12 +764,16 @@ def route_after_planner(
 
 def route_after_verify(
     state: AgentLoopState,
-) -> Literal["responder", "planner", "safety_response", "handoff"]:
+) -> Literal["responder", "planner", "executor", "safety_response", "handoff"]:
     status = state.get("verify_status", "fail")
     if status == "pass":
         return "responder"
     if status == "unsafe":
         return "safety_response"
+    if state.get("repair_targets") and int(state.get("repair_rounds", 0)) < MAX_REPLANS:
+        return "executor"
+    if state.get("repair_targets"):
+        return "handoff"
     if state.get("replan_count", 0) >= MAX_REPLANS:
         return "handoff"
     return "planner"
@@ -757,6 +822,7 @@ def build_graph():
         {
             "responder": "responder",
             "planner": "planner",
+            "executor": "executor",
             "safety_response": "safety_response",
             "handoff": "handoff",
         },
