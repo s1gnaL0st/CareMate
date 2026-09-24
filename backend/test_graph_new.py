@@ -79,6 +79,87 @@ class GraphNewTests(unittest.TestCase):
         self.assertEqual(result["repair_targets"][0]["task_id"], "medicine")
         self.assertEqual(result["repair_targets"][0]["target_agent"], "pharmacy_agent")
 
+    def test_repair_invalidates_downstream_tasks(self):
+        from agents.graph_new import _repair_task_ids
+
+        tasks = [
+            PlannedTask(id="symptoms", agent="symptom_agent", objective="症状", input_slice="症状"),
+            PlannedTask(id="medicine", agent="pharmacy_agent", objective="用药", input_slice="用药", depends_on=["symptoms"]),
+            PlannedTask(id="answer", agent="chat_agent", objective="汇总", input_slice="汇总", depends_on=["medicine"]),
+        ]
+        self.assertEqual(_repair_task_ids(tasks, [{"task_id": "symptoms"}]), {"symptoms", "medicine", "answer"})
+
+    def test_verifier_deduplicates_repeated_issue(self):
+        from agents.graph_new import verifier, _issue_fingerprint
+
+        target = {"task_id": "medicine", "target_agent": "pharmacy_agent", "required_action": "重试该领域 Agent 并返回可验证结果"}
+        result = asyncio.run(verifier({
+            "task_results": {"medicine": {"agent": "pharmacy_agent", "status": "failed", "text": ""}},
+            "repair_history": [_issue_fingerprint(target)],
+        }))
+        self.assertEqual(result["repair_targets"], [])
+        self.assertEqual(result["verify_status"], "exhausted")
+
+    def test_tool_evidence_keeps_provenance_fields(self):
+        from agents.graph_new import _evidence_records
+
+        evidence = _evidence_records([
+            type("ToolMessage", (), {
+                "type": "tool",
+                "name": "medical_search",
+                "content": '{"evidence_id":"ev-1","source_url":"https://example.test/guideline","knowledge_version":"v2","retrieved_at":"2026-09-24","content_hash":"abc"}',
+            })(),
+        ])
+        self.assertEqual(evidence[0]["source_ids"], ["ev-1"])
+        self.assertEqual(evidence[0]["version"], "v2")
+        self.assertEqual(evidence[0]["source_urls"], ["https://example.test/guideline"])
+
+    def test_verifier_uses_isolated_audit_view(self):
+        from agents.graph_new import _verifier_view
+
+        view = _verifier_view({
+            "messages": [HumanMessage(content="原始请求")],
+            "task_results": {
+                "medicine": {
+                    "agent": "pharmacy_agent",
+                    "status": "completed",
+                    "text": "隐藏的完整 ReAct 消息不应进入审计视图",
+                    "summary": "结构化摘要",
+                    "evidence": [{"source_ids": ["ev-1"]}],
+                },
+            },
+        })
+        self.assertEqual(view["original_input"], "原始请求")
+        self.assertEqual(view["task_results"]["medicine"]["summary"], "结构化摘要")
+        self.assertNotIn("text", view["task_results"]["medicine"])
+
+    def test_verifier_checks_summary_in_isolated_view(self):
+        from agents.graph_new import verifier
+
+        result = asyncio.run(verifier({
+            "messages": [HumanMessage(content="用户请求")],
+            "task_results": {
+                "medicine": {
+                    "agent": "pharmacy_agent",
+                    "status": "completed",
+                    "summary": "保证治愈，不会有风险",
+                    "evidence": [],
+                },
+            },
+        }))
+        self.assertEqual(result["verify_status"], "unsafe")
+
+    def test_verifier_deduplicates_repeated_safety_issue(self):
+        from agents.graph_new import verifier, _issue_fingerprint
+
+        target = {"task_id": "medicine", "target_agent": "pharmacy_agent", "required_action": "删除危险表述并重新生成安全结果；不得修改安全规则"}
+        result = asyncio.run(verifier({
+            "messages": [HumanMessage(content="用户请求")],
+            "task_results": {"medicine": {"agent": "pharmacy_agent", "status": "completed", "summary": "保证治愈", "evidence": []}},
+            "repair_history": [_issue_fingerprint(target)],
+        }))
+        self.assertEqual(result["verify_status"], "exhausted")
+
     def test_repair_round_limit_routes_to_handoff(self):
         from agents.graph_new import route_after_verify
 

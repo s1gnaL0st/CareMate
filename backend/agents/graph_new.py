@@ -18,7 +18,7 @@ import logging
 import operator
 import asyncio
 from collections.abc import Awaitable, Callable
-from typing import Annotated, Any, Literal, TypedDict
+from typing import Annotated, Any, Literal, Mapping, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langgraph.graph import END, START, StateGraph
@@ -100,6 +100,7 @@ class TaskResult(TypedDict, total=False):
     tool_calls: list[str]
     attempt_count: int
     repair_instruction: str
+    evidence_count: int
 
 
 class AgentLoopState(TypedDict, total=False):
@@ -130,6 +131,8 @@ class AgentLoopState(TypedDict, total=False):
     verify_issues: list[str]
     repair_targets: list[dict[str, str]]
     repair_rounds: int
+    repair_history: list[str]
+    execution_metrics: dict[str, Any]
     handoff_reason: str
     final_response: str
     # Populated only by the offline evolution runner. Online API state never
@@ -540,19 +543,116 @@ def _agent_input_slice(state: AgentLoopState, task: PlannedTask, results: dict[s
     }
 
 
+def _evidence_records(messages: list[BaseMessage]) -> list[dict[str, Any]]:
+    """Extract bounded, provenance-aware evidence from tool messages.
+
+    Tools already return JSON with source/version fields where available. Keep
+    the raw payload out of the inter-agent envelope, but retain stable IDs and
+    enough metadata for an independent verifier to audit the claim.
+    """
+    records: list[dict[str, Any]] = []
+    for message in messages:
+        if getattr(message, "type", "") != "tool":
+            continue
+        tool_name = str(getattr(message, "name", "") or "unknown")
+        content = getattr(message, "content", "")
+        try:
+            payload = json.loads(content) if isinstance(content, str) else {}
+        except (TypeError, json.JSONDecodeError):
+            payload = {}
+        if not isinstance(payload, dict):
+            payload = {}
+        source_ids = []
+        for key in ("evidence_id", "evidence_ids", "source_id", "source_ids"):
+            value = payload.get(key)
+            if isinstance(value, list):
+                source_ids.extend(str(item)[:120] for item in value)
+            elif value:
+                source_ids.append(str(value)[:120])
+        source_urls = payload.get("source_urls") or payload.get("source_url")
+        records.append({
+            "tool": tool_name,
+            "source_type": str(payload.get("source_type") or payload.get("tool") or tool_name)[:80],
+            "source_ids": list(dict.fromkeys(source_ids))[:16],
+            "source_urls": source_urls if isinstance(source_urls, list) else ([str(source_urls)] if source_urls else []),
+            "version": str(payload.get("knowledge_version") or payload.get("version") or "unknown")[:80],
+            "retrieved_at": str(payload.get("retrieved_at") or payload.get("updated_at") or "runtime")[:80],
+            "content_hash": str(payload.get("content_hash") or payload.get("raw_sha256") or "")[:80],
+        })
+    return records[:32]
+
+
+def _issue_fingerprint(target: Mapping[str, Any]) -> str:
+    payload = json.dumps({
+        "task_id": target.get("task_id", ""),
+        "target_agent": target.get("target_agent", ""),
+        "required_action": target.get("required_action", ""),
+    }, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha1(payload.encode("utf-8")).hexdigest()[:16]
+
+
+def _verifier_view(state: AgentLoopState) -> dict[str, Any]:
+    """Build the verifier's isolated audit view.
+
+    Verifier policy never receives Agent ReAct messages or hidden reasoning. It
+    audits the original user request plus the structured task envelopes and
+    bounded tool provenance emitted by the executor.
+    """
+    original_input = _latest_human_text(list(state.get("messages", [])))
+    results = {}
+    for task_id, result in state.get("task_results", {}).items():
+        results[task_id] = {
+            "agent": result.get("agent"),
+            "status": result.get("status"),
+            "summary": result.get("summary") or result.get("text", ""),
+            "evidence": result.get("evidence", []),
+            "risk_level": result.get("risk_level", "unknown"),
+            "uncertainty": result.get("uncertainty", []),
+            "tool_calls": result.get("tool_calls", []),
+            "error": result.get("error"),
+        }
+    return {"original_input": original_input[:MAX_TASK_TEXT_CHARS], "task_results": results}
+
+
+def _repair_task_ids(tasks: list[PlannedTask], targets: list[dict[str, str]]) -> set[str]:
+    """Repair a target and invalidate completed descendants that depend on it."""
+    ids = {item.get("task_id") for item in targets}
+    changed = True
+    while changed:
+        changed = False
+        for task in tasks:
+            if task.id not in ids and any(dep in ids for dep in task.depends_on):
+                ids.add(task.id)
+                changed = True
+    return {item for item in ids if item}
+
+
 async def executor(state: AgentLoopState) -> dict[str, Any]:
     """Execute planned Agents by dependency waves, parallelizing independent work."""
     results = dict(state.get("task_results", {}))
-    repair_ids = {item.get("task_id") for item in state.get("repair_targets", [])}
+    tasks = list(state.get("task_queue", []))
+    repair_targets = list(state.get("repair_targets", []))
+    repair_ids = _repair_task_ids(tasks, repair_targets)
     repair_rounds = int(state.get("repair_rounds", 0)) + (1 if repair_ids else 0)
+    repair_history = list(state.get("repair_history", []))
+    repair_history.extend(
+        str(item.get("issue_id") or _issue_fingerprint(item))
+        for item in repair_targets
+        if str(item.get("issue_id") or _issue_fingerprint(item)) not in repair_history
+    )
+    metrics = dict(state.get("execution_metrics", {}))
+    metrics["repair_rounds"] = repair_rounds
+    metrics["repair_target_count"] = len(repair_ids)
     run_id = state.get("agent_run_id")
     if run_id:
-        from agent_persistence import mark_run_status, pause_requested, persist_task_result, recover_and_claim_task
+        from agent_persistence import mark_run_status, mark_tasks_stale, pause_requested, persist_task_result, recover_and_claim_task
         await mark_run_status(run_id, "running")
-    for wave in _dependency_waves(list(state.get("task_queue", []))):
+        if repair_ids:
+            await mark_tasks_stale(run_id, repair_ids)
+    for wave in _dependency_waves(tasks):
         if run_id and await pause_requested(run_id):
             await mark_run_status(run_id, "paused")
-            return {"task_results": results, "run_status": "paused", "repair_rounds": repair_rounds}
+            return {"task_results": results, "run_status": "paused", "repair_rounds": repair_rounds, "repair_history": repair_history, "execution_metrics": metrics}
         runnable: list[PlannedTask] = []
         for task in wave:
             if (
@@ -595,17 +695,21 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
                             for message in messages
                             if getattr(message, "type", "") == "tool" and getattr(message, "name", "")
                         ]
+                        evidence = _evidence_records(messages)
                         envelope = {
                             "summary": text[:MAX_TASK_TEXT_CHARS],
-                            "evidence": [
-                                {"tool": name, "source": "agent_tool_result"}
-                                for name in dict.fromkeys(tool_calls)
-                            ],
+                            "evidence": evidence,
                             "risk_level": "unknown",
                             "uncertainty": [],
                             "next_action": "",
                             "tool_calls": list(dict.fromkeys(tool_calls)),
+                            "evidence_count": len(evidence),
                         }
+                        envelope["repair_round"] = repair_rounds
+                        envelope["repair_issue_ids"] = [
+                            str(item.get("issue_id")) for item in repair_targets
+                            if item.get("task_id") == task.id and item.get("issue_id")
+                        ]
                         task_result = {
                             "agent": task.agent,
                             "objective": task.objective,
@@ -645,15 +749,20 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
             results[task.id] = result
         if run_id and await pause_requested(run_id):
             await mark_run_status(run_id, "paused")
-            return {"task_results": results, "run_status": "paused", "repair_rounds": repair_rounds}
-    return {"task_results": results, "repair_rounds": repair_rounds}
+            return {"task_results": results, "run_status": "paused", "repair_rounds": repair_rounds, "repair_history": repair_history, "execution_metrics": metrics}
+    metrics["completed_agent_count"] = sum(result.get("status") == "completed" for result in results.values())
+    metrics["failed_agent_count"] = sum(result.get("status") == "failed" for result in results.values())
+    return {"task_results": results, "repair_rounds": repair_rounds, "repair_history": repair_history, "execution_metrics": metrics}
 
 
 async def verifier(state: AgentLoopState) -> dict[str, Any]:
     """Check task completeness and non-negotiable safety rules."""
-    results = state.get("task_results", {})
+    audit_view = _verifier_view(state)
+    results = audit_view["task_results"]
     issues: list[str] = []
     repair_targets: list[dict[str, str]] = []
+    seen_fingerprints = set(state.get("repair_history", []))
+    repeated_issue = False
     unsafe_markers = ("包治百病", "保证治愈", "绝对不会有风险", "自行加大剂量")
     if not results:
         return {"verify_status": "fail", "verify_issues": ["没有收到专家结果"], "repair_targets": []}
@@ -662,21 +771,40 @@ async def verifier(state: AgentLoopState) -> dict[str, Any]:
             agent = result.get("agent", "unknown")
             issue = f"{agent} 执行失败"
             issues.append(issue)
-            repair_targets.append({
+            target = {
                 "task_id": str(task_id),
                 "target_agent": str(agent),
                 "required_action": "重试该领域 Agent 并返回可验证结果",
-            })
-        if any(marker in str(result.get("text", "")) for marker in unsafe_markers):
+            }
+            target["issue_id"] = _issue_fingerprint(target)
+            if target["issue_id"] not in seen_fingerprints:
+                repair_targets.append(target)
+            else:
+                repeated_issue = True
+        if any(marker in str(result.get("summary", "")) for marker in unsafe_markers):
+            target = {
+                "task_id": str(task_id),
+                "target_agent": str(result.get("agent", "unknown")),
+                "required_action": "删除危险表述并重新生成安全结果；不得修改安全规则",
+            }
+            target["issue_id"] = _issue_fingerprint(target)
+            if target["issue_id"] in seen_fingerprints:
+                return {
+                    "verify_status": "exhausted",
+                    "verify_issues": ["相同安全问题再次出现，停止重复重试"],
+                    "repair_targets": [],
+                }
             return {
                 "verify_status": "unsafe",
                 "verify_issues": ["专家结果触发医疗安全红线"],
-                "repair_targets": [{
-                    "task_id": str(task_id),
-                    "target_agent": str(result.get("agent", "unknown")),
-                    "required_action": "删除危险表述并重新生成安全结果；不得修改安全规则",
-                }],
+                "repair_targets": [target],
             }
+    if repeated_issue and not repair_targets:
+        return {
+            "verify_status": "exhausted",
+            "verify_issues": issues + ["相同修复问题再次出现，停止重复重试"],
+            "repair_targets": [],
+        }
     if issues:
         return {"verify_status": "partial", "verify_issues": issues, "repair_targets": repair_targets}
     return {"verify_status": "pass", "verify_issues": [], "repair_targets": []}
@@ -731,7 +859,22 @@ async def safety_response(state: AgentLoopState) -> dict[str, Any]:
 
 async def handoff(state: AgentLoopState) -> dict[str, Any]:
     reason = state.get("handoff_reason") or "本轮自动分析未能得到足够可靠的结果"
-    text = f"{reason}。建议联系医生或人工客服进一步处理。"
+    task_summary = [
+        {
+            "task_id": task.id,
+            "agent": task.agent,
+            "status": state.get("task_results", {}).get(task.id, {}).get("status", "pending"),
+        }
+        for task in state.get("task_queue", [])
+    ]
+    context = {
+        "request": state.get("health_text", "")[:1000],
+        "tasks": task_summary,
+        "issues": list(state.get("verify_issues", []))[:16],
+        "repair_history": list(state.get("repair_history", []))[:16],
+        "metrics": dict(state.get("execution_metrics", {})),
+    }
+    text = f"{reason}。建议联系医生或人工客服进一步处理。\n交接摘要：{json.dumps(context, ensure_ascii=False)}"
     return {"messages": [AIMessage(content=text)], "final_response": text}
 
 

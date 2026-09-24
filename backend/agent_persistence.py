@@ -233,6 +233,25 @@ async def persist_task_result(run_id: str, task_key: str, result: dict[str, Any]
         await db.commit()
 
 
+async def mark_tasks_stale(run_id: str, task_keys: set[str]) -> None:
+    """Invalidate targeted tasks and downstream descendants before repair."""
+    if not task_keys:
+        return
+    async with SessionLocal() as db:
+        await db.execute(update(AgentTask).where(
+            AgentTask.run_id == run_id,
+            AgentTask.task_key.in_(task_keys),
+            AgentTask.status == "completed",
+        ).values(
+            status="pending",
+            result=None,
+            error_message="stale_after_targeted_repair",
+            completed_at=None,
+            lease_until=None,
+        ))
+        await db.commit()
+
+
 async def load_resume_state(run_id: str, user_id: str) -> dict[str, Any] | None:
     """Rebuild the graph input from the durable run and task ledger."""
     async with SessionLocal() as db:
