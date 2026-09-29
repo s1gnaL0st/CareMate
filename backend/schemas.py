@@ -19,7 +19,10 @@ class LoginRequest(BaseModel):
 class UserResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: str
-    email: EmailStr
+    # The development seed uses the reserved ``.local`` domain. Login
+    # responses must still expose it; registration keeps EmailStr validation
+    # via UserCreate above.
+    email: str
     name: str
     is_active: bool
 
