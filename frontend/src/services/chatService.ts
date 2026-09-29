@@ -29,6 +29,7 @@ const apiJson = async <T>(path: string, init: RequestInit = {}, token?: string):
     if (authToken) headers.set('Authorization', `Bearer ${authToken}`);
     const response = await fetch(`${API_BASE_URL}${path}`, { ...init, headers });
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    if (response.status === 204) return undefined as T;
     return response.json() as Promise<T>;
 };
 
@@ -66,6 +67,7 @@ export interface PersistedMessage {
 
 export const listConversations = () => apiJson<ConversationSummary[]>('/conversations');
 export const createConversation = (title = '新对话') => apiJson<ConversationSummary>('/conversations', { method: 'POST', body: JSON.stringify({ title }) });
+export const deleteConversation = (conversationId: string) => apiJson<void>(`/conversations/${conversationId}`, { method: 'DELETE' });
 export const listMessages = (conversationId: string) => apiJson<PersistedMessage[]>(`/conversations/${conversationId}/messages`);
 
 export interface ReportListItem {

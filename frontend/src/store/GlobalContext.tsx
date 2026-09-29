@@ -1,7 +1,7 @@
 // @refresh reset
 import { createContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 import type { ChatMode, ChatMessage, ChatCardPayload, ScanType } from '../types';
-import { createConversation, getAuthToken, listConversations, listMessages, updateLocalUserProfileFromText, type ConversationSummary } from '../services/chatService';
+import { createConversation, deleteConversation, getAuthToken, listConversations, listMessages, updateLocalUserProfileFromText, type ConversationSummary } from '../services/chatService';
 
 const LOCAL_CONVERSATIONS_KEY = 'smart_health_local_conversations';
 const localMessagesKey = (id: string) => `smart_health_local_messages:${id}`;
@@ -64,6 +64,7 @@ export interface GlobalState {
     conversations: ConversationSummary[];
     selectConversation: (id: string) => Promise<void>;
     createNewConversation: () => Promise<void>;
+    deleteConversationById: (id: string) => Promise<void>;
     conversationError: string | null;
 }
 
@@ -87,15 +88,30 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [conversationId, setConversationId] = useState<string | null>(() => localStorage.getItem('smart_health_conversation_id'));
     const [conversations, setConversations] = useState<ConversationSummary[]>([]);
     const [conversationError, setConversationError] = useState<string | null>(null);
+    const selectionVersion = useRef(0);
 
     const selectConversation = useCallback(async (id: string) => {
+        const version = ++selectionVersion.current;
         setConversationError(null);
+        // Clear the previous conversation immediately so a slow request cannot
+        // make the old answer appear to belong to the newly selected session.
+        setMessages([createWelcomeMessage()]);
         let persisted: Array<{ id: string; role: 'user' | 'assistant'; content: string; created_at: string }> = [];
-        if (id.startsWith('local-')) {
-            try { persisted = JSON.parse(localStorage.getItem(localMessagesKey(id)) || '[]'); } catch { persisted = []; }
-        } else {
-            persisted = await listMessages(id);
+        try {
+            if (id.startsWith('local-')) {
+                try { persisted = JSON.parse(localStorage.getItem(localMessagesKey(id)) || '[]'); } catch { persisted = []; }
+            } else {
+                persisted = await listMessages(id);
+            }
+        } catch (error) {
+            if (version === selectionVersion.current) {
+                setConversationError('会话消息加载失败，请重试');
+                setConversationId(id);
+                localStorage.setItem('smart_health_conversation_id', id);
+            }
+            return;
         }
+        if (version !== selectionVersion.current) return;
         setConversationId(id);
         localStorage.setItem('smart_health_conversation_id', id);
         setChatMode('general');
@@ -132,6 +148,28 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         chatModeRef.current = 'general';
         setMessages([createWelcomeMessage()]);
     }, [accessToken]);
+
+    const deleteConversationById = useCallback(async (id: string) => {
+        setConversationError(null);
+        try {
+            if (id.startsWith('local-')) {
+                localStorage.removeItem(localMessagesKey(id));
+                const nextLocal = readLocalConversations().filter(item => item.id !== id);
+                localStorage.setItem(LOCAL_CONVERSATIONS_KEY, JSON.stringify(nextLocal));
+            } else {
+                await deleteConversation(id);
+            }
+            const remaining = conversations.filter(item => item.id !== id);
+            setConversations(remaining);
+            if (conversationId === id) {
+                const next = remaining[0];
+                if (next) await selectConversation(next.id);
+                else await createNewConversation();
+            }
+        } catch {
+            setConversationError('会话删除失败，请稍后重试');
+        }
+    }, [conversationId, conversations, createNewConversation, selectConversation]);
 
     useEffect(() => {
         if (!accessToken) {
@@ -290,7 +328,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             isScanning, setIsScanning,
             scanType, setScanType,
             accessToken, setAccessToken, conversationId, setConversationId,
-            conversations, selectConversation, createNewConversation, conversationError
+            conversations, selectConversation, createNewConversation, deleteConversationById, conversationError
         }}>
             {children}
         </GlobalContext.Provider>

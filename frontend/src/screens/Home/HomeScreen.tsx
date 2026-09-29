@@ -1,4 +1,4 @@
-import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, LogOut, MessageSquare, Pill, Plus, ShieldCheck, Stethoscope } from 'lucide-react';
+import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, LogOut, MessageSquare, Pill, Plus, ShieldCheck, Stethoscope, Trash2 } from 'lucide-react';
 import { logout } from '../../services/chatService';
 import { useGlobalStore } from '../../store/useGlobalStore';
 import GlobalChatView from '../../components/chat/GlobalChatView';
@@ -14,7 +14,7 @@ const RAIL_ITEMS: { id: ChatMode; label: string; icon: typeof Stethoscope }[] = 
 ];
 
 const HomeScreen = () => {
-    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages, conversations, conversationId, selectConversation, createNewConversation, conversationError, setAccessToken } = useGlobalStore();
+    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages, conversations, conversationId, selectConversation, createNewConversation, deleteConversationById, conversationError, setAccessToken } = useGlobalStore();
     const activeLabel = RAIL_ITEMS.find(item => item.id === chatMode)?.label ?? '综合健康咨询';
 
     return (
@@ -66,6 +66,7 @@ const HomeScreen = () => {
                                 >
                                     <MessageSquare size={14} />
                                     <span>{conversation.title || '新对话'}</span>
+                                    <span className="conversation-delete" role="button" tabIndex={0} title="删除会话" aria-label={`删除${conversation.title || '新对话'}`} onClick={event => { event.stopPropagation(); void deleteConversationById(conversation.id); }} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); void deleteConversationById(conversation.id); } }}><Trash2 size={13} /></span>
                                 </button>
                             ))}
                         </div>

@@ -49,7 +49,10 @@ button { cursor: pointer; }
 .conversation-list-heading .icon-button { width:28px; height:28px; border-radius:8px; }
 .conversation-list { display:grid; gap:3px; max-height:172px; overflow-y:auto; }
 .conversation-list-item { display:flex; align-items:center; gap:7px; width:100%; min-width:0; padding:8px; border:0; border-radius:8px; color:#76867e; background:transparent; text-align:left; font-size:11px; }
-.conversation-list-item span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.conversation-list-item span:not(.conversation-delete) { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.conversation-delete { display:flex; flex:0 0 auto; margin-left:auto; padding:3px; color:#a4b1aa; border-radius:5px; opacity:0; }
+.conversation-list-item:hover .conversation-delete,.conversation-list-item.active .conversation-delete { opacity:1; }
+.conversation-delete:hover { color:#b04f4f; background:#fff0ef; }
 .conversation-list-item:hover,.conversation-list-item.active { color:#17664f; background:#edf8f1; }
 .conversation-error { margin:6px 0; color:#b06b47; font-size:10px; line-height:1.4; }
 .rail-footnote { margin-top:20px; padding:12px; border-radius:12px; background:#fff8ed; color:#8b7358; font-size:11px; line-height:1.55; }
