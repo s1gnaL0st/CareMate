@@ -157,7 +157,9 @@ def get_master_app():
 _NODE_LABELS = {
     "intent_gate": "检查需求与安全风险",
     "planner": "规划健康任务",
-    "executor": "调用专业健康模块",
+    # Executor can run chat/profile, report, pharmacy, insurance or clinic
+    # tasks. Keep the label neutral; the concrete agent is recorded in trace.
+    "executor": "执行已规划任务",
     "verifier": "核验分析结果",
     "responder": "整理最终答复",
     "clarification_response": "等待补充信息",
