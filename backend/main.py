@@ -678,9 +678,9 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
             assistant_text.append(diagnostic)
             yield await _emit({"type": "text", "content": diagnostic})
         outcome = "paused" if terminal_node == "paused" else "completed"
-        await _record_experience(outcome)
-        if initial_state.get("agent_run_id"):
-            await mark_run_status(initial_state["agent_run_id"], outcome)
+        # Persist the user-visible conversation before auxiliary telemetry.
+        # Agent-run bookkeeping uses a separate transaction and may hit a
+        # MySQL lock timeout; it must never roll back a completed answer.
         if db is not None and conversation is not None:
             if assistant_text:
                 metadata = {"request_id": request_id, "status": "completed"}
@@ -698,6 +698,15 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                 )
                 run.latency_ms = int((perf_counter() - started_at) * 1000)
             await db.commit()
+        try:
+            await _record_experience(outcome)
+        except Exception as exc:
+            logger.warning("experience persistence skipped after completed chat: %s", type(exc).__name__)
+        if initial_state.get("agent_run_id"):
+            try:
+                await mark_run_status(initial_state["agent_run_id"], outcome)
+            except Exception as exc:
+                logger.warning("agent run status update skipped after completed chat: %s", type(exc).__name__)
         if runtime is not None:
             yield await _emit({"type": "runtime_end", "runtime": runtime.describe()})
         yield await _emit({"type": "finish", "request_id": request_id})
