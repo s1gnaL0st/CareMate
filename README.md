@@ -116,6 +116,8 @@ npm run dev
 
 访问 <http://localhost:5173>。本地可观测性：
 
+开发环境首次启动会幂等创建默认管理员：`admin` / `123`。该账号仅用于本地演示，生产环境请设置 `SEED_ADMIN=false` 并立即更换凭据。
+
 ```bash
 docker compose -f compose.observability.yml up -d
 ```

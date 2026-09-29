@@ -1,4 +1,5 @@
-import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, MessageSquare, Pill, Plus, ShieldCheck, Stethoscope } from 'lucide-react';
+import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, LogOut, MessageSquare, Pill, Plus, ShieldCheck, Stethoscope } from 'lucide-react';
+import { logout } from '../../services/chatService';
 import { useGlobalStore } from '../../store/useGlobalStore';
 import GlobalChatView from '../../components/chat/GlobalChatView';
 import ChatModeHeader from '../../components/chat/ChatModeHeader';
@@ -13,7 +14,7 @@ const RAIL_ITEMS: { id: ChatMode; label: string; icon: typeof Stethoscope }[] = 
 ];
 
 const HomeScreen = () => {
-    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages, conversations, conversationId, selectConversation, createNewConversation, conversationError } = useGlobalStore();
+    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages, conversations, conversationId, selectConversation, createNewConversation, conversationError, setAccessToken } = useGlobalStore();
     const activeLabel = RAIL_ITEMS.find(item => item.id === chatMode)?.label ?? '综合健康咨询';
 
     return (
@@ -31,6 +32,7 @@ const HomeScreen = () => {
                     <button className={`elder-toggle ${isElderMode ? 'active' : ''}`} onClick={() => setIsElderMode(!isElderMode)}>
                         {isElderMode ? '长辈模式已开' : '长辈模式'}
                     </button>
+                    <button className="icon-button" aria-label="退出登录" title="退出登录" onClick={() => void logout().finally(() => setAccessToken(null))}><LogOut size={17} /></button>
                     <button className="icon-button" aria-label="帮助"><CircleHelp size={17} /></button>
                 </div>
             </header>

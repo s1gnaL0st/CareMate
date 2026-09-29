@@ -33,7 +33,11 @@ async def register(payload: UserCreate, db: AsyncSession = Depends(get_db)):
 
 @auth_router.post("/login", response_model=TokenResponse)
 async def login(payload: LoginRequest, db: AsyncSession = Depends(get_db)):
-    user = await db.scalar(select(User).where(User.email == str(payload.email).lower()))
+    email = str(payload.email).lower().strip()
+    # The development seed account is intentionally convenient to type.
+    if email == "admin":
+        email = "admin@caremate.local"
+    user = await db.scalar(select(User).where(User.email == email))
     if user is None or not verify_password(payload.password, user.password_hash):
         raise HTTPException(status_code=401, detail="邮箱或密码错误")
     if not user.is_active:

@@ -15,6 +15,7 @@ import HomeScreen from './screens/Home/HomeScreen';
 
 // Admin screens that still have standalone value (accessible from settings/links)
 import DashboardScreen from './screens/Dashboard/DashboardScreen';
+import AuthScreen from './screens/Auth/AuthScreen';
 
 
 // The main Screen selector (only a few non-chat screens remain)
@@ -34,6 +35,8 @@ const ScreenRouter = () => {
 };
 
 const AppContent = () => {
+  const { accessToken } = useGlobalStore();
+  if (!accessToken) return <AuthScreen />;
   return (
     <MobileWrapper>
       <ScreenRouter />

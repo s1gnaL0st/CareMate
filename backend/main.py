@@ -19,10 +19,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.middleware.base import BaseHTTPMiddleware
 from langchain_core.messages import HumanMessage, AIMessage
 from api_v1 import router as api_v1_router
-from auth import get_current_user, get_optional_current_user
+from auth import get_current_user, get_optional_current_user, hash_password
 from config import get_settings
 from db import close_clients, engine, get_db, redis_client
-from models import AgentRun, AgentRunEvent, ChatRun, Conversation, Message, User
+from models import AgentRun, AgentRunEvent, ChatRun, Conversation, Message, User, UserProfile
 from agent_persistence import (
     create_agent_run,
     get_run,
@@ -74,6 +74,22 @@ if _observability_runtime.provider != "none":
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
+    # Development convenience: keep the demo login available after every
+    # migration/restart without overwriting an existing password.
+    if settings.environment != "production" and os.getenv("SEED_ADMIN", "true").lower() == "true":
+        try:
+            from db import SessionLocal
+            async with SessionLocal() as db:
+                admin = await db.scalar(select(User).where(User.email == "admin@caremate.local"))
+                if admin is None:
+                    admin = User(email="admin@caremate.local", password_hash=hash_password("123"), name="CareMate Admin")
+                    db.add(admin)
+                    await db.flush()
+                    db.add(UserProfile(user_id=admin.id))
+                    await db.commit()
+                    logger.info("created development admin account: admin / 123")
+        except Exception:
+            logger.exception("failed to initialize development admin account")
     yield
     _observability_runtime.shutdown()
     await close_clients()

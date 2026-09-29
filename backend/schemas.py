@@ -11,7 +11,8 @@ class UserCreate(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    email: EmailStr
+    # Accept the development alias ``admin`` as well as a normal email.
+    email: str = Field(min_length=1, max_length=255)
     password: str = Field(min_length=1, max_length=128)
 
 

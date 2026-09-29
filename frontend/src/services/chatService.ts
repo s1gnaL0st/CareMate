@@ -43,6 +43,9 @@ export const register = async (email: string, password: string, name: string) =>
     setAuthToken(result.access_token);
     return result;
 };
+export const logout = async () => {
+    try { await apiJson('/auth/logout', { method: 'POST' }); } finally { setAuthToken(null); }
+};
 
 export interface ConversationSummary {
     id: string;
