@@ -501,6 +501,7 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                     user_id=str(initial_state["user_id"]),
                     latest_user_text=latest_input,
                     conversation_id=conversation.id if conversation is not None else None,
+                    intent=str(initial_state.get("intent") or ""),
                 )
                 await db.flush()
             except Exception:

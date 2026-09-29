@@ -10,7 +10,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 import os
 import re
-from typing import Any
+import json
+import logging
+from typing import Any, Literal
 
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -18,6 +20,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from config import get_settings
 from models import Conversation, HealthEvent, MemoryCandidate, Message
 from agents.safety import UnsafePromptError, validate_untrusted_text
+from agents.llm import get_chat_llm
+from langchain_core.messages import HumanMessage, SystemMessage
+from pydantic import BaseModel, Field, ValidationError
+
+logger = logging.getLogger("smart_health.shadow_memory")
 
 
 SHADOW_INTERVAL = 10
@@ -38,6 +45,57 @@ _OCCUPATION_RE = re.compile(
     r"(?:我(?:是|是一名|叫做)|我的职业是|我从事)(?P<occupation>[\u4e00-\u9fffA-Za-z0-9·]{2,20})"
     r"(?:司机|工程师|教师|老师|学生|研究生|医生|护士|药师|程序员|设计师|律师|会计|工人|销售|管理|技师|厨师|农民)(?=[，,。！？!?；;]|$)"
 )
+
+
+class ShadowMemoryItem(BaseModel):
+    """Low-risk, user-explicit memory proposed by the shadow agent."""
+
+    kind: Literal["preference", "service_preference"] = "preference"
+    value: str = Field(min_length=1, max_length=240)
+    confidence: float = Field(default=0.8, ge=0, le=1)
+
+
+class ShadowMemoryBatch(BaseModel):
+    items: list[ShadowMemoryItem] = Field(default_factory=list, max_length=8)
+
+
+async def _shadow_extract(latest_user_text: str) -> list[dict[str, Any]]:
+    """Use a tool-free LLM shadow agent to extract only explicit low-risk memory.
+
+    The shadow agent is advisory: its output is schema-validated, safety
+    filtered and stored as an accepted candidate only after these checks.
+    It cannot write files, call tools, infer diagnoses or invent preferences.
+    """
+    prompt = SystemMessage(content=(
+        "你是用户记忆维护 Shadow Agent。只从用户本轮明确说出的内容中提取低风险、长期有用的用户画像或回答偏好。"
+        "允许提取职业、身份、语言偏好、回答格式偏好；禁止提取或推断疾病、诊断、药物、政治、金融、密码等敏感事实。"
+        "不要把健康症状转换成用户偏好。没有明确且可长期复用的信息就返回空数组。"
+        "只输出 JSON：{\"items\":[{\"kind\":\"preference\",\"value\":\"用户职业：货车司机\",\"confidence\":0.95}]}。"
+    ))
+    try:
+        response = await get_chat_llm("precise", streaming=False, temperature=0).ainvoke(
+            [prompt, HumanMessage(content=latest_user_text[:1200])],
+            config={"tags": ["shadow_memory_agent"]},
+        )
+        raw = str(getattr(response, "content", response) or "").strip()
+        if raw.startswith("```"):
+            raw = raw.strip("`").replace("json\n", "", 1).strip()
+        batch = ShadowMemoryBatch.model_validate(json.loads(raw))
+        result: list[dict[str, Any]] = []
+        for item in batch.items:
+            value = re.sub(r"\s+", " ", item.value).strip()
+            try:
+                validate_untrusted_text(value)
+            except UnsafePromptError:
+                continue
+            result.append({"key": "shadow_llm", "value": value, "source": "shadow_memory_agent", "confidence": item.confidence})
+        return result
+    except (ValidationError, ValueError, TypeError, json.JSONDecodeError) as exc:
+        logger.warning("shadow memory structured extraction failed: %s", type(exc).__name__)
+        return []
+    except Exception as exc:
+        logger.warning("shadow memory LLM unavailable: %s", type(exc).__name__)
+        return []
 
 
 def _projection_root() -> Path:
@@ -75,9 +133,24 @@ def extract_explicit_preferences(text: str) -> list[dict[str, Any]]:
     return found
 
 
-async def _upsert_preferences(db: AsyncSession, *, user_id: str, text: str, conversation_id: str | None) -> int:
+async def _upsert_preferences(
+    db: AsyncSession,
+    *,
+    user_id: str,
+    text: str,
+    conversation_id: str | None,
+    shadow_items: list[dict[str, Any]] | None = None,
+) -> int:
     count = 0
-    for item in extract_explicit_preferences(text):
+    items = extract_explicit_preferences(text)
+    for candidate in shadow_items or []:
+        if isinstance(candidate, dict) and candidate.get("value"):
+            items.append(candidate)
+    seen_values: set[str] = set()
+    for item in items:
+        if item.get("value") in seen_values:
+            continue
+        seen_values.add(item.get("value"))
         try:
             validate_untrusted_text(item["value"])
         except UnsafePromptError:
@@ -157,11 +230,19 @@ async def maybe_run_shadow_memory(
     user_id: str,
     latest_user_text: str,
     conversation_id: str | None = None,
+    intent: str | None = None,
 ) -> dict[str, Any]:
-    """Run after a turn; explicit preferences are immediate, otherwise every 10 user turns."""
-    extracted = await _upsert_preferences(db, user_id=user_id, text=latest_user_text, conversation_id=conversation_id)
     turns = await _user_message_count(db, user_id)
-    triggered = bool(extracted or (turns > 0 and turns % SHADOW_INTERVAL == 0))
+    # Profile turns are extracted immediately; broad maintenance runs every
+    # ten turns. This keeps cross-session identity available without invoking a
+    # full memory pass on every ordinary health question.
+    should_invoke_shadow = intent in {"profile_update", "mixed"} or turns > 0 and turns % SHADOW_INTERVAL == 0
+    shadow_items = await _shadow_extract(latest_user_text) if should_invoke_shadow else []
+    extracted = await _upsert_preferences(
+        db, user_id=user_id, text=latest_user_text,
+        conversation_id=conversation_id, shadow_items=shadow_items,
+    )
+    triggered = bool(extracted or should_invoke_shadow)
     if not triggered:
         return {"triggered": False, "turns": turns, "extracted": extracted}
     projection = await project_user_memory(db, user_id=user_id)
