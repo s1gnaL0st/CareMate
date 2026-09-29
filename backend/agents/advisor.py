@@ -18,6 +18,7 @@ from agentic_rag import retrieve_until_sufficient
 from skills import get_agent_tools, load_skill
 from tool_executor import ToolExecutor
 from mcp_adapter import MCPUnavailableError, call_mcp_tool
+from memory_manager import memory_prompt_context
 
 
 class LiteratureSearchInput(BaseModel):
@@ -74,6 +75,9 @@ async def advisor_node(state: MainAgentState) -> dict:
     llm = get_chat_llm("fast")
     user_info = state.get("user_info", {})
     system_prompt = _build_system_prompt(user_info)
+    # Cross-session, user-approved memories are part of the advisor context.
+    # Keep them explicitly labelled as memories rather than medical facts.
+    system_prompt += memory_prompt_context(user_info)
     offline_evidence = []
 
     last_user_msg = next(

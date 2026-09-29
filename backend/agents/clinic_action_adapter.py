@@ -57,7 +57,7 @@ CLINIC_ACTION_TOOLS: tuple[dict[str, Any], ...] = (
             "description": "读取当前患者的结构化病例字段。",
             "parameters": {
                 "type": "object",
-                "properties": {"field": {"type": "string", "enum": ["age", "sex", "history", "medications", "allergies", "uploaded_reports", "all"]}},
+                "properties": {"field": {"type": "string", "enum": ["age", "sex", "history", "medications", "allergies", "uploaded_reports", "profile", "all"]}},
                 "required": ["field"],
                 "additionalProperties": False,
             },
@@ -407,13 +407,21 @@ class ClinicActionAdapter:
         return json.dumps({"success": False, "action": "check", "error": "unsupported_check_type"}, ensure_ascii=False)
 
     async def _lookup(self, field: str) -> str:
-        allowed = {"age", "sex", "history", "medications", "allergies", "uploaded_reports", "all"}
+        allowed = {"age", "sex", "history", "medications", "allergies", "uploaded_reports", "profile", "all"}
         if field not in allowed:
             return json.dumps({"success": False, "action": "lookup", "error": "invalid_field"}, ensure_ascii=False)
         info = dict(self.state.get("user_info", {}) or {})
         mapping = {"age": "age", "sex": "sex", "history": "medical_history", "medications": "medications", "allergies": "allergies", "uploaded_reports": "uploaded_reports"}
+        remembered = info.get("response_preferences") or (info.get("memory_context") or {}).get("active_preferences") or []
+        if not isinstance(remembered, list):
+            remembered = []
+        profile = [str(item) for item in remembered if str(item).strip()]
         if field == "all":
             result = {key: info.get(key) for key in mapping.values() if info.get(key) not in (None, "", [], {})}
+            if profile:
+                result["remembered_profile"] = profile[:10]
+        elif field == "profile":
+            result = {"profile": profile[:10]}
         else:
             key = mapping[field]
             result = {field: info.get(key)} if info.get(key) not in (None, "", [], {}) else {field: None}
