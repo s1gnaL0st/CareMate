@@ -127,7 +127,22 @@ export interface UserInfoPayload {
     medical_history?: string;
     elder_mode?: boolean;
     region?: string;
+    profession?: string;
 }
+
+const LOCAL_PROFILE_KEY = 'smart_health_user_profile';
+export const getLocalUserProfile = (): UserInfoPayload => {
+    try { return JSON.parse(localStorage.getItem(LOCAL_PROFILE_KEY) || '{}') as UserInfoPayload; } catch { return {}; }
+};
+export const updateLocalUserProfileFromText = (text: string): UserInfoPayload => {
+    const current = getLocalUserProfile();
+    if (/我(?:是|是一名|的职业是)程序员|做程序员/.test(text)) current.profession = '程序员';
+    if (/我(?:是|是一名|的职业是)医生/.test(text)) current.profession = '医生';
+    if (/我(?:是|是一名|的职业是)护士/.test(text)) current.profession = '护士';
+    if (/我(?:是|是一名|的职业是)药师/.test(text)) current.profession = '药师';
+    localStorage.setItem(LOCAL_PROFILE_KEY, JSON.stringify(current));
+    return current;
+};
 
 export type VisionScanType = 'report' | 'drug_box' | 'trace_code';
 

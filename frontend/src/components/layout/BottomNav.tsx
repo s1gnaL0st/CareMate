@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useGlobalStore } from '../../store/useGlobalStore';
 import { MODULES } from '../../data/appConfig';
 import type { ChatMessage, ChatMode } from '../../types';
-import type { VisionScanType } from '../../services/chatService';
+import { updateLocalUserProfileFromText, type VisionScanType } from '../../services/chatService';
 import SuggestionScroller from '../chat/SuggestionScroller';
 import InputBar from '../chat/InputBar';
 
@@ -32,6 +32,8 @@ const BottomNav = () => {
     const handleSend = useCallback(async (text = inputValue) => {
         const content = text.trim();
         if (!content) return;
+
+        const userProfile = updateLocalUserProfileFromText(content);
 
         setInputValue('');
 
@@ -111,7 +113,7 @@ const BottomNav = () => {
                     updateAssistant(m => ({ ...m, text: m.text + "\n[网络错误，请稍后再试]", isGenerating: false }));
                 }
             },
-            { elder_mode: isElderMode },
+            { ...userProfile, elder_mode: isElderMode },
             chatMode
         );
     }, [accessToken, chatMode, conversationId, enterChatMode, exitChatMode, inputValue, isElderMode, messages, setMessages]);

@@ -28,6 +28,13 @@ _PREFERENCE_RULES = (
     ("prefer_professional_language", ("专业一点", "多用专业术语", "按专业人士说"), "回答可使用必要的专业术语"),
 )
 
+_PROFILE_RULES = (
+    ("profile_programmer", ("我是程序员", "我是一名程序员", "我的职业是程序员", "做程序员"), "用户职业：程序员"),
+    ("profile_doctor", ("我是医生", "我是一名医生", "我的职业是医生"), "用户职业：医生"),
+    ("profile_nurse", ("我是护士", "我是一名护士", "我的职业是护士"), "用户职业：护士"),
+    ("profile_pharmacist", ("我是药师", "我是一名药师", "我的职业是药师"), "用户职业：药师"),
+)
+
 
 def _projection_root() -> Path:
     configured = get_settings().memory_projection_root
@@ -49,6 +56,9 @@ def extract_explicit_preferences(text: str) -> list[dict[str, Any]]:
     for key, markers, value in _PREFERENCE_RULES:
         if any(marker in source for marker in markers):
             found.append({"key": key, "value": value, "source": "user_explicit", "confidence": 1.0})
+    for key, markers, value in _PROFILE_RULES:
+        if any(marker in source for marker in markers):
+            found.append({"key": key, "value": value, "source": "user_explicit_profile", "confidence": 1.0})
     return found
 
 

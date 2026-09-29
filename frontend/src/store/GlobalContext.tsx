@@ -1,7 +1,7 @@
 // @refresh reset
 import { createContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 import type { ChatMode, ChatMessage, ChatCardPayload, ScanType } from '../types';
-import { createConversation, getAuthToken, listConversations, listMessages, type ConversationSummary } from '../services/chatService';
+import { createConversation, getAuthToken, listConversations, listMessages, updateLocalUserProfileFromText, type ConversationSummary } from '../services/chatService';
 
 const LOCAL_CONVERSATIONS_KEY = 'smart_health_local_conversations';
 const localMessagesKey = (id: string) => `smart_health_local_messages:${id}`;
@@ -171,6 +171,14 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         }));
         localStorage.setItem(localMessagesKey(conversationId), JSON.stringify(persisted));
     }, [conversationId, messages]);
+    useEffect(() => {
+        // Backfill a local profile from existing anonymous conversation history.
+        // This makes an occupation disclosed before the memory update available
+        // when the user opens a second local conversation.
+        for (const message of messages) {
+            if (message.role === 'user' && message.text) updateLocalUserProfileFromText(message.text);
+        }
+    }, [messages]);
     const [scanType, setScanType] = useState<ScanType>('药盒');
 
     const enterChatMode = useCallback((mode: ChatMode) => {
