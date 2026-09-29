@@ -13,7 +13,6 @@ fallback exists only for provider failures; it is not the normal routing path.
 from __future__ import annotations
 
 import hashlib
-import re
 import json
 import logging
 import operator
@@ -48,7 +47,7 @@ AgentName = Literal[
     "insurance_agent",
     "chat_agent",
 ]
-IntentName = Literal["emergency", "pure_chat", "mixed", "health"]
+IntentName = Literal["emergency", "pure_chat", "profile_update", "mixed", "health"]
 VerifyStatus = Literal["pass", "partial", "fail", "unsafe", "exhausted"]
 
 
@@ -143,11 +142,20 @@ class AgentLoopState(TypedDict, total=False):
 
 
 _INTENT_SYSTEM_PROMPT = """你是健康服务系统的意图安全门。
-请把用户最新请求归类为 pure_chat、health、mixed 或 emergency：
+请把用户最新请求归类为 pure_chat、profile_update、health、mixed 或 emergency：
 - pure_chat：问候、闲聊、情绪表达，且没有健康诉求。
+- profile_update：用户在陈述或修改自己的身份、职业、年龄、语言偏好、长期背景，
+  例如“我是北邮研究生”“我是一名程序员”“以后请用通俗一点的话”。这类请求不是医疗问诊，
+  但应保留给记忆层；如果同一句同时包含症状或健康问题，归类为 mixed 或 health。
 - health：一个或多个健康相关诉求。
 - mixed：健康诉求和问候/闲聊同时存在。
 - emergency：明确出现需要立即急救的危险信号。
+
+示例：
+- “我是北邮研究生” -> profile_update
+- “我是程序员，最近胸闷” -> mixed
+- “最近咳嗽怎么办” -> health
+- “你好，今天心口疼而且呼吸困难” -> emergency
 
 如果最新一句是在补充前面健康问题的时间、诱因、饮食、部位、严重程度或伴随症状，
 必须结合对话上下文，继续按 health 或 emergency 处理，不要把它误判成普通闲聊。
@@ -169,6 +177,8 @@ _PLANNER_SYSTEM_PROMPT = """你是大健康 App 的任务规划器。
 
 规划规则：
 - 不要为了凑任务调用 Agent。
+- intent=profile_update 时只安排一个 chat_agent 任务；该任务用于自然回应并让记忆层提取用户画像，
+  严禁调用 symptom_agent、report_agent 或 pharmacy_agent。
 - 处方药/个性化用药问题通常先依赖 symptom_agent，再调用 pharmacy_agent。
 - 互不依赖的任务可以并行执行。
 - 如果最近对话里 symptom_agent 已经向患者追问，而最新一句是在回答、补充信息，
@@ -304,29 +314,8 @@ def _fallback_intent(text: str) -> IntentDecision:
     return IntentDecision(intent=intent, normalized_request=text[:MAX_TASK_TEXT_CHARS], confidence=0.2)
 
 
-# Short self-introductions are profile/memory signals, not clinical requests.
-# Keep this deterministic guard ahead of the LLM router: otherwise phrases
-# such as ``我是北邮研究生`` can be spuriously sent to the symptom agent.
-_PROFILE_STATEMENT_RE = re.compile(
-    r"^(?:我(?:是|叫|来自|在)|本人(?:是|叫)|我的(?:职业|身份|专业)(?:是|为))[^。！？!?]{1,40}[。！？!?]?$"
-)
-_PROFILE_HEALTH_TERMS = (
-    "症状", "不舒服", "疼", "痛", "发烧", "咳嗽", "胸闷", "气短", "恶心",
-    "呕吐", "腹泻", "疾病", "病人", "患者", "糖尿病", "高血压", "过敏", "用药",
-)
-
-
-def _is_profile_statement(text: str) -> bool:
-    normalized = re.sub(r"\s+", "", str(text or "")).strip()
-    return bool(
-        normalized
-        and _PROFILE_STATEMENT_RE.match(normalized)
-        and not any(term in normalized for term in _PROFILE_HEALTH_TERMS)
-    )
-
-
 def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
-    if intent == "pure_chat":
+    if intent in {"pure_chat", "profile_update"}:
         return Plan(tasks=[PlannedTask(
             id="chat-fallback",
             agent="chat_agent",
@@ -402,15 +391,6 @@ async def intent_gate(state: AgentLoopState) -> dict[str, Any]:
         logger.warning("intent gate unavailable: %s", type(exc).__name__)
         decision = _fallback_intent(latest_text)
 
-    # Profile statements should never start a medical interview. They remain
-    # available to the memory layer through the normal chat turn.
-    if _is_profile_statement(latest_text):
-        decision = IntentDecision(
-            intent="pure_chat",
-            normalized_request=latest_text[:MAX_TASK_TEXT_CHARS],
-            confidence=1.0,
-        )
-
     if decision.intent == "emergency":
         return {
             "intent": "emergency",
@@ -465,6 +445,17 @@ async def planner(state: AgentLoopState) -> dict[str, Any]:
     except Exception as exc:
         logger.warning("planner unavailable: %s", type(exc).__name__)
         plan = _fallback_plan(normalized_request, intent)
+
+    # The intent contract is a routing boundary, not a suggestion to the
+    # planner. Enforce the profile lane even if a provider emits an invalid
+    # domain plan; this is policy validation, not phrase-level hardcoding.
+    if intent == "profile_update":
+        plan = Plan(tasks=[PlannedTask(
+            id="profile-update",
+            agent="chat_agent",
+            objective="回应用户的画像/偏好陈述，并保留给记忆层提取",
+            input_slice=normalized_request,
+        )])
 
     # A patient answering an open symptom question (including “我不知道”) is
     # still inside the clinical interview.  Keep this continuation in the
