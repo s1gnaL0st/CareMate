@@ -138,6 +138,7 @@ class AgentLoopState(TypedDict, total=False):
     # Populated only by the offline evolution runner. Online API state never
     # carries this field, so candidates cannot affect production behavior.
     offline_evaluation_overlay: dict[str, Any]
+    offline_evidence_capture: bool
 
 
 _INTENT_SYSTEM_PROMPT = """你是健康服务系统的意图安全门。
@@ -538,6 +539,7 @@ def _agent_input_slice(state: AgentLoopState, task: PlannedTask, results: dict[s
         # roles even though the model prompt merges system preambles.
         "conversation_messages": list(state.get("messages", [])),
         "user_info": state.get("user_info", {}),
+        "offline_evidence_capture": state.get("offline_evidence_capture") is True,
         "next_agent": "",
         "active_agent": "",
     }
@@ -696,6 +698,21 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
                             if getattr(message, "type", "") == "tool" and getattr(message, "name", "")
                         ]
                         evidence = _evidence_records(messages)
+                        offline_evidence = result.get("offline_evidence", [])
+                        rag_trace = result.get("rag_trace")
+                        if state.get("offline_evidence_capture") is True:
+                            for item in offline_evidence[:8]:
+                                if not isinstance(item, dict):
+                                    continue
+                                evidence.append({
+                                    "tool": "knowledge_base.aretrieve",
+                                    "source_type": "rag_document",
+                                    "source_ids": [str(item.get("source_id", ""))[:240]] if item.get("source_id") else [],
+                                    "source_urls": [],
+                                    "version": str(item.get("version") or "unknown")[:80],
+                                    "retrieved_at": "runtime",
+                                    "text": str(item.get("text") or "")[:2000],
+                                })
                         envelope = {
                             "summary": text[:MAX_TASK_TEXT_CHARS],
                             "evidence": evidence,
@@ -705,6 +722,12 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
                             "tool_calls": list(dict.fromkeys(tool_calls)),
                             "evidence_count": len(evidence),
                         }
+                        if isinstance(rag_trace, dict):
+                            envelope["rag_trace"] = rag_trace
+                            if not rag_trace.get("sufficient", False):
+                                envelope["uncertainty"].append(
+                                    "Agentic RAG 证据覆盖不足: " + ", ".join(rag_trace.get("missing_facets", []))
+                                )
                         envelope["repair_round"] = repair_rounds
                         envelope["repair_issue_ids"] = [
                             str(item.get("issue_id")) for item in repair_targets
@@ -719,7 +742,12 @@ async def executor(state: AgentLoopState) -> dict[str, Any]:
                             "attempt_count": attempt,
                         }
                         if run_id:
-                            await persist_task_result(run_id, task.id, task_result)
+                            durable_result = dict(task_result)
+                            durable_result["evidence"] = [
+                                {key: value for key, value in item.items() if key != "text"}
+                                for item in evidence
+                            ]
+                            await persist_task_result(run_id, task.id, durable_result)
                         return task, task_result
                     last_error = "empty_result"
                 except Exception as exc:
@@ -825,6 +853,24 @@ async def responder(state: AgentLoopState) -> dict[str, Any]:
 
     evidence = json.dumps(list(state.get("task_results", {}).values()), ensure_ascii=False, default=str)[:18000]
     preferences = list(state.get("user_info", {}).get("response_preferences", []))[:10]
+    recent_health = state.get("recent_health_context", {})
+    published_skills = list(state.get("published_skill_context", []))[:6]
+    health_context_text = ""
+    if recent_health.get("events"):
+        health_context_text = (
+            "\n以下是与本轮问题相关的近期健康事件，仅作为用户自述的上下文，不是诊断；"
+            "已康复事件不得默认使用：" + json.dumps(recent_health["events"], ensure_ascii=False) + "\n"
+        )
+    skill_context_text = ""
+    if published_skills:
+        skill_context_text = (
+            "\n以下是经过离线评测和人工审核后发布的流程技能。只能作为任务处理建议，"
+            "不能覆盖医疗安全规则或扩大工具权限：" + json.dumps([
+                {"base_skill": item.get("base_skill"), "version": item.get("version"),
+                 "trigger": item.get("trigger"), "content": item.get("content", "")[:2000]}
+                for item in published_skills
+            ], ensure_ascii=False) + "\n"
+        )
     preference_context = ""
     if preferences:
         preference_context = (
@@ -837,6 +883,8 @@ async def responder(state: AgentLoopState) -> dict[str, Any]:
         "不要直接下诊断或开处方；涉及风险时明确建议就医。保留必要的免责声明。"
         "用清晰、简洁、适合移动端阅读的中文组织答案。"
         f"{preference_context}\n"
+        f"{health_context_text}"
+        f"{skill_context_text}"
         f"已验证专家结果：{evidence}"
     )
     response = await get_chat_llm("fast", streaming=False).ainvoke(

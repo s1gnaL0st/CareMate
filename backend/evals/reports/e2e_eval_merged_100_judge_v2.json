@@ -1,0 +1,34 @@
+{
+  "schema_version": "e2e_eval_v1_merged_summary",
+  "status": "measured_runtime_synthetic_regression",
+  "dataset": "evals\\e2e_cases_timeout_retry.jsonl",
+  "dataset_origin": "synthetic_regression_only",
+  "merge_method": "28 cases rerun online with the corrected project root and 60-second budget from e2e_eval_28_judge_v3.json plus 72 timeout cases rerun with 60-second budget from e2e_eval_timeout_retry_judge_v2.json; case IDs are disjoint",
+  "metrics": {
+    "sample_count": 100,
+    "route_accuracy": 0.8,
+    "task_completion_rate": 0.97,
+    "latency_ms": {
+      "mean": 19935.032113,
+      "p95": 49513.6347
+    },
+    "llm_judge": {
+      "sample_count": 100,
+      "valid_output_count": 97,
+      "protocol_adherence": 0.97,
+      "plan_score_mean": 0.8489690722,
+      "answer_completeness_mean": 0.8292783505,
+      "coverage_note": "Judge was run for all 100 cases; 72 cases used the extended-budget retry and 28 cases were rerun online."
+    }
+  },
+  "limitations": [
+    "The 100 cases are synthetic regression data, not human-labelled clinical evidence.",
+    "Citation faithfulness and overtriage rate are not reported in this merged summary because comparable values are unavailable.",
+    "LLM-as-Judge results have not been calibrated against human reviewers."
+  ],
+  "source_reports": [
+    "backend/evals/reports/e2e_eval_latest.json",
+    "backend/evals/reports/e2e_eval_timeout_retry_judge_v2.json",
+    "backend/evals/reports/e2e_eval_28_judge_v3.json"
+  ]
+}

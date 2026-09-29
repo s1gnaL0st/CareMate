@@ -14,6 +14,7 @@ from langgraph.prebuilt import create_react_agent
 from agents.state import MainAgentState
 from agents.llm import get_chat_llm
 from rag.knowledge_base import get_knowledge_base
+from agentic_rag import retrieve_until_sufficient
 from skills import get_agent_tools, load_skill
 from tool_executor import ToolExecutor
 from mcp_adapter import MCPUnavailableError, call_mcp_tool
@@ -73,6 +74,7 @@ async def advisor_node(state: MainAgentState) -> dict:
     llm = get_chat_llm("fast")
     user_info = state.get("user_info", {})
     system_prompt = _build_system_prompt(user_info)
+    offline_evidence = []
 
     last_user_msg = next(
         (m.content for m in reversed(state["messages"]) if isinstance(m, HumanMessage)),
@@ -81,10 +83,26 @@ async def advisor_node(state: MainAgentState) -> dict:
 
     if last_user_msg:
         kb = get_knowledge_base()
-        docs = await kb.aretrieve(last_user_msg, k=3)
+        retrieval = await retrieve_until_sufficient(last_user_msg, kb, k=3, max_rounds=3)
+        docs = retrieval.documents
+        if state.get("offline_evidence_capture") is True:
+            offline_evidence = [
+                {
+                    "source_id": str(doc.metadata.get("source_id") or doc.metadata.get("parent_id") or f"{doc.metadata.get('source', 'unknown')}::{doc.metadata.get('section', '')}"),
+                    "version": str(doc.metadata.get("version") or doc.metadata.get("knowledge_version") or "unknown"),
+                    "text": str(doc.page_content or "")[:2000],
+                }
+                for doc in docs[:3]
+            ]
         rag_context = kb.format_context(docs)
         if rag_context:
             system_prompt += f"\n\n## 参考知识库\n以下为相关知识内容，可作为回答参考（请勿照抄，结合用户情况灵活运用）：\n\n{rag_context}"
+        system_prompt += (
+            "\n\n## 检索充分性\n"
+            f"本轮 Agentic RAG 已执行 {len(retrieval.rounds)} 轮检索；"
+            f"证据是否充分：{retrieval.sufficient}；缺失证据面：{retrieval.missing_facets or '无'}。"
+            "不得把缺失证据补写成事实，证据不足时明确说明不确定性。"
+        )
 
     skill_tools = get_agent_tools(tags=["advisor"])
     all_tools = [search_medical_literature, load_skill, *skill_tools]
@@ -103,4 +121,9 @@ async def advisor_node(state: MainAgentState) -> dict:
     sub_result = await agent.ainvoke({"messages": state["messages"]})
     original_count = len(state["messages"])
     new_messages = sub_result["messages"][original_count:]
-    return {"messages": new_messages}
+    result = {"messages": new_messages}
+    if last_user_msg:
+        result["rag_trace"] = retrieval.trace()
+    if offline_evidence:
+        result["offline_evidence"] = offline_evidence
+    return result

@@ -47,6 +47,20 @@ def evaluate(root: Path, cases_path: Path) -> dict[str, Any]:
         level_fp = sum(row["expected_level"] != level and row["actual_level"] == level for row in rows)
         level_fn = sum(row["expected_level"] == level and row["actual_level"] != level for row in rows)
         per_level[level] = {"support": sum(row["expected_level"] == level for row in rows), **_score(level_tp, level_fp, level_fn)}
+    by_case_type = {}
+    for case_type in sorted({str(case.get("case_type", "reviewed")) for case in cases}):
+        subset = [row for row in rows if str(next(case for case in cases if case["id"] == row["id"]).get("case_type", "reviewed")) == case_type]
+        normal = [row for row in subset if row["expected_level"] == "NON_URGENT"]
+        by_case_type[case_type] = {
+            "sample_count": len(subset),
+            "exact_level_accuracy": sum(row["correct"] for row in subset) / len(subset) if subset else None,
+            "overtriage_rate": sum(row["predicted_positive"] for row in normal) / len(normal) if normal else None,
+            "binary_red_flag": _score(
+                sum(row["expected_positive"] and row["predicted_positive"] for row in subset),
+                sum(not row["expected_positive"] and row["predicted_positive"] for row in subset),
+                sum(row["expected_positive"] and not row["predicted_positive"] for row in subset),
+            ),
+        }
     return {
         "schema_version": "1.0", "status": "measured_reviewed_rule_case_set",
         "dataset": str(cases_path), "sample_count": len(rows),
@@ -54,7 +68,7 @@ def evaluate(root: Path, cases_path: Path) -> dict[str, Any]:
                     "exact_level_accuracy": sum(row["correct"] for row in rows) / len(rows),
                     "macro_f1": mean(item["f1"] for item in per_level.values()),
                     "mean_latency_ms": mean(latencies)},
-        "confusion_matrix": confusion, "per_level": per_level, "cases": rows,
+        "confusion_matrix": confusion, "per_level": per_level, "by_case_type": by_case_type, "cases": rows,
         "note": "Reviewed synthetic rule cases, not clinical data; binary red-flag metrics group CRITICAL, URGENT, and PROMPT as positive."
     }
 

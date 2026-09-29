@@ -28,8 +28,10 @@ from models import (
     PromotionDecision,
     SkillEvaluation,
     SkillProposal,
+    SkillDeployment,
     User,
 )
+from models import uuid_str
 from tasks import enqueue_evolution_evaluation
 
 router = APIRouter(prefix="/api/v1/evolution", tags=["evolution"])
@@ -40,6 +42,10 @@ class ReviewRequest(BaseModel):
     decision: str = Field(pattern="^(approved|rejected|revoked)$")
     reason: str = Field(min_length=3, max_length=2000)
     evaluation_id: str | None = Field(default=None, max_length=36)
+
+
+class DeploymentRequest(BaseModel):
+    reason: str = Field(min_length=3, max_length=2000)
 
 
 class ProposalFromFailuresRequest(BaseModel):
@@ -421,3 +427,77 @@ async def review_proposal(
         "published": False,
         "injected_into_planner": False,
     }
+
+
+@router.get("/deployments")
+async def list_deployments(
+    user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db),
+):
+    _require_reviewer(user)
+    rows = list(await db.scalars(select(SkillDeployment).order_by(desc(SkillDeployment.updated_at))))
+    return rows
+
+
+@router.post("/proposals/{proposal_id}/deploy")
+async def deploy_proposal(
+    proposal_id: str, payload: DeploymentRequest,
+    user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db),
+):
+    """Move the online pointer to an approved, evaluated proposal."""
+    _require_reviewer(user)
+    proposal = await db.get(SkillProposal, proposal_id)
+    if proposal is None:
+        raise HTTPException(status_code=404, detail="候选技能不存在")
+    if proposal.status != "approved":
+        raise HTTPException(status_code=409, detail="只有 approved 候选可以发布")
+    previous = await db.scalar(select(SkillDeployment).where(SkillDeployment.base_skill == proposal.base_skill))
+    if previous is None:
+        deployment = SkillDeployment(id=uuid_str(), base_skill=proposal.base_skill,
+            proposal_id=proposal.id, deployed_by=user.id, reason=redact_text(payload.reason, max_chars=2000))
+        db.add(deployment)
+    else:
+        previous.previous_proposal_id = previous.proposal_id
+        previous.proposal_id = proposal.id
+        previous.status = "active"
+        previous.deployed_by = user.id
+        previous.reason = redact_text(payload.reason, max_chars=2000)
+        deployment = previous
+    await db.commit(); await db.refresh(deployment)
+    return {"deployment": deployment, "published": True, "rollback_supported": True}
+
+
+@router.post("/deployments/{base_skill}/rollback")
+async def rollback_deployment(
+    base_skill: str, payload: DeploymentRequest,
+    user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db),
+):
+    """Restore the immediately previous version without deleting audit data."""
+    _require_reviewer(user)
+    deployment = await db.scalar(select(SkillDeployment).where(
+        SkillDeployment.base_skill == base_skill, SkillDeployment.status == "active"))
+    if deployment is None or deployment.previous_proposal_id is None:
+        raise HTTPException(status_code=409, detail="没有可回滚的上一版本")
+    current = deployment.proposal_id
+    deployment.proposal_id = deployment.previous_proposal_id
+    deployment.previous_proposal_id = current
+    deployment.deployed_by = user.id
+    deployment.reason = redact_text("rollback: " + payload.reason, max_chars=2000)
+    await db.commit(); await db.refresh(deployment)
+    return {"deployment": deployment, "rolled_back": True}
+
+
+@router.post("/deployments/{base_skill}/reset")
+async def reset_deployment(
+    base_skill: str, payload: DeploymentRequest,
+    user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db),
+):
+    """Disable the online pointer; proposals and evidence remain intact."""
+    _require_reviewer(user)
+    deployment = await db.scalar(select(SkillDeployment).where(SkillDeployment.base_skill == base_skill))
+    if deployment is None:
+        raise HTTPException(status_code=404, detail="技能没有部署记录")
+    deployment.status = "reset"
+    deployment.deployed_by = user.id
+    deployment.reason = redact_text("reset: " + payload.reason, max_chars=2000)
+    await db.commit(); await db.refresh(deployment)
+    return {"deployment": deployment, "reset": True, "data_deleted": False}

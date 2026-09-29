@@ -13,6 +13,7 @@ from langgraph.prebuilt import create_react_agent
 from agents.state import MainAgentState
 from agents.llm import get_chat_llm
 from rag.knowledge_base import get_knowledge_base
+from agentic_rag import retrieve_until_sufficient
 from skills import get_agent_tools, load_skill
 from tool_executor import ToolExecutor
 
@@ -57,6 +58,7 @@ async def report_node(state: MainAgentState) -> dict:
         extra += "\n请使用简单易懂的语言，避免复杂的医学术语。"
 
     system = REPORT_SYSTEM_PROMPT + extra
+    offline_evidence = []
 
     last_user_msg = next(
         (m.content for m in reversed(state["messages"]) if isinstance(m, HumanMessage)),
@@ -64,10 +66,21 @@ async def report_node(state: MainAgentState) -> dict:
     )
     if last_user_msg:
         kb = get_knowledge_base()
-        docs = await kb.aretrieve(last_user_msg, k=3)
+        retrieval = await retrieve_until_sufficient(last_user_msg, kb, k=3, max_rounds=3)
+        docs = retrieval.documents
+        if state.get("offline_evidence_capture") is True:
+            offline_evidence = [
+                {
+                    "source_id": str(doc.metadata.get("source_id") or doc.metadata.get("parent_id") or f"{doc.metadata.get('source', 'unknown')}::{doc.metadata.get('section', '')}"),
+                    "version": str(doc.metadata.get("version") or doc.metadata.get("knowledge_version") or "unknown"),
+                    "text": str(doc.page_content or "")[:2000],
+                }
+                for doc in docs[:3]
+            ]
         rag_context = kb.format_context(docs)
         if rag_context:
             system += f"\n\n## 参考检验范围\n以下为相关检验指标的标准参考范围，请以此为依据进行解读：\n\n{rag_context}"
+        system += f"\n\n检索充分性：{retrieval.sufficient}；缺失证据面：{retrieval.missing_facets or '无'}。证据不足时必须明确说明。"
 
     skill_tools = get_agent_tools(tags=["report"])
     all_tools = [load_skill, *skill_tools]
@@ -86,4 +99,9 @@ async def report_node(state: MainAgentState) -> dict:
     sub_result = await agent.ainvoke({"messages": state["messages"]})
     original_count = len(state["messages"])
     new_messages = sub_result["messages"][original_count:]
-    return {"messages": new_messages}
+    result = {"messages": new_messages}
+    if last_user_msg:
+        result["rag_trace"] = retrieval.trace()
+    if offline_evidence:
+        result["offline_evidence"] = offline_evidence
+    return result

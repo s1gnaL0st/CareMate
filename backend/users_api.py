@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from auth import get_current_user
 from db import get_db
 from models import MedicalReport, ReportAnalysis, User
+from memory_evolution import reset_user_memory_projection
 from object_storage import delete_object
 
 
@@ -40,3 +41,10 @@ async def delete_current_user(
             await delete_object(object_key)
         except Exception as exc:
             logger.warning("user object deletion failed error=%s", type(exc).__name__)
+
+
+@router.post("/me/memory/reset", status_code=200)
+async def reset_current_user_memory_projection(user: User = Depends(get_current_user)) -> dict[str, bool]:
+    """Reset the Hermes-style Markdown projection without deleting DB memory."""
+    removed = await reset_user_memory_projection(user_id=user.id)
+    return {"reset": True, "projection_removed": removed, "database_records_deleted": False}

@@ -8,6 +8,7 @@ Uses a ReAct sub-agent with four authenticated, database-backed tools:
   4. get_cross_region_info      - 异地就医信息
 """
 import json
+import os
 from datetime import datetime, timedelta, timezone
 from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage
@@ -15,6 +16,7 @@ from langgraph.prebuilt import create_react_agent
 from agents.state import MainAgentState
 from agents.llm import get_chat_llm
 from rag.knowledge_base import get_knowledge_base
+from agentic_rag import retrieve_until_sufficient
 from cache import cache_get_json, cache_key, cache_set_json
 from config import get_settings
 from tool_executor import ToolExecutor
@@ -162,8 +164,13 @@ async def _search_insurance_policy_local(query: str) -> str:
     if isinstance(cached, dict) and cached.get("value"):
         return str(cached["value"])
     kb = get_knowledge_base()
-    docs = await kb.aretrieve(query, k=3)
-    context = kb.format_context(docs)
+    # The policy tool is already called from an Agent runtime. Keep the tool
+    # itself single-round and bounded; nested three-round Agentic retrieval
+    # can exceed the outer tool budget and cause avoidable timeouts.
+    retrieval = await retrieve_until_sufficient(query, kb, k=3, max_rounds=1)
+    context = kb.format_context(retrieval.documents)
+    if not retrieval.sufficient:
+        context += "\n\n[检索提示] 当前政策证据覆盖不足：" + ", ".join(retrieval.missing_facets)
     output = context if context else "未找到相关医保政策信息，建议拨打当地医保服务热线12393咨询。"
     await cache_set_json(key, {"value": output}, get_settings().cache_rag_ttl_seconds)
     return output
@@ -176,11 +183,16 @@ async def _mcp_search_insurance_policy(query: str) -> str:
 
 @tool
 async def search_insurance_policy(query: str) -> str:
-    """搜索医保政策（优先通过 MCP，只读本地 RAG 实现作为回退）。"""
+    """搜索医保政策；本地 RAG 默认优先，远端 MCP 通过显式开关启用。"""
     key = cache_key("insurance-policy", query)
     cached = await cache_get_json(key)
     if isinstance(cached, dict) and cached.get("value"):
         return str(cached["value"])
+    # The local policy corpus is deterministic and available offline. MCP is
+    # optional; keeping it opt-in prevents a slow remote initialization from
+    # consuming the entire outer tool timeout before fallback can run.
+    if os.getenv("INSURANCE_POLICY_MCP_FIRST", "false").strip().lower() not in {"1", "true", "yes", "on"}:
+        return await _search_insurance_policy_local(query)
     try:
         return await call_mcp_tool("search_insurance_policy", query=query)
     except MCPUnavailableError:

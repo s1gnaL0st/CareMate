@@ -9,9 +9,9 @@ const MobileWrapper: React.FC<MobileWrapperProps> = ({ children }) => {
   const { isElderMode } = useGlobalStore();
 
   return (
-    <div className={`app-shell flex flex-col h-[100dvh] w-full relative font-sans overflow-hidden transition-all duration-300 ${isElderMode ? 'elder-mode' : ''}`}>
+    <div className={`app-shell flex flex-col min-h-[100dvh] w-full relative font-sans transition-all duration-300 ${isElderMode ? 'elder-mode' : ''}`}>
       {/* 渲染当前主屏幕内容 */}
-      <main className="flex-1 overflow-hidden relative z-0 bg-slate-50">
+      <main className="flex-1 min-h-0 overflow-y-auto relative z-0 bg-slate-50">
         {children}
       </main>
 

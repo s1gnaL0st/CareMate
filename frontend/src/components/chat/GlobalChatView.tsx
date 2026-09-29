@@ -21,7 +21,7 @@ const GlobalChatView = () => {
                     {hasTextOrGenerating && <div className={`message-row ${msg.role === 'user' ? 'user' : ''}`}>
                         <div className="message-avatar">{msg.role === 'user' ? '我' : 'AI'}</div>
                         <div className="message-content">
-                            <p className="message-meta">{msg.role === 'user' ? '你' : 'DoctorX'} · {msg.role === 'user' ? '刚刚' : '辅助回答'}</p>
+                            <p className="message-meta">{msg.role === 'user' ? '你' : 'CareMate'} · {msg.role === 'user' ? '刚刚' : '辅助回答'}</p>
                             <div className="message-bubble">
                                 {msg.text ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.text}</ReactMarkdown> : <span className="typing-indicator">● ● ●</span>}
                             </div>

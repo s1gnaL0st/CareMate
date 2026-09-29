@@ -12,7 +12,7 @@ $env:DATABASE_URL = "mysql+asyncmy://health:health@127.0.0.1:3307/health_assista
 $env:REDIS_URL = "redis://127.0.0.1:6380/0"
 $env:CORS_ORIGINS = "http://localhost:5173,http://localhost:5174"
 
-uv run python -c "from agents.llm import resolve_model_settings; s=resolve_model_settings(); print('LLM:', s.provider, '| model:', s.model, '| base_url:', s.base_url)"
+uv run python -c "from dotenv import load_dotenv; load_dotenv(); from agents.llm import resolve_model_settings; s=resolve_model_settings(); print('LLM:', s.provider, '| model:', s.model, '| base_url:', s.base_url)"
 if ($LASTEXITCODE -ne 0) { throw "LLM configuration is invalid. Check backend/.env (API key, model and base URL)." }
 
 Write-Host "Running database migrations..." -ForegroundColor Cyan

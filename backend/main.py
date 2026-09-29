@@ -49,6 +49,11 @@ from observability import configure_observability
 from cache import cache_get_json, cache_key, cache_set_json, distributed_lock, enforce_rate_limit
 from metrics import record_request, render_prometheus
 from evolution import build_experience_payload, load_active_memory_preferences, persist_experience
+from agent_runtime import AgentRuntime, RuntimeBudget, RuntimeBudgetExceeded
+from memory_manager import build_response_memory
+from memory_evolution import maybe_run_shadow_memory
+from health_memory import health_context, load_relevant_health_events, observe_health_message
+from skill_registry import active_skills
 from reports_api import router as reports_router
 from users_api import router as users_router
 from wellness_api import router as wellness_router
@@ -208,6 +213,12 @@ class UserInfo(BaseModel):
     medical_history: str = "无"
     elder_mode: bool = False
     region: str = ""
+    # Optional explicit communication profile.  These fields affect wording,
+    # never triage, diagnosis or medical facts.
+    profession: str = ""
+    occupation: str = ""
+    expertise_level: str = ""
+    communication_style: str = ""
 
 
 class ChatRequest(BaseModel):
@@ -286,9 +297,12 @@ def _build_initial_state(
     user_id: str | None = None,
 ) -> dict:
     user_info_dict = user_info.model_dump() if user_info else {}
+    memory_context = build_response_memory(user_info_dict, _build_lc_messages(messages, active_agent=active_agent))
+    user_info_dict["memory_context"] = memory_context.as_dict()
     return {
         "messages": _build_lc_messages(messages, active_agent=active_agent)[-10:],
         "user_info": user_info_dict,
+        "memory_context": memory_context.as_dict(),
         "next_agent": "",
         "active_agent": active_agent,
         "requested_mode": active_agent,
@@ -343,11 +357,30 @@ async def _append_message(db: AsyncSession, conversation_id: str, role: str, con
 
 async def _prepare_persistent_state(request: ChatRequest, user: User | None, db: AsyncSession | None, active_agent: str) -> tuple[dict, Conversation | None]:
     state = _build_initial_state(request.messages, request.user_info, active_agent, user.id if user else None)
+    accepted_preferences: list[str] = []
     if user is not None and db is not None:
-        preferences = await load_active_memory_preferences(db, user_id=user.id)
-        if preferences:
-            state["user_info"]["response_preferences"] = preferences
+        accepted_preferences = await load_active_memory_preferences(db, user_id=user.id)
+        if accepted_preferences:
+            state["user_info"]["response_preferences"] = accepted_preferences
+        try:
+            recent = await load_relevant_health_events(db, user_id=user.id,
+                query=request.messages[-1].content if request.messages else "")
+            state["recent_health_context"] = health_context(recent)
+            state["published_skill_context"] = await active_skills(db)
+        except Exception:
+            # Memory retrieval must never make the chat path unavailable.
+            state["recent_health_context"] = health_context([])
+            state["published_skill_context"] = []
     if user is None or db is None or not request.conversation_id:
+        memory_context = build_response_memory(
+            state.get("user_info", {}),
+            state.get("messages", []),
+            accepted_preferences=accepted_preferences,
+        )
+        state["memory_context"] = memory_context.as_dict()
+        state["user_info"]["memory_context"] = memory_context.as_dict()
+        state.setdefault("recent_health_context", health_context([]))
+        state.setdefault("published_skill_context", [])
         return state, None
     conversation = await _get_owned_conversation(db, request.conversation_id, user)
     rows = await db.scalars(select(Message).where(Message.conversation_id == conversation.id).order_by(Message.sequence).limit(settings.max_chat_messages))
@@ -378,6 +411,13 @@ async def _prepare_persistent_state(request: ChatRequest, user: User | None, db:
     conversation.active_agent = active_agent
     await db.commit()
     state["messages"] = stored_messages[-settings.max_chat_messages:][-10:]
+    memory_context = build_response_memory(
+        state.get("user_info", {}),
+        state["messages"],
+        accepted_preferences=accepted_preferences,
+    )
+    state["memory_context"] = memory_context.as_dict()
+    state["user_info"]["memory_context"] = memory_context.as_dict()
     return state, conversation
 
 
@@ -394,6 +434,7 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
     safety_flags: list[str] = []
     clinic_pending_tool_call: dict | None = None
     experience_recorded = False
+    runtime: AgentRuntime | None = None
     try:
         event_sequence = max(0, int(request.headers.get("Last-Event-ID", "0"))) if request is not None else 0
     except (TypeError, ValueError):
@@ -423,6 +464,29 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
             if isinstance(message, HumanMessage):
                 latest_input = str(message.content or "")
                 break
+        # Health memory is written only from the user's latest message. The
+        # extractor is deterministic and explicitly rejects third-person text.
+        if db is not None and initial_state.get("user_id") and latest_input:
+            try:
+                await observe_health_message(
+                    db,
+                    user_id=str(initial_state["user_id"]),
+                    text=latest_input,
+                    conversation_id=conversation.id if conversation is not None else None,
+                )
+                await db.flush()
+            except Exception:
+                logger.exception("health memory write gate failed")
+            try:
+                await maybe_run_shadow_memory(
+                    db,
+                    user_id=str(initial_state["user_id"]),
+                    latest_user_text=latest_input,
+                    conversation_id=conversation.id if conversation is not None else None,
+                )
+                await db.flush()
+            except Exception:
+                logger.exception("shadow memory maintenance failed")
         payload = build_experience_payload(
             run_id=initial_state.get("agent_run_id"),
             user_id=initial_state.get("user_id") or (run.user_id if run is not None else None),
@@ -439,6 +503,7 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                 "latency_ms": int((perf_counter() - started_at) * 1000),
                 "input_tokens": input_tokens,
                 "output_tokens": output_tokens,
+                "runtime": runtime.snapshot_state.as_dict() if runtime is not None else {},
             },
             outcome=outcome,
         )
@@ -446,8 +511,20 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
 
     try:
         print("--- [API] Starting event stream ---", flush=True)
-        master_app = get_master_app()
-        events = master_app.astream_events(initial_state, version="v2").__aiter__()
+        runtime = AgentRuntime.from_state(
+            initial_state,
+            graph=get_master_app(),
+            request_id=request_id or "",
+            budget=RuntimeBudget(
+                max_steps=settings.runtime_max_steps,
+                max_tool_calls=settings.runtime_max_tool_calls,
+                max_total_tokens=settings.runtime_max_total_tokens,
+                timeout_seconds=float(settings.llm_timeout_seconds),
+            ),
+        )
+        initial_state["runtime_context"] = runtime.runtime_state()["context"]
+        yield await _emit({"type": "runtime_start", "runtime": runtime.describe()})
+        events = runtime.astream_events(initial_state, version="v2").__aiter__()
         deadline = asyncio.get_running_loop().time() + settings.llm_timeout_seconds
         while True:
             if request is not None and await request.is_disconnected():
@@ -603,6 +680,8 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                 )
                 run.latency_ms = int((perf_counter() - started_at) * 1000)
             await db.commit()
+        if runtime is not None:
+            yield await _emit({"type": "runtime_end", "runtime": runtime.describe()})
         yield await _emit({"type": "finish", "request_id": request_id})
 
     except Exception as e:
@@ -629,7 +708,13 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
             await db.commit()
         if initial_state.get("agent_run_id"):
             await mark_run_status(initial_state["agent_run_id"], "failed", error_message=str(e)[:1000])
-        yield await _emit({"type": "error", "content": str(e), "request_id": request_id})
+        if isinstance(e, RuntimeBudgetExceeded):
+            error_content = "本轮分析已达到运行预算，系统已安全停止。请缩短问题或稍后重试。"
+        else:
+            error_content = str(e)
+        if runtime is not None:
+            yield await _emit({"type": "runtime_end", "runtime": runtime.describe()})
+        yield await _emit({"type": "error", "content": error_content, "request_id": request_id})
 
 
 @app.get("/")

@@ -14,7 +14,8 @@ Used by: report_agent
 """
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
+import re
 
 from pydantic import BaseModel, Field
 
@@ -66,7 +67,10 @@ class LabItem(BaseModel):
 
 
 class LabInterpreterInput(BaseModel):
-    items: list[LabItem] = Field(description="需要解读的检验项目列表")
+    # Tool-call payloads come from an LLM and may contain numeric strings,
+    # compact objects, or mixed list items. Keep the boundary permissive and
+    # normalize in the skill instead of rejecting the whole agent turn.
+    items: Any = Field(description="需要解读的检验项目列表，也接受项目-数值对象或文本")
     patient_age: int | None = Field(default=None, description="患者年龄（影响部分参考范围）")
     patient_gender: Literal["male", "female"] | None = Field(default=None, description="患者性别")
 
@@ -100,9 +104,34 @@ class LabInterpreterSkill(BaseSkill):
 
     def run(self, **kwargs) -> LabInterpreterOutput:  # type: ignore[override]
         data = LabInterpreterInput(**kwargs)
+        raw_items: Any = data.items
+        if isinstance(raw_items, dict):
+            items = [LabItem(name=str(name), value=float(value)) for name, value in raw_items.items()]
+        elif isinstance(raw_items, str):
+            items = []
+            for name, value in re.findall(r"([A-Za-z][A-Za-z0-9_-]*)[^0-9-]{0,12}(-?\d+(?:\.\d+)?)", raw_items):
+                items.append(LabItem(name=name, value=float(value)))
+            if not items:
+                raise ValueError("items text contains no recognizable lab values")
+        elif isinstance(raw_items, list):
+            items = []
+            for raw in raw_items:
+                if isinstance(raw, LabItem):
+                    items.append(raw)
+                elif isinstance(raw, dict):
+                    name = raw.get("name") or raw.get("test") or raw.get("项目")
+                    value = raw.get("value", raw.get("result", raw.get("数值")))
+                    if name is not None and value is not None:
+                        items.append(LabItem(name=str(name), value=float(value), unit=raw.get("unit")))
+                elif isinstance(raw, str):
+                    parsed = re.search(r"([A-Za-z][A-Za-z0-9_-]*)[^0-9-]{0,12}(-?\d+(?:\.\d+)?)", raw)
+                    if parsed:
+                        items.append(LabItem(name=parsed.group(1), value=float(parsed.group(2))))
+        else:
+            raise ValueError("items must be a list, object, or text containing lab values")
         findings: list[LabFinding] = []
 
-        for item in data.items:
+        for item in items:
             key = item.name.upper().replace("-", "").replace("_", "")
             ref = _REFERENCE_RANGES.get(key)
 

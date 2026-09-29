@@ -1,0 +1,2242 @@
+{
+  "schema_version": "rag_ab_v1",
+  "dataset": "evals\\rag_cases.jsonl",
+  "sample_count": 100,
+  "baseline": {
+    "name": "one_shot_hybrid_rag",
+    "metrics": {
+      "recall_at_1": 0.26,
+      "recall_at_3": 0.35,
+      "recall_at_5": 0.42,
+      "source_recall_at_3": 0.92,
+      "mrr": 0.3155,
+      "latency_ms": 4623.513638999284,
+      "retrieval_calls": 1.0,
+      "sufficient_rate": 1.0
+    }
+  },
+  "agentic": {
+    "name": "bounded_iterative_agentic_rag",
+    "max_rounds": 3,
+    "metrics": {
+      "recall_at_1": 0.26,
+      "recall_at_3": 0.35,
+      "recall_at_5": 0.42,
+      "source_recall_at_3": 0.92,
+      "mrr": 0.33548015873015874,
+      "latency_ms": 15839.15596700026,
+      "retrieval_calls": 1.39,
+      "sufficient_rate": 0.66
+    }
+  },
+  "controller": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "purpose": "LLM decides evidence sufficiency and follow-up query"
+  },
+  "delta": {
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 0.0,
+    "source_recall_at_3": 0.0,
+    "mrr": 0.019980158730158737,
+    "latency_ms": 11215.642328000977,
+    "retrieval_calls": 0.3899999999999999
+  },
+  "notes": [
+    "500 cases are a deterministic 5x synthetic expansion of the 100-case scenario-curated source mapping set.",
+    "The baseline uses exactly one HealthKnowledgeBase.retrieve call; Agentic RAG can issue up to max_rounds aretrieve calls.",
+    "Agentic controller uses the configured LLM; this run records the resolved provider and model.",
+    "Recall measures source-section mapping, not clinical answer correctness."
+  ],
+  "rows": {
+    "baseline": [
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 9164.485600005719,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4555.945800006157,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4554.871499989531,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4566.223000001628,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4584.989599999972,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4560.0587999942945,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4559.259999994538,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.25,
+        "latency_ms": 4589.366699990933,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4566.238900006283,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 4595.322399996803,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4580.968099995516,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4589.439400006086,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4596.972500003176,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4570.444099997985,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4597.2998999932315,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4582.122299994808,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4580.513900000369,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4594.353699998464,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4575.682099995902,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4554.027899997891,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4576.313800003845,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4588.054099993315,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4573.943999988842,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4583.055999988574,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4574.274100014009,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4581.928299987339,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "latency_ms": 4576.331600008416,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4572.311900003115,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.25,
+        "latency_ms": 4563.732299997355,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4551.724999997532,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4559.020399989095,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4583.2745999941835,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4570.799099994474,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4585.373299996718,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4559.034900012193,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4573.902000003727,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4577.5365000008605,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4587.611299997661,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4573.305500001879,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4579.702800008818,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4570.873099990422,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4584.909099998185,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4583.961700001964,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4578.498299990315,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4564.550000010058,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4568.310900009237,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4586.631700003636,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4574.836800005869,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4583.089400010067,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4590.573099994799,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4594.444000002113,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4595.11239999847,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 4574.615499994252,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 4588.847399994847,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 4590.2077999926405,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 4582.5055000022985,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 4565.9341999999015,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4569.6690999902785,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4575.583099998767,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4571.9187000067905,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.25,
+        "latency_ms": 4576.1694999964675,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "latency_ms": 4579.900299999281,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4588.233100002981,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "latency_ms": 4586.191800000961,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4572.173499997007,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4576.593799996772,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4594.585300001199,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4584.526899998309,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4578.496399990399,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4546.365999995032,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4584.776500007138,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4591.150299995206,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4575.754700010293,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4581.835100005264,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4565.844799988554,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4591.561599998386,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4573.825499988743,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4567.817199989804,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4576.564100003452,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4588.602200004971,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4580.736200005049,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4571.700300002703,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4591.510400001425,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4565.858900008607,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4570.294399993145,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4563.389300004928,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4574.433100002352,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 4587.870400006068,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4577.217300000484,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4578.928199989605,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4561.121699996875,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 4583.835500001442,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 4586.434600001667,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 4576.029199990444,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 4575.14380000066,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 4584.944000001997,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 4595.96550000424,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 4568.566200003261,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 4581.694599997718,
+        "retrieval_calls": 1
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 4589.832199999364,
+        "retrieval_calls": 1
+      }
+    ],
+    "agentic": [
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 6750.742499993066,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 7843.588699994143,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 25949.508299992885,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 7906.703500004369,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 14163.780999995652,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 5918.856400006916,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 15896.310399999493,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.25,
+        "latency_ms": 5893.72770000773,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 15495.90549999266,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 15979.157399997348,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 31068.20069999958,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 32023.360699997284,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19088.888800004497,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19946.983400004683,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 21111.569999993662,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 22949.812200007727,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 20438.82000001031,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 18453.89520000026,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 22962.862799991854,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19235.89539999375,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 7075.084900003276,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6453.450400003931,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 13376.338800007943,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 32819.010400009574,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 6507.86739999603,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 6147.759400002542,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "latency_ms": 18750.916599994525,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 8271.781300005387,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.25,
+        "latency_ms": 21846.346199992695,
+        "retrieval_calls": 3,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.125,
+        "latency_ms": 18574.60039999569,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 25040.26180000801,
+        "retrieval_calls": 3,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 17510.64400000905,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6222.129000001587,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6245.642599998973,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6377.925499997218,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6182.792699997663,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 5800.009300000966,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 5618.678500002716,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 9660.970500000985,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6725.9329999942565,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 18429.92769999546,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.1111111111111111,
+        "latency_ms": 22412.48159999668,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 20533.327200013446,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 22070.083600003272,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 11291.473599994788,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 18146.71180000005,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.14285714285714285,
+        "latency_ms": 14637.682899992797,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.14285714285714285,
+        "latency_ms": 14134.691400002339,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19868.393700002343,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19112.544200004777,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19526.75730000192,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 19980.26270000264,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 17960.97149999696,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 18620.829300009063,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 20033.623600000283,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 20101.061199995456,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.5,
+        "latency_ms": 19152.87290001288,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 20383.098100006464,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 30884.335399998236,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 24252.58600000234,
+        "retrieval_calls": 3,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.25,
+        "latency_ms": 6283.658399988781,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "latency_ms": 6176.415299996734,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 16467.484599997988,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "latency_ms": 11588.072700003977,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 7745.367099996656,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 5939.90599999961,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 18562.2316999943,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 13363.547699991614,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 21655.82610000274,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 21455.72350001021,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 21385.486300001503,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition",
+          "action"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 21722.535099994275,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6298.1091999972705,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6134.633499998017,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.16666666666666666,
+        "latency_ms": 14161.764700009371,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 12949.562299996614,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 21666.530200003763,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 21444.801599995117,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 26196.016800007783,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "definition"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 21971.891699999105,
+        "retrieval_calls": 3,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 6759.235099991201,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 21285.264999998617,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 20996.397299997625,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 11746.925600004033,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 5681.355599997914,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 5633.337399995071,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 7363.7252999906195,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 0.0,
+        "latency_ms": 20019.325700006448,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6080.395500001032,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 6904.289600002812,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 7796.885799994925,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 1.0,
+        "mrr": 1.0,
+        "latency_ms": 7635.477700008778,
+        "retrieval_calls": 0,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 17131.44110000576,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "indication",
+          "safety"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 17652.572500010137,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "indication",
+          "safety"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.0,
+        "latency_ms": 20358.51229999389,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "indication",
+          "safety"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.14285714285714285,
+        "latency_ms": 21086.372099991422,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "safety"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 19125.303699998767,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 33110.02150000422,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 28409.22739999951,
+        "retrieval_calls": 3,
+        "sufficient": false,
+        "missing_facets": [
+          "indication"
+        ],
+        "stop_reason": "max_rounds"
+      },
+      {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "source_recall_at_3": 0.0,
+        "mrr": 0.2,
+        "latency_ms": 20149.537000004784,
+        "retrieval_calls": 1,
+        "sufficient": true,
+        "missing_facets": [],
+        "stop_reason": "llm_evidence_sufficient"
+      }
+    ]
+  }
+}

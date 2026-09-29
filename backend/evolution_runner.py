@@ -138,6 +138,7 @@ async def execute_agent_graph(prompt: str, overlay: dict[str, Any] | None) -> Gr
         "next_agent": "",
         "active_agent": "",
         "requested_mode": "general",
+        "offline_evidence_capture": True,
     }
     if overlay:
         initial_state["offline_evaluation_overlay"] = overlay

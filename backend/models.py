@@ -364,6 +364,22 @@ class PromotionDecision(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 
+class SkillDeployment(Base):
+    """Version pointer for online skills; deployment is reversible and auditable."""
+
+    __tablename__ = "skill_deployments"
+    __table_args__ = (UniqueConstraint("base_skill", name="uq_skill_deployments_base_skill"),)
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
+    base_skill: Mapped[str] = mapped_column(String(100), index=True)
+    proposal_id: Mapped[str] = mapped_column(ForeignKey("skill_proposals.id", ondelete="RESTRICT"), index=True)
+    previous_proposal_id: Mapped[str | None] = mapped_column(ForeignKey("skill_proposals.id", ondelete="SET NULL"), nullable=True)
+    status: Mapped[str] = mapped_column(String(20), default="active", index=True)
+    deployed_by: Mapped[str | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    reason: Mapped[str] = mapped_column(Text, default="")
+    deployed_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
 class AgentRunEvent(Base):
     """Durable SSE event ledger used for reconnect replay and de-duplication."""
 
@@ -398,6 +414,45 @@ class MemoryCandidate(Base):
     expires_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     reviewed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
+class HealthEvent(Base):
+    """A user-reported or weakly inferred episode, never a diagnosis."""
+
+    __tablename__ = "health_events"
+    __table_args__ = (
+        Index("ix_health_events_user_status_observed", "user_id", "status", "last_observed_at"),
+        Index("ix_health_events_user_category", "user_id", "category"),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    category: Mapped[str] = mapped_column(String(50))
+    display_name: Mapped[str] = mapped_column(String(120))
+    status: Mapped[str] = mapped_column(String(20), default="candidate", index=True)
+    confidence: Mapped[float] = mapped_column(Float, default=0.0)
+    started_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    last_observed_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    resolved_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    confirmation: Mapped[str] = mapped_column(String(30), default="inferred")
+    context_policy: Mapped[str] = mapped_column(String(30), default="relevant_only")
+    resolution_source: Mapped[str | None] = mapped_column(String(30), nullable=True)
+    summary: Mapped[str] = mapped_column(EncryptedText(), default="")
+    metadata_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class HealthEventEvidence(Base):
+    __tablename__ = "health_event_evidence"
+    __table_args__ = (Index("ix_health_event_evidence_event_observed", "event_id", "observed_at"),)
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
+    event_id: Mapped[str] = mapped_column(ForeignKey("health_events.id", ondelete="CASCADE"), index=True)
+    conversation_id: Mapped[str | None] = mapped_column(ForeignKey("conversations.id", ondelete="SET NULL"), nullable=True)
+    message_id: Mapped[str | None] = mapped_column(ForeignKey("messages.id", ondelete="SET NULL"), nullable=True)
+    source_type: Mapped[str] = mapped_column(String(30), default="user_reported")
+    summary: Mapped[str] = mapped_column(EncryptedText(), default="")
+    observed_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    metadata_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
 
 
 class CapabilityGap(Base):

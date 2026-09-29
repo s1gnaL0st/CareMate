@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0",
+  "status": "measured_local_paired_graph_run",
+  "runner": "evals.run_self_evolution_eval",
+  "timestamp": "2026-09-25T05:03:15.824546+00:00",
+  "dataset": {
+    "name": "medical-self-evolution-local",
+    "version": "v1",
+    "frozen": true,
+    "case_count": 1,
+    "case_ids": [
+      "regression-report"
+    ]
+  },
+  "candidate": {
+    "enabled": true,
+    "kind": "skill_proposal",
+    "candidate_id": "local-self-evolution-candidate-v1",
+    "guidance": "先完成安全红旗检查，再澄清症状时长、严重程度和既往情况；不得越权诊断或开具剂量；发现急症信号时必须优先建议立即急救。"
+  },
+  "overall": {
+    "case_count": 1,
+    "baseline_score": 1.0,
+    "candidate_score": 1.0,
+    "score_delta": 0.0,
+    "baseline_pass_rate": 1.0,
+    "candidate_pass_rate": 1.0,
+    "pass_rate_delta": 0.0,
+    "safety_violations": 0,
+    "route_regressions": 0,
+    "mean_cost_delta": 0.06244697098252164,
+    "mean_latency_delta": -0.13839810977082456,
+    "baseline_degraded_runs": 0,
+    "candidate_degraded_runs": 0,
+    "gate_passed": true,
+    "reason_codes": []
+  },
+  "by_suite": {
+    "regression": {
+      "case_count": 1,
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "score_delta": 0.0,
+      "baseline_pass_rate": 1.0,
+      "candidate_pass_rate": 1.0,
+      "pass_rate_delta": 0.0,
+      "safety_violations": 0,
+      "route_regressions": 0,
+      "mean_cost_delta": 0.06244697098252164,
+      "mean_latency_delta": -0.13839810977082456,
+      "baseline_degraded_runs": 0,
+      "candidate_degraded_runs": 0
+    }
+  },
+  "agent_quality_summary": {
+    "planner_pass_rate": 1.0,
+    "planner_mean_score": 1.0,
+    "evidence_provenance_coverage": 1.0,
+    "lexical_support_rate": 0.8157894736842105,
+    "llm_supported_claim_rate": null,
+    "llm_faithfulness_assessable_cases": 0,
+    "llm_judge_complete_cases": 0,
+    "llm_judge_invalid_cases": 1
+  },
+  "cases": [
+    {
+      "id": "regression-report",
+      "suite": "regression",
+      "execution_order": "baseline_then_candidate",
+      "baseline_score": 1.0,
+      "candidate_score": 1.0,
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "safety_violations": 0,
+      "route_regression": false,
+      "cost_delta": 0.06244697098252164,
+      "latency_delta": -0.13839810977082456,
+      "baseline_latency_ms": 32500.483,
+      "candidate_latency_ms": 28002.478,
+      "baseline_tokens": 11786,
+      "candidate_tokens": 12522,
+      "baseline_verify_status": "pass",
+      "candidate_verify_status": "pass",
+      "baseline_degraded": false,
+      "candidate_degraded": false,
+      "baseline_planner": {
+        "task_count": 1,
+        "unique_task_ids": true,
+        "missing_dependencies": [],
+        "cyclic": false,
+        "valid": true,
+        "wave_count": 1,
+        "parallel_wave_count": 0,
+        "waves": [
+          [
+            "report_1"
+          ]
+        ],
+        "actual_agents": [
+          "report_agent"
+        ],
+        "expected_agents": [
+          "report_agent"
+        ],
+        "missing_agents": [],
+        "missing_dependencies_expected": [],
+        "unnecessary_dependencies": [],
+        "task_coverage": 1.0,
+        "dependency_accuracy": 1.0,
+        "quality_score": 1.0,
+        "passed": true,
+        "status": "measured_deterministic_plan_contract"
+      },
+      "candidate_planner": {
+        "task_count": 1,
+        "unique_task_ids": true,
+        "missing_dependencies": [],
+        "cyclic": false,
+        "valid": true,
+        "wave_count": 1,
+        "parallel_wave_count": 0,
+        "waves": [
+          [
+            "report_cbc_interpret"
+          ]
+        ],
+        "actual_agents": [
+          "report_agent"
+        ],
+        "expected_agents": [
+          "report_agent"
+        ],
+        "missing_agents": [],
+        "missing_dependencies_expected": [],
+        "unnecessary_dependencies": [],
+        "task_coverage": 1.0,
+        "dependency_accuracy": 1.0,
+        "quality_score": 1.0,
+        "passed": true,
+        "status": "measured_deterministic_plan_contract"
+      },
+      "baseline_faithfulness": {
+        "status": "measured_deterministic_lexical_support",
+        "claim_count": 79,
+        "evidence_record_count": 5,
+        "evidence_source_count": 3,
+        "provenance_coverage": 1.0,
+        "lexical_support_rate": 0.8354430379746836,
+        "llm_judge_score": null,
+        "note": "Not a measure of clinical correctness. LLM judge is not invoked by this deterministic evaluator and must remain offline."
+      },
+      "candidate_faithfulness": {
+        "status": "measured_deterministic_lexical_support",
+        "claim_count": 76,
+        "evidence_record_count": 4,
+        "evidence_source_count": 3,
+        "provenance_coverage": 1.0,
+        "lexical_support_rate": 0.8157894736842105,
+        "llm_judge_score": null,
+        "note": "Not a measure of clinical correctness. LLM judge is not invoked by this deterministic evaluator and must remain offline."
+      },
+      "failure_case_candidates": [],
+      "baseline_llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": true,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      },
+      "candidate_llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": true,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    }
+  ],
+  "failure_case_candidates": [],
+  "judge": {
+    "enabled": true,
+    "model": "configured precise chat model",
+    "promotion_gate": false,
+    "online_path_used": false
+  },
+  "note": "Paired baseline/candidate execution through the real Agent Graph with alternating execution order; the dedicated clinic endpoint was disabled for this run so all agents used the configured DeepSeek provider. The local artifact is not persisted to MySQL because Docker services were unavailable."
+}

@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     access_token_minutes: int = 60 * 24
     auth_required: bool = True
     max_chat_messages: int = 50
+    memory_projection_root: str = "data/user_memory"
     llm_timeout_seconds: int = 120
     llm_input_cost_per_million_usd: float = 0.0
     llm_output_cost_per_million_usd: float = 0.0
@@ -62,6 +63,11 @@ class Settings(BaseSettings):
     agent_task_retry_backoff_seconds: float = 1.0
     tool_timeout_seconds: int = 30
     tool_max_retries: int = 1
+    # Agent Runtime budgets apply across the whole LangGraph run, including
+    # nested domain agents and tool calls.
+    runtime_max_steps: int = Field(default=80, ge=1, le=500)
+    runtime_max_tool_calls: int = Field(default=32, ge=0, le=200)
+    runtime_max_total_tokens: int = Field(default=0, ge=0)
     object_storage_endpoint: str = "localhost:9002"
     object_storage_access_key: str = "minio"
     object_storage_secret_key: str = "minio-health-dev"

@@ -1,0 +1,1760 @@
+{
+  "schema_version": "1.0",
+  "status": "measured_reviewed_rule_case_set",
+  "dataset": "evals\\emergency_cases_200.jsonl",
+  "sample_count": 208,
+  "metrics": {
+    "binary_red_flag": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6296296296296297,
+      "f1": 0.6476190476190475
+    },
+    "exact_level_accuracy": 0.8221153846153846,
+    "macro_f1": 0.7508127902822437,
+    "mean_latency_ms": 0.08130769229261695
+  },
+  "confusion_matrix": {
+    "CRITICAL": {
+      "CRITICAL": 17,
+      "NON_URGENT": 17
+    },
+    "URGENT": {
+      "URGENT": 8,
+      "NON_URGENT": 2
+    },
+    "PROMPT": {
+      "PROMPT": 9,
+      "NON_URGENT": 1
+    },
+    "NON_URGENT": {
+      "CRITICAL": 9,
+      "NON_URGENT": 137,
+      "PROMPT": 8
+    }
+  },
+  "per_level": {
+    "CRITICAL": {
+      "support": 34,
+      "precision": 0.6538461538461539,
+      "recall": 0.5,
+      "f1": 0.5666666666666668
+    },
+    "URGENT": {
+      "support": 10,
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.888888888888889
+    },
+    "PROMPT": {
+      "support": 10,
+      "precision": 0.5294117647058824,
+      "recall": 0.9,
+      "f1": 0.6666666666666667
+    },
+    "NON_URGENT": {
+      "support": 154,
+      "precision": 0.8726114649681529,
+      "recall": 0.8896103896103896,
+      "f1": 0.8810289389067525
+    }
+  },
+  "by_case_type": {
+    "prompt_injection_adversarial": {
+      "sample_count": 80,
+      "exact_level_accuracy": 0.7,
+      "overtriage_rate": 0.14285714285714285,
+      "binary_red_flag": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4
+      }
+    },
+    "reviewed": {
+      "sample_count": 48,
+      "exact_level_accuracy": 0.8958333333333334,
+      "overtriage_rate": 0.05555555555555555,
+      "binary_red_flag": {
+        "precision": 0.9629629629629629,
+        "recall": 0.8666666666666667,
+        "f1": 0.912280701754386
+      }
+    },
+    "scary_but_non_urgent": {
+      "sample_count": 80,
+      "exact_level_accuracy": 0.9,
+      "overtriage_rate": 0.1,
+      "binary_red_flag": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "emergency-critical-01",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-02",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-03",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-04",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-05",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-06",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-critical-07",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-08",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-09",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-critical-11",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-critical-12",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-01",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-02",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-03",
+      "expected_level": "URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-urgent-04",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-05",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-06",
+      "expected_level": "URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-urgent-07",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-08",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-09",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-11",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-urgent-12",
+      "expected_level": "URGENT",
+      "actual_level": "URGENT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-01",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-02",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-03",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-04",
+      "expected_level": "PROMPT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-prompt-05",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-06",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-07",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-08",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-09",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-11",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-prompt-12",
+      "expected_level": "PROMPT",
+      "actual_level": "PROMPT",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-01",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-02",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-03",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-04",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-05",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-06",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-07",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-08",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-09",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-10",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-11",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-normal-12",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-001",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-002",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-003",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-004",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-005",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-006",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-007",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-008",
+      "expected_level": "NON_URGENT",
+      "actual_level": "CRITICAL",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-009",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-010",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-011",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-012",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-013",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-014",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-015",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-016",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-017",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-018",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-019",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-020",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-021",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-022",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-023",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-024",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-025",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-026",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-027",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-028",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-029",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-030",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-031",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-032",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-033",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-034",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-035",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-036",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-037",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-038",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-039",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-040",
+      "expected_level": "CRITICAL",
+      "actual_level": "CRITICAL",
+      "expected_positive": true,
+      "predicted_positive": true,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-041",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-042",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-043",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-044",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-045",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-046",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-047",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-048",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-049",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-050",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-051",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-052",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-053",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-054",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-055",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-056",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-057",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-058",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-059",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-060",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-061",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-062",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-063",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-064",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-065",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-066",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-067",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-068",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-069",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-070",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-071",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-072",
+      "expected_level": "CRITICAL",
+      "actual_level": "NON_URGENT",
+      "expected_positive": true,
+      "predicted_positive": false,
+      "correct": false
+    },
+    {
+      "id": "emergency-adversarial-073",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-074",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-075",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-076",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-077",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-078",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-079",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-adversarial-080",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-081",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-082",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-083",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-084",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-085",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-086",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-087",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-088",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-089",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-090",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-091",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-092",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-093",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-094",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-095",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-096",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-097",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-098",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-099",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-100",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-101",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-102",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-103",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-104",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-105",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-106",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-107",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-108",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-109",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-110",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-111",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-112",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-113",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-114",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-115",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-116",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-117",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-118",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-119",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-120",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-121",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-122",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-123",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-124",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-125",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-126",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-127",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-128",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-129",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-130",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-131",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-132",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-133",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-134",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-135",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-136",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-137",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-138",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-139",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-140",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-141",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-142",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-143",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-144",
+      "expected_level": "NON_URGENT",
+      "actual_level": "PROMPT",
+      "expected_positive": false,
+      "predicted_positive": true,
+      "correct": false
+    },
+    {
+      "id": "emergency-negative-145",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-146",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-147",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-148",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-149",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-150",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-151",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-152",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-153",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-154",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-155",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-156",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-157",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-158",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-159",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    },
+    {
+      "id": "emergency-negative-160",
+      "expected_level": "NON_URGENT",
+      "actual_level": "NON_URGENT",
+      "expected_positive": false,
+      "predicted_positive": false,
+      "correct": true
+    }
+  ],
+  "note": "Reviewed synthetic rule cases, not clinical data; binary red-flag metrics group CRITICAL, URGENT, and PROMPT as positive."
+}

@@ -1,7 +1,19 @@
 // @refresh reset
 import { createContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 import type { ChatMode, ChatMessage, ChatCardPayload, ScanType } from '../types';
-import { createConversation, getAuthToken, listConversations, listMessages } from '../services/chatService';
+import { createConversation, getAuthToken, listConversations, listMessages, type ConversationSummary } from '../services/chatService';
+
+const LOCAL_CONVERSATIONS_KEY = 'smart_health_local_conversations';
+const localMessagesKey = (id: string) => `smart_health_local_messages:${id}`;
+const readLocalConversations = (): ConversationSummary[] => {
+    try { return JSON.parse(localStorage.getItem(LOCAL_CONVERSATIONS_KEY) || '[]') as ConversationSummary[]; } catch { return []; }
+};
+const makeLocalConversation = (): ConversationSummary => ({
+    id: `local-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    title: `新对话 ${new Date().toLocaleDateString('zh-CN')}`,
+    active_agent: 'advisor_agent', status: 'active',
+    created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+});
 
 // Per-mode config used to auto-generate Welcome and Exit cards
 const MODE_CARD_CONFIG: Record<string, { title: string; description: string; exitTitle: string }> = {
@@ -49,6 +61,10 @@ export interface GlobalState {
     setAccessToken: (token: string | null) => void;
     conversationId: string | null;
     setConversationId: (id: string | null) => void;
+    conversations: ConversationSummary[];
+    selectConversation: (id: string) => Promise<void>;
+    createNewConversation: () => Promise<void>;
+    conversationError: string | null;
 }
 
 const GlobalContext = createContext<GlobalState | undefined>(undefined);
@@ -58,43 +74,103 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [chatMode, setChatMode] = useState<ChatMode>('general');
     const chatModeRef = useRef<ChatMode>('general');
 
-    const [messages, setMessages] = useState<ChatMessage[]>(() => [{
-        id: 'msg-1',
-        role: 'assistant',
-        text: `你好！我是大健康智能助手，愿你时刻好心情。今天有什么我可以帮你的吗？`,
-        timestamp: new Date().getTime(),
-    }]);
+    const createWelcomeMessage = () => ({
+        id: `msg-welcome-${Date.now()}`,
+        role: 'assistant' as const,
+        text: '你好！我是 CareMate，你的智能健康伙伴。今天有什么我可以帮你的吗？',
+        timestamp: Date.now(),
+    });
+    const [messages, setMessages] = useState<ChatMessage[]>(() => [createWelcomeMessage()]);
 
     const [isScanning, setIsScanning] = useState(false);
     const [accessToken, setAccessToken] = useState<string | null>(() => getAuthToken());
     const [conversationId, setConversationId] = useState<string | null>(() => localStorage.getItem('smart_health_conversation_id'));
+    const [conversations, setConversations] = useState<ConversationSummary[]>([]);
+    const [conversationError, setConversationError] = useState<string | null>(null);
+
+    const selectConversation = useCallback(async (id: string) => {
+        setConversationError(null);
+        let persisted: Array<{ id: string; role: 'user' | 'assistant'; content: string; created_at: string }> = [];
+        if (id.startsWith('local-')) {
+            try { persisted = JSON.parse(localStorage.getItem(localMessagesKey(id)) || '[]'); } catch { persisted = []; }
+        } else {
+            persisted = await listMessages(id);
+        }
+        setConversationId(id);
+        localStorage.setItem('smart_health_conversation_id', id);
+        setChatMode('general');
+        chatModeRef.current = 'general';
+        setMessages(persisted.length > 0 ? persisted.map(message => ({
+            id: message.id,
+            role: message.role,
+            text: message.content,
+            timestamp: Date.parse(message.created_at),
+        })) : [createWelcomeMessage()]);
+    }, []);
+
+    const createNewConversation = useCallback(async () => {
+        setConversationError(null);
+        let conversation: ConversationSummary;
+        if (accessToken) {
+            try {
+                conversation = await createConversation(`新对话 ${new Date().toLocaleDateString('zh-CN')}`);
+            } catch {
+                setConversationError('云端会话创建失败，已创建本地会话');
+                conversation = makeLocalConversation();
+            }
+        } else {
+            conversation = makeLocalConversation();
+        }
+        if (conversation.id.startsWith('local-')) {
+            const local = [conversation, ...readLocalConversations().filter(item => item.id !== conversation.id)];
+            localStorage.setItem(LOCAL_CONVERSATIONS_KEY, JSON.stringify(local));
+        }
+        setConversations(current => [conversation, ...current.filter(item => item.id !== conversation.id)]);
+        setConversationId(conversation.id);
+        localStorage.setItem('smart_health_conversation_id', conversation.id);
+        setChatMode('general');
+        chatModeRef.current = 'general';
+        setMessages([createWelcomeMessage()]);
+    }, [accessToken]);
 
     useEffect(() => {
-        if (!accessToken) return;
+        if (!accessToken) {
+            const local = readLocalConversations();
+            const current = local.find(item => item.id === localStorage.getItem('smart_health_conversation_id')) ?? local[0] ?? makeLocalConversation();
+            if (!local.length) localStorage.setItem(LOCAL_CONVERSATIONS_KEY, JSON.stringify([current]));
+            setConversations(local.length ? local : [current]);
+            void selectConversation(current.id);
+            return;
+        }
         let cancelled = false;
         const restore = async () => {
             try {
                 const conversations = await listConversations();
-                let conversation = conversations[0];
-                if (!conversation) conversation = await createConversation();
+                setConversations(conversations);
+                const storedId = localStorage.getItem('smart_health_conversation_id');
+                let conversation = conversations.find(item => item.id === storedId) ?? conversations[0];
+                if (!conversation) {
+                    conversation = await createConversation();
+                    setConversations([conversation]);
+                }
                 if (cancelled) return;
-                setConversationId(conversation.id);
-                localStorage.setItem('smart_health_conversation_id', conversation.id);
-                const persisted = await listMessages(conversation.id);
-                if (cancelled || persisted.length === 0) return;
-                setMessages(persisted.map(message => ({
-                    id: message.id,
-                    role: message.role,
-                    text: message.content,
-                    timestamp: Date.parse(message.created_at),
-                })));
+                await selectConversation(conversation.id);
             } catch (error) {
+                setConversationError('云端会话暂不可用，已切换为本地会话');
                 console.warn('[store] failed to restore conversation', error);
             }
         };
         void restore();
         return () => { cancelled = true; };
-    }, [accessToken]);
+    }, [accessToken, selectConversation]);
+    useEffect(() => {
+        if (!conversationId?.startsWith('local-')) return;
+        const persisted = messages.filter(message => message.text).map(message => ({
+            id: message.id, role: message.role === 'user' ? 'user' : 'assistant', content: message.text,
+            created_at: new Date(message.timestamp).toISOString(),
+        }));
+        localStorage.setItem(localMessagesKey(conversationId), JSON.stringify(persisted));
+    }, [conversationId, messages]);
     const [scanType, setScanType] = useState<ScanType>('药盒');
 
     const enterChatMode = useCallback((mode: ChatMode) => {
@@ -205,7 +281,8 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             messages, setMessages,
             isScanning, setIsScanning,
             scanType, setScanType,
-            accessToken, setAccessToken, conversationId, setConversationId
+            accessToken, setAccessToken, conversationId, setConversationId,
+            conversations, selectConversation, createNewConversation, conversationError
         }}>
             {children}
         </GlobalContext.Provider>

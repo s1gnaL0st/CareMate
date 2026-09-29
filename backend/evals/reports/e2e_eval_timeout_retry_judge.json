@@ -1,0 +1,2620 @@
+{
+  "schema_version": "e2e_eval_v1",
+  "status": "measured_runtime_synthetic_regression",
+  "dataset": "evals\\e2e_cases_timeout_retry.jsonl",
+  "dataset_origin": "synthetic_regression_only",
+  "metrics": {
+    "sample_count": 72,
+    "route_accuracy": 0.8472222222222222,
+    "task_completion_rate": 0.9861111111111112,
+    "citation_faithfulness_mean": 0.0,
+    "overtriage_rate": null,
+    "latency_ms": {
+      "mean": 24042.01786805556,
+      "p50": 23845.057099999394,
+      "p95": 42119.69509999835
+    },
+    "cost_usd_mean": null
+  },
+  "llm_judge_enabled": true,
+  "rows": [
+    {
+      "id": "e2e-synthetic-001",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10011.792999997851,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.6,
+        "plan_issues": [
+          "计划仅一个 symptom_agent 任务，depends_on 为空，无依赖串行问题；但缺少证据/指南检索或核验任务，task_results_and_evidence.t1.evidence 为空，无法对医学断言进行忠实度审计。",
+          "t1 目标要求收集并结构化症状、给出紧急程度分级与就医分诊建议，并告知重点记录事项；最终回答只列出少量记录点并追问红旗症状，未完成结构化记录和明确分诊分级。",
+          "对用户“应该先记录哪些情况”覆盖不完整：未系统覆盖最高体温/热型/退热药反应、饮水与尿量、基础疾病与用药、旅行或接触史、伴随症状清单等。",
+          "目标中要求“收集”未知信息，但计划未说明如何采集或回退：单轮 symptom_agent 既做采集又做分诊，可能造成交付不完整。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.5,
+        "overall_issues": [
+          "输入 evidence 为空且没有来源正文，按规则不能评估医学事实忠实度，claim_judgments 必须为空。",
+          "最终回答包含“最常见的是病毒性上呼吸道感染或其他感染引起的发热性头痛，大多数不需要急诊”等医学/流行病学断言，但无来源支持，无法核验。",
+          "最终回答未给出用户可执行的完整“优先记录清单”，也未输出明确的紧急程度分级或就医分诊标准，仅提出需要确认的红旗症状。",
+          "回答对部分症状做了倾向性解释，虽未直接诊断，但存在未受证据支持的病因推断和风险安抚，审计上应标注为不可核验。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-003",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13369.13359999744,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-010",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 12670.656400001462,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "JSONDecodeError",
+        "judge_schema_errors": [],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-014",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11263.57029999781,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-015",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 16736.74370000299,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-016",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11275.47499999855,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-017",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11367.162900001858,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-021",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 16596.67730000001,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-022",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 25546.252499996626,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "JSONDecodeError",
+        "judge_schema_errors": [],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-023",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 18014.145900000585,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.8,
+        "plan_issues": [
+          "单任务覆盖布洛芬的用途、用法和常见注意事项，任务目标与用户请求一致，且无依赖任务，不存在无依赖任务被不必要串行的问题。",
+          "计划未强制要求产出可核验的来源ID或来源正文，也未在药品数据库查询失败时设计回退步骤或明确降级为不可核验信息。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.75,
+        "overall_issues": [
+          "任务结果中的 evidence 仅有 search_drug_info 工具记录，source_ids、source_urls、content_hash 均为空，没有来源正文，因此所有医学事实主张均无法核验，claim_judgments 必须为空。",
+          "最终答案按用户要求先给结论、再说明用途/用法/注意事项，结构上覆盖请求，但依据部分引用的“通用药品说明书要点”“权威用药科普资料”“国家药典相关规范”在输入证据中没有对应来源ID或正文。",
+          "在数据库查询失败后，最终答案仍给出较具体的剂量、禁忌和合并用药提醒；这些内容不能由所提供证据支持，应标注为不可核验或补充可核验来源。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-024",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 15730.02970000016,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-025",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 33555.63670000265,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-026",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13544.074400000682,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-027",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 15374.828799998795,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-028",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13921.227300001192,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-029",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 16731.660599998577,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.82,
+        "plan_issues": [
+          "单任务计划在主题上覆盖了用途、用法和常见注意事项，depends_on 为空且无依赖任务不必要串行的问题，任务划分基本合理。",
+          "计划未明确要求以可核验的药品说明书或权威数据库检索成功作为输出前提，也未规定检索失败时应中止、降级或仅提示获取说明书，导致任务结果在数据库查询失败后仍输出具体药品信息。",
+          "缺少对药品信息输出的核验或安全复核步骤；对一般性药品咨询虽非强制，但会增加未核验内容直接进入最终答案的风险。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.85,
+        "overall_issues": [
+          "证据中 search_drug_info 未返回任何 source_ids、来源正文或可解析内容，因此无法对具体医学主张进行忠实度或支持性判断，claim_judgments 必须为空。",
+          "任务结果明确说明药品数据库查询未成功，但仍输出了布洛芬用途、剂量、禁忌和相互作用等具体信息；虽附有免责声明，关键医学事实仍缺少可核验来源支持。",
+          "最终答案覆盖用户请求的用途、用法和常见注意事项，并补充就医提示，主题完整性较好，但证据链断裂是主要质量缺陷。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-030",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 16948.940400001447,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-031",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10966.070599999512,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-032",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10265.555800000584,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 1.0,
+        "overall_issues": [
+          "task_results_and_evidence 中 evidence 为空，没有来源正文，无法对最终回答中的医学事实主张进行来源支持性核验，因此 claim_judgments 按规则为空。",
+          "最终回答以通俗方式覆盖了两种药同服前应核对的主要相互作用信息类别、核对渠道和注意事项，与用户请求范围一致；但其中具体医学示例无来源可核验。",
+          "回答末尾邀请用户提供两种药名以进一步查询，属于后续互动引导；未对患者进行诊断。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-033",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 15662.571499997284,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-034",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11622.288899998239,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-035",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 16788.818600001832,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-036",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13328.845600000932,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-037",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 9973.520100000314,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-038",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 15548.11939999854,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-039",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 14146.728600000642,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 1.0,
+        "overall_issues": [
+          "输入未提供任何来源正文或 evidence_id，claim_judgments 为空，无法评估医学事实忠实度。",
+          "单任务计划覆盖了用户所需的同服前相互作用核对类别、易漏细节、就医资料清单和警示症状，且无需串行依赖，未发现明显计划问题。",
+          "最终答案未针对具体药物作相互作用判定或个体化处方建议，符合用户未提供具体药名、剂量和病史的输入约束。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-040",
+      "suite": "medication",
+      "actual_agent": "pharmacy_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13173.468199998752,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "单任务计划覆盖用户要求的通用核对清单、核对途径和需提供的个人用药信息，任务划分合理，且只有一个任务，不存在不必要的依赖串行。",
+          "计划未要求检索或引用可核验的权威来源，如药品说明书、指南或相互作用数据库，导致最终输出的医学事实缺少来源证据。",
+          "计划明确不针对具体药名和病史做个体化判断，符合用户输入无具体药物信息的场景，但应进一步要求标注信息来源或说明仅为通用科普。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "task_results_and_evidence 中 evidence 为空，没有来源正文或来源 ID，无法对最终答案中的医学事实主张进行 supported、support_level 和证据引用评估，因此 claim_judgments 必须为空。",
+          "最终答案覆盖了两种药同服前需核对的 9 类通用信息，并补充了应向医生或药师提供的个人用药信息，与用户问题基本匹配。",
+          "所有医学信息均无可引用来源，无法核验忠实度；应补充权威来源或明确标注为经验性科普，并避免让用户将其作为个体化用药依据。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-041",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 41091.589500003465,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-042",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 29290.251599999465,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-043",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 38341.82409999994,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "JSONDecodeError",
+        "judge_schema_errors": [],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-044",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 24659.609199999977,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-045",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 31561.04779999805,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.7,
+        "plan_issues": [
+          "任务覆盖用户请求：整理了白细胞偏高时需关注的指标并包含安全注意事项，依赖为空合理，单任务不存在不必要的串行依赖。",
+          "计划仅安排一个报告生成任务，未显式包含证据检索、来源正文获取、证据校验或工具不可用时的降级/限制声明方案。",
+          "计划未明确要求将‘需关注指标清单’与‘诊断/治疗建议’严格分离，安全边界和不得输出个体化诊疗建议的约束可以更显式。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [
+          "输入证据只有 lab_interpreter 与 load_skill 两个工具条目，source_ids、source_urls、来源正文和内容哈希均为空，没有来源正文；因此不能评估忠实度，claim_judgments 必须为空。",
+          "最终回答包含具体指标解释、支原体肺炎相关指南表述和多项安全红线，但这些医学主张在提供的证据中没有可引用来源ID或正文支持，不能判为 supported。",
+          "执行记录显示 lab_interpreter 与 load_skill 不可用，且复查/随访证据面缺失；最终回答虽声明了局限，但仍输出了较具体医学信息，需区分清单式信息与个体化诊疗建议。",
+          "计划依赖为空且无串行问题，但缺少证据获取/校验与工具失败降级路径，导致执行结果无法满足可核验性要求。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "judge_status": "partial_output",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-046",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 32040.74849999961,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-047",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 27590.44410000206,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.78,
+        "plan_issues": [
+          "计划仅包含一个 report_1，depends_on 为空；单个无依赖任务不存在不必要的串行依赖问题。",
+          "任务目标覆盖用户请求的主要方向（需关注指标、一般意义、复诊/进一步检查提示），但未设置独立的证据检索/来源核验任务，导致执行记录中 lab_interpreter/load_skill 均无可用来源正文。",
+          "同一任务同时承担信息补齐清单、指标分类、机制解释、就医警示和复查建议，粒度过宽，验收标准不够清晰。",
+          "未明确区分“根据现有单次报告可整理的指标”与“需医生决定的进一步检查”，虽然最终答案有提示，但计划层面缺少输出边界约束。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.88,
+        "overall_issues": [
+          "证据中没有来源正文：lab_interpreter 与 load_skill 的 source_ids、source_urls、version、content_hash 均为空，因此不能评估任何医学事实主张的忠实度，claim_judgments 必须为空。",
+          "最终答案覆盖了用户请求的指标整理，并补充分类、炎症指标、其他血细胞系、临床信息和就医警示，整体回答较完整。",
+          "最终答案中的医学事实、指标意义、复查时间与就医警示均未提供可核验来源 ID，且报告任务已说明 lab_interpreter 调用失败，主要依赖通用知识。",
+          "计划未安排证据检索/核验，导致输出无法满足来源可核验要求。",
+          "未对患者做诊断，但包含非个体化健康建议；在缺少来源和具体数值时，应继续明确其仅为通用科普而非诊疗结论。",
+          "计划无依赖任务，未发现无依赖任务被不必要串行化的问题。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-048",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 33626.47900000229,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.8,
+        "plan_issues": [
+          "计划未显式要求绑定可核验的医学来源或证据 ID；在证据源为空、无来源正文的情况下，后续医学事实无法进行忠实度审计。",
+          "计划虽在 input_slice 中说明缺少具体数值、单位、参考区间、采样时间及个人基础信息，但未在任务层面明确规定如何在“可做方向性科普”与“必须拒绝判断”之间划出结构化边界。",
+          "任务覆盖用户核心诉求：不直接诊断、解释白细胞偏高的意义、整理需要关注的配套指标；单个任务无 depends_on，不存在无依赖任务不必要串行的问题。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "task_results_and_evidence 中 lab_interpreter 与 load_skill 均无 source_ids、source_urls、来源正文或可核验内容，且 lab_interpreter 被说明为暂时不可用。",
+          "由于证据中没有来源正文，claim_judgments 必须为空，无法对最终答案中的医学事实或主张逐条判断 supported、support_level、evidence_ids。",
+          "最终答案在结构上覆盖了用户诉求：未直接下诊断，解释了 WBC 偏高，列出了白细胞分类、血常规其他项目、炎症指标等关注清单，并给出就医提示和向医生补充信息的建议。",
+          "最终答案包含较多方向性医学断言，但均无输入中可核验来源支持，因此不能确认其忠实度。",
+          "计划结构本身较简单合理：单任务无依赖，无多余串行；主要审计风险来自证据链缺失，而非任务拆分或依赖设计。",
+          "未发现对患者进行诊断性结论或用药建议，符合用户“不直接下诊断”的约束。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-049",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 26823.771600000327,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "计划仅包含 1 个任务，覆盖用户‘整理需要关注的指标’的诉求，且明确不做诊断、不做历史趋势预测，依赖关系合理，不存在无依赖任务被不必要串行的问题。",
+          "任务粒度过粗：同一任务同时承担白细胞偏高含义解读、配套指标清单、就医沟通问题、日常注意事项和警示信号整理，缺少更细的验收标准或输出边界约束。",
+          "计划未显式要求对医学事实标注证据来源、证据不足或工具不可用时的降级策略；执行记录显示 lab_interpreter 不可用且检索不充分，计划层面缺少证据可用性检查。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "证据列表中 lab_interpreter 与 load_skill 的 source_ids 均为空，且无来源正文，因此无法对医学事实进行忠实度核验；按规则 claim_judgments 必须为空。",
+          "最终回答覆盖了用户要求的‘整理需要关注的指标’，并补充了就医沟通问题、日常注意事项与警示信号，完整性较高。",
+          "最终回答包含较多通用医学判断、指标解释和建议，但输入内没有可核验的来源正文支持，只能视为沟通清单和常识性说明，不能作为诊断或诊疗依据。",
+          "执行记录已披露结构化解读工具不可用、检索不充分和随访证据缺失，但最终回答仍扩展了较多超出用户直接请求的建议范围。",
+          "未发现执行记录对患者作出诊断性结论，也未发现执行输入中不可信指令的迹象。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-050",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 31429.75149999984,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.5,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.5,
+        "overall_issues": [
+          "输入 evidence 中 lab_interpreter 与 load_skill 的 source_ids 均为空且无来源正文，无法核验任何医学事实；按规则 claim_judgments 必须为空。",
+          "执行记录明确工具不可用、检索充分性为 False 且缺失 follow_up 证据，summary 与 final_answer 中的医学解读和建议缺少可审计证据链。",
+          "final_answer 覆盖了用户要求的“需要核实指标”整理，但还包含生活、复查和就医建议，超出核心请求范围且未附证据来源。",
+          "计划仅含一个 report_agent 任务，依赖为空，覆盖用户请求且无无依赖任务不必要串行的问题。",
+          "未提供来源 ID、参考区间原文或患者具体数值，无法独立复核“白细胞偏高”判定及任何指标解读。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-051",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 30717.520300000615,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.95,
+        "overall_issues": [
+          "task_results_and_evidence 中 evidence 为空，且没有来源正文，按规则无法对医学事实主张进行基于来源的支持度或忠实度判断，因此 claim_judgments 为空。",
+          "计划仅包含一个无依赖任务，不存在不必要的串行依赖；任务目标覆盖用户关于血红蛋白偏低通常需要结合哪些信息的一般性知识询问。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-052",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 36573.482499999955,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-053",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 32215.310700001282,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.8,
+        "plan_issues": [
+          "单一任务覆盖了用户请求的核心意图：先给结论，再列出需要结合的信息；任务目标与用户问题基本一致。",
+          "plan 中 depends_on 为空，单任务不存在依赖错误或不必要的串行等待。",
+          "计划未设置独立的证据检索/核验任务；任务结果自称证据检索不完整，但仍引用了具体药物信息和高血压指南内容，计划层面未保证依据可追溯。",
+          "input_slice 正确标注用户未提供具体血红蛋白数值、单位、参考范围和其他个人/血常规信息，符合一般性指标解读咨询的边界。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "证据对象 lab_interpreter 的 source_ids 为空、无来源正文、无来源 URL，仅记录工具调用失败；由于没有来源正文，按规则不能评估医学事实忠实度，claim_judgments 为空。",
+          "最终答案包含多项未被输入证据直接支持的细项，例如某药品导致网织红细胞一过性减少、血常规属于高血压患者首次评估及年度评估的应查项目、贫血分型阈值相关讨论、具体追加检查方向等；输入证据中没有可引用的来源 ID 或正文。",
+          "lab_interpreter 返回故障，未形成结构化化验单解读结果；最终答案主要依赖通用临床逻辑和未溯源信息，证据链不足。",
+          "答案结构满足“先结论、再依据”，并覆盖报告硬信息、同一张血常规配套指标、个人背景、追加检查等主要信息维度，因此完整性较高。",
+          "未对患者作出诊断，包含就医提示和“请勿自行补铁或停药”等非诊断性安全提醒，符合边界要求。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-054",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 31545.866899999965,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-055",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent,symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 35817.86170000123,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [
+          "任务覆盖用户请求的两个方面：t1覆盖“血红蛋白偏低通常需要结合哪些信息”的综合评估原则，t2覆盖安全注意事项与就医分诊提示，覆盖较完整。",
+          "t1与t2均无依赖且并行执行，未发现无依赖任务被不必要串行。",
+          "计划未安排独立的证据检索或来源引用任务，也未在目标中明确要求引用可核验来源；执行中t1的工具证据source_ids为空且无来源正文，t2无evidence，导致最终答案中的具体医学事实缺乏可核验证据支撑。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "输入证据中没有来源正文，且t1证据的source_ids为空、t2证据为空，因此按规则无法对具体医学主张进行忠实度判断，claim_judgments必须为空。",
+          "t1引用的lab_interpreter工具本次不可用，evidence未提供任何可引用来源ID或正文。",
+          "t2完全没有evidence，其安全提示与分诊建议也无法从输入证据中获得支持。",
+          "最终答案包含多项具体临床阈值、药物示例、检查项目和分诊建议，但在无来源正文的情况下均无法核验，存在可核验性不足。",
+          "最终答案对随访/复查仅作原则性提示并声明证据缺失，这一点与执行记录中t1的局限性说明一致。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-056",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 42119.69509999835,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-057",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 34406.736299999466,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-058",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 33728.1275000023,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [
+          "计划仅一个无依赖任务，覆盖用户请求且无不必要串行；但未显式要求引用可核验来源或证据正文，导致执行记录在无来源正文时仍输出较多医学事实。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.95,
+        "overall_issues": [
+          "证据条目中 source_ids 均为空且无来源正文，按规则无法对 final_answer 的医学事实主张进行支持性核验，因此 claim_judgments 为空。",
+          "final_answer 覆盖了用户要求的‘血红蛋白偏低通常需要结合哪些信息’维度清单，且未给出个人诊断。",
+          "final_answer 包含一般性饮食、复查与就医提示，略超出用户仅要求的信息维度分析范围；执行记录也缺少可核验来源正文。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-059",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent,symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 46076.71729999856,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "JSONDecodeError",
+        "judge_schema_errors": [],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-060",
+      "suite": "report_interpretation",
+      "actual_agent": "report_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 28517.01509999839,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-061",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 9882.176800001616,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-062",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 28920.04319999978,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-063",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11662.940300000628,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-064",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11071.173899999849,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-065",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 14692.556300000433,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "计划未在输入中获取参保地区、医保类型或参保人身份信息，虽然任务目标提及需引导确认，但缺少明确的信息收集步骤和条件分支。",
+          "计划未要求余额查询结果必须引用官方来源或可核验证据，导致后续查询状态无法核验。",
+          "任务目标同时包含“说明查询方式与安全注意事项”和“实际查询余额”，但未明确区分在缺少用户信息时只能提供指引、不能声称已完成实际查询。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.7,
+        "overall_issues": [
+          "task_results_and_evidence 中 get_insurance_balance 的 source_ids、source_urls、content_hash 均为空，且没有来源正文，因此无法核验“当前账户尚未绑定医保账户或暂无数据”等查询结果。",
+          "最终答案未返回用户实际医保账户余额，仅说明无法读取并要求补充参保地区和医保类型，核心查询目标未完成。",
+          "最终答案包含官方渠道、防钓鱼、验证码保护、保护社保卡/医保码等安全注意事项，覆盖了用户要求的安全说明部分。",
+          "计划只有一个任务且 depends_on 为空，依赖设置合理，不存在无依赖任务被不必要串行的问题。",
+          "因证据中没有来源正文，claim_judgments 按要求为空，不进行忠实度或逐条支持性判定。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-071",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 32360.078000001522,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-072",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 24383.81069999741,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-073",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 38630.91340000028,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-074",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 22368.96490000072,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-075",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 43363.800099999935,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-076",
+      "suite": "insurance",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": false,
+      "citation_faithfulness": null,
+      "latency_ms": 60002.92659999832,
+      "cost_usd": null,
+      "error": "TimeoutError"
+    },
+    {
+      "id": "e2e-synthetic-077",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 47940.82190000336,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-078",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 35738.68969999967,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.75,
+        "plan_issues": [
+          "计划仅设置单个通用保险任务，与用户“住院前了解医保报销材料”的范围基本匹配，覆盖材料清单与办理流程方向。",
+          "任务 input_slice 已提示用户未提供参保地、医保类型、本地/异地等信息，并要求按通用情况说明、提示地区差异，这一点合理。",
+          "任务未把“必须获取可引用政策来源或明确标注来源缺失”作为交付要求，导致执行阶段在检索不到直接依据时仍可输出具体材料清单，增加无依据具体化风险。",
+          "无依赖任务设计合理，单个任务不存在不必要串行；depends_on 为空符合任务独立性。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.8,
+        "overall_issues": [
+          "证据数据中没有来源正文，且两个 search_insurance_policy 证据的 source_ids、source_urls 均为空，因此无法对最终答案中的医保材料主张做忠实度核验，claim_judgments 按规则为空。",
+          "执行记录明确称未检索到“住院报销材料清单”的直接政策依据，但最终答案仍列出多项具体材料、办理方式和提醒，属于无直接来源支持的具体化输出，存在地区差异下误导风险。",
+          "最终答案未取得可引用来源 ID，也未提供政策文件链接或版本信息，所有材料清单均不可核验。",
+          "计划与答案未按参保类型（职工/居民/新农合）、本地/异地、直接结算/手工报销等关键维度分别给出适用条件，仅作笼统提醒。",
+          "最终答案包含“不涉及诊断”的声明，符合用户不要直接下诊断的要求，但这不能弥补医保材料主张缺乏来源支持的问题。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-079",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 35710.94570000059,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-080",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 36865.79549999806,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-091",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 21054.66499999966,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-092",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 21662.306099999114,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-093",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 23845.057099999394,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 1.0,
+        "overall_issues": [
+          "证据中无来源正文（source_ids 与 source_urls 均为空），无法对最终答案中的医学主张进行核验与忠实度评估。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-094",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 20934.2144000002,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 1.0,
+        "overall_issues": [
+          "输入中的证据列表为空，无法对回答中的睡眠卫生与作息建议进行来源支持核验；按规则 claim_judgments 为空。",
+          "计划为单一无依赖任务，覆盖用户关于日常保持规律睡眠的一般性咨询，未发现任务覆盖、依赖或不必要串行问题。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-095",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 26377.555700000812,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-096",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 18032.9997000008,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-097",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 25617.53409999801,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-098",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 16984.682999998768,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "float_parsing"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-099",
+      "suite": "advisor",
+      "actual_agent": "chat_agent",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 25517.4889000009,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": null,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": null,
+        "overall_issues": [],
+        "judge_status": "invalid_output",
+        "judge_error_type": "ValidationError",
+        "judge_schema_errors": [
+          {
+            "path": "plan_score",
+            "type": "less_than_equal"
+          },
+          {
+            "path": "answer_completeness",
+            "type": "less_than_equal"
+          }
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": false,
+        "judge": "configured_precise_model",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-100",
+      "suite": "advisor",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 5095.299399999931,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.5,
+        "plan_issues": [
+          "计划为空，无任务、依赖或执行记录，无法评估任务覆盖、依赖合理性与是否存在不必要串行。",
+          "最终答案虽给出核实清单，但未由任何计划任务或证据来源支撑其生成过程。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "task_results_and_evidence 为空，缺少来源正文，无法进行基于证据的忠实度判断，claim_judgments 按规则为空。",
+          "最终答案覆盖了规律睡眠核实的主要维度，包括作息时间、睡眠潜伏期与夜醒、轮班/时差、睡前屏幕与午睡、咖啡因/酒精/尼古丁、运动、压力情绪、睡眠呼吸症状、药物/保健品及既往调整史。",
+          "未明确列出对‘规律性’本身的量化核实方式，如工作日/周末作息差异、睡眠日记或记录周期，清单来源与排序依据也未说明。",
+          "计划为空，无法评估任务覆盖、依赖关系及是否存在不必要串行；但该请求较简单，直接生成核实清单在形式上可接受。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    }
+  ],
+  "notes": [
+    "Synthetic regression data is not human-labelled clinical evidence.",
+    "Citation faithfulness is provenance coverage unless an offline LLM judge is enabled.",
+    "Overtriage rate is computed only for cases explicitly labelled NON_URGENT."
+  ]
+}

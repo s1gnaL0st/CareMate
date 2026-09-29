@@ -33,6 +33,23 @@ For the **insurance agent**, retrieval is exposed as an additional `search_insur
 
 ## Retrieval Strategy
 
+## Agentic retrieval controller
+
+Domain agents now call `agentic_rag.retrieve_until_sufficient` instead of
+always accepting one fixed Top-K result. The controller keeps a bounded trace
+for each round: query, source IDs, newly discovered sources, evidence count,
+missing evidence facets, and stop reason. It executes a first query, observes
+coverage, then issues a facet-specific query when evidence is missing (for
+example, a drug question first retrieves indication/usage and then retrieves
+contraindications/interactions). It stops only when source diversity and the
+query-specific evidence facets are covered, or when the round budget is
+exhausted. Insufficient evidence is passed to the agent as uncertainty rather
+than being silently filled in.
+
+This is a bounded Agentic RAG loop: the agent-facing controller owns query
+selection and stopping, while the knowledge base still owns hybrid retrieval,
+provenance and caching. It is not an unbounded autonomous crawler.
+
 | Component | Choice | Why |
 |---|---|---|
 | Sparse retrieval | BM25 (30%) | Exact match for medical terms: 高血压, 血红蛋白, ICD codes |

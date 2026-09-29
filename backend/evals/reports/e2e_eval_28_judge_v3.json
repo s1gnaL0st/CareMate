@@ -1,0 +1,969 @@
+{
+  "schema_version": "e2e_eval_v1",
+  "status": "measured_runtime_synthetic_regression",
+  "dataset": "evals\\e2e_cases_28_pending.jsonl",
+  "dataset_origin": "synthetic_regression_only",
+  "metrics": {
+    "sample_count": 28,
+    "route_accuracy": 0.75,
+    "task_completion_rate": 1.0,
+    "citation_faithfulness_mean": 0.0,
+    "overtriage_rate": null,
+    "latency_ms": {
+      "mean": 10719.775682143985,
+      "p50": 10011.981799994828,
+      "p95": 22679.517299999134
+    },
+    "cost_usd_mean": null
+  },
+  "llm_judge_enabled": true,
+  "rows": [
+    {
+      "id": "e2e-synthetic-002",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 9563.36790000205,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.95,
+        "overall_issues": [
+          "task_results_and_evidence 中 evidence 为空，没有来源正文，无法对最终回答中的医学事实主张进行忠实度核验，claim_judgments 必须为空。",
+          "最终回答包含“最常见的是病毒性呼吸道感染一类的自限性问题”等病因和病程判断，缺乏输入证据支持。",
+          "最终回答给出危险信号和就诊分流建议，虽与安全相关，但超出用户仅询问“先记录哪些情况”的直接范围，且无来源引用。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-004",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 12155.536699996446,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "单任务计划覆盖了收集症状、分诊和记录要点指导，但未安排获取分诊或红旗征的权威依据，且证据列表为空。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.95,
+        "overall_issues": [
+          "任务结果与最终回答均未提供任何证据来源，无法对其中医学事实主张进行忠实度或支持性核验。",
+          "最终回答包含疾病可能性和就医分诊判断，但无来源证据支撑；本审计不评价其临床正确性。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-005",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 7000.899099999515,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "计划仅设置一个症状代理任务，安全注意事项与分诊建议未作为独立可核验输出项；若执行时遗漏红旗征或就医阈值，计划层面不易发现。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.65,
+        "overall_issues": [
+          "证据列表为空，没有来源正文，无法对任何医学事实主张进行忠实度判断，claim_judgments 按规则为空。",
+          "最终回答列出了部分建议记录项，但未明确给出完整的安全注意事项、就医/分诊阈值或红旗征出现后的行动建议。",
+          "回答以追问颈项强直等症状结束，未闭环说明用户当前可执行的安全观察与记录计划。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-006",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 22679.517299999134,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.8,
+        "overall_issues": [
+          "最终回答给出多数症状记录项，但未明确覆盖既往史、过敏史、基础疾病等计划中提到的信息。",
+          "未将“优先记录清单”按优先级或就诊必答项清晰结构化。",
+          "仅以提问形式筛查颈强直、怕光、皮疹等危险信号，未给出明确的就医/分诊建议或触发阈值。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-007",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10167.197000002488,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.85,
+        "overall_issues": [
+          "最终答复未给出完整的紧急分级或就医分诊标准，仅提出一个危险信号问题。",
+          "任务结果未附带任何证据来源，无法对医学事实主张进行忠实度核验。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-008",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10489.011600002414,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "最终回答在未获取体温、头痛细节等症状数据时称“暂时没有明显的紧急信号”，存在过早安抚风险，更稳妥的表述应仅列需记录项和警示信号，或说明需进一步信息后再分层。",
+          "任务结果与最终回答未提供任何来源证据，无法评估医学主张忠实度，因此 claim_judgments 为空。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-009",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10615.747999996529,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.95,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "提供的证据列表为空，无法对医学事实性主张进行来源核验；按规则 claim_judgments 为空。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-011",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 9966.46000000328,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [
+          "计划未安排证据检索或权威来源引用，导致任务结果 evidence 为空，医学主张不可核验。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.8,
+        "overall_issues": [
+          "任务结果与最终答案均未提供任何来源证据，无法核验咳嗽危险信号等医学事实。",
+          "最终答案列举了部分危险信号，但未给出完整的就医判断框架或紧急程度分层，且以反问结尾。",
+          "医学判断性表述缺少可追溯依据。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-012",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11565.956499995082,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.3,
+        "overall_issues": [
+          "最终回复只追问痰中带血、明显喘不上气、胸痛，未用通俗方式系统说明需要尽快就医的警示信号、紧急程度分层和就医建议，未充分回答用户核心问题。",
+          "t1 状态标记为 completed，但实际输出未完成其 objective 中“说明哪些表现属于需要尽快就医的警示信号并进行紧急程度分层与就医建议”的要求。",
+          "任务证据为空，无来源正文可用于核验医学事实主张，因此 claim_judgments 为空。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-013",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11470.940400002291,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.7,
+        "plan_issues": [
+          "计划未安排权威指南或证据来源检索任务，紧急程度判断依据缺少可核验来源",
+          "任务目标要求收集起病时间、持续时间、性质、伴随症状、既往史、用药、吸烟史等信息，但缺少最低信息集与缺失信息分支策略",
+          "单任务同时承担信息收集与紧急分级，可能在没有足够信息时直接形成倾向性结论"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.55,
+        "overall_issues": [
+          "证据列表为空，无法对任何医学事实主张做支持性判断",
+          "最终回答在信息不足时给出“暂时没有需要立刻去急诊”的倾向性结论，限定条件不足",
+          "仅追问痰中带血、呼吸困难、胸痛，未覆盖持续发热、咳嗽持续时间、基础病、吸烟史等高相关分诊信息",
+          "未提供完整、可操作的“何时尽快就医/何时急诊”判断框架，依据说明较简略",
+          "执行结果与计划目标中广泛收集症状与病史的要求覆盖度不匹配"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-018",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13508.281599999464,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "执行记录未提供任何来源证据，按规则 claim_judgments 为空，无法对医学事实主张做忠实度核验。",
+          "最终回复覆盖主要危险征象和就医时机，但未展开咳嗽持续时间、慢性咳嗽阈值、既往病史或高风险暴露等分层信息；不过计划允许必要时追问，未构成明显缺口。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-019",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 9785.782400002063,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.8,
+        "plan_issues": [
+          "计划将症状采集、紧急程度分级和就医信息清单整理合并为单一任务，未明确在用户补充信息后如何收尾并输出完整分诊与清单"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.35,
+        "overall_issues": [
+          "最终回答未按用户请求给出完整的“是否需要尽快就医”判断标准",
+          "未整理就医所需信息清单",
+          "未完成计划中紧急程度分级和就医分诊建议",
+          "仅追问气短/胸闷单一问题，未覆盖咳嗽时长、痰液、发热、咯血、既往史、用药等关键信息",
+          "任务证据为空，无法对医学事实主张进行来源支持度评估"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-020",
+      "suite": "preconsultation",
+      "actual_agent": "symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10011.981799994828,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.3,
+        "overall_issues": [
+          "最终答案未按用户请求列出需要核实的关键信息清单，仅提及部分警示征象并反问一个问题。",
+          "未系统覆盖起病时间与病程、咳嗽性质与诱因、痰液性状、伴随症状、发热与呼吸困难等警示征象、既往病史与用药史、吸烟及环境暴露等计划中列出的核实项。",
+          "未给出清晰的紧急分级或就医分诊建议，仅笼统提示出现某些警示信号需尽快就诊。",
+          "任务摘要与最终答案基本重复，未呈现完整的核实清单或分诊框架。",
+          "evidence 为空，无来源正文可供核验医学事实主张，因此 claim_judgments 为空。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-066",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10933.415900006366,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 1.0,
+        "overall_issues": [
+          "证据条目为空且无来源正文，无法对任何医保账户余额事实主张进行忠实度核验。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-067",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 11389.279300005,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "计划仅包含单个查询余额任务，未预先考虑帮家人查询的授权/代查场景，需在结果返回后才临时补充说明",
+          "任务目标未定义账户未绑定时失败分支的处理标准，导致输出偏解释性"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.85,
+        "overall_issues": [
+          "证据记录中 source_ids、source_urls 为空且无来源正文，无法对任何医学/事实主张做忠实度核验，故 claim_judgments 为空",
+          "最终答复主要复述查询工具返回的账户状态，未提供可核验的余额数据，也未包含任何可引用的证据 ID"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-068",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 10220.888800002285,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 1.0,
+        "plan_issues": [],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "证据条目未包含来源正文或 source_ids，无法对“账户尚未绑定/暂无数据”等事实主张进行可核验支持度评估；按规则 claim_judgments 为空。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-069",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 13897.147200004838,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [
+          "计划仅设置一个保险查询任务，覆盖查询余额与说明查询口径，依赖关系合理，无多余串行；但未在计划中显式预设“账户未绑定/授权失败”时的替代路径或后续任务。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.85,
+        "overall_issues": [
+          "证据仅有工具元数据，source_ids 为空且无来源正文，无法核验“账户未绑定”“余额查询接口不需要参保地/身份证号”“个人账户余额口径”等事实性主张。",
+          "最终回答未给出实际医保账户余额，但说明了阻塞原因和绑定路径；对统筹余额等查询口径的说明不充分。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-070",
+      "suite": "insurance",
+      "actual_agent": "insurance_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 51356.39269999956,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.9,
+        "plan_issues": [
+          "单一任务同时覆盖余额查询与前置核实清单，未显式区分“查询执行”和“政策/材料核验”的证据来源要求；在政策检索无有效结果时，清单主要依赖一般性说明。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.85,
+        "overall_issues": [
+          "证据条目均无来源正文、source_ids、source_urls，无法对最终答案中的医保政策与材料清单主张进行来源忠实度核验，故 claim_judgments 为空。",
+          "政策检索未返回有效条目，最终答案中“通常需要核实的信息”缺少权威来源支撑，仅以“以当地经办口径为准”作限定。",
+          "余额查询未成功（未绑定或暂无数据），但已给出未查询到结果的说明和后续绑定/补充参保地建议。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-081",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 3435.7336000030045,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.0,
+        "plan_issues": [
+          "执行计划为空，未提供任务分解，无法覆盖用药安全评估与医保报销核验两个请求。",
+          "无依赖任务是否不必要串行、依赖是否合理均因缺少计划而无法评估。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "输入未包含任何来源正文或证据，无法对医学事实进行忠实度核验。",
+          "最终回复未提供用药建议或诊断，而是要求补充药品、个人健康与参保信息，方向合理但未直接完成回答。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-082",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 3006.8959000054747,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.0,
+        "plan_issues": [
+          "计划为空，未覆盖“药品能否服用”和“医保能否报销”的任务分解",
+          "无法评估任务依赖是否合理、是否存在不必要的串行"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.2,
+        "overall_issues": [
+          "未提供证据来源正文，无法核验任何医学或医保事实",
+          "最终答案未回答药品能否服用或医保能否报销，仅请求补充信息",
+          "缺少执行计划与任务结果，无法审计任务覆盖与证据链"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-083",
+      "suite": "mixed",
+      "actual_agent": "insurance_agent,pharmacy_agent,symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 8292.512400003034,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "symptom_intake 的 objective 未明确包含收集药品通用名/商品名，但其 input_slice 已指出缺少药品名称，任务描述可更一致。",
+          "insurance_reimburse 不依赖其他任务，方向合理，但仍需用户提供药品名称和参保地后才能执行。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "输入未提供任何来源正文或可用证据，无法对医学事实主张进行支持性核验。",
+          "最终答复因缺少药品名称、症状病史和参保信息而未给出用药或报销结论，而是先追问必要信息；在信息不足场景下这是合理的，但未满足用户先给结论再说明依据的形式要求。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-084",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 4235.2089999985765,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.0,
+        "plan_issues": [
+          "未提供任何执行计划或任务列表，无法覆盖“药物能否服用”和“医保能否报销”两项请求",
+          "缺少针对澄清、信息收集、用药安全核验和医保政策查询的任务安排",
+          "未说明任务间依赖关系或并行/串行安排"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.7,
+        "overall_issues": [
+          "无任何来源证据正文，不能核验医学事实主张",
+          "无任务执行记录或证据收集结果",
+          "最终答案仅请求补充药名、个人情况、参保地和医保类型等信息，未给出任何可回答部分的一般性说明或安全提示",
+          "缺少对“不能判断能否服用/能否报销”的明确边界表述"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-085",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 5003.587900006096,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.2,
+        "plan_issues": [
+          "未提供任何计划任务，无法覆盖用药安全评估、医保报销判定及所需信息澄清等关键步骤。",
+          "计划为空，无法评估任务依赖是否合理，也无法判断非依赖任务是否被不必要串行。",
+          "最终回答仅请求补充药品名称、参保地和参保类型等信息，但执行记录中没有对应计划或证据收集任务。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.5,
+        "overall_issues": [
+          "输入中task_results_and_evidence为空，无来源正文，不能评估医学事实忠实度，claim_judgments必须为空。",
+          "用户未提供药品名称及参保地、参保类型等必要信息，最终回答只能请求补充信息，未实际回答能否用药或能否报销。",
+          "计划为空，缺少明确的用药安全信息核验步骤与医保政策查询步骤；在用户补充信息后仍需重新规划执行。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-086",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 3980.440200000885,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.4,
+        "plan_issues": [
+          "计划为空，未列出信息收集、药物安全核对、医保政策查询及后续安全审核等任务，任务覆盖不足。",
+          "因无计划任务，无法评估依赖关系与是否存在不必要串行。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "输入未提供证据来源正文，不能对医学事实主张做忠实度判断。",
+          "最终回答未直接回答能否服用或能否报销，但原因是缺少药名、患者信息、参保地与参保类型，属于合理澄清。",
+          "计划记录为空，未能体现对用户两个需求的任务分解与后续执行安排。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-087",
+      "suite": "mixed",
+      "actual_agent": "insurance_agent,pharmacy_agent,symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 7639.461799997662,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.85,
+        "plan_issues": [
+          "t1 未明确收集药品名称/规格、参保地等 t2/t3 所需关键信息，虽然 final_answer 已追问，但计划任务与追问项未完全对齐。",
+          "t2 依赖 t1 对个体化用药安全评估是合理的，但若仅输出药品通用信息，等待 t1 可能造成不必要串行。",
+          "t3 无依赖可并行，设计合理。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.9,
+        "overall_issues": [
+          "task_results_and_evidence 为空，没有来源正文，claim_judgments 置空，无法核验任何医学或医保事实主张。",
+          "final_answer 仅为信息补充追问，未形成具体用药或报销结论，符合信息不足场景，但不构成完整解答。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-088",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 4773.501700001361,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.6,
+        "plan_issues": [
+          "plan 为空，未给出任务分解，未显式覆盖用药安全分析与医保报销查询两个核心目标。",
+          "缺少对关键缺失信息收集任务的规划；最终回答虽要求补充信息，但未形成可执行的后续计划。",
+          "因无计划任务，无法评估依赖关系及是否存在不必要的串行安排。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.85,
+        "overall_issues": [
+          "证据对象为空且无来源正文，不能对医学或医保事实作忠实度判断，claim_judgments 必须为空。",
+          "最终回答未执行用药安全分析或医保报销判断，仅要求补充信息；在缺少具体药名、用药人情况及参保地等关键输入时，该处理合理，但未完成原始分析请求。",
+          "未提供可核验来源，无法验证未来可能涉及的药物安全性或医保政策结论。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-089",
+      "suite": "mixed",
+      "actual_agent": "",
+      "route_correct": false,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 3638.9291000014055,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.1,
+        "plan_issues": [
+          "计划为空，未覆盖用户提出的“药物能否服用”与“医保能否报销”两个子问题",
+          "未设计信息收集、证据核验、医保政策检索或安全提示等任务",
+          "无任务依赖关系可评估；对于可并行事项也未体现并行安排"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.5,
+        "overall_issues": [
+          "输入未提供任何来源正文，无法对医学事实进行忠实度核验",
+          "最终回答仅请求补充信息，未形成可供就医时使用的药品与医保信息清单",
+          "未体现对紧急情况、禁忌或用药安全边界的信息收集提示"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    },
+    {
+      "id": "e2e-synthetic-090",
+      "suite": "mixed",
+      "actual_agent": "insurance_agent,pharmacy_agent,symptom_agent",
+      "route_correct": true,
+      "task_complete": true,
+      "citation_faithfulness": 0.0,
+      "latency_ms": 9369.643300000462,
+      "cost_usd": null,
+      "error": null,
+      "llm_judge": {
+        "plan_score": 0.78,
+        "plan_issues": [
+          "t1 的目标聚焦个人健康信息，未明确收集药品通用名/规格，而 t2、t3 均依赖药品名称，可能导致后续核实无法启动。",
+          "t3 不依赖任何前置信息收集任务，但核实医保报销需要药品通用名、参保地、参保类型等前置信息，依赖关系与实际信息流不完全一致。",
+          "t2 依赖 t1 合理，但药品固有适应症/禁忌等信息可部分先做，当前串行虽可接受但并非完全必要。"
+        ],
+        "claim_judgments": [],
+        "answer_completeness": 0.82,
+        "overall_issues": [
+          "最终回答列出的待补信息覆盖用药安全和医保报销两条主线，但未明确询问怀孕/哺乳状态，而 t1 计划中包含该维度。",
+          "证据为空，无法对任何医学事实主张做忠实度判断。"
+        ],
+        "claim_count": 0,
+        "supported_claim_rate": null,
+        "adjudicated_claim_count": 0,
+        "unadjudicated_claim_count": 0,
+        "evidence_text_available": false,
+        "faithfulness_assessable": false,
+        "judge_output_complete": true,
+        "judge": "configured_precise_model",
+        "judge_status": "complete",
+        "online_path_used": false
+      }
+    }
+  ],
+  "notes": [
+    "Synthetic regression data is not human-labelled clinical evidence.",
+    "Citation faithfulness is provenance coverage unless an offline LLM judge is enabled.",
+    "Overtriage rate is computed only for cases explicitly labelled NON_URGENT."
+  ]
+}

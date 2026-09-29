@@ -22,6 +22,7 @@ from langgraph.prebuilt import create_react_agent
 from agents.state import MainAgentState
 from agents.llm import get_chat_llm
 from rag.knowledge_base import get_knowledge_base
+from agentic_rag import retrieve_until_sufficient
 from skills import get_agent_tools, load_skill
 from cache import cache_get_json, cache_key, cache_set_json
 from config import get_settings
@@ -159,8 +160,8 @@ async def _search_drug_info_local(drug_name: str) -> str:
     else:
         # Fall back to RAG search for drugs not in mock DB
         kb = get_knowledge_base()
-        docs = await kb.aretrieve(f"{drug_name} 药品 用法 适应症", k=3)
-        rag_info = kb.format_context(docs)
+        retrieval = await retrieve_until_sufficient(f"{drug_name} 药品 用法 适应症 禁忌 相互作用", kb, k=3, max_rounds=3)
+        rag_info = kb.format_context(retrieval.documents)
         result["found"] = False
         result["rag_info"] = rag_info or f"未找到{drug_name}的详细信息，建议前往正规医院或药店咨询药师。"
 
@@ -247,10 +248,8 @@ async def get_otc_recommendation(symptoms: str) -> str:
         f"{symptoms} 非处方药 OTC 用药建议",
         f"{symptoms} 治疗方法",
     ]
-    all_docs = []
-    for q in queries:
-        docs = await kb.aretrieve(q, k=2)
-        all_docs.extend(docs)
+    retrieval = await retrieve_until_sufficient("；".join(queries), kb, k=2, max_rounds=3)
+    all_docs = retrieval.documents
 
     # Deduplicate by page_content
     seen = set()

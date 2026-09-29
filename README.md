@@ -1,209 +1,153 @@
-# 🏥 大健康智能助手 (Smart Health Assistant)
+# CareMate — 面向医疗健康场景的 Agent 工作台
 
-> 🚀 **开源版 医疗/医保 多智能体对话系统** —— 对标国内头部平台（如蚂蚁阿福、支付宝健康管家等）的 AI 健康助手落地架构。
+CareMate 是一个面向医疗健康信息服务的全栈 Agent 项目。它将 LangGraph 多智能体编排、Agent Runtime、Agentic RAG、用户记忆、医疗安全 Harness、流式 UI 和可观测性整合在同一条端到端链路中。
 
-基于 **LangGraph + FastAPI + React** 的完整 AI 多智能体全栈参考实现。不只是一个聊天机器人，而是深度融合了**流式工具调用**与**结构化 UI 卡片**的智能分发引擎。
-- 支持 **开源可观测与评估**：OpenTelemetry/OpenInference 链路、Jaeger 本地后端与 DeepEval 回归评估。详见 [docs/observability-evals.md](docs/observability-evals.md)
-- 已支持 **多模态图片识别**：拍照看报告、拍照问药与药品追溯码识别
-- 支持 **多模型配置**：聊天模型可切换 ARK、OpenAI、DeepSeek、通义千问、智谱或任意 OpenAI-compatible 服务；图片模型可独立选择支持视觉输入的兼容模型
-- 新增支持 **RAG 知识库增强**，包括常见疾病、医保政策、检验参考范围、药品用药指南等。 详见 [docs/rag.md](docs/rag.md)
-- 新增支持 **Agent Skills System**，每个智能体均可动态加载**模块化领域技能**，无需修改 Agent 代码即可扩展能力。 详见 [docs/skills.md](docs/skills.md)
+项目目标不是让模型“直接回答所有问题”，而是让 Agent 在医疗场景中安全地分流意图、动态调用工具、反复检索证据、保留必要的用户上下文，并在输出前经过确定性规则和 Verifier 门禁。
 
+## 运行效果
 
+当前前端品牌为 **CareMate 健康工作台**，支持：
 
+- 多会话列表、新建会话、会话切换和历史消息恢复
+- 综合健康咨询、AI 辅助诊室、报告解读、药品服务、医保查询和健康概览
+- 流式回答、Agent 节点状态、工具调用进度和结构化结果卡片
+- 长辈模式：更大的字号、更高的对比度和更简化的操作
+- 桌面端与窄屏端自适应布局，聊天区和会话区均支持滚动
 
-## 📸 运行效果预览
+截图：
 
-这是一个 **纯移动端（Mobile-First）** 设计的项目，强烈建议使用 Chrome 手机独立模式体验。
+![CareMate 健康工作台](docs/images/caremate-current.png)
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/images/01_home.png" width="250"><br/><b>1. 通用助手模式</b></td>
-    <td align="center"><img src="docs/images/02_insurance_mode.png" width="250"><br/><b>2. 医保垂直大厅</b></td>
-    <td align="center"><img src="docs/images/03_insurance_balance.png" width="250"><br/><b>3. 动态医保余额卡片</b></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/images/04_insurance_expenses.png" width="250"><br/><b>4. 近期消费明细报表</b></td>
-    <td align="center"><img src="docs/images/05_insurance_payments.png" width="250"><br/><b>5. 月度缴费记录跟踪</b></td>
-    <td align="center"><img src="docs/images/06_insurance_cross_region.png" width="250"><br/><b>6. 异地就医备案卡片</b></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/images/07_clinic_mode.png" width="250"><br/><b>7. AI 诊室 (预问诊)</b></td>
-    <td align="center"><img src="docs/images/08_clinic_chat.png" width="250"><br/><b>8. 医患流式问答</b></td>
-    <td align="center"><img src="docs/images/09_report_mode.png" width="250"><br/><b>9. 拍报告 (报告解读)</b></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/images/10_report_chat.png" width="250"><br/><b>10. 化验单指标分析</b></td>
-    <td align="center"><img src="docs/images/11_pharmacy_mode.png" width="250"><br/><b>11. 药管家大厅</b></td>
-    <td align="center"><img src="docs/images/12_pharmacy_chat.png" width="250"><br/><b>12. 药品知识图谱互答</b></td>
-  </tr>
-</table>
+## 核心架构
 
-## ✨ 核心特性
-
-- **🧠 多智能体路由 (Multi-Agent Routing)**:
-  - 采用总分架构。通过全局 Router Agent 实时进行意图分类，无缝调度至不同的垂直领域专家智能体。
-  - **支持预问诊** (Clinic Agent)：多轮追问症状（部位、持续时间、伴随症状等），最终生成带严重等级的就诊科室建议卡片。
-  - **支持医保服务** (Insurance Agent)：按认证用户从 MySQL 查询医保余额、消费明细、缴费记录、异地就医备案，数据通过卡片直出；政策检索支持真实 MCP 并保留本地知识源回退。
-  - **支持健康问答** (Advisor Agent)：通用的医学科普与生活建议。
-  - **支持药管家与报告解读**：提供药品信息、相互作用查询、拍照问药，以及检查报告图片和检验指标解读。
-
-- **⚡ 丝滑的 UI 端到端体验 (SSE + Server-Driven UI)**:
-  - **后端接管 UI 渲染**：工具调用完成后，后端不仅返回文字总结，还通过 SSE 下发 `{"type": "card", "payload": ...}` 事件。
-  - **前端动态呈现**：前端接收到事件后，实时在聊天气泡上下文中渲染出高颜值的定制卡片（如：带渐变背景、防窥探交互的医保卡片）。
-
-- **👵 适老化无障碍设计 (Elder-Friendly Mode)**:
-  - 一键切换长辈模式（大字体、高对比度、简化界面操作）。
-
-- **📚 RAG 知识库增强 (Retrieval-Augmented Generation)**:
-  - 内置混合检索引擎：**BM25（精确匹配）+ 密集向量（语义检索）**，通过倒数排名融合（RRF）合并结果，精准命中医学术语的同时兼顾语义理解。
-  - 覆盖四大领域知识库：**常见疾病（高血压/糖尿病/心脏病）、医保政策（门诊/住院报销/异地就医）、检验参考范围（血常规/生化/尿常规）、药品用药指南（OTC/处方药/药物相互作用）**。
-  - **可插拔后端设计**：嵌入模型支持 HuggingFace 本地（`BAAI/bge-small-zh-v1.5`，离线可用）、OpenAI API、字节 ARK API 三选一；向量库支持 Chroma / FAISS / Qdrant / pgvector 按需切换，全部通过环境变量配置。
-
-- **🧩 可插拔技能系统 (Agent Skills System)**:
-  - 每个智能体均可动态加载**模块化领域技能**，无需修改 Agent 代码即可扩展能力。
-  - 内置 6 项核心技能：急症安全预检（`emergency_triage`）、症状严重度评分（`symptom_scorer`）、健康指标计算（`health_calculator`）、化验单解读（`lab_interpreter`）、慢性病风险评估（`risk_assessor`）、药物剂量计算（`medication_calculator`）。
-  - **零配置自发现**：新增技能只需创建子目录 + `SKILL.md` + `skill.py`，注册表启动时自动发现并挂载，按标签（`clinic` / `advisor` / `report` / `pharmacy`）分发至对应智能体。
-
-- **🔭 开源可观测与评估 (Observability & Evals)**:
-  - 使用 OpenInference 自动采集 LangGraph 节点、文本/视觉模型与工具调用，以标准 OTLP 输出到 Jaeger 或其他 OpenTelemetry 后端。
-  - 内置匿名回归样例与严格本地评分，可选 DeepEval；医疗文本和图片默认不进入 Trace，DeepEval 遥测默认关闭。
-
-- **🛠️ 完整全栈工程实现**:
-  - **Backend**: Python、FastAPI、LangChain、LangGraph、Uvicorn，遵循严格的类型提示和清晰的状态流转（State Graph）。
-  - **Frontend**: React、TypeScript、TailwindCSS、Vite，针对移动端进行了像素级还原（Mobile-First）。
-
----
-
-## 🏗️ 系统架构
-
-项目的核心在于 **“状态路由 + 工具卡片双向绑定”**：
-
-1. **Agent State**: `messages`, `active_agent`, `userInfo`。
-2. **Router Node**: 识别用户意图，如果已经处于特定 Agent 的会话中，则“锁定”上下文直到用户主动退出（发送“结束/不看了”）。
-3. **Event Stream**: 后端使用异步 Generator 透传 LangGraph 的内部运行状态（`node_start`, `tool_start`, `tool_end`, `card`）。前端依据流事件展示 **Agent 执行状态与工具调用进度**。
-4. **Lifecycle**: 通过仓库内评估集复现问题、使用 OTLP Trace 定位节点，再以相同 case 验证迭代结果。
-
----
-
-## 🚀 快速开始
-
-本项目分为前端（React + TypeScript）和后端（Python FastAPI）两部分。
-
-### 1. 后端服务 (Backend)
-
-后端以 Python 编写，推荐使用 `uv` 进行环境管理。
-
-```bash
-cd backend
-
-# 安装依赖项
-uv sync
-
-# 配置环境变量
-cp .env.example .env
-# 在 .env 中配置模型厂商、API Key 与模型名称，支持多家 OpenAI-compatible 服务
-
-# 【首次运行】构建 RAG 知识库向量索引
-# 默认使用本地 HuggingFace 嵌入模型，首次运行会自动下载约 90 MB 的模型文件
-uv run python -m rag.ingest
-
-# 启动服务 (运行于 8000 端口)
-uv run uvicorn main:app --reload --port 8000
+```text
+React / TypeScript / Vite
+          │ SSE 流式事件 + 结构化 UI 卡片
+FastAPI API Layer
+          │
+Agent Runtime（预算、超时、重试、暂停/恢复、运行状态）
+          │
+LangGraph Orchestrator
+  ├─ Intent Gate / Router
+  ├─ Planner
+  ├─ Executor（工具与领域 Agent）
+  ├─ Verifier / Evidence Gate
+  └─ Responder
+          │
+Agentic RAG + Memory + Skills + Safety Harness
+          │
+MySQL / Redis / Chroma / MinIO / Jaeger
 ```
 
-### 2. 前端服务 (Frontend)
+## Agent 能力
 
-前端基于 Vite 无打包构建，速度极快。
+### Agent Runtime
+
+Runtime 为 LangGraph 提供统一的执行控制层，并不替代 LangGraph：
+
+- 限制总步数、工具调用次数和 token 预算
+- 对模型、工具和 Agent 任务执行超时、重试和退避
+- 保存运行状态，支持 Agent Run 查询、暂停和恢复
+- 对异常、失败任务和运行指标进行结构化记录
+- 通过统一的运行上下文传递用户、会话、预算和 trace 信息
+
+### Agentic RAG
+
+知识库不是固定的前置步骤，而是 Agent 可以反复调用的工具。Agent 会根据问题规划检索，观察证据质量，在证据不足时改写查询并继续检索，最后由证据门禁判断是否足以支撑回答。
+
+- BM25 + 向量检索 + RRF 融合
+- 父子块索引，兼顾章节语义和局部证据精度
+- 来源级 Recall@3、MRR 和引用忠实度评估
+- DeepSeek 可作为 reranker / LLM-as-a-Judge
+- 支持普通 RAG 与 Agentic RAG 对照评测
+
+### Memory 与自进化
+
+记忆分为稳定偏好、近期状态和健康事件三层：
+
+- 用户画像与表达偏好：年龄、专业程度、长辈模式、回答风格
+- 近期状态：例如“近几天持续询问感冒”，可在康复后降低上下文权重
+- 健康事件记录：保留生病/康复历史，但避免已结束事件污染当前回答
+- 每若干轮对话触发影子记忆 Agent，提取可验证、可回滚的偏好更新
+- 用户记忆采用版本化部署，支持 rollback / reset，避免错误记忆永久影响回答
+
+### 医疗安全 Harness
+
+采用“模型输出 + 确定性急症规则 + 工具结果 + Verifier 门禁 + 紧急否决”的多层防护，确定性规则优先级高于模型输出。
+
+- 内置 23 条急症识别规则
+- 禁止确诊、开药、伪造引用等高风险行为
+- 高危场景触发紧急拦截和就医建议
+- 安全评测集覆盖红旗识别、风险分级、提示注入和过度拦截
+
+## 可观测性与评测
+
+项目使用 OpenTelemetry / OpenInference，将 LangGraph 节点、LLM 调用、工具调用、重试、验证状态和 token 使用发送到 Jaeger。默认隐藏医疗文本和图片内容，仅保留结构化 metadata。
+
+评测脚本覆盖：
+
+- 意图路由准确率、Agent 任务完成率
+- Agentic RAG 的 Recall@3、MRR、来源级召回
+- 引用忠实度与证据充分性
+- LLM-as-a-Judge 的正确性、完整性、安全性和可读性
+- 急症识别 Precision / Recall / F1、风险分级准确率
+- 延迟、P95、token 和工具调用成本
+
+相关文档：[Agent Runtime 与 Memory](docs/agent-runtime-memory-improvements.md) · [RAG](docs/rag.md) · [可观测性与评测](docs/observability-evals.md) · [自进化](docs/self-evolution.md) · [项目技术说明](docs/project-overview-agent-intern.md)
+
+## 快速启动
+
+依赖：Python 3.11+、`uv`、Node.js 18+、Docker Desktop，以及 DeepSeek 或其他 OpenAI-compatible API Key。
 
 ```bash
+# 后端
+cd backend
+uv sync
+cp .env.example .env
+# 在 .env 中配置 LLM_PROVIDER、DEEPSEEK_API_KEY 和模型名称
+uv run alembic upgrade head
+uv run uvicorn main:app --reload --port 8000
+
+# 前端（另开终端）
 cd frontend
-
-# 安装依赖
 npm install
-
-# 启动开发服务器 (运行于 5173 端口)
 npm run dev
 ```
 
-启动完成后，在浏览器中访问 http://localhost:5173。切换设备模拟为手机视图（iPhone 13 等）以获得最佳体感。
-
-Docker Compose、Nginx 反向代理、多 worker、备份、日志轮转和生产环境检查项参见 [docs/deployment.md](docs/deployment.md)。
-
----
-
-## 🛠 开发与定制
-
-### 如何扩展 RAG 知识库？
-
-1. 在 `backend/rag/documents/` 目录下新建 Markdown 文件，使用 `## 章节标题` 结构组织内容。
-2. 重建向量索引：`uv run python -m rag.ingest --rebuild`
-
-**切换嵌入模型或向量库**（通过环境变量）：
-```bash
-# 切换为 OpenAI 嵌入模型
-EMBEDDING_PROVIDER=openai uv run python -m rag.ingest --rebuild
-
-# 切换为 Qdrant 向量库（需先启动 Qdrant 服务）
-VECTOR_STORE=qdrant QDRANT_URL=http://localhost:6333 uv run python -m rag.ingest --rebuild
-```
-
-详细说明参见 [docs/rag.md](docs/rag.md)。
-
-### 如何为 Agent 添加新技能（Skill）？
-
-技能是智能体的可插拔能力扩展，无需改动 Agent 代码即可增加：
-
-1. 创建目录：`mkdir backend/skills/my_skill && touch backend/skills/my_skill/__init__.py`
-2. 编写 `SKILL.md`（必填 `name`、`description`、`tags` frontmatter）
-3. 实现 `skill.py`（继承 `BaseSkill`，定义 Pydantic I/O 和 `run()` 方法）
-4. 启动后注册表自动发现，无需手动注册
-
-详细说明参见 [docs/skills.md](docs/skills.md)。
-
-### 如何监控和评估 Agent？
+访问 <http://localhost:5173>。本地可观测性：
 
 ```bash
-# 仓库根目录：启动本地 Jaeger
 docker compose -f compose.observability.yml up -d
-
-# backend/：运行匿名回归集；DeepEval 为可选依赖
-cd backend
-uv run python -m evals
-uv run --extra eval python -m evals --provider deepeval
 ```
 
-链路开关、隐私默认值和评估样例格式参见 [docs/observability-evals.md](docs/observability-evals.md)。
+Jaeger：<http://localhost:16686> · Grafana：<http://localhost:3000> · Prometheus：<http://localhost:9090>
 
-### 如何增加一个新的 Agent？
-1. 在 `backend/agents` 目录下新建 `your_agent.py`，并定义包含系统提示词和对应 `tools` 的 `create_react_agent` 实例。
-2. 在 `backend/agents/graph.py` 中，定义一个 `your_node` 函数调用你创建的 agent。将它添加进图节点并连接来自路由器的 Edge。
-3. 在 `backend/agents/router.py` 的提示词和分类器中，加入对你工具意图的理解定义。
+## 目录结构
 
-### 如何增加一个前端 UI 卡片？
-1. 后端调用工具后，在 `main.py` 的 SSE 拦截层，抓取输出并 yield `{ "type": "card", "payload": { "type": "your_card_type", "data": ... } }`。
-2. 前端 `src/types/index.ts` 中增加 `ChatCardPayload` 联合类型。
-3. 在 `frontend/src/components/chat/ChatCardRenderer.tsx` 中编写你的 React 视图组件即可。
+```text
+backend/
+  agents/                 LangGraph 节点与领域 Agent
+  agent_runtime.py        Runtime 预算与生命周期控制
+  agentic_rag.py          Agent 主导的多轮检索
+  memory_manager.py       用户记忆检索与写入
+  memory_evolution.py     影子 Agent 与可回滚记忆更新
+  skills/                 可插拔领域技能
+  evals/                  RAG、端到端、安全与 Judge 评测
+frontend/
+  src/screens/             CareMate 工作台页面
+  src/components/chat/    流式聊天、Agent 状态和结果卡片
+  src/store/               会话、消息和用户界面状态
+docs/                      架构、评测和项目说明
+```
 
----
+## 开发约定
 
-## 📜 规划与 Roadmap
+- 医疗回答必须经过安全规则和 Verifier，不将模型输出视为最终事实
+- 新增工具时同时补充超时、失败和权限边界
+- 新增检索策略时补充来源级评测和对照实验
+- 修改记忆提取逻辑时保留 provenance、版本和回滚路径
+- 默认关闭 trace 内容采集，禁止将患者文本和图片写入公开日志
 
-- [x] 多 Agent 路由调度核心 (LangGraph)
-- [x] 智能预问诊 & 报告科室推荐
-- [x] 基于流式卡片的医保服务面板 (对齐真实业务场景)
-- [x] 上下文环境隔离机制 (进入专科诊室 / 退出诊断)
-- [x] RAG 知识库增强：混合检索（BM25 + 密集向量）+ 可插拔嵌入模型与向量库
-- [x] 药管家 Agent（Pharmacy Agent）：药品查询、药物相互作用、OTC 推荐、附近药店
-- [x] 可插拔技能系统（Agent Skills）：6 项核心技能 + 零配置自发现注册表
-- [x] 多模态图片识别：拍照看报告、拍照问药与药品追溯码识别（可配置兼容模型）
-- [x] Agent 生命周期基础设施：OpenTelemetry/OpenInference 链路、Jaeger 与 DeepEval 回归评估
-- [ ] 语音交互接入：实时 ASR 与 TTS（流式语音包反馈）
+## 许可证
 
-## 📄 开源协议
-
-本项目采用 **MIT License**。你可以自由使用、修改和分发，但也请在你的项目中保留本项目的署名。
-
-## 💡 鸣谢与灵感
-
-本项目产品交互灵感来源于对**医疗大健康赛道**真实落地诉求的拆解，特别致敬业内优秀产品在“长辈模式”、“卡片富文本协同”领域的探索与实践。期待与开源社区一起，将这一套生产力框架推广到更多垂直泛健康场景。
+MIT License

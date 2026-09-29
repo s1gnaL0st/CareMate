@@ -1,0 +1,16 @@
+$out = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\docs\project-resume-agent-intern.docx'))
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+$tmp = Join-Path $env:TEMP ('resume-docx-' + [guid]::NewGuid().ToString())
+New-Item -ItemType Directory -Path (Join-Path $tmp '_rels'), (Join-Path $tmp 'word'), (Join-Path $tmp 'word\_rels') -Force | Out-Null
+$types = '<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>'
+$rels = '<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'
+$docrels = '<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'
+$styles = '<?xml version="1.0"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:rPr><w:rFonts w:eastAsia="Microsoft YaHei"/><w:sz w:val="22"/></w:rPr></w:style></w:styles>'
+function EscapeXml($s) { [System.Security.SecurityElement]::Escape($s) }
+function Para($text) { '<w:p><w:r><w:rPr><w:rFonts w:eastAsia="Microsoft YaHei"/><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">'+(EscapeXml $text)+'</w:t></w:r></w:p>' }
+$lines = Get-Content (Join-Path $PSScriptRoot '..\docs\project-resume-agent-intern.md') -Encoding UTF8 | Where-Object { $_.Trim() -and $_ -notmatch '^#' -and $_ -notmatch '^\*\*项目类型' -and $_ -notmatch '^##' }
+$body = ($lines | ForEach-Object { Para (($_ -replace '^[-*] ', '') -replace '\*\*','') }) -join ''
+$title = Para 'Smart Health Assistant | Agent Platform Project Resume'
+$document = '<?xml version="1.0"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+$title+$body+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="850" w:right="1000" w:bottom="850" w:left="1000"/></w:sectPr></w:body></w:document>'
+[IO.File]::WriteAllText((Join-Path $tmp '[Content_Types].xml'), $types, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp '_rels\.rels'), $rels, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp 'word\_rels\document.xml.rels'), $docrels, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp 'word\styles.xml'), $styles, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp 'word\document.xml'), $document, [Text.UTF8Encoding]::new($false))
+if(Test-Path $out){Remove-Item $out -Force}; [IO.Compression.ZipFile]::CreateFromDirectory($tmp, $out); Remove-Item $tmp -Recurse -Force

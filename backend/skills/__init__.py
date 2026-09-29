@@ -163,12 +163,16 @@ class SkillRegistry:
         registry_ref = self  # capture for closure
 
         @tool(name, description=description)
-        async def _skill_tool(params_json: str = "{}") -> str:
+        async def _skill_tool(params_json: Any = "{}") -> str:
             """Execute a registered skill. params_json is a JSON object of keyword arguments."""
-            try:
-                kwargs: dict[str, Any] = json.loads(params_json) if params_json.strip() else {}
-            except json.JSONDecodeError:
-                kwargs = {}
+            if isinstance(params_json, dict):
+                kwargs = params_json
+            else:
+                try:
+                    raw = str(params_json or "")
+                    kwargs = json.loads(raw) if raw.strip() else {}
+                except (json.JSONDecodeError, TypeError):
+                    kwargs = {}
 
             skill_instance = registry_ref._load_instance(name)
             result = await skill_instance.arun(**kwargs)
@@ -220,7 +224,7 @@ def get_agent_tools(tags: list[str]) -> list:
 # to pre-load all of them.
 
 @tool
-async def load_skill(skill_name: str, params_json: str = "{}") -> str:
+async def load_skill(skill_name: str, params_json: Any = "{}") -> str:
     """
     Load and execute any registered skill by name at runtime.
 
@@ -251,7 +255,13 @@ async def load_skill(skill_name: str, params_json: str = "{}") -> str:
         }, ensure_ascii=False)
 
     try:
-        kwargs: dict[str, Any] = json.loads(params_json) if params_json.strip() else {}
+        if isinstance(params_json, dict):
+            kwargs = params_json
+        else:
+            raw = str(params_json or "")
+            kwargs = json.loads(raw) if raw.strip() else {}
+        if not isinstance(kwargs, dict):
+            raise ValueError("params_json must decode to an object")
     except json.JSONDecodeError:
         return json.dumps({"success": False, "error": "params_json is not valid JSON"})
 

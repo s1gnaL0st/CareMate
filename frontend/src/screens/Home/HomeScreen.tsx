@@ -1,4 +1,4 @@
-import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, Pill, ShieldCheck, Stethoscope } from 'lucide-react';
+import { Activity, ChevronRight, CircleHelp, FileText, HeartPulse, MessageSquare, Pill, Plus, ShieldCheck, Stethoscope } from 'lucide-react';
 import { useGlobalStore } from '../../store/useGlobalStore';
 import GlobalChatView from '../../components/chat/GlobalChatView';
 import ChatModeHeader from '../../components/chat/ChatModeHeader';
@@ -13,7 +13,7 @@ const RAIL_ITEMS: { id: ChatMode; label: string; icon: typeof Stethoscope }[] = 
 ];
 
 const HomeScreen = () => {
-    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages } = useGlobalStore();
+    const { isElderMode, setIsElderMode, chatMode, enterChatMode, messages, conversations, conversationId, selectConversation, createNewConversation, conversationError } = useGlobalStore();
     const activeLabel = RAIL_ITEMS.find(item => item.id === chatMode)?.label ?? '综合健康咨询';
 
     return (
@@ -22,7 +22,7 @@ const HomeScreen = () => {
                 <div className="brand-lockup">
                     <div className="brand-mark">DX</div>
                     <div>
-                        <h1 className="brand-name">DoctorX 健康工作台</h1>
+                        <h1 className="brand-name">CareMate 健康工作台</h1>
                         <p className="brand-caption">安全优先的智能健康信息服务</p>
                     </div>
                 </div>
@@ -48,6 +48,26 @@ const HomeScreen = () => {
                             return <button key={item.id} className={`rail-item ${chatMode === item.id ? 'active' : ''}`} onClick={() => enterChatMode(item.id)}><Icon size={16} /><span>{item.label}</span><ChevronRight size={13} className="ml-auto" /></button>;
                         })}
                     </nav>
+                    <div className="conversation-list-section">
+                        <div className="conversation-list-heading">
+                            <span>会话</span>
+                            <button type="button" className="icon-button" onClick={() => void createNewConversation()} title="新建会话" aria-label="新建会话"><Plus size={16} /></button>
+                        </div>
+                        {conversationError && <p className="conversation-error" role="status">{conversationError}</p>}
+                        <div className="conversation-list" aria-label="会话列表">
+                            {conversations.slice(0, 6).map(conversation => (
+                                <button
+                                    key={conversation.id}
+                                    className={`conversation-list-item ${conversation.id === conversationId ? 'active' : ''}`}
+                                    onClick={() => void selectConversation(conversation.id)}
+                                    title={conversation.title}
+                                >
+                                    <MessageSquare size={14} />
+                                    <span>{conversation.title || '新对话'}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                     <div className="rail-footnote">急症信号由确定性安全规则优先识别。系统不能替代医生诊断或急诊处置。</div>
                 </aside>
 
@@ -57,7 +77,13 @@ const HomeScreen = () => {
                             <h2 className="conversation-title">{chatMode === 'general' ? '健康咨询' : activeLabel}</h2>
                             <p className="conversation-subtitle">基于对话、工具与医学资料的辅助判断</p>
                         </div>
-                        <div className="conversation-meta">{messages.length > 1 ? `${messages.length - 1} 条对话` : '新的咨询'}</div>
+                        <div className="conversation-header-actions">
+                            <select className="mobile-conversation-select" value={conversationId ?? ''} onChange={event => void selectConversation(event.target.value)} aria-label="切换会话">
+                                {conversations.map(conversation => <option key={conversation.id} value={conversation.id}>{conversation.title || '新对话'}</option>)}
+                            </select>
+                            <button type="button" className="mobile-new-conversation icon-button" onClick={() => void createNewConversation()} title="新建会话" aria-label="新建会话"><Plus size={16} /></button>
+                            <div className="conversation-meta">{messages.length > 1 ? `${messages.length - 1} 条对话` : '新的咨询'}</div>
+                        </div>
                     </div>
                     <ChatModeHeader />
                     <div className="chat-scroller"><GlobalChatView /></div>
