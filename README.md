@@ -1,6 +1,6 @@
 # CareMate — 面向医疗健康场景的 Agent 工作台
 
-本项目最初参考大健康智能助手[https://github.com/wananing/Smart-Health-Assistant]的思路，后续做了架构以及后端上的修改，CareMate 是一个面向医疗健康信息服务的全栈 Agent 项目。它将 LangGraph 多智能体编排、Agent Runtime、Agentic RAG、用户记忆、医疗安全 Harness、流式 UI 和可观测性整合在同一条端到端链路中。
+本项目最初参考大健康智能助手![https://github.com/wananing/Smart-Health-Assistant]的思路，后续做了架构以及后端上的修改，CareMate 是一个面向医疗健康信息服务的全栈 Agent 项目。它将 LangGraph 多智能体编排、Agent Runtime、Agentic RAG、用户记忆、医疗安全 Harness、流式 UI 和可观测性整合在同一条端到端链路中。
 
 项目目标不是让模型“直接回答所有问题”，而是让 Agent 在医疗场景中安全地分流意图、动态调用工具、反复检索证据、保留必要的用户上下文，并在输出前经过确定性规则和 Verifier 门禁。
 
