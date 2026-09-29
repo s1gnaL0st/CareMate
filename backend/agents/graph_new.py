@@ -13,6 +13,7 @@ fallback exists only for provider failures; it is not the normal routing path.
 from __future__ import annotations
 
 import hashlib
+import re
 import json
 import logging
 import operator
@@ -303,6 +304,27 @@ def _fallback_intent(text: str) -> IntentDecision:
     return IntentDecision(intent=intent, normalized_request=text[:MAX_TASK_TEXT_CHARS], confidence=0.2)
 
 
+# Short self-introductions are profile/memory signals, not clinical requests.
+# Keep this deterministic guard ahead of the LLM router: otherwise phrases
+# such as ``我是北邮研究生`` can be spuriously sent to the symptom agent.
+_PROFILE_STATEMENT_RE = re.compile(
+    r"^(?:我(?:是|叫|来自|在)|本人(?:是|叫)|我的(?:职业|身份|专业)(?:是|为))[^。！？!?]{1,40}[。！？!?]?$"
+)
+_PROFILE_HEALTH_TERMS = (
+    "症状", "不舒服", "疼", "痛", "发烧", "咳嗽", "胸闷", "气短", "恶心",
+    "呕吐", "腹泻", "疾病", "病人", "患者", "糖尿病", "高血压", "过敏", "用药",
+)
+
+
+def _is_profile_statement(text: str) -> bool:
+    normalized = re.sub(r"\s+", "", str(text or "")).strip()
+    return bool(
+        normalized
+        and _PROFILE_STATEMENT_RE.match(normalized)
+        and not any(term in normalized for term in _PROFILE_HEALTH_TERMS)
+    )
+
+
 def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
     if intent == "pure_chat":
         return Plan(tasks=[PlannedTask(
@@ -379,6 +401,15 @@ async def intent_gate(state: AgentLoopState) -> dict[str, Any]:
     except Exception as exc:
         logger.warning("intent gate unavailable: %s", type(exc).__name__)
         decision = _fallback_intent(latest_text)
+
+    # Profile statements should never start a medical interview. They remain
+    # available to the memory layer through the normal chat turn.
+    if _is_profile_statement(latest_text):
+        decision = IntentDecision(
+            intent="pure_chat",
+            normalized_request=latest_text[:MAX_TASK_TEXT_CHARS],
+            confidence=1.0,
+        )
 
     if decision.intent == "emergency":
         return {
