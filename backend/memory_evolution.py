@@ -34,6 +34,10 @@ _PROFILE_RULES = (
     ("profile_nurse", ("我是护士", "我是一名护士", "我的职业是护士"), "用户职业：护士"),
     ("profile_pharmacist", ("我是药师", "我是一名药师", "我的职业是药师"), "用户职业：药师"),
 )
+_OCCUPATION_RE = re.compile(
+    r"(?:我(?:是|是一名|叫做)|我的职业是|我从事)(?P<occupation>[\u4e00-\u9fffA-Za-z0-9·]{2,20})"
+    r"(?:司机|工程师|教师|老师|学生|研究生|医生|护士|药师|程序员|设计师|律师|会计|工人|销售|管理|技师|厨师|农民)(?=[，,。！？!?；;]|$)"
+)
 
 
 def _projection_root() -> Path:
@@ -59,6 +63,15 @@ def extract_explicit_preferences(text: str) -> list[dict[str, Any]]:
     for key, markers, value in _PROFILE_RULES:
         if any(marker in source for marker in markers):
             found.append({"key": key, "value": value, "source": "user_explicit_profile", "confidence": 1.0})
+    # Open-vocabulary occupation extraction: keep the trigger explicit and
+    # constrain the suffix to a small occupation lexicon. This handles
+    # ``我是货车司机`` without maintaining a brittle list of every job title.
+    occupation_match = _OCCUPATION_RE.search(source)
+    if occupation_match:
+        occupation = occupation_match.group("occupation")
+        value = f"用户职业：{occupation}"
+        if not any(item["value"] == value for item in found):
+            found.append({"key": "profile_occupation", "value": value, "source": "user_explicit_profile", "confidence": 1.0})
     return found
 
 
