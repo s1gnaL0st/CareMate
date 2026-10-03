@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This project pairs a FastAPI/LangGraph backend with a React/Vite frontend. Backend lives in `backend/`: `main.py` exposes API/SSE endpoints, `agents/` contains specialists, `skills/` contains tools, `rag/` contains retrieval code, and `evals/` contains regression cases. Tests and manual checks are `backend/test_*.py` files.
+This project pairs a FastAPI/LangGraph backend with a React/Vite frontend. Backend lives in `backend/`: `main.py` exposes API/SSE endpoints, `agents/` contains specialists, `skills/` contains tools, `rag/` contains retrieval code, and `evals/` contains regression cases. Tests and manual checks are grouped under `backend/tests/`.
 
 Frontend source is in `frontend/src/`: views use `screens/`, reusable UI uses `components/`, and shared state, clients, and contracts use `store/`, `services/`, and `types/`. Assets belong in `frontend/public/` or `frontend/src/assets/`; documentation lives in the three `docs/` directories.
 
@@ -11,7 +11,7 @@ Frontend source is in `frontend/src/`: views use `screens/`, reusable UI uses `c
 - `cd backend && uv sync`: install Python 3.13 dependencies from `uv.lock`.
 - `cd backend && uv run python -m rag.ingest`: build the RAG index; add `--rebuild` after document changes.
 - `cd backend && uv run uvicorn main:app --reload --port 8000`: run the API locally.
-- `cd backend && uv run python -m unittest test_llm.py test_vision.py test_main_config.py test_observability.py test_evals.py`: run deterministic backend tests.
+- `cd backend && uv run python -m unittest discover -s tests -p 'test_*.py'`: run deterministic backend tests.
 - `cd frontend && npm install`: install frontend dependencies.
 - `cd frontend && npm run dev`: start Vite at `http://localhost:5173`.
 - `cd frontend && npm run lint && npm run build`: lint, type-check, and build.
@@ -24,7 +24,7 @@ Use TypeScript and React function components. Components use PascalCase (`ChatCa
 
 ## Testing Guidelines
 
-Add deterministic tests for validation, routing helpers, and transformations. Manual scripts such as `test_router.py` call configured LLMs and require provider credentials such as `ARK_API_KEY` or `OPENAI_API_KEY`; run them explicitly with `uv run python test_router.py`. For UI changes, verify a mobile viewport and add browser coverage through a maintained e2e setup when needed; do not commit one-off debug scripts in the frontend root.
+Add deterministic tests for validation, routing helpers, and transformations. Manual scripts such as `tests/test_router.py` call configured LLMs and require provider credentials such as `ARK_API_KEY` or `OPENAI_API_KEY`; run them explicitly with `uv run python -m unittest tests.test_router`. For UI changes, verify a mobile viewport and add browser coverage through a maintained e2e setup when needed; do not commit one-off debug scripts in the frontend root.
 
 ## Commit & Pull Request Guidelines
 

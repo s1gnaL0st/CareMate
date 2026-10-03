@@ -46,7 +46,7 @@
 
 ```powershell
 cd backend
-uv run python -m unittest test_evolution_api.py test_evolution_runner.py
+uv run python -m unittest tests.test_evolution_api tests.test_evolution_runner
 uv run python -m unittest discover -p "test_*.py"
 uv run alembic heads
 ```

@@ -135,7 +135,7 @@ def _trajectory_metrics(trajectories: list[dict[str, Any]]) -> dict[str, Any]:
 
 def _safety_implementation_metrics(root: Path) -> dict[str, Any]:
     skill_path = root / "backend" / "skills" / "emergency_triage" / "skill.py"
-    test_path = root / "backend" / "test_clinic_action_adapter.py"
+    test_path = root / "backend" / "tests" / "test_clinic_action_adapter.py"
     if not skill_path.exists():
         return {"status": "not_available", "sample_count": 0}
     source = skill_path.read_text(encoding="utf-8")
@@ -174,7 +174,7 @@ def _emergency_red_flag_metrics(root: Path) -> dict[str, Any]:
 
 def _adapter_contract_metrics(root: Path) -> dict[str, Any]:
     """Measure the checked-in action/harness contract without a model call."""
-    test_path = root / "backend" / "test_clinic_action_adapter.py"
+    test_path = root / "backend" / "tests" / "test_clinic_action_adapter.py"
     source_path = root / "backend" / "agents" / "clinic_action_adapter.py"
     if not test_path.exists() or not source_path.exists():
         return {"status": "not_available", "sample_count": 0}
@@ -260,8 +260,8 @@ def _rag_retrieval_metrics(root: Path) -> dict[str, Any]:
 
 
 def _retry_contract_metrics(root: Path) -> dict[str, Any]:
-    test_path = root / "backend" / "test_clinic_action_adapter.py"
-    graph_test_path = root / "backend" / "test_graph_new.py"
+    test_path = root / "backend" / "tests" / "test_clinic_action_adapter.py"
+    graph_test_path = root / "backend" / "tests" / "test_graph_new.py"
     if not test_path.exists():
         return {"status": "not_available", "sample_count": 0}
     text = test_path.read_text(encoding="utf-8")

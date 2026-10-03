@@ -454,7 +454,7 @@ POST /api/v1/agent-runs/{run_id}/resume
 
 ### 测试
 
-新图的确定性测试位于 `backend/test_graph_new.py`，重点覆盖：
+新图的确定性测试位于 `backend/tests/test_graph_new.py`，重点覆盖：
 
 - 图是否成功编译；
 - 依赖环是否被拒绝；
@@ -467,7 +467,7 @@ POST /api/v1/agent-runs/{run_id}/resume
 
 ```powershell
 cd backend
-uv run python -m unittest test_graph_new.py
+uv run python -m unittest tests.test_graph_new
 ```
 
 相关实现：[`backend/agents/graph_new.py`](../backend/agents/graph_new.py)
