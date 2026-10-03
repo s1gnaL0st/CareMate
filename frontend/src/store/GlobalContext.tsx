@@ -103,7 +103,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             } else {
                 persisted = await listMessages(id);
             }
-        } catch (error) {
+        } catch {
             if (version === selectionVersion.current) {
                 setConversationError('会话消息加载失败，请重试');
                 setConversationId(id);
@@ -176,8 +176,10 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             const local = readLocalConversations();
             const current = local.find(item => item.id === localStorage.getItem('smart_health_conversation_id')) ?? local[0] ?? makeLocalConversation();
             if (!local.length) localStorage.setItem(LOCAL_CONVERSATIONS_KEY, JSON.stringify([current]));
-            setConversations(local.length ? local : [current]);
-            void selectConversation(current.id);
+            queueMicrotask(() => {
+                setConversations(local.length ? local : [current]);
+                void selectConversation(current.id);
+            });
             return;
         }
         let cancelled = false;

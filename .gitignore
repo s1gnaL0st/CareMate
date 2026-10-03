@@ -36,6 +36,9 @@ infra/data/
 
 # Local ingestion inputs and runtime artifacts
 backend-local.log
+*.log
+backend/data/
+frontend/review_screenshots/
 backend/rag/*.zip
 backend/rag/sources/raw/
 backend/rag/documents/who_*.md

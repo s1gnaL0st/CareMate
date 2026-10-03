@@ -15,7 +15,6 @@ Frontend source is in `frontend/src/`: views use `screens/`, reusable UI uses `c
 - `cd frontend && npm install`: install frontend dependencies.
 - `cd frontend && npm run dev`: start Vite at `http://localhost:5173`.
 - `cd frontend && npm run lint && npm run build`: lint, type-check, and build.
-- `cd frontend && node test_pw.cjs`: run the Playwright smoke flow with the app available.
 
 ## Coding Style & Naming Conventions
 
@@ -25,7 +24,7 @@ Use TypeScript and React function components. Components use PascalCase (`ChatCa
 
 ## Testing Guidelines
 
-Add deterministic tests for validation, routing helpers, and transformations. Manual scripts such as `test_router.py` call configured LLMs and require provider credentials such as `ARK_API_KEY` or `OPENAI_API_KEY`; run them explicitly with `uv run python test_router.py`. For UI changes, verify a mobile viewport and extend Playwright coverage where practical.
+Add deterministic tests for validation, routing helpers, and transformations. Manual scripts such as `test_router.py` call configured LLMs and require provider credentials such as `ARK_API_KEY` or `OPENAI_API_KEY`; run them explicitly with `uv run python test_router.py`. For UI changes, verify a mobile viewport and add browser coverage through a maintained e2e setup when needed; do not commit one-off debug scripts in the frontend root.
 
 ## Commit & Pull Request Guidelines
 
