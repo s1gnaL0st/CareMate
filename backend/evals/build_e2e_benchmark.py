@@ -19,7 +19,7 @@ TEMPLATES = (
     ("report_interpretation", "体检报告中的血红蛋白偏低通常需要结合哪些信息？", "report_agent", ["lab_interpreter"], True),
     ("insurance", "帮我查询医保账户余额。", "insurance_agent", ["get_insurance_balance"], True),
     ("insurance", "住院前想了解医保报销需要准备什么材料。", "insurance_agent", ["search_insurance_policy"], True),
-    ("mixed", "这个药能不能吃，另外医保是否可以报销？", "pharmacy_agent", ["search_drug_info"], True),
+    ("cross_domain", "这个药能不能吃，另外医保是否可以报销？", "pharmacy_agent", ["search_drug_info"], True),
     ("advisor", "平时怎样保持规律睡眠？", "advisor_agent", [], True),
 )
 

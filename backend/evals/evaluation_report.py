@@ -173,26 +173,36 @@ def _emergency_red_flag_metrics(root: Path) -> dict[str, Any]:
 
 
 def _adapter_contract_metrics(root: Path) -> dict[str, Any]:
-    """Measure the checked-in action/harness contract without a model call."""
+    """Measure the checked-in clinic tool/harness contract without a model call."""
     test_path = root / "backend" / "tests" / "test_clinic_action_adapter.py"
     source_path = root / "backend" / "agents" / "clinic_action_adapter.py"
     if not test_path.exists() or not source_path.exists():
         return {"status": "not_available", "sample_count": 0}
     source = source_path.read_text(encoding="utf-8")
-    actions = set(re.findall(r'"(ask|check|lookup|search|answer)"', source))
+    tools = set(re.findall(r'@tool\("([a-z_]+)"', source))
     tests = test_path.read_text(encoding="utf-8")
     contract_names = (
         "patient_answer_after_ask_is_replayed_as_tool_result",
         "simulated_two_turn_loop_reaches_answer_after_tool_replay",
-        "ask_rejects_a_duplicate_question",
+        "ask_patient_rejects_a_duplicate_question",
         "emergency_veto_is_deterministic_and_precedes_model_actions",
         "sanitize_clinic_answer_removes_training_and_untrusted_citations",
+        "unknown_tool_name_is_reported_back_to_the_model",
     )
     covered = sum(name in tests for name in contract_names)
+    expected_tools = {
+        "lookup_patient_profile",
+        "check_red_flags",
+        "check_vital_thresholds",
+        "check_drug_interaction",
+        "search_health_knowledge",
+        "ask_patient",
+        "submit_triage",
+    }
     return {
         "status": "implementation_coverage",
-        "exposed_actions": sorted(actions),
-        "five_action_contract_complete": actions == {"ask", "check", "lookup", "search", "answer"},
+        "exposed_tools": sorted(tools),
+        "core_tool_contract_complete": expected_tools.issubset(tools),
         "key_contract_tests": len(contract_names),
         "key_contract_tests_present": covered,
         "contract_test_coverage": covered / len(contract_names),
@@ -374,7 +384,7 @@ def _markdown(report: dict[str, Any]) -> str:
         f"- GRPO trajectory pilot: n={loop['sample_count']}, answer rate={loop.get('answer_rate')}, mean turns={loop.get('mean_turns')}, mean asks={loop.get('mean_ask_count')}, duplicate-question rate={loop.get('duplicate_question_rate')}, tool-failure rate={loop.get('tool_failure_rate')}, mean evidence recall={loop.get('evidence_recall_mean') }.",
         f"- Emergency rule implementation: {safety.get('total_rule_patterns', 0)} patterns (CRITICAL={safety.get('rule_counts', {}).get('critical', 0)}, URGENT={safety.get('rule_counts', {}).get('urgent', 0)}, PROMPT={safety.get('rule_counts', {}).get('prompt', 0)}), {safety.get('related_contract_tests', 0)} related contract tests; no clinical P/R/F1 inferred.",
         f"- Emergency red-flag rule cases: n={metrics['emergency_red_flag'].get('sample_count')}, binary precision={metrics['emergency_red_flag'].get('binary_red_flag', {}).get('precision')}, recall={metrics['emergency_red_flag'].get('binary_red_flag', {}).get('recall')}, F1={metrics['emergency_red_flag'].get('binary_red_flag', {}).get('f1')}; reviewed synthetic cases only.",
-        f"- Action adapter contract: five_action_complete={adapter.get('five_action_contract_complete')}, test coverage={adapter.get('contract_test_coverage')}; protocol coverage only.",
+        f"- Clinic tool registry: core_tool_contract_complete={adapter.get('core_tool_contract_complete')}, tools={len(adapter.get('exposed_tools', []))}, test coverage={adapter.get('contract_test_coverage')}; protocol coverage only.",
         f"- RAG corpus inventory: documents={rag.get('document_count')}, chunks={rag.get('chunk_count')}, metadata-complete={rag.get('metadata_complete_rate')}; measured ranking report is included separately.",
         f"- RAG retrieval ranking: n={rag_retrieval.get('sample_count')}, source Recall@1/3/5={rag_retrieval.get('source_recall_at_1')}/{rag_retrieval.get('source_recall_at_3')}/{rag_retrieval.get('source_recall_at_5')}, section Recall@1/3/5={rag_retrieval.get('recall_at_1')}/{rag_retrieval.get('recall_at_3')}/{rag_retrieval.get('recall_at_5')}, MRR={rag_retrieval.get('mrr')}, mean latency={rag_retrieval.get('mean_latency_ms')} ms; scenario-curated set only.",
         f"- Retry/fallback contract coverage: {retry.get('contract_pass_rate')}; runtime success/availability uplift not measured.",

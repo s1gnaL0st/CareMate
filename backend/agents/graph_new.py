@@ -47,7 +47,7 @@ AgentName = Literal[
     "insurance_agent",
     "chat_agent",
 ]
-IntentName = Literal["emergency", "pure_chat", "profile_update", "mixed", "health"]
+IntentName = Literal["chat", "health", "emergency"]
 VerifyStatus = Literal["pass", "partial", "fail", "unsafe", "exhausted"]
 
 
@@ -109,9 +109,6 @@ class AgentLoopState(TypedDict, total=False):
     messages: Annotated[list[BaseMessage], operator.add]
     user_info: dict[str, Any]
     requested_mode: str
-    # Kept for compatibility with persisted conversation/evaluation inputs.
-    active_agent: str
-    next_agent: str
 
     intent: IntentName
     health_text: str
@@ -142,28 +139,29 @@ class AgentLoopState(TypedDict, total=False):
 
 
 _INTENT_SYSTEM_PROMPT = """你是健康服务系统的意图安全门。
-请把用户最新请求归类为 pure_chat、profile_update、health、mixed 或 emergency：
-- pure_chat：问候、闲聊、情绪表达，且没有健康诉求。
-- profile_update：用户在陈述或修改自己的身份、职业、年龄、语言偏好、长期背景，
-  例如“我是北邮研究生”“我是一名程序员”“以后请用通俗一点的话”。这类请求不是医疗问诊，
-  但应保留给记忆层；如果同一句同时包含症状或健康问题，归类为 mixed 或 health。
-- health：一个或多个健康相关诉求。
-- mixed：健康诉求和问候/闲聊同时存在。
+请把用户最新请求归类为 chat、health 或 emergency：
+- chat：问候、闲聊、情绪表达，或用户在介绍自己（身份、职业、年龄、语言偏好、长期背景），
+  例如“你好”“我是北邮研究生”“我是一名程序员”“以后请用通俗一点的话”。没有健康诉求时都归 chat。
+- health：出现任何健康相关诉求。只要句子里有一点健康诉求，就必须归 health，
+  即使同时夹带问候、闲聊或自我介绍。
 - emergency：明确出现需要立即急救的危险信号。
 
 示例：
-- “我是北邮研究生” -> profile_update
-- “我是程序员，最近胸闷” -> mixed
+- “你好” -> chat
+- “我是北邮研究生” -> chat
 - “最近咳嗽怎么办” -> health
+- “我是货车司机，最近腰疼” -> health
+- “这个药能不能吃，另外医保能不能报” -> health
 - “你好，今天心口疼而且呼吸困难” -> emergency
 
+只要句子里出现健康诉求就归 health，不要因为同时有闲聊或自我介绍而改判。
 如果最新一句是在补充前面健康问题的时间、诱因、饮食、部位、严重程度或伴随症状，
-必须结合对话上下文，继续按 health 或 emergency 处理，不要把它误判成普通闲聊。
+必须结合对话上下文，继续按 health 或 emergency 处理，不要把它误判成 chat。
 
 请把用户真正想解决的问题改写为简短、完整、无闲聊的 normalized_request。
 不要诊断，不要给出治疗建议，只输出符合 JSON Schema 的结构化结果。"""
 
-_PLANNER_SYSTEM_PROMPT = """你是大健康 App 的任务规划器。
+_PLANNER_SYSTEM_PROMPT = """你是任务规划器。
 你只能从以下 agent 中选择任务：
 - symptom_agent：症状收集、紧急分级和就医分诊；不能下最终诊断或开药。
 - report_agent：单次化验单/检查报告的指标解读；不能做历史趋势预测。
@@ -177,8 +175,8 @@ _PLANNER_SYSTEM_PROMPT = """你是大健康 App 的任务规划器。
 
 规划规则：
 - 不要为了凑任务调用 Agent。
-- intent=profile_update 时只安排一个 chat_agent 任务；该任务用于自然回应并让记忆层提取用户画像，
-  严禁调用 symptom_agent、report_agent 或 pharmacy_agent。
+- intent=chat 时只安排一个 chat_agent 任务（问候、闲聊、用户自我介绍都属此类）；
+  该任务用于自然回应并让记忆层提取用户画像，严禁调用 symptom_agent、report_agent 或 pharmacy_agent。
 - 处方药/个性化用药问题通常先依赖 symptom_agent，再调用 pharmacy_agent。
 - 互不依赖的任务可以并行执行。
 - 如果最近对话里 symptom_agent 已经向患者追问，而最新一句是在回答、补充信息，
@@ -307,15 +305,16 @@ def _validate_plan(plan: Plan, normalized_request: str) -> Plan:
 def _fallback_intent(text: str) -> IntentDecision:
     """Conservative provider-outage fallback; normal requests use the LLM."""
     if not text:
-        return IntentDecision(intent="pure_chat", normalized_request="你好", confidence=0.2)
+        return IntentDecision(intent="chat", normalized_request="你好", confidence=0.2)
     is_health = any(term in text for terms, _ in _FALLBACK_HINTS for term in terms)
-    greeting = any(term in text for term in ("你好", "您好", "嗨", "谢谢"))
-    intent: IntentName = "mixed" if is_health and greeting else ("health" if is_health else "pure_chat")
+    # Health dominates: a request that mentions any health term is health even
+    # when it also contains a greeting or a self-introduction.
+    intent: IntentName = "health" if is_health else "chat"
     return IntentDecision(intent=intent, normalized_request=text[:MAX_TASK_TEXT_CHARS], confidence=0.2)
 
 
 def _fallback_plan(normalized_request: str, intent: IntentName) -> Plan:
-    if intent in {"pure_chat", "profile_update"}:
+    if intent == "chat":
         return Plan(tasks=[PlannedTask(
             id="chat-fallback",
             agent="chat_agent",
@@ -400,6 +399,50 @@ async def intent_gate(state: AgentLoopState) -> dict[str, Any]:
     return {"intent": decision.intent, "health_text": decision.normalized_request}
 
 
+def _apply_routing_policy(
+    plan: Plan,
+    *,
+    intent: IntentName,
+    normalized_request: str,
+    state: AgentLoopState,
+) -> Plan:
+    """The single place where policy may override a model-generated plan.
+
+    Everything that can override routing lives here, so the complete rule set
+    is readable in one function instead of being spread across the planner.
+    """
+    # The chat lane must never reach a medical module. Profile statements are
+    # plain chat now that they are no longer an intent class of their own, and
+    # the planner has previously routed them into the clinic.
+    if intent == "chat" and any(task.agent != "chat_agent" for task in plan.tasks):
+        return Plan(tasks=[PlannedTask(
+            id="chat",
+            agent="chat_agent",
+            objective="回应用户的问候、闲聊或自我介绍，并保留给记忆层提取",
+            input_slice=normalized_request,
+        )])
+
+    # A patient answering an open symptom question (including “我不知道”) is
+    # still inside the clinical interview. Keep that continuation in the
+    # symptom agent; only a clarification for a brand-new request should stop
+    # before the executor.
+    if (
+        plan.needs_clarification
+        and intent == "health"
+        and _has_open_assistant_question(list(state.get("messages", [])))
+    ):
+        return Plan(
+            tasks=[PlannedTask(
+                id="symptom-follow-up",
+                agent="symptom_agent",
+                objective="继续收集症状信息并完成安全分诊",
+                input_slice=normalized_request,
+            )],
+            needs_clarification=False,
+        )
+    return plan
+
+
 async def planner(state: AgentLoopState) -> dict[str, Any]:
     """Generate, validate, and bound a structured task plan."""
     normalized_request = state.get("health_text", "").strip()
@@ -441,40 +484,16 @@ async def planner(state: AgentLoopState) -> dict[str, Any]:
     except (ValidationError, ValueError, TypeError) as exc:
         logger.warning("planner validation failed: %s", type(exc).__name__)
         plan = _fallback_plan(normalized_request, intent)
-
     except Exception as exc:
         logger.warning("planner unavailable: %s", type(exc).__name__)
         plan = _fallback_plan(normalized_request, intent)
-
-    # The intent contract is a routing boundary, not a suggestion to the
-    # planner. Enforce the profile lane even if a provider emits an invalid
-    # domain plan; this is policy validation, not phrase-level hardcoding.
-    if intent == "profile_update":
-        plan = Plan(tasks=[PlannedTask(
-            id="profile-update",
-            agent="chat_agent",
-            objective="回应用户的画像/偏好陈述，并保留给记忆层提取",
-            input_slice=normalized_request,
-        )])
-
-    # A patient answering an open symptom question (including “我不知道”) is
-    # still inside the clinical interview.  Keep this continuation in the
-    # symptom agent; only the explicit clarification path for a new request
-    # should stop before executor.
-    if (
-        plan.needs_clarification
-        and intent in {"health", "mixed"}
-        and _has_open_assistant_question(list(state.get("messages", [])))
-    ):
-        plan = Plan(
-            tasks=[PlannedTask(
-                id="symptom-follow-up",
-                agent="symptom_agent",
-                objective="继续收集症状信息并完成安全分诊",
-                input_slice=normalized_request,
-            )],
-            needs_clarification=False,
-        )
+    # The model plan is advisory; policy may still override it.
+    plan = _apply_routing_policy(
+        plan,
+        intent=intent,
+        normalized_request=normalized_request,
+        state=state,
+    )
 
     signature = _task_signature(plan.tasks)
     next_replan_count = replan_count + (1 if state.get("verify_status") else 0)
@@ -562,8 +581,6 @@ def _agent_input_slice(state: AgentLoopState, task: PlannedTask, results: dict[s
         "conversation_messages": list(state.get("messages", [])),
         "user_info": state.get("user_info", {}),
         "offline_evidence_capture": state.get("offline_evidence_capture") is True,
-        "next_agent": "",
-        "active_agent": "",
     }
 
 
@@ -901,7 +918,7 @@ async def responder(state: AgentLoopState) -> dict[str, Any]:
             f"{json.dumps(preferences, ensure_ascii=False)}\n"
         )
     prompt = (
-        "你是大健康 App 的最终回复整理器。只能基于已验证的专家结果回答，不能补造医学事实。"
+        "你是最终回复整理器。只能基于已验证的专家结果回答，不能补造医学事实。"
         "不要直接下诊断或开处方；涉及风险时明确建议就医。保留必要的免责声明。"
         "用清晰、简洁、适合移动端阅读的中文组织答案。"
         f"{preference_context}\n"

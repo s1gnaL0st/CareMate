@@ -26,13 +26,6 @@ from observability import configure_observability
 
 
 DEFAULT_DATASET = Path(__file__).with_name("cases.jsonl")
-MODE_TO_AGENT = {
-    "clinic": "clinic_agent",
-    "insurance": "insurance_agent",
-    "report": "report_agent",
-    "pharmacy": "pharmacy_agent",
-    "general": "advisor_agent",
-}
 
 
 async def _execute_case(case: EvalCase):
@@ -41,8 +34,6 @@ async def _execute_case(case: EvalCase):
     initial_state = {
         "messages": [HumanMessage(content=case.input)],
         "user_info": {},
-        "next_agent": "",
-        "active_agent": MODE_TO_AGENT.get(case.chat_mode, "advisor_agent"),
         "requested_mode": case.chat_mode,
     }
     with using_attributes(
@@ -93,7 +84,7 @@ async def run_dataset_with_artifact(
             observations.append({
                 "case_id": case.id,
                 "expected_agent": case.expected_agent,
-                "actual_agent": run.actual_agent,
+                "actual_agent": ",".join(run.planned_agents),
                 "expected_tools": list(case.expected_tools or ()),
                 "tools_called": list(run.tools_called),
                 "route_score": score.route_score,

@@ -4,11 +4,11 @@ This report is generated from checked-in evidence. `contract_coverage_only` and 
 
 ## Measured
 
-- Supervisor routing: status=measured_runtime_run, n=5, accuracy=0.2, macro-F1=0.06666666666666668, provider=local.
+- Supervisor routing: status=measured_runtime_run, n=5, accuracy=1.0, macro-F1=1.0, provider=local.
 - GRPO trajectory pilot: n=3, answer rate=1.0, mean turns=9.0, mean asks=3.0, duplicate-question rate=0.0, tool-failure rate=0.0, mean evidence recall=1.0.
-- Emergency rule implementation: 23 patterns (CRITICAL=10, URGENT=8, PROMPT=5), 3 related contract tests; no clinical P/R/F1 inferred.
+- Emergency rule implementation: 23 patterns (CRITICAL=10, URGENT=8, PROMPT=5), 5 related contract tests; no clinical P/R/F1 inferred.
 - Emergency red-flag rule cases: n=48, binary precision=0.9629629629629629, recall=0.8666666666666667, F1=0.912280701754386; reviewed synthetic cases only.
-- Action adapter contract: five_action_complete=True, test coverage=1.0; protocol coverage only.
+- Clinic tool registry: core_tool_contract_complete=True, tools=7, test coverage=1.0; protocol coverage only.
 - RAG corpus inventory: documents=390, chunks=3333, metadata-complete=1.0; measured ranking report is included separately.
 - RAG retrieval ranking: n=100, source Recall@1/3/5=0.88/0.92/0.96, section Recall@1/3/5=0.26/0.35/0.42, MRR=0.3155, mean latency=89.6451 ms; scenario-curated set only.
 - Retry/fallback contract coverage: 1.0; runtime success/availability uplift not measured.

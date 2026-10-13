@@ -8,10 +8,21 @@ from __future__ import annotations
 import os
 from collections.abc import Mapping
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Literal
 
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from config import get_settings
+
+
+# ``resolve_model_settings`` reads ``os.environ`` while the rest of the app reads
+# the .env file through pydantic Settings. Loading it here - the single choke
+# point every model call goes through - keeps the two paths consistent, so an
+# entry point that forgets ``load_dotenv()`` (the arq worker, for example) can no
+# longer run without a model and quietly fall back to the deterministic stubs.
+# Real environment variables still win: ``override`` defaults to False.
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 
 ModelPurpose = Literal["chat", "vision"]

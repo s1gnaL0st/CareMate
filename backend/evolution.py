@@ -139,7 +139,7 @@ def normalize_evaluation_constraints(value: Mapping[str, Any]) -> dict[str, Any]
     allowed_agents = {
         "symptom_agent", "report_agent", "pharmacy_agent", "insurance_agent", "chat_agent"
     }
-    allowed_intents = {"emergency", "pure_chat", "mixed", "health"}
+    allowed_intents = {"chat", "health", "emergency"}
     result: dict[str, Any] = {}
     if raw.get("expected_agent") is not None:
         agent = str(raw["expected_agent"]).strip()

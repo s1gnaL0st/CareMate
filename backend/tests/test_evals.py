@@ -15,7 +15,7 @@ class EvaluationContractTests(unittest.TestCase):
                 {
                     "id": "patient-张三",
                     "input": "测试输入",
-                    "expected_agent": "advisor_agent",
+                    "expected_agent": "chat_agent",
                 }
             )
 
@@ -30,7 +30,7 @@ class EvaluationContractTests(unittest.TestCase):
             {
                 "id": "general-sleep",
                 "input": "如何改善睡眠？",
-                "expected_agent": "advisor_agent",
+                "expected_agent": "chat_agent",
             },
         ]
 
@@ -57,7 +57,7 @@ class EvaluationContractTests(unittest.TestCase):
             case,
             EvalRun(
                 case_id=case.id,
-                actual_agent="report_agent",
+                planned_agents=("report_agent",),
                 actual_output="白细胞偏高。",
                 tools_called=("lab_interpreter",),
             ),
@@ -66,7 +66,7 @@ class EvaluationContractTests(unittest.TestCase):
             case,
             EvalRun(
                 case_id=case.id,
-                actual_agent="report_agent",
+                planned_agents=("report_agent",),
                 actual_output="白细胞偏高。",
                 tools_called=("lab_interpreter", "load_skill"),
             ),
@@ -82,13 +82,13 @@ class EvaluationContractTests(unittest.TestCase):
         case = EvalCase(
             id="general-sleep",
             input="如何改善睡眠？",
-            expected_agent="advisor_agent",
+            expected_agent="chat_agent",
         )
         score = evaluate_run(
             case,
             EvalRun(
                 case_id=case.id,
-                actual_agent="advisor_agent",
+                planned_agents=("chat_agent",),
                 actual_output="保持规律作息。",
                 tools_called=("risk_assessor",),
             ),
@@ -105,7 +105,10 @@ class EvaluationContractTests(unittest.TestCase):
             expected_tools=("lab_interpreter",),
         )
         state = {
-            "active_agent": "report_agent",
+            "task_queue": [{"id": "t1", "agent": "report_agent"}],
+            "task_results": {
+                "t1": {"agent": "report_agent", "status": "completed"}
+            },
             "messages": [
                 HumanMessage(content=case.input),
                 AIMessage(
@@ -129,7 +132,7 @@ class EvaluationContractTests(unittest.TestCase):
 
         run = extract_eval_run(case, state)
 
-        self.assertEqual(run.actual_agent, "report_agent")
+        self.assertEqual(run.planned_agents, ("report_agent",))
         self.assertEqual(run.tools_called, ("lab_interpreter",))
         self.assertIn("建议", run.actual_output)
 

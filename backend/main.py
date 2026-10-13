@@ -95,7 +95,7 @@ async def lifespan(_app: FastAPI):
     await close_clients()
 
 
-app = FastAPI(title="大健康 AI 后端", version="2.0.0", lifespan=lifespan)
+app = FastAPI(title="CareMate API", version="2.0.0", lifespan=lifespan)
 
 class RequestIDMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
@@ -166,13 +166,6 @@ _NODE_LABELS = {
     "safety_response": "生成安全提示",
     "handoff": "转入人工协助",
     "paused": "AgentLoop 已暂停",
-    # Legacy graph names remain supported for existing event consumers.
-    "router": "分析您的需求",
-    "clinic_node": "进入预问诊模块",
-    "insurance_node": "进入医保咨询模块",
-    "report_node": "进入报告解读模块",
-    "advisor_node": "进入健康顾问模块",
-    "pharmacy_node": "进入用药咨询模块",
 }
 
 # --- 技能工具 → 前端展示标签 ---
@@ -188,6 +181,9 @@ _SKILL_LABELS: dict[str, str] = {
     "check_drug_interaction":   "正在检查药物相互作用…",
     "find_nearby_pharmacy":     "正在查找附近药店…",
     "get_otc_recommendation":   "正在检索用药建议…",
+    # unified retrieval
+    "search_health_knowledge":  "正在检索知识库、文献与网页…",
+    "search_medical_literature": "正在检索 PubMed 文献…",
     # skills
     "load_skill":               "正在加载技能模块…",
     "emergency_triage":         "正在进行急症安全评估…",
@@ -210,6 +206,10 @@ _REPORT_TOOL_TO_CARD_TYPE = {
     "lab_interpreter": "report_analysis",
 }
 
+# UI chat mode -> the label persisted on ``conversations.active_agent`` and used
+# to reconstruct a clinic question turn from stored history. These are stored
+# identifiers, not graph routing names: the Supervisor routes through
+# ``planner`` and records the result in its task contract.
 _MODE_TO_AGENT = {
     "clinic": "clinic_agent",
     "insurance": "insurance_agent",
@@ -308,6 +308,20 @@ def _extract_ask_question(content: str) -> str | None:
     return match.group(1).strip() if match else text
 
 
+def _recent_user_text(messages: list, limit: int = 8, max_chars: int = 6000) -> str:
+    """Join the last few user turns for the periodic memory sweep.
+
+    The shadow agent reads a window rather than a single line, so profile facts
+    spread across turns stay visible when the sweep fires.
+    """
+    lines = [
+        str(message.content or "").strip()
+        for message in messages
+        if isinstance(message, HumanMessage) and str(message.content or "").strip()
+    ]
+    return "\n".join(lines[-limit:])[-max_chars:]
+
+
 def _build_initial_state(
     messages: list[ChatMessage],
     user_info: UserInfo | None,
@@ -321,8 +335,6 @@ def _build_initial_state(
         "messages": _build_lc_messages(messages, active_agent=active_agent)[-10:],
         "user_info": user_info_dict,
         "memory_context": memory_context.as_dict(),
-        "next_agent": "",
-        "active_agent": active_agent,
         "requested_mode": active_agent,
         "user_id": user_id,
     }
@@ -499,9 +511,8 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
                 await maybe_run_shadow_memory(
                     db,
                     user_id=str(initial_state["user_id"]),
-                    latest_user_text=latest_input,
+                    recent_text=_recent_user_text(initial_state.get("messages", [])) or latest_input,
                     conversation_id=conversation.id if conversation is not None else None,
-                    intent=str(initial_state.get("intent") or ""),
                 )
                 await db.flush()
             except Exception:
@@ -747,7 +758,7 @@ async def _stream_agent_events(initial_state: dict, db: AsyncSession | None = No
 
 @app.get("/")
 async def root():
-    return {"message": "大健康 AI 后端 v2.0 (LangGraph)"}
+    return {"message": "CareMate API v2.0 (LangGraph)"}
 
 
 @app.get("/health")

@@ -57,7 +57,10 @@ class EvalCase:
 @dataclass(frozen=True)
 class EvalRun:
     case_id: str
-    actual_agent: str
+    # Every agent the Supervisor actually scheduled or completed. Routing is
+    # recorded in the task contract, not in the legacy active_agent/next_agent
+    # fields, so this is the only place a real routing decision can be read.
+    planned_agents: tuple[str, ...]
     actual_output: str
     tools_called: tuple[str, ...]
 
@@ -111,6 +114,19 @@ def _message_text(content: Any) -> str:
     return str(content) if content is not None else ""
 
 
+def _routed_agents(state: Mapping[str, Any]) -> tuple[str, ...]:
+    """Agents the Supervisor actually routed to, in stable order."""
+    planned = {
+        str(task.agent if hasattr(task, "agent") else (task or {}).get("agent", ""))
+        for task in (state.get("task_queue") or [])
+    }
+    completed = {
+        str(result.get("agent", ""))
+        for result in dict(state.get("task_results") or {}).values()
+    }
+    return tuple(sorted(agent for agent in (planned | completed) if agent))
+
+
 def extract_eval_run(case: EvalCase, state: Mapping[str, Any]) -> EvalRun:
     messages = state.get("messages", ())
     completed_tools = tuple(
@@ -137,9 +153,7 @@ def extract_eval_run(case: EvalCase, state: Mapping[str, Any]) -> EvalRun:
     )
     return EvalRun(
         case_id=case.id,
-        actual_agent=str(
-            state.get("active_agent") or state.get("next_agent") or ""
-        ),
+        planned_agents=_routed_agents(state),
         actual_output=actual_output,
         tools_called=completed_tools,
     )
@@ -151,7 +165,7 @@ def evaluate_run(case: EvalCase, run: EvalRun) -> EvalScore:
             f"eval case mismatch: expected {case.id}, received {run.case_id}"
         )
 
-    route_score = float(run.actual_agent == case.expected_agent)
+    route_score = float(case.expected_agent in run.planned_agents)
     tool_score: float | None = None
     if case.expected_tools is not None:
         expected = set(case.expected_tools)

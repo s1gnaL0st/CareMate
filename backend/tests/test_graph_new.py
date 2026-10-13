@@ -217,7 +217,7 @@ class GraphNewTests(unittest.TestCase):
         self.assertNotIn("完整原始问题", payload["messages"][-1].content)
 
     def test_fallback_plan_is_available_for_model_outage(self):
-        plan = _fallback_plan("头晕，医保能报销吗", "mixed")
+        plan = _fallback_plan("头晕，医保能报销吗", "health")
         self.assertEqual(
             {task.agent for task in plan.tasks},
             {"symptom_agent", "insurance_agent"},

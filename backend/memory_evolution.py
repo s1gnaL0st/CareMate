@@ -59,22 +59,24 @@ class ShadowMemoryBatch(BaseModel):
     items: list[ShadowMemoryItem] = Field(default_factory=list, max_length=8)
 
 
-async def _shadow_extract(latest_user_text: str) -> list[dict[str, Any]]:
+async def _shadow_extract(recent_text: str) -> list[dict[str, Any]]:
     """Use a tool-free LLM shadow agent to extract only explicit low-risk memory.
 
     The shadow agent is advisory: its output is schema-validated, safety
     filtered and stored as an accepted candidate only after these checks.
     It cannot write files, call tools, infer diagnoses or invent preferences.
+    It reads the recent user window, not a single turn, so facts spread across
+    turns are still visible when the periodic sweep fires.
     """
     prompt = SystemMessage(content=(
-        "你是用户记忆维护 Shadow Agent。只从用户本轮明确说出的内容中提取低风险、长期有用的用户画像或回答偏好。"
+        "你是用户记忆维护 Shadow Agent。只从下面最近几轮用户消息中明确说出的内容里，提取低风险、长期有用的用户画像或回答偏好。"
         "允许提取职业、身份、语言偏好、回答格式偏好；禁止提取或推断疾病、诊断、药物、政治、金融、密码等敏感事实。"
         "不要把健康症状转换成用户偏好。没有明确且可长期复用的信息就返回空数组。"
         "只输出 JSON：{\"items\":[{\"kind\":\"preference\",\"value\":\"用户职业：货车司机\",\"confidence\":0.95}]}。"
     ))
     try:
         response = await get_chat_llm("precise", streaming=False, temperature=0).ainvoke(
-            [prompt, HumanMessage(content=latest_user_text[:1200])],
+            [prompt, HumanMessage(content=recent_text[:4000])],
             config={"tags": ["shadow_memory_agent"]},
         )
         raw = str(getattr(response, "content", response) or "").strip()
@@ -187,6 +189,21 @@ async def _user_message_count(db: AsyncSession, user_id: str) -> int:
     return int(value or 0)
 
 
+async def _conversation_user_message_count(
+    db: AsyncSession, user_id: str, conversation_id: str | None
+) -> int:
+    """User messages in this conversation, falling back to the all-time count."""
+    if not conversation_id:
+        return await _user_message_count(db, user_id)
+    value = await db.scalar(
+        select(func.count(Message.id)).where(
+            Message.conversation_id == conversation_id,
+            Message.role == "user",
+        )
+    )
+    return int(value or 0)
+
+
 async def project_user_memory(db: AsyncSession, *, user_id: str) -> dict[str, Any]:
     """Write bounded Markdown projections atomically from accepted DB state."""
     preferences = list(await db.scalars(select(MemoryCandidate).where(
@@ -228,18 +245,23 @@ async def maybe_run_shadow_memory(
     db: AsyncSession,
     *,
     user_id: str,
-    latest_user_text: str,
+    recent_text: str,
     conversation_id: str | None = None,
-    intent: str | None = None,
 ) -> dict[str, Any]:
-    turns = await _user_message_count(db, user_id)
-    # Profile turns are extracted immediately; broad maintenance runs every
-    # ten turns. This keeps cross-session identity available without invoking a
-    # full memory pass on every ordinary health question.
-    should_invoke_shadow = intent in {"profile_update", "mixed"} or turns > 0 and turns % SHADOW_INTERVAL == 0
-    shadow_items = await _shadow_extract(latest_user_text) if should_invoke_shadow else []
+    """Run the two memory tiers for one turn.
+
+    Tier 1 (deterministic, no model call) always runs. Tier 2 - the LLM shadow
+    agent - runs on its own schedule: the first turn of a conversation and then
+    every ``SHADOW_INTERVAL`` turns. It is deliberately not triggered by the
+    intent classifier, because extraction must not depend on the topic label of
+    a single turn; it reads the recent window and decides for itself whether
+    anything there is worth remembering.
+    """
+    turns = await _conversation_user_message_count(db, user_id, conversation_id)
+    should_invoke_shadow = turns <= 1 or (turns > 0 and turns % SHADOW_INTERVAL == 0)
+    shadow_items = await _shadow_extract(recent_text) if should_invoke_shadow else []
     extracted = await _upsert_preferences(
-        db, user_id=user_id, text=latest_user_text,
+        db, user_id=user_id, text=recent_text,
         conversation_id=conversation_id, shadow_items=shadow_items,
     )
     triggered = bool(extracted or should_invoke_shadow)

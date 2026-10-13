@@ -9,7 +9,9 @@ from rag.source_audit import audit
 
 class RagProvenanceTests(unittest.TestCase):
     def setUp(self):
-        self.root = Path(__file__).resolve().parents[1]
+        # tests/ -> backend/ -> repository root; the modules under test build
+        # their paths relative to the repository root.
+        self.root = Path(__file__).resolve().parents[2]
 
     def test_legacy_summaries_are_excluded_and_curated_sources_are_indexed(self):
         documents = HealthKnowledgeBase()._load_documents()

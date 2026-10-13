@@ -79,7 +79,7 @@ def validate_reviewed_benchmark(
         ids.add(case_id)
         suite = str(case.get("suite", ""))
         present_suites.add(suite)
-        if suite not in required_suites | {"medication", "insurance", "mixed"}:
+        if suite not in required_suites | {"medication", "insurance", "cross_domain"}:
             errors.append({"case_id": case_id, "field": "suite", "reason": "unsupported_or_missing"})
         for field in ("source_dataset", "source_record_id", "license"):
             if not str(case.get(field, "")).strip():
