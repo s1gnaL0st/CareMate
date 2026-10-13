@@ -24,7 +24,7 @@ Use TypeScript and React function components. Components use PascalCase (`ChatCa
 
 ## Testing Guidelines
 
-Add deterministic tests for validation, routing helpers, and transformations. Manual scripts such as `tests/test_router.py` call configured LLMs and require provider credentials such as `ARK_API_KEY` or `OPENAI_API_KEY`; run them explicitly with `uv run python -m unittest tests.test_router`. For UI changes, verify a mobile viewport and add browser coverage through a maintained e2e setup when needed; do not commit one-off debug scripts in the frontend root.
+Add deterministic tests for validation, routing helpers, and transformations. Keep every file under `backend/tests/` runnable by `python -m unittest discover` with no network or credentials; provider-dependent probes belong in `backend/scripts/` and must be run explicitly. For UI changes, verify a mobile viewport and add browser coverage through a maintained e2e setup when needed; do not commit one-off debug scripts in the frontend root.
 
 ## Commit & Pull Request Guidelines
 

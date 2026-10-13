@@ -16,20 +16,9 @@ async def call_mcp_tool(name: str, **arguments: Any) -> Any:
     settings = get_settings()
     if not settings.mcp_enabled:
         raise MCPUnavailableError("MCP disabled")
-    # The server is a separate process using the official MCP stdio transport.
     try:
-        site_packages = os.path.join(sys.prefix, "Lib", "site-packages")
-        backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-        sys.path[:] = [p for p in sys.path if p and os.path.abspath(p) != backend_dir]
-        if site_packages not in sys.path:
-            sys.path.insert(0, site_packages)
-        for module_name in list(sys.modules):
-            if module_name == "mcp" or module_name.startswith("mcp."):
-                sys.modules.pop(module_name, None)
-        import mcp as official_mcp
         from mcp import ClientSession, StdioServerParameters
         from mcp.client.stdio import stdio_client
-        del official_mcp
     except Exception as exc:
         raise MCPUnavailableError("MCP SDK unavailable") from exc
     remote_url = ""
