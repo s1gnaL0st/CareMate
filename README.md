@@ -61,6 +61,18 @@ Runtime 为 LangGraph 提供统一的执行控制层，并不替代 LangGraph：
 - DeepSeek 可作为 reranker / LLM-as-a-Judge
 - 支持普通 RAG 与 Agentic RAG 对照评测
 
+### 统一检索（search）
+
+`search` 是一个能力而不是一条固定流水线，同时扇出三个通道并合并证据：
+
+- **知识库**（tier 0，受控语料，证据链可回溯校验）
+- **文献**（tier 1，PubMed 经 MCP 服务）
+- **网页**（tier 2–4，按来源权威度分层）
+
+外部内容一律按不可信数据处理：标注 `trust`、按 tier 排序、命中提示覆盖特征的网页直接隔离不进 prompt。任一通道失败只降级该通道，不影响其余结果，也不阻塞回答。
+
+详见 [docs/unified-search.md](docs/unified-search.md)。
+
 ### Memory 与自进化
 
 记忆分为稳定偏好、近期状态和健康事件三层：

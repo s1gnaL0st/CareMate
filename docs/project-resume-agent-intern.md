@@ -1,4 +1,4 @@
-# Smart Health Assistant｜医疗 Agent 平台与健康咨询系统
+# CareMate｜医疗 Agent 平台与健康咨询系统
 
 **项目类型：**个人项目　　**求职方向：**Agent / 大模型应用 / Python 后端实习
 
@@ -12,7 +12,7 @@ Python、FastAPI、LangGraph、LangChain、DeepSeek API、Chroma、BM25、SQLAlc
 
 ## 主要工作与技术亮点
 
-- **Supervisor 意图识别：**设计 `emergency / pure_chat / mixed / health` 四类 Intent Gate，结合确定性急症规则和结构化 Schema 校验，避免普通问答覆盖高风险信号；支持复合请求提取和领域 Agent 路由。
+- **Supervisor 意图识别：**设计 `chat / health / emergency` 三类 Intent Gate，按"健康优先"判定（只要出现健康诉求即归 `health`），结合确定性急症规则和结构化 Schema 校验，避免普通问答覆盖高风险信号；支持复合请求提取和领域 Agent 路由。
 - **任务 DAG 编排：**将复合请求拆解为带依赖关系的任务图，校验 ID 唯一、依赖无环、Agent 白名单、重试上限和输入切片；无依赖任务按波次并行，降低串行调用开销。
 - **Plan-Solve-Verify-Replan：**实现 Planner、Executor、Verifier、Responder 闭环；对 `partial / fail / unsafe` 分别执行局部补丁、局部重跑/重规划或安全熔断，使用次数锁、内容锁和时间预算防止死循环。
 - **领域 Agent 隔离：**拆分症状评估、报告解读、药品咨询、医保事务和通用健康顾问 Agent；通过独立 Prompt、工具白名单、上下文切片和结果信封限制越权调用。
@@ -29,7 +29,7 @@ Python、FastAPI、LangGraph、LangChain、DeepSeek API、Chroma、BM25、SQLAlc
 
 ## 典型 Demo
 
-用户提出“近三个月血压升高，想吃降压药，还想知道医保能否报销”。系统识别 mixed health intent，拆分趋势分析、科普检索和医保事务任务；并行执行无依赖任务；Verifier 检查证据、安全和逻辑一致性；缺信息时只补充局部任务；最终按健康风险、用药边界和医保政策聚合回答。
+用户提出“近三个月血压升高，想吃降压药，还想知道医保能否报销”。系统按健康优先判为 `health`，planner 拆成趋势分析、科普检索和医保事务三个任务；并行执行无依赖任务；Verifier 检查证据、安全和逻辑一致性；缺信息时只补充局部任务；最终按健康风险、用药边界和医保政策聚合回答。
 
 ## 设计边界
 

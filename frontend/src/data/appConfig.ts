@@ -1,6 +1,6 @@
 import { Camera, CreditCard, Heart, Activity, Stethoscope, Pill, type LucideIcon } from 'lucide-react';
 
-export const SYSTEM_NAME = '大健康 AI';
+export const SYSTEM_NAME = 'CareMate';
 export const DEFAULT_USER_LABEL = '用户';
 
 export const MODULES: { id: string; name: string; icon: LucideIcon }[] = [

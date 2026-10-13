@@ -10,7 +10,7 @@ function EscapeXml($s) { [System.Security.SecurityElement]::Escape($s) }
 function Para($text) { '<w:p><w:r><w:rPr><w:rFonts w:eastAsia="Microsoft YaHei"/><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">'+(EscapeXml $text)+'</w:t></w:r></w:p>' }
 $lines = Get-Content (Join-Path $PSScriptRoot '..\docs\project-resume-agent-intern.md') -Encoding UTF8 | Where-Object { $_.Trim() -and $_ -notmatch '^#' -and $_ -notmatch '^\*\*项目类型' -and $_ -notmatch '^##' }
 $body = ($lines | ForEach-Object { Para (($_ -replace '^[-*] ', '') -replace '\*\*','') }) -join ''
-$title = Para 'Smart Health Assistant | Agent Platform Project Resume'
+$title = Para 'CareMate | Agent Platform Project Resume'
 $document = '<?xml version="1.0"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+$title+$body+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="850" w:right="1000" w:bottom="850" w:left="1000"/></w:sectPr></w:body></w:document>'
 [IO.File]::WriteAllText((Join-Path $tmp '[Content_Types].xml'), $types, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp '_rels\.rels'), $rels, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp 'word\_rels\document.xml.rels'), $docrels, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp 'word\styles.xml'), $styles, [Text.UTF8Encoding]::new($false)); [IO.File]::WriteAllText((Join-Path $tmp 'word\document.xml'), $document, [Text.UTF8Encoding]::new($false))
 if(Test-Path $out){Remove-Item $out -Force}; [IO.Compression.ZipFile]::CreateFromDirectory($tmp, $out); Remove-Item $tmp -Recurse -Force

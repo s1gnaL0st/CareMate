@@ -1,6 +1,6 @@
-# RAG Knowledge Base — Smart Health Assistant
+# RAG Knowledge Base — CareMate
 
-[中文文档 ↓](#rag-知识库——大健康智能助手)
+[中文文档 ↓](#rag-知识库caremate)
 
 ---
 
@@ -167,9 +167,9 @@ backend/rag/
 
 ---
 
-# RAG 知识库——大健康智能助手
+# RAG 知识库——CareMate
 
-[English Documentation ↑](#rag-knowledge-base--smart-health-assistant)
+[English Documentation ↑](#rag-knowledge-base--caremate)
 
 ---
 

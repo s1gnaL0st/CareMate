@@ -72,12 +72,12 @@ runs/grpo-encounter-v1/checkpoint-200
 启动命令：
 
 ```bash
-cd /data/sjs/chendian/MedGPT/medagent-rl
+cd /data/<USER>/MedGPT/medagent-rl
 
 CUDA_VISIBLE_DEVICES=0 \
-/data/sjs/anaconda3/envs/medgpt/bin/python \
+/data/<USER>/anaconda3/envs/<ENV>/bin/python \
 scripts/serve_openai_compat.py \
-  --model /data/sjs/chendian/MedGPT/MedicalGPT/outputs-sft-qwen35-2b-v1-merged \
+  --model /data/<USER>/MedGPT/MedicalGPT/outputs-sft-qwen35-2b-v1-merged \
   --adapter runs/grpo-encounter-v1/checkpoint-200 \
   --served-model-name grpo-200 \
   --host 0.0.0.0 \
@@ -88,11 +88,11 @@ scripts/serve_openai_compat.py \
 
 ```bash
 tmux new-session -d -s medical-agent-api \
-  'cd /data/sjs/chendian/MedGPT/medagent-rl; \
+  'cd /data/<USER>/MedGPT/medagent-rl; \
    CUDA_VISIBLE_DEVICES=0 \
-   /data/sjs/anaconda3/envs/medgpt/bin/python \
+   /data/<USER>/anaconda3/envs/<ENV>/bin/python \
    scripts/serve_openai_compat.py \
-     --model /data/sjs/chendian/MedGPT/MedicalGPT/outputs-sft-qwen35-2b-v1-merged \
+     --model /data/<USER>/MedGPT/MedicalGPT/outputs-sft-qwen35-2b-v1-merged \
      --adapter runs/grpo-encounter-v1/checkpoint-200 \
      --served-model-name grpo-200 \
      --host 0.0.0.0 \
@@ -580,7 +580,7 @@ LLM_MODEL
 可以把下面这段直接交给 PC AI：
 
 ```text
-阅读 pc_ai_setup_manual.md。
+阅读 docs/pc_ai_setup_manual.md。
 先扫描并定位我的 Agent 中所有 LLM API 配置、tools 定义和 tool loop。
 只修改 PC Agent 项目，不修改 GPU 机器训练代码。
 将 OpenAI-compatible 配置改为：

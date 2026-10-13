@@ -47,4 +47,4 @@ export type ScreenType =
 - **`GlobalStoreProvider`**: The Context Provider component wrapping `Children` that holds the `AppState`.
 
 ## 6. API / Mock Data Requirements
-- Requires static initial mock data for `SYSTEM_NAME` ("大健康 AI") and `USER_NAME` ("王*虎").
+- Requires static initial mock data for `SYSTEM_NAME` ("CareMate") and `USER_NAME` ("王*虎").

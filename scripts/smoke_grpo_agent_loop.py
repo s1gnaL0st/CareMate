@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Replay old grpo-200 tool calls with real sandbox observations."""
+"""Replay old grpo-200 tool calls with real sandbox observations.
+
+Not runnable inside this repository: it imports ``medagent_rl`` from the
+separate GRPO training project (``<repo>/src/medagent_rl``) and reads
+``data/cases_synthea_grpo.jsonl`` from there. It is kept because it produced
+``trajectories.jsonl``, which ``backend/evals/evaluation_report.py`` reads as
+checked-in evidence. Run it from the training project, not from here.
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-# Smart Health Assistant 完整化路线图
+# CareMate 完整化路线图
 
 目标：将当前 AI 应用原型升级为可部署、可恢复、可测试的健康服务平台，逐步移除 Demo 属性。
 

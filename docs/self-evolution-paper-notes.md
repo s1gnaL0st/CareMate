@@ -1,4 +1,4 @@
-# Agent 自进化论文笔记与 Smart Health Assistant 接入建议
+# Agent 自进化论文笔记与 CareMate 接入建议
 
 > 阅读范围：`C:\Users\jssun\Desktop\论文合集\agent自进化` 中的 6 篇 PDF。\
 > 目标：提炼可复用的工程机制，并判断哪些机制适合医疗健康助手。\

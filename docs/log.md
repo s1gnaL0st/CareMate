@@ -33,7 +33,7 @@ test_document_parser.py：通过
 - 默认启用安全日志，只记录工具名、Agent、Run/Task 标识和耗时，不记录医疗输入输出。
 - 新增 `ToolExecutionContext`，支持传递 `user_id`、`conversation_id`、`agent_run_id`、`task_id` 和 `request_id`。
 - 新增 `backend/test_tool_executor.py`，覆盖 Schema 保持、Hook、重试、超时和 Skill 权限校验。
-- 更新 `todo.md` 和 `backend/docs/agent_loop_task.md`。
+- 更新 `docs/todo.md` 和 `backend/docs/agent_loop_task.md`。
 
 ### 配置项
 

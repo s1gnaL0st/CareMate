@@ -1,4 +1,4 @@
-# Smart Health Assistant 技术报告
+# CareMate 技术报告
 
 版本：v1.1
 项目类型：医疗辅助问诊研究型原型
@@ -6,11 +6,11 @@
 
 ## 1. 项目概述
 
-Smart Health Assistant 面向健康咨询、预问诊、检验报告解读、用药咨询和医保信息查询场景，提供带安全校验和来源追踪的辅助信息服务。系统不进行临床诊断、处方开具或急诊替代处置，输出仅用于帮助用户整理信息和选择下一步就医行动。
+CareMate 面向健康咨询、预问诊、检验报告解读、用药咨询和医保信息查询场景，提供带安全校验和来源追踪的辅助信息服务。系统不进行临床诊断、处方开具或急诊替代处置，输出仅用于帮助用户整理信息和选择下一步就医行动。
 
 项目的重点不是让单个大模型直接回答问题，而是将一次请求拆分为可执行、可校验、可回放的任务：由 Supervisor 负责意图识别和任务规划，领域 Agent 在有限权限内执行，Verifier 独立检查结果，最终由响应层组织用户可读答案。
 
-当前线上问诊链路使用 DeepSeek API。面向 GRPO 微调动作模型的五动作适配层已保留为独立能力，但当前问诊主链路不依赖该模型。
+当前线上问诊链路使用 DeepSeek API。诊室 Agent 与其他领域 Agent 一致，采用普通工具调用：按真实能力名注册 `lookup_patient_profile`、`check_red_flags`、`check_vital_thresholds`、`check_drug_interaction`、`search_health_knowledge`、`ask_patient`、`submit_triage`，并叠加按标签注册的技能工具，不再经过五动作映射层。确定性 harness（追问上限、重复问题拦截、紧急否决、引用过滤）保持不变。
 
 ## 2. 系统边界与目标
 
@@ -56,7 +56,7 @@ MySQL / Redis / OpenTelemetry + Jaeger / 离线评测
 
 ### 4.1 Intent Gate
 
-请求先经过确定性急症规则，命中高风险信号时直接进入安全响应；未命中时由 DeepSeek 进行结构化意图识别，将请求归类为 `pure_chat`、`health`、`mixed` 或 `emergency`。模型输出使用结构化 Schema 校验，服务异常时采用保守兜底，不把模型故障视为安全通过。
+请求先经过确定性急症规则，命中高风险信号时直接进入安全响应；未命中时由 DeepSeek 进行结构化意图识别，将请求归为 `chat`、`health` 或 `emergency`，并且只要出现任何健康诉求就归 `health`（健康优先）。模型输出使用结构化 Schema 校验，服务异常时采用保守兜底，不把模型故障视为安全通过。
 
 ### 4.2 Planner
 
@@ -253,4 +253,4 @@ uv run python -m evals.run_self_evolution_eval --llm-judge --case regression-rep
 
 ## 12. 结论
 
-Smart Health Assistant 当前是一个以医疗安全为优先、以 LangGraph 状态图为核心、以领域 Agent 和受控工具协作为主要实现方式的研究型原型。它的价值在于把问诊任务、证据、规则、失败和评测统一到可追踪流程中，而不是声称已经完成临床级智能诊疗或在线自动自进化。
+CareMate 当前是一个以医疗安全为优先、以 LangGraph 状态图为核心、以领域 Agent 和受控工具协作为主要实现方式的研究型原型。它的价值在于把问诊任务、证据、规则、失败和评测统一到可追踪流程中，而不是声称已经完成临床级智能诊疗或在线自动自进化。

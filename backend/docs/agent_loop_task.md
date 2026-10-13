@@ -14,7 +14,7 @@ START
   v
 intent_gate -- emergency --> safety_response --> END
   |
-  | health / mixed / pure_chat
+  | chat / health
   v
 planner
   |-- needs_clarification --> clarification_response --> END
@@ -61,7 +61,7 @@ AgentLoop 是一次请求在 Supervisor 图中的完整生命周期：
 | `messages` | `list[BaseMessage]` | 对话上下文，通常保留最近消息 |
 | `user_info` | `dict[str, Any]` | 年龄、病史、地区等用户信息 |
 | `requested_mode` | `str` | 前端请求的模式，作为 Planner 的参考信息 |
-| `intent` | `IntentName` | `emergency`、`health`、`mixed` 或 `pure_chat` |
+| `intent` | `IntentName` | `chat`、`health` 或 `emergency`（健康优先） |
 | `health_text` | `str` | Intent Gate 归一化后的请求 |
 | `task_queue` | `list[PlannedTask]` | 本轮待执行任务 |
 | `task_results` | `dict[str, TaskResult]` | 以 task id 为键保存执行结果 |
