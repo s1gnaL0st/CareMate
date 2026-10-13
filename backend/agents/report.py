@@ -10,7 +10,7 @@ Business Flow:
 """
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.prebuilt import create_react_agent
-from agents.state import MainAgentState
+from agents.state import DomainAgentInput
 from agents.llm import get_chat_llm
 from rag.knowledge_base import get_knowledge_base
 from agentic_rag import retrieve_until_sufficient
@@ -41,7 +41,7 @@ REPORT_SYSTEM_PROMPT = """你是一位专业的检验报告解读助手。用户
 - 保持客观严谨，不夸大也不轻描淡写"""
 
 
-async def report_node(state: MainAgentState) -> dict:
+async def report_node(state: DomainAgentInput) -> dict:
     """
     Report agent: interprets lab reports using the lab_interpreter skill for
     structured abnormality detection, plus RAG for clinical context.

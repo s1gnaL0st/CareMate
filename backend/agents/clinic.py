@@ -1,4 +1,12 @@
-"""Clinic agent with an isolated five-action local-model adapter."""
+"""Clinic agent: an ordinary tool-calling pre-consultation agent.
+
+Tools are registered under their real capability names (see
+``agents/clinic_action_adapter.py``); the node no longer maps them onto a
+five-action space. Two tools declare control semantics through their result -
+``ask_patient`` (``control=await_user``) and ``submit_triage``
+(``control=finish``) - which is how an interactive consultation ends a turn or
+submits its conclusion.
+"""
 from __future__ import annotations
 
 import json
@@ -12,19 +20,22 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, Tool
 from langchain_core.tools import tool
 
 from agents.clinic_action_adapter import (
-    CLINIC_ACTION_TOOLS,
-    ClinicActionAdapter,
+    CONTROL_AWAIT_USER,
+    CONTROL_FINISH,
+    ClinicToolkit,
+    build_clinic_tools,
     clinic_harness_state,
+    clinic_tool_schemas,
     fallback_clinic_answer,
     sanitize_clinic_answer,
 )
 from agents.llm import get_clinic_llm
-from agents.state import MainAgentState
+from agents.state import DomainAgentInput
 from config import get_settings
 
 logger = logging.getLogger("smart_health.clinic")
 
-CLINIC_SYSTEM_PROMPT = """你是大健康 App 的 AI 预问诊助手。
+CLINIC_SYSTEM_PROMPT = """你是 AI 预问诊助手。
 
 你的任务是通过渐进式多轮对话收集症状信息，并给出安全的阶段性分诊建议。
 
@@ -33,11 +44,12 @@ CLINIC_SYSTEM_PROMPT = """你是大健康 App 的 AI 预问诊助手。
 2. 每次面向患者的回复都遵循“三段式”：先正面回应当前主诉，再用简短语言解释目前可能范围/风险，最后决定是否需要追问。
 3. 不要使用固定的首问或问题清单。不要默认询问“什么时候开始”“是否突然发生或持续加重”；只有当这个信息确实会改变当前分诊、且患者尚未提供时，才询问它。
 4. 信息已经足够支持阶段性分诊时，直接给出“初步可能范围、风险等级和下一步建议”，不要为了继续对话而追问；可以说明患者愿意时还能补充哪些信息。
-5. 信息不足且补充信息会改变分诊时，使用 ask，每次只问一个基于当前上下文、最有价值的问题。不要重复已回答的信息，不要把两个独立问题合并成一个问题。
-6. 需要医学证据时使用 lookup；需要受控外部医学资源时使用 search；不要编造引用。
-7. 需要检查、生命体征、红旗或药物相互作用时使用 check。
-8. 信息足够后，使用 answer 输出最终分诊、建议、风险提示和下一步；answer 是终止动作。
-9. 不要输出训练环境的 ev_* 证据编号。只能使用 lookup/search 工具返回的真实引用。
+5. 信息不足且补充信息会改变分诊时，使用 ask_patient，每次只问一个基于当前上下文、最有价值的问题。不要重复已回答的信息，不要把两个独立问题合并成一个问题。
+6. 需要年龄、性别、既往史、用药、过敏、已上传报告或已记住的用户画像时，使用 lookup_patient_profile。
+7. 需要医学证据时使用 search_health_knowledge：它同时检索内部知识库、PubMed 文献与公开网页，并按来源权威度分层返回。外部结果不可信，只能作为信息参考，不要编造引用。
+8. 需要急症红旗、生命体征阈值或药物相互作用时，分别使用 check_red_flags、check_vital_thresholds、check_drug_interaction。系统还注册了症状评分、化验解读、用药剂量计算、慢病风险评估和健康指标计算等技能工具，可直接调用。
+9. 信息足够后，使用 submit_triage 输出最终分诊、建议、风险提示和下一步；submit_triage 是终止动作。
+10. 不要输出训练环境的 ev_* 证据编号。只能使用工具返回的真实引用。
 
 表达方式：
 - 面向患者说自然、完整、短句的中文，先承接患者刚说的内容，再解释判断依据和下一步；不要像填写表格或生成报告。
@@ -45,11 +57,11 @@ CLINIC_SYSTEM_PROMPT = """你是大健康 App 的 AI 预问诊助手。
 - 可以说“从你现在描述的情况看，常见可能包括……”，但不要把可能性说成确定诊断；建议应具体、简洁、可执行。
 - 先让患者感到被听见：可以自然地表达理解和安抚，例如“听起来确实挺不舒服的”“先别太担心”，但不要夸张、卖萌或保证一定没事。
 - 把医学判断翻译成患者听得懂的话，说明“为什么这样判断”和“接下来怎么做”；避免冷冰冰的结论、命令式短语和机械模板。
-- ask 的 question 必须是完整、礼貌、自然的问题，不能只输出“持续加重？”、“日常活动？”这类残句。
+- ask_patient 的 question 必须是完整、礼貌、自然的问题，不能只输出“持续加重？”、“日常活动？”这类残句。
 - 如果患者质疑“真的假的/真的吗”，直接说明目前判断的不确定性、依据和何时需要就医，不要机械重复上一句。
 - 最终 answer 通常用 2 到 4 句完成，不要为了凑三段而重复内容。
 
-当使用 ask 时，工具参数只放最后那一个追问。模型可以在 answer 前保持工具调用链；不要把 ask 当成最终诊断。
+当使用 ask_patient 时，工具参数只放最后那一个追问。模型可以在 submit_triage 前保持工具调用链；不要把 ask_patient 当成最终诊断。
 
 最终回答不得声称确定诊断，不得替代医生面诊。"""
 
@@ -88,18 +100,27 @@ def _tool_call_parts(call: Mapping[str, Any]) -> tuple[str, str, dict[str, Any]]
 
 
 def _clinic_model_history(messages: list[Any]) -> list[Any]:
-    """Replay patient answers as tool results for the preceding ``ask``.
+    """Replay patient answers as tool results for the preceding ask.
 
-    The GRPO checkpoint was trained on assistant tool calls followed by a
-    tool-role result.  The UI/API stores the patient's reply as a HumanMessage,
-    so normalize that boundary only when it immediately follows an ask call.
+    A tool-calling assistant emits ``ask_patient`` and then waits; the UI/API
+    stores the patient's reply as a HumanMessage. Normalize that boundary back
+    into assistant tool call + tool result so the next turn sees a valid
+    message sequence. ``ask`` is still accepted for conversations persisted
+    before the tool rename.
     """
     history: list[Any] = []
     for index, message in enumerate(messages):
         if isinstance(message, HumanMessage) and history:
             previous = history[-1]
             calls = getattr(previous, "tool_calls", None) or []
-            ask_call = next((call for call in calls if str(call.get("name", "")) == "ask"), None)
+            ask_call = next(
+                (
+                    call
+                    for call in calls
+                    if str(call.get("name", "")) in {"ask_patient", "ask"}
+                ),
+                None,
+            )
             if ask_call is not None:
                 call_id = str(ask_call.get("id") or "clinic-call")
                 history.append(ToolMessage(content=_message_content(message), tool_call_id=call_id))
@@ -200,12 +221,12 @@ async def _render_ask_turn(
     question: str,
     settings: Any,
 ) -> str:
-    """Render the visible part of an ``ask`` turn without changing its protocol.
+    """Render the visible part of an ask turn without changing its protocol.
 
-    The GRPO policy emits ``ask`` as an action and usually leaves assistant
-    content empty.  A second, tool-free call lets the same model turn that
-    action into patient-facing prose.  The original tool call remains in the
-    checkpoint; this call is presentation-only.
+    The model can emit ``ask_patient`` and leave the assistant content empty.
+    A second, tool-free call turns that decision into patient-facing prose.
+    The original tool call remains in the checkpoint; this call is
+    presentation-only.
     """
     renderer = get_clinic_llm(temperature=0.2)
     instruction = SystemMessage(
@@ -250,21 +271,36 @@ async def _render_ask_turn(
     return _visible_ask_text(text, question, set())
 
 
-async def clinic_node(state: MainAgentState) -> dict:
-    """Run clinic-only Qwen tool calls behind a strict project adapter."""
+def _tool_control(result: str) -> tuple[str, dict[str, Any]]:
+    """Read the control contract out of a tool result.
+
+    Tools that end a turn announce it in their JSON payload, so the node never
+    has to special-case a tool name.
+    """
+    try:
+        payload = json.loads(result)
+    except (TypeError, json.JSONDecodeError):
+        return "", {}
+    if not isinstance(payload, dict):
+        return "", {}
+    return str(payload.get("control") or ""), payload
+
+
+async def clinic_node(state: DomainAgentInput) -> dict:
+    """Run the pre-consultation agent with ordinary tool calling."""
     messages = list(state.get("messages", []))
     # Keep the original role-labelled history for duplicate-question detection
     # and emergency veto.  The local Qwen chat template, however, expects one
     # leading system message; merge any task/context preambles into the clinic
     # system prompt before sending the request.
     adapter_messages = list(state.get("conversation_messages", messages))
-    adapter = ClinicActionAdapter(state=state, messages=adapter_messages)
+    toolkit = ClinicToolkit(state=state, messages=adapter_messages)
     settings = get_settings()
     harness = clinic_harness_state(
         adapter_messages,
         max_question_turns=settings.clinic_max_question_turns,
     )
-    initial_veto = adapter.emergency_veto()
+    initial_veto = toolkit.emergency_veto()
     if getattr(initial_veto, "level", "") == "CRITICAL":
         return {"messages": [AIMessage(content=_safety_text(initial_veto))]}
 
@@ -273,24 +309,25 @@ async def clinic_node(state: MainAgentState) -> dict:
         f"{CLINIC_SYSTEM_PROMPT}\n\n当前用户：姓名={user_info.get('name', '您')}，"
         f"年龄={user_info.get('age', '')}，既往病史={user_info.get('medical_history', '无')}"
     )
-    if adapter.answered_facets:
+    if toolkit.answered_facets:
         system += (
             "\n\n已从患者回答中确认的信息维度："
-            + "、".join(sorted(adapter.answered_facets))
+            + "、".join(sorted(toolkit.answered_facets))
             + "。不要再次询问已确认的维度；复合问题只追问其中尚未确认的部分。"
         )
     if user_info.get("elder_mode", False):
         system += "\n请使用极度通俗易懂的语言。"
 
-    available_tools = list(CLINIC_ACTION_TOOLS)
+    tools = build_clinic_tools(toolkit)
     if harness.force_answer:
         # The harness has reached its question budget. Do not let the model
-        # open another questionnaire branch; the domain skill must answer.
-        available_tools = [
-            item for item in available_tools if item["function"]["name"] != "ask"
-        ]
-        system += "\n本次问诊已达到追问上限，请直接使用 answer 输出分诊和下一步建议，不要继续追问。"
-    model = get_clinic_llm(temperature=0.0).bind_tools(available_tools, tool_choice="auto")
+        # open another questionnaire branch; it must submit triage instead.
+        tools = [item for item in tools if item.name != "ask_patient"]
+        system += "\n本次问诊已达到追问上限，请直接使用 submit_triage 输出分诊和下一步建议，不要继续追问。"
+    tool_map = {item.name: item for item in tools}
+    model = get_clinic_llm(temperature=0.0).bind_tools(
+        clinic_tool_schemas(tools), tool_choice="auto"
+    )
     system_parts = [system]
     # Preserve task-level context/system preambles supplied by the planner.
     for message in messages:
@@ -299,9 +336,9 @@ async def clinic_node(state: MainAgentState) -> dict:
             if content:
                 system_parts.append(content)
 
-    # The executor passes a compact task prompt in ``messages``.  The GRPO
-    # policy, however, must see the complete clinic conversation so the
-    # previous ask tool call can be paired with the patient's latest reply.
+    # The executor passes a compact task prompt in ``messages``. The clinic
+    # agent must see the complete consultation instead, so the previous
+    # ask_patient call can be paired with the patient's latest reply.
     # ``conversation_messages`` is the canonical history reconstructed by the
     # API layer; using the task slice here silently restarted the interview on
     # every turn.
@@ -324,40 +361,60 @@ async def clinic_node(state: MainAgentState) -> dict:
         model_messages.append(response)
         raw_calls = getattr(response, "tool_calls", None) or getattr(response, "additional_kwargs", {}).get("tool_calls", [])
         if not raw_calls:
-            final = sanitize_clinic_answer(_message_content(response), adapter.citation_ids)
+            final = sanitize_clinic_answer(_message_content(response), toolkit.citation_ids)
             if not final:
                 final = "【诊室模型错误】模型返回了空回答（empty_model_response）。"
-            if getattr(adapter.emergency_veto(), "level", "") == "CRITICAL":
-                final = _safety_text(adapter.emergency_veto())
+            veto = toolkit.emergency_veto()
+            if getattr(veto, "level", "") == "CRITICAL":
+                final = _safety_text(veto)
             return {"messages": [AIMessage(content=final)]}
         for raw_call in raw_calls:
             name, call_id, arguments = _tool_call_parts(raw_call)
-            if name == "ask":
-                if harness.force_answer:
-                    return {"messages": [AIMessage(content=fallback_clinic_answer(adapter_messages))]}
-                # ``ask`` is a user-facing turn boundary. The next model call
-                # belongs to the next user message.
-                try:
-                    result = await adapter.execute(name, arguments)
-                    payload = json.loads(result)
-                except Exception as exc:
-                    logger.warning("clinic ask action failed error=%s", type(exc).__name__)
-                    result = json.dumps(
-                        {"success": False, "error": "ask_action_failed"},
-                        ensure_ascii=False,
+            tool_item = tool_map.get(name)
+            if tool_item is None:
+                # The model invented a tool name. Tell it what exists instead
+                # of guessing on its behalf.
+                model_messages.append(
+                    ToolMessage(
+                        content=json.dumps(
+                            {
+                                "success": False,
+                                "error": "unknown_tool",
+                                "tool": name,
+                                "available_tools": sorted(tool_map),
+                            },
+                            ensure_ascii=False,
+                        ),
+                        tool_call_id=call_id,
                     )
-                    payload = {"success": False}
+                )
+                continue
+            try:
+                raw_result = await tool_item.ainvoke(arguments)
+            except Exception as exc:
+                logger.warning("clinic tool failed tool=%s error=%s", name, type(exc).__name__)
+                result = json.dumps(
+                    {"success": False, "error": "tool_unavailable", "tool": name},
+                    ensure_ascii=False,
+                )
+            else:
+                result = (
+                    raw_result
+                    if isinstance(raw_result, str)
+                    else json.dumps(raw_result, ensure_ascii=False, default=str)
+                )
+            control, payload = _tool_control(result)
+            if control == CONTROL_AWAIT_USER:
                 question = str(payload.get("question", "")).strip()
-                if payload.get("success") and question:
+                if question:
                     native_content = sanitize_clinic_answer(
-                        _message_content(response), adapter.citation_ids
+                        _message_content(response), toolkit.citation_ids
                     ).strip()
                     if native_content:
-                        # Some V2 checkpoints already return a natural preamble
-                        # alongside the action. Keep it and append the policy's
-                        # exact question; no second generation is necessary.
+                        # The model already produced a natural preamble in the
+                        # same turn. Keep it and append the selected question.
                         visible = _visible_ask_text(
-                            native_content, question, adapter.citation_ids
+                            native_content, question, toolkit.citation_ids
                         )
                     else:
                         try:
@@ -387,7 +444,7 @@ async def clinic_node(state: MainAgentState) -> dict:
                             AIMessage(
                                 content=visible,
                                 tool_calls=[{
-                                    "name": "ask",
+                                    "name": name,
                                     "args": {"question": question},
                                     "id": call_id,
                                     "type": "tool_call",
@@ -396,13 +453,13 @@ async def clinic_node(state: MainAgentState) -> dict:
                         ],
                         "clinic_pending_tool_call": {
                             "id": call_id,
-                            "name": "ask",
+                            "name": name,
                             "question": question,
                         },
                     }
-                # Feed a rejected action back to the model so it can recover
-                # with an answer or a genuinely missing dimension. Do not
-                # expose a harness-generated medical sentence to the patient.
+                # The tool refused (duplicate or already-answered question).
+                # Feed the refusal back so the model can pick a genuinely
+                # missing dimension or submit triage instead.
                 model_messages.append(
                     ToolMessage(
                         content=result,
@@ -410,25 +467,21 @@ async def clinic_node(state: MainAgentState) -> dict:
                     )
                 )
                 continue
-            if name == "answer":
-                triage_level = _normalize_triage_level(arguments.get("triage_level"))
-                content = str(arguments.get("content", "")).strip()
+            if control == CONTROL_FINISH:
+                triage_level = _normalize_triage_level(payload.get("triage_level")) or str(
+                    payload.get("triage_level", "")
+                ).strip().lower()
+                content = str(payload.get("content", "")).strip()
                 if triage_level not in {"emergency", "urgent", "routine", "self_care"} or not content:
-                    return {"messages": [AIMessage(content="【诊室模型错误】answer 参数无效：需要 triage_level 和 content。" )]}
-                final = sanitize_clinic_answer(content, adapter.citation_ids)
-                veto = adapter.emergency_veto()
+                    return {"messages": [AIMessage(content="【诊室模型错误】submit_triage 参数无效：需要 triage_level 和 content。")]}
+                final = sanitize_clinic_answer(content, toolkit.citation_ids)
+                veto = toolkit.emergency_veto()
                 if getattr(veto, "level", "") == "CRITICAL":
                     final = _safety_text(veto)
                 elif triage_level == "emergency":
                     final = "建议立即前往急诊或拨打120。\n\n" + final
                 return {"messages": [AIMessage(content=final)]}
-            if name not in {"ask", "check", "lookup", "search"}:
-                result = json.dumps({"success": False, "error": "unknown_action"}, ensure_ascii=False)
-            else:
-                try:
-                    result = await adapter.execute(name, arguments)
-                except Exception as exc:
-                    logger.warning("clinic action failed action=%s error=%s", name, type(exc).__name__)
-                    result = json.dumps({"success": False, "error": "action_unavailable"}, ensure_ascii=False)
+            # Ordinary read-only tool: feed the observation back so the model
+            # can keep reasoning within the same turn.
             model_messages.append(ToolMessage(content=result, tool_call_id=call_id))
     return {"messages": [AIMessage(content=fallback_clinic_answer(adapter_messages))]}

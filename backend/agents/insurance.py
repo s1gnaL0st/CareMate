@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage
 from langgraph.prebuilt import create_react_agent
-from agents.state import MainAgentState
+from agents.state import DomainAgentInput
 from agents.llm import get_chat_llm
 from rag.knowledge_base import get_knowledge_base
 from agentic_rag import retrieve_until_sufficient
@@ -239,10 +239,10 @@ def _build_insurance_agent(llm, tools=None):
     )
 
 
-async def insurance_node(state: MainAgentState) -> dict:
+async def insurance_node(state: DomainAgentInput) -> dict:
     """
     Insurance agent: uses a ReAct sub-agent to call insurance tools and answer queries.
-    Extracts messages from the sub-graph result to be compatible with MainAgentState.
+    Extracts messages from the sub-graph result to be compatible with DomainAgentInput.
     """
     llm = get_chat_llm("balanced")
     user_info = state.get("user_info", {})

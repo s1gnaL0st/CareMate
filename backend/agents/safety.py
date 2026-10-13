@@ -16,7 +16,17 @@ _INJECTION_PATTERNS = (
 )
 
 
+def contains_injection_pattern(text: str) -> bool:
+    """Detect, without raising, an attempt to override application controls.
+
+    Used for untrusted external content such as web snippets, where the right
+    response is to quarantine and label the item instead of rejecting the
+    user's whole question.
+    """
+    return any(pattern.search(str(text or "")) for pattern in _INJECTION_PATTERNS)
+
+
 def validate_untrusted_text(text: str) -> None:
     """Block clear prompt override attempts while allowing ordinary questions."""
-    if any(pattern.search(text) for pattern in _INJECTION_PATTERNS):
+    if contains_injection_pattern(text):
         raise UnsafePromptError("输入包含不被允许的指令覆盖内容")

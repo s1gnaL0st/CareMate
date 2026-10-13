@@ -81,6 +81,22 @@ class Settings(BaseSettings):
     mcp_timeout_seconds: float = 30.0
     mcp_openfda_url: str = "https://openfda.caseyjhand.com/mcp"
     mcp_pubmed_url: str = "https://pubmed.caseyhand.com/mcp"
+    # Web search is a first-class retrieval channel next to the curated
+    # knowledge base and the PubMed literature channel. Results are untrusted
+    # external data: they are labelled, tiered by source authority and screened
+    # for prompt-override attempts before they can reach a prompt.
+    web_search_enabled: bool = True
+    # auto | tavily | searxng | duckduckgo | none
+    web_search_provider: str = "auto"
+    web_search_timeout_seconds: float = Field(default=12.0, gt=0, le=60)
+    web_search_max_results: int = Field(default=5, ge=1, le=20)
+    web_search_cache_ttl_seconds: int = 900
+    web_search_region: str = "cn-zh"
+    tavily_api_key: str = ""
+    web_search_searxng_url: str = ""
+    # The PubMed channel goes through the MCP server, which has its own
+    # timeout. This bounds how long one unified search waits for it.
+    literature_search_timeout_seconds: float = Field(default=12.0, gt=0, le=60)
     # Comma-separated reviewers. In non-production environments any signed-in
     # user may exercise the review workflow; production is deny-by-default.
     evolution_reviewer_emails: str = ""

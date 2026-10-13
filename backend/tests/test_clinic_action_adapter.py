@@ -15,14 +15,26 @@ from agents.clinic import (
     clinic_node,
 )
 from agents.clinic_action_adapter import (
-    CLINIC_ACTION_TOOLS,
-    ClinicActionAdapter,
+    ClinicToolkit,
     answered_facets,
+    build_clinic_tools,
     clinic_harness_state,
+    clinic_tool_schemas,
     fallback_clinic_answer,
     sanitize_clinic_answer,
 )
 from skills.emergency_triage.skill import EmergencyTriageSkill
+
+
+REAL_TOOL_NAMES = {
+    "lookup_patient_profile",
+    "check_red_flags",
+    "check_vital_thresholds",
+    "check_drug_interaction",
+    "search_health_knowledge",
+    "ask_patient",
+    "submit_triage",
+}
 
 
 class ClinicActionAdapterTests(unittest.TestCase):
@@ -46,6 +58,13 @@ class ClinicActionAdapterTests(unittest.TestCase):
     def test_clinic_prompt_does_not_make_onset_question_a_default(self):
         self.assertIn("不要使用固定的首问或问题清单", CLINIC_SYSTEM_PROMPT)
         self.assertIn("不要默认询问", CLINIC_SYSTEM_PROMPT)
+
+    def test_clinic_prompt_names_the_real_tools(self):
+        for name in REAL_TOOL_NAMES:
+            self.assertIn(name, CLINIC_SYSTEM_PROMPT)
+        # The retired action vocabulary must not leak back into the prompt.
+        self.assertNotIn("使用 answer ", CLINIC_SYSTEM_PROMPT)
+        self.assertNotIn("使用 ask，", CLINIC_SYSTEM_PROMPT)
 
     def test_harness_stops_after_bounded_question_turns(self):
         messages = [
@@ -117,7 +136,7 @@ class ClinicActionAdapterTests(unittest.TestCase):
                 return AIMessage(
                     content="",
                     tool_calls=[{
-                        "name": "ask",
+                        "name": "ask_patient",
                         "args": {"question": "具体是哪颗牙齿发酸？"},
                         "id": "call-test",
                         "type": "tool_call",
@@ -140,37 +159,43 @@ class ClinicActionAdapterTests(unittest.TestCase):
         self.assertIn("具体是哪颗牙齿发酸？", result["messages"][0].content)
         self.assertEqual(result["messages"][0].tool_calls[0]["id"], "call-test")
 
-    def test_exposes_only_the_five_trained_actions_with_full_parameters(self):
-        self.assertEqual(
-            {item["function"]["name"] for item in CLINIC_ACTION_TOOLS},
-            {"ask", "check", "lookup", "search", "answer"},
-        )
+    def test_tools_use_real_capability_names_and_derived_schemas(self):
+        toolkit = ClinicToolkit(state={}, messages=[])
+        tools = build_clinic_tools(toolkit)
+        by_name = {item.name: item for item in tools}
 
-        expected_arguments = {
-            "ask": "question",
-            "check": "check_type",
-            "lookup": "field",
-            "search": "query",
-            "answer": "triage_level",
-        }
-        for item in CLINIC_ACTION_TOOLS:
-            function = item["function"]
-            parameters = function["parameters"]
-            argument = expected_arguments[function["name"]]
-            self.assertEqual(parameters["type"], "object")
-            if function["name"] == "check":
-                self.assertEqual(set(parameters["properties"]), {"check_type", "items"})
-                self.assertEqual(parameters["required"], ["check_type", "items"])
-            elif function["name"] == "answer":
-                self.assertEqual(set(parameters["properties"]), {"triage_level", "content"})
-                self.assertEqual(parameters["required"], ["triage_level", "content"])
-            else:
-                self.assertEqual(set(parameters["properties"]), {argument})
-                self.assertEqual(parameters["required"], [argument])
-            self.assertFalse(parameters["additionalProperties"])
+        # No five-action vocabulary survives.
+        for retired in ("ask", "check", "lookup", "search", "answer"):
+            self.assertNotIn(retired, by_name)
+        # The core capabilities are present under their real names.
+        self.assertTrue(REAL_TOOL_NAMES.issubset(set(by_name)))
+        # Tagged skill tools are registered the normal way.
+        for skill in (
+            "emergency_triage",
+            "symptom_scorer",
+            "health_calculator",
+            "lab_interpreter",
+            "medication_calculator",
+            "risk_assessor",
+        ):
+            self.assertIn(skill, by_name)
+        self.assertIn("load_skill", by_name)
 
-    def test_ask_rejects_a_duplicate_question_but_accepts_a_new_one(self):
-        adapter = ClinicActionAdapter(
+        schemas = {item["function"]["name"]: item["function"] for item in clinic_tool_schemas(tools)}
+        self.assertEqual(set(schemas), set(by_name))
+        for name in REAL_TOOL_NAMES:
+            function = schemas[name]
+            self.assertTrue(function["description"])
+            self.assertEqual(function["parameters"]["type"], "object")
+            self.assertFalse(function["parameters"]["additionalProperties"])
+
+    def test_every_tool_description_is_present_and_non_trivial(self):
+        toolkit = ClinicToolkit(state={}, messages=[])
+        for item in build_clinic_tools(toolkit):
+            self.assertTrue(item.description and len(item.description.strip()) >= 8, item.name)
+
+    def test_ask_patient_rejects_a_duplicate_question_but_accepts_a_new_one(self):
+        toolkit = ClinicToolkit(
             state={},
             messages=[
                 HumanMessage(content="我最近头晕。"),
@@ -178,20 +203,17 @@ class ClinicActionAdapterTests(unittest.TestCase):
             ],
         )
 
-        duplicate = json.loads(
-            asyncio.run(adapter.execute("ask", {"question": "请问症状持续多久了？"}))
-        )
+        duplicate = json.loads(toolkit.ask_patient("请问症状持续多久了？"))
         self.assertFalse(duplicate["success"])
         self.assertEqual(duplicate["error"], "duplicate_question")
 
-        fresh = json.loads(
-            asyncio.run(adapter.execute("ask", {"question": "有没有伴随视物旋转或呕吐？"}))
-        )
+        fresh = json.loads(toolkit.ask_patient("有没有伴随视物旋转或呕吐？"))
         self.assertTrue(fresh["success"])
+        self.assertEqual(fresh["control"], "await_user")
         self.assertEqual(fresh["question"], "有没有伴随视物旋转或呕吐？")
 
     def test_duplicate_ask_uses_next_bounded_question_instead_of_generic_loop(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={},
             messages=[
                 HumanMessage(content="我牙齿有点酸。"),
@@ -200,8 +222,8 @@ class ClinicActionAdapterTests(unittest.TestCase):
             ],
         )
 
-        first = adapter.next_fallback_question()
-        second = adapter.next_fallback_question()
+        first = toolkit.next_fallback_question()
+        second = toolkit.next_fallback_question()
 
         self.assertIsNotNone(first)
         self.assertIsNotNone(second)
@@ -209,7 +231,7 @@ class ClinicActionAdapterTests(unittest.TestCase):
         self.assertNotIn("什么时候开始", first)
 
     def test_ask_rejects_question_when_all_information_dimensions_were_answered(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={},
             messages=[
                 HumanMessage(content="我牙齿有点酸。"),
@@ -217,14 +239,12 @@ class ClinicActionAdapterTests(unittest.TestCase):
                 HumanMessage(content="昨天晚上突然开始。"),
             ],
         )
-        duplicate = json.loads(
-            asyncio.run(adapter.execute("ask", {"question": "什么时候开始的？"}))
-        )
+        duplicate = json.loads(toolkit.ask_patient("什么时候开始的？"))
         self.assertFalse(duplicate["success"])
         self.assertEqual(duplicate["error"], "duplicate_question")
 
     def test_negative_answer_covers_the_previous_safety_question(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={},
             messages=[
                 HumanMessage(content="我的牙齿有点疼。"),
@@ -232,9 +252,7 @@ class ClinicActionAdapterTests(unittest.TestCase):
                 HumanMessage(content="没有。"),
             ],
         )
-        result = json.loads(asyncio.run(adapter.execute(
-            "ask", {"question": "是否出现持续剧痛、无法吞咽、流口水或意识改变？"}
-        )))
+        result = json.loads(toolkit.ask_patient("是否出现持续剧痛、无法吞咽、流口水或意识改变？"))
         self.assertFalse(result["success"])
         self.assertEqual(result["error"], "duplicate_question")
 
@@ -252,12 +270,12 @@ class ClinicActionAdapterTests(unittest.TestCase):
                 self.turn += 1
                 if self.turn == 1:
                     return AIMessage(content="", tool_calls=[{
-                        "name": "ask", "args": {"question": "是否出现面部肿胀？"},
+                        "name": "ask_patient", "args": {"question": "是否出现面部肿胀？"},
                         "id": "call-first", "type": "tool_call",
                     }])
                 if self.turn == 2:
                     return AIMessage(content="", tool_calls=[{
-                        "name": "ask", "args": {"question": "是否出现吞咽困难？"},
+                        "name": "ask_patient", "args": {"question": "是否出现吞咽困难？"},
                         "id": "call-duplicate", "type": "tool_call",
                     }])
                 duplicate_error = next(
@@ -267,7 +285,7 @@ class ClinicActionAdapterTests(unittest.TestCase):
                 )
                 assert duplicate_error
                 return AIMessage(content="", tool_calls=[{
-                    "name": "answer", "args": {
+                    "name": "submit_triage", "args": {
                         "triage_level": "self_care",
                         "content": "目前没有发现已知危险信号，可先预约牙科评估。",
                     }, "id": "call-answer", "type": "tool_call",
@@ -278,7 +296,7 @@ class ClinicActionAdapterTests(unittest.TestCase):
             "messages": [
                 HumanMessage(content="我的牙齿有点疼"),
                 AIMessage(content="是否出现面部肿胀？", tool_calls=[{
-                    "name": "ask", "args": {"question": "是否出现面部肿胀？"}, "id": "old", "type": "tool_call",
+                    "name": "ask_patient", "args": {"question": "是否出现面部肿胀？"}, "id": "old", "type": "tool_call",
                 }]),
                 HumanMessage(content="没有"),
             ],
@@ -289,37 +307,46 @@ class ClinicActionAdapterTests(unittest.TestCase):
         self.assertIn("没有发现已知危险信号", result["messages"][0].content)
 
     def test_compound_question_can_still_ask_unanswered_dimension(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={},
             messages=[HumanMessage(content="昨天晚上突然开始。")],
         )
-        result = json.loads(
-            asyncio.run(adapter.execute("ask", {"question": "症状是否持续加重？"}))
-        )
+        result = json.loads(toolkit.ask_patient("症状是否持续加重？"))
         self.assertTrue(result["success"])
 
     def test_compound_question_is_reduced_to_unanswered_clause(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={},
             messages=[HumanMessage(content="昨天晚上突然开始。")],
         )
-        result = json.loads(
-            asyncio.run(adapter.execute("ask", {"question": "是否突然发生或持续加重？"}))
-        )
+        result = json.loads(toolkit.ask_patient("是否突然发生或持续加重？"))
         self.assertTrue(result["success"])
         self.assertEqual(result["question"], "症状是否持续加重？")
 
     def test_compound_question_never_exposes_a_fragment(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={},
             messages=[HumanMessage(content="昨天开始，日常活动正常。")],
         )
-        result = json.loads(asyncio.run(adapter.execute(
-            "ask", {"question": "是否突然发生或是否影响日常活动？"}
-        )))
+        result = json.loads(toolkit.ask_patient("是否突然发生或是否影响日常活动？"))
         self.assertTrue(result["success"])
         self.assertNotEqual(result["question"], "日常活动？")
         self.assertTrue(result["question"].endswith("？"))
+
+    def test_submit_triage_validates_the_contract(self):
+        toolkit = ClinicToolkit(state={}, messages=[])
+        good = json.loads(toolkit.submit_triage("self_care", "建议先观察，必要时就诊。"))
+        self.assertTrue(good["success"])
+        self.assertEqual(good["control"], "finish")
+        self.assertEqual(good["triage_level"], "self_care")
+
+        bad_level = json.loads(toolkit.submit_triage("not-a-level", "内容"))
+        self.assertFalse(bad_level["success"])
+        self.assertEqual(bad_level["error"], "invalid_triage_level")
+
+        empty = json.loads(toolkit.submit_triage("routine", "   "))
+        self.assertFalse(empty["success"])
+        self.assertEqual(empty["error"], "empty_content")
 
     def test_sanitize_clinic_answer_removes_training_and_untrusted_citations(self):
         answer = (
@@ -337,6 +364,19 @@ class ClinicActionAdapterTests(unittest.TestCase):
         self.assertIn("rag:local:triage", cleaned)
         self.assertIn("pubmed:12345", cleaned)
         self.assertIn("建议尽快就医", cleaned)
+
+    def test_sanitize_clinic_answer_keeps_web_citations_only_when_grounded(self):
+        cleaned = sanitize_clinic_answer(
+            "参考国家药监局说明。\n证据：web:www.cde.org.cn:abc123",
+            {"web:www.cde.org.cn:abc123"},
+        )
+        self.assertIn("web:www.cde.org.cn:abc123", cleaned)
+
+        stripped = sanitize_clinic_answer(
+            "参考来源。\n证据：web:invented.example:deadbeef",
+            {"web:www.cde.org.cn:abc123"},
+        )
+        self.assertNotIn("web:invented.example:deadbeef", stripped)
 
     def test_sanitize_clinic_answer_removes_thinking_blocks(self):
         cleaned = sanitize_clinic_answer(
@@ -367,19 +407,19 @@ class ClinicActionAdapterTests(unittest.TestCase):
 
     def test_simulated_patient_turns_cover_dimensions_without_repeating_questions(self):
         messages = [HumanMessage(content="我有点不舒服。")]
-        adapter = ClinicActionAdapter(state={}, messages=messages)
+        toolkit = ClinicToolkit(state={}, messages=messages)
 
-        first = json.loads(asyncio.run(adapter.execute("ask", {"question": "哪里不舒服？"})))
+        first = json.loads(toolkit.ask_patient("哪里不舒服？"))
         self.assertTrue(first["success"])
         messages.extend([AIMessage(content=first["question"]), HumanMessage(content="胸口中央。")])
 
-        second_adapter = ClinicActionAdapter(state={}, messages=messages)
-        second = json.loads(asyncio.run(second_adapter.execute("ask", {"question": "是否突然发生或持续加重？"})))
+        second_toolkit = ClinicToolkit(state={}, messages=messages)
+        second = json.loads(second_toolkit.ask_patient("是否突然发生或持续加重？"))
         self.assertTrue(second["success"])
         messages.extend([AIMessage(content=second["question"]), HumanMessage(content="没有加重。")])
 
-        third_adapter = ClinicActionAdapter(state={}, messages=messages)
-        repeated = json.loads(asyncio.run(third_adapter.execute("ask", {"question": "胸口哪里不舒服？"})))
+        third_toolkit = ClinicToolkit(state={}, messages=messages)
+        repeated = json.loads(third_toolkit.ask_patient("胸口哪里不舒服？"))
         self.assertFalse(repeated["success"])
         self.assertEqual(repeated["error"], "duplicate_question")
 
@@ -388,13 +428,25 @@ class ClinicActionAdapterTests(unittest.TestCase):
             HumanMessage(content="我的牙齿有点酸"),
             AIMessage(
                 content="症状什么时候开始？",
-                tool_calls=[{"name": "ask", "id": "call-ask", "args": {"question": "症状什么时候开始？"}}],
+                tool_calls=[{"name": "ask_patient", "id": "call-ask", "args": {"question": "症状什么时候开始？"}}],
             ),
             HumanMessage(content="昨天晚上开始"),
         ])
         self.assertEqual(history[-1].type, "tool")
         self.assertEqual(history[-1].tool_call_id, "call-ask")
         self.assertEqual(history[-1].content, "昨天晚上开始")
+
+    def test_legacy_ask_call_is_still_replayed_as_tool_result(self):
+        history = _clinic_model_history([
+            HumanMessage(content="我的牙齿有点酸"),
+            AIMessage(
+                content="症状什么时候开始？",
+                tool_calls=[{"name": "ask", "id": "call-legacy", "args": {"question": "症状什么时候开始？"}}],
+            ),
+            HumanMessage(content="昨天晚上开始"),
+        ])
+        self.assertEqual(history[-1].type, "tool")
+        self.assertEqual(history[-1].tool_call_id, "call-legacy")
 
     def test_simulated_two_turn_loop_reaches_answer_after_tool_replay(self):
         """The second model call must see the patient's reply as role=tool."""
@@ -411,12 +463,13 @@ class ClinicActionAdapterTests(unittest.TestCase):
                 self.turn += 1
                 if self.turn == 1:
                     return AIMessage(content="", tool_calls=[{
-                        "name": "ask", "args": {"question": "疼了多久？"},
+                        "name": "ask_patient", "args": {"question": "疼了多久？"},
                         "id": "call-1", "type": "tool_call",
                     }])
                 self.assert_tool_reply(messages)
                 return AIMessage(content="", tool_calls=[{
-                    "name": "answer", "args": {"triage_level": "self_care", "content": "初步考虑牙齿敏感，建议预约牙科评估。"},
+                    "name": "submit_triage",
+                    "args": {"triage_level": "self_care", "content": "初步考虑牙齿敏感，建议预约牙科评估。"},
                     "id": "call-2", "type": "tool_call",
                 }])
 
@@ -437,32 +490,108 @@ class ClinicActionAdapterTests(unittest.TestCase):
             second = asyncio.run(clinic_node(state))
 
         self.assertEqual(first["clinic_pending_tool_call"]["id"], "call-1")
+        self.assertEqual(first["clinic_pending_tool_call"]["name"], "ask_patient")
         self.assertIn("初步考虑牙齿敏感", second["messages"][0].content)
-        # The first ask turn may use one additional tool-free expression call;
-        # the second clinic turn must still see the original tool reply.
         self.assertGreaterEqual(model.turn, 2)
 
+    def test_unknown_tool_name_is_reported_back_to_the_model(self):
+        class InventiveModel:
+            def __init__(self):
+                self.turn = 0
+
+            def bind_tools(self, *_args, **_kwargs):
+                return self
+
+            async def ainvoke(self, messages):
+                self.turn += 1
+                if self.turn == 1:
+                    return AIMessage(content="", tool_calls=[{
+                        "name": "diagnose_patient",
+                        "args": {"guess": "caries"},
+                        "id": "call-unknown",
+                        "type": "tool_call",
+                    }])
+                unknown = next(
+                    message for message in messages
+                    if getattr(message, "type", "") == "tool"
+                    and "unknown_tool" in message.content
+                )
+                assert unknown
+                assert "submit_triage" in unknown.content
+                return AIMessage(content="", tool_calls=[{
+                    "name": "submit_triage",
+                    "args": {"triage_level": "routine", "content": "建议预约口腔科门诊评估。"},
+                    "id": "call-final",
+                    "type": "tool_call",
+                }])
+
+        state = {"messages": [HumanMessage(content="牙齿酸")], "user_info": {}}
+        with patch("agents.clinic.get_clinic_llm", return_value=InventiveModel()):
+            result = asyncio.run(clinic_node(state))
+        self.assertIn("建议预约口腔科门诊评估", result["messages"][0].content)
+
     def test_emergency_veto_is_deterministic_and_precedes_model_actions(self):
-        adapter = ClinicActionAdapter(
+        toolkit = ClinicToolkit(
             state={"user_info": {}},
             messages=[HumanMessage(content="我突然剧烈胸痛，还一直出冷汗。")],
         )
 
-        result = adapter.emergency_veto()
+        result = toolkit.emergency_veto()
 
         self.assertEqual(result.level, "CRITICAL")
         self.assertTrue(result.call_ambulance)
         self.assertIn("120", result.safety_message)
         self.assertTrue(result.triggered_flags)
 
-    def test_check_drug_interaction_normalizes_label_and_colon(self):
-        adapter = ClinicActionAdapter(state={}, messages=[])
-        result = json.loads(
-            asyncio.run(adapter.execute("check", {"check_type": "drug_interaction", "items": ["布洛芬", "阿司匹林"]}))
+    def test_red_flag_tool_is_deterministic(self):
+        toolkit = ClinicToolkit(
+            state={"user_info": {}},
+            messages=[HumanMessage(content="我突然剧烈胸痛，还一直出冷汗。")],
         )
-        self.assertEqual(result["route"], "drug_interaction")
-        self.assertEqual(result["result"]["drug1"], "布洛芬")
-        self.assertEqual(result["result"]["drug2"], "阿司匹林")
+        result = json.loads(toolkit.run_red_flag_check())
+        self.assertTrue(result["success"])
+        self.assertEqual(result["result"]["level"], "CRITICAL")
+
+    def test_drug_interaction_tool_normalizes_drug_names(self):
+        toolkit = ClinicToolkit(state={}, messages=[])
+        result = json.loads(asyncio.run(toolkit.lookup_drug_interaction("布洛芬", "阿司匹林")))
+        self.assertTrue(result["success"])
+        self.assertEqual(result["drug1"], "布洛芬")
+        self.assertEqual(result["drug2"], "阿司匹林")
+        self.assertTrue(result["result"]["has_interaction"])
+
+    def test_drug_interaction_tool_rejects_missing_drug(self):
+        toolkit = ClinicToolkit(state={}, messages=[])
+        result = json.loads(asyncio.run(toolkit.lookup_drug_interaction("布洛芬", "")))
+        self.assertFalse(result["success"])
+        self.assertEqual(result["error"], "need_two_drugs")
+
+    def test_patient_profile_tool_reads_state_and_remembered_preferences(self):
+        toolkit = ClinicToolkit(
+            state={
+                "user_info": {
+                    "age": 34,
+                    "medical_history": "高血压",
+                    "response_preferences": ["用户职业：程序员"],
+                }
+            },
+            messages=[],
+        )
+        result = json.loads(toolkit.query_patient_profile("all"))
+        self.assertTrue(result["success"])
+        self.assertEqual(result["profile"]["age"], 34)
+        self.assertEqual(result["profile"]["remembered_profile"], ["用户职业：程序员"])
+
+        invalid = json.loads(toolkit.query_patient_profile("secrets"))
+        self.assertFalse(invalid["success"])
+        self.assertEqual(invalid["error"], "invalid_field")
+
+    def test_vital_threshold_tool_flags_values_over_threshold(self):
+        toolkit = ClinicToolkit(state={}, messages=[])
+        result = json.loads(toolkit.run_vital_threshold_check(["收缩压:165", "体温:37.1"]))
+        findings = {item["name"]: item for item in result["findings"]}
+        self.assertTrue(findings["收缩压"]["triggered"])
+        self.assertFalse(findings["体温"]["triggered"])
 
     def test_emergency_triage_respects_negated_red_flags(self):
         result = EmergencyTriageSkill().run(
@@ -470,6 +599,7 @@ class ClinicActionAdapterTests(unittest.TestCase):
         )
         self.assertNotEqual(result.level, "CRITICAL")
         self.assertNotIn("严重呼吸困难", result.triggered_flags)
+
 
 if __name__ == "__main__":
     unittest.main()
